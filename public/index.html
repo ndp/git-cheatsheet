@@ -1,275 +1,373 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Ruby on Rails: Welcome aboard</title>
-    <style type="text/css" media="screen">
-      body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
-      
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
-      
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
-      
-      
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
-      
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
-
-      #footer {
-        clear: both;
-      }
-      
-
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Git Cheatsheet</title>
+	<link rel="stylesheet" href="css/960.css" type="text/css" />
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js' lang='text/javascript' /></script>
+	<script lang="text/javascript">
+var commands = [
 
 
-      #header {
-        background-image: url("images/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-      
-      
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-      
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -11px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-      
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-      
-      
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-      
-      
-      #search {
-        margin: 0;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-size: 11px;
-      }
-      #search input {
-        font-size: 11px;
-        margin: 2px;
-      }
-      #search-text {width: 170px}
-      
-      
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
-      }
-      
-    </style>
-    <script type="text/javascript" src="javascripts/prototype.js"></script>
-    <script type="text/javascript" src="javascripts/effects.js"></script>
-    <script type="text/javascript">
-      function about() {
-        if (Element.empty('about-content')) {
-          new Ajax.Updater('about-content', 'rails/info/properties', {
-            method:     'get',
-            onFailure:  function() {Element.classNames('about-content').add('failure')},
-            onComplete: function() {new Effect.BlindDown('about-content', {duration: 0.25})}
-          });
-        } else {
-          new Effect[Element.visible('about-content') ? 
-            'BlindUp' : 'BlindDown']('about-content', {duration: 0.25});
-        }
-      }
-      
-      window.onload = function() {
-        $('search-text').value = '';
-        $('search').onsubmit = function() {
-          $('search-text').value = 'site:rubyonrails.org ' + $F('search-text');
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <form id="search" action="http://www.google.com/search" method="get">
-              <input type="hidden" name="hl" value="en" />
-              <input type="text" id="search-text" name="q" value="site:rubyonrails.org " />
-              <input type="submit" value="Search" /> the Rails site
-            </form>
-          </li>
-        
-          <li>
-            <h3>Join the community</h3>
-            <ul class="links">
-              <li><a href="http://www.rubyonrails.org/">Ruby on Rails</a></li>
-              <li><a href="http://weblog.rubyonrails.org/">Official weblog</a></li>
-              <li><a href="http://wiki.rubyonrails.org/">Wiki</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://stdlib.rubyonrails.org/">Ruby standard library</a></li>
-              <li><a href="http://corelib.rubyonrails.org/">Ruby core</a></li>
-              <li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+{ left: "workspace", right: "index", direction: "status", cmd: "status", docs: "Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by git." },
+{ left: "workspace", right: "index", direction: "status", cmd: "diff", docs: "Displays the differences are what you _could_ tell git to further add to the index but you still haven't. Stage these changes using git add" },
 
-      <div id="content">
-        <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
-        </div>
 
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
-        
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
-          
-          <ol>          
-            <li>
-              <h2>Use <tt>script/generate</tt> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
-            
-            <li>
-              <h2>Set up a default route and remove or rename this file</h2>
-              <p>Routes are set up in config/routes.rb.</p>
-            </li>
+{ left: "workspace", right: "index", direction: "up", cmd: "add <.|filepaths>", docs: "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit." },
+{ left: "workspace", right: "index", direction: "up", cmd: "add -u", docs: "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
+{ left: "workspace", right: "index", direction: "up", cmd: "add --interactive", docs: "Add modified contents in the working tree interactively to the index." },
+           
+{ left: "workspace", right: "index", direction: "dn", cmd: "checkout <.|paths>", docs: "Updates the named paths in the working tree from the index file. Does NOT switch branches." },
 
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <tt>rake db:migrate</tt> to create your database. If you're not using SQLite (the default), edit <tt>config/database.yml</tt> with your username and password.</p>
-            </li>
-          </ol>
-        </div>
-      </div>
-      
-      <div id="footer">&nbsp;</div>
-    </div>
-  </body>
+
+{ left: "workspace", right: "local_repo", direction: "status", cmd: "diff HEAD", docs: "View the changes you have in your working tree relative to the named <commit>. You can use HEAD to compare it with the latest commit, or a branch name to compare with the tip of a different branch" },
+{ left: "workspace", right: "local_repo", direction: "dn", cmd: "checkout <HEAD|branch>", docs: "Switches branches by updating the index and working tree to reflect the specified branch, <branch>, and updating HEAD to be <branch>." },
+{ left: "workspace", right: "local_repo", direction: "dn", cmd: "checkout -b <name of new branch>", docs: "Create a branch and switch to it" },
+
+{ left: "workspace", right: "local_repo", direction: "dn", cmd: "merge <branch name>", docs: "Merge changes from <branch name> into current branch" },
+
+{ left: "workspace", right: "local_repo", direction: "dn", cmd: "rebase", docs: "Forward-port local commits to the updated upstream head." },
+
+
+{ left: "workspace", right: "local_repo", direction: "up", cmd: "commit -a -m 'msg'", docs: "Automatically 'add' changes from all known files (ie. all files that are already listed in the index) and to automatically 'rm' files in the index that have been removed from the working tree, and then perform the actual commit" },
+
+
+{ left: "index", right: "local_repo", direction: "status", cmd: "diff --cached <commit>", docs:
+		"View the changes you staged for the next commit relative to the named <commit>. Typically you would want comparison with the latest commit, so if you do not give <commit>, it defaults to HEAD. --staged is a synonym of --cached"},
+{ left: "index", right: "local_repo", direction: "up", cmd: "commit -m 'msg'", docs: "Stores the current contents of the index in a new commit along with a log message from the user describing the changes." },
+//{ left: "index", right: "local_repo", direction: "up", cmd: "commit --amend" },
+
+{ left: "local_repo", right: "local_repo", direction: "status", cmd: "log" },
+{ left: "local_repo", right: "local_repo", direction: "status", cmd: "diff <commit>..<commit>", docs: "View the changes between two arbitrary commits" },
+{ left: "local_repo", right: "local_repo", direction: "status", cmd: "branch", docs: "view all existing branches" },
+
+{ left: "local_repo", right: "local_repo", direction: "status", cmd: "branch -d <name>", docs: "delete an unused branch" },
+
+{ left: "local_repo", right: "local_repo", direction: "status", cmd: "branch -D <name>", docs: "force delete of a branch" },
+
+{ left: "workspace", right: "remote_repo", direction: "dn", cmd: "pull <repo> <refspec>", docs: "Fetch from and merge with another repository or a local branch." },
+{ left: "local_repo", right: "remote_repo", direction: "dn", cmd: "fetch <repo> <refspec>", docs: "Download objects and refs from another repository." },
+{ left: "local_repo", right: "remote_repo", direction: "up", cmd: "push" },
+{ left: "local_repo", right: "remote_repo", direction: "up", cmd: "push origin <new-remote>", docs: "Push new branch to remote repository" },
+
+
+{ left: "stash", right: "workspace", direction: "dn", cmd: "stash <name>", docs: 'Stashes current changes. Can provide name' },
+{ left: "stash", right: "workspace", direction: "status", cmd: "stash list", docs: "Show all stashed changes" },
+{ left: "stash", right: "workspace", direction: "up", cmd: "Stash pop" },
+{ left: "stash", right: "workspace", direction: "up", cmd: "Stash apply" },
+
+];
+	
+
+function esc(s) {
+	return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+$(function() {
+
+
+	jQuery('.loc').append('<div class="bar" />');
+	
+	var left_offset = $('#commands').offset().left;
+	for (i = 0; i < commands.length; i++) {
+	  c = commands[i];
+	  //console.log('cmd: ' + c.cmd + " looking for " + "#"+c.left+" div.bar" + " and found " + $("#"+c.left+" div.bar").length);
+	  var left = $("#"+c.left + " div.bar").offset().left - left_offset;
+	  var right = $("#"+c.right + " div.bar").offset().left - left_offset;
+	  //console.log("left = " + left);
+	  //console.log("right = " + right);
+	  //console.log("@" + $("#"+c.left+" div.bar").get(0).position)
+	  var width = right  - left;
+	  if (width < 1) {
+		left -= 70
+		width = 140;
+	  } else {
+	  	left += 10;
+	  	width -= 20;
+	  }
+	  var e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").css('margin-left', left + 'px').css('width',width + 'px').addClass(c.left).addClass(c.right).addClass(c.direction);
+	  if (c.docs)  e.append("<span class='docs'>" + esc(c.docs) + "</span>");
+	  $('#commands').append(e);
+	}
+
+	$("body").hover(function() {
+		$.each(['stash','workspace','index','local_repo','remote_repo'], function() {
+			$('body').removeClass(this);
+		});
+	}, function() {
+		$.each(['stash','workspace','index','local_repo','remote_repo'], function() {
+			$('body').addClass(this);
+		});
+	});
+	$("#diagram .loc").hover(function() {
+		$('body').addClass(this.id);
+	}, function() {
+		$('body').removeClass(this.id);
+	});
+
+});
+
+	</script>
+	<style>
+	
+	/* colors: http://colorschemedesigner.com/#0051Tw0w0w0w0 */
+	html, body {
+		font-family: verdana;
+		font-size: 14px;
+		background-color: #eee;
+	}
+	#diagram {
+		position: relative;
+		height: 8in;
+		background-color: #eee;
+		padding: 1px 0;
+	}
+	
+	.loc {
+		position: relative;
+		height: 100%;
+		background-color: white;
+	}
+	.loc .bar {
+		position: absolute;
+		left: 45%;
+	    top: 50px;
+		border: 1px dashed white;
+		border-top: none;
+		width: 10px;
+		height: 90%;	
+	}
+	
+	.loc label {
+	    position: absolute;
+	    top: 0px;
+		width: 100%;
+		text-align: center;
+		padding: 20px 0;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.loc ul {
+		margin: 0;
+		padding: 0;
+		margin-top: 80px;
+	}
+	
+	.loc ul li {
+		margin: 0;
+		padding: 0;
+	    display: block;
+	    list-style: none;
+		border: 1px solid gray;
+		padding: 2px 5px;
+		background-color: #999;
+		margin: 5px 20px;
+		clear: left;
+		font-size: 10px;
+		opacity: 0.5;
+	}
+	
+	.loc p {
+		bottom: 30px;
+		position: absolute;
+		padding: 0 20px;
+		font-size: 10px;
+		color: white;
+	}
+	
+	#stash {
+		background-color: #bf3030;
+	}
+	body.stash #stash {
+		background-color: #a60000;
+	}
+	#stash .bar {
+		border-color: #ff7373;
+	}
+	#workspace {
+		background-color: #ff4040;
+	}
+	body.workspace #workspace {
+		background-color: #ff0000;
+	}
+	#workspace .bar {
+		border-color: #ff7373;
+	}
+	#index {
+		background-color: #ff9640;
+	}
+	body.index #index {
+		background-color: #ff7400;
+	}
+	#index .bar {
+		border-color: #ff9640;
+		border-color: #ffb273;
+	}
+	#local_repo {
+		background-color: #e6399b;
+		background-color: #992667;
+		background-color: #cd0074;
+	}
+	body.local_repo #local_repo {
+		background-color: #85004b;
+	}
+	#local_repo .bar {
+		border-color: #e6399b;
+	}
+	#remote_repo {
+		background-color: #bf3030;
+	}
+	body.remote_repo #remote_repo {
+		background-color: #a60000;
+	}
+	#remote_repo .bar {
+		border-color: #bf3030;
+		border-color: #ff7373;
+	}
+
+
+	#commands {
+		position: absolute;
+		top: 80px;
+		left: 0px;
+		width: 100%;
+		height: 0;
+	}
+	
+	#commands>div {
+		background-color: darkblue;
+		color: #ddd;
+		margin-bottom: 2px;
+		float: left;
+	    clear: left;
+		padding: 2px 5px;
+		font-style: italic;
+		font-family: sans-serif;
+		position: relative;
+		opacity: 0.3;
+	}
+	
+	#commands>div span.docs {
+		display: none;
+		-moz-box-shadow: 1px 1px 10px #992667;
+	}
+	
+	#commands>div:hover {
+		opacity: 1;
+		cursor: pointer;
+		-moz-box-shadow: 1px 1px 10px #992667;
+	}
+	
+	#commands>div:hover span.docs {
+		display: block;
+		position: absolute;
+		background-color: inherit;
+		padding: 5px 5px 25px 5px;
+		left: 100%;
+		top: 0;
+		opacity: 1;
+		z-index: 100;
+		line-height: 1.3em;
+		width: 210px;
+		color: #992667;
+		background-color: white;
+	}
+	
+	
+	#commands>div:first-line {
+		font-style: normal;
+	}
+	
+	
+	#commands>div.up {
+		background-color: #992667;
+		color: #85004b;
+		color: #e667af;
+		color: white;
+	}
+	#commands>div.up>.arrow {
+		width: 0;
+		height: 0;
+		border: 9px solid transparent;
+		border-left-color: #992667;
+		position: absolute;
+		right: -18px;
+		top: 0;
+	
+	}
+
+	#commands>div.dn {
+		background-color: #e6399b;
+		color: #85004b;
+	}
+	#commands>div.dn>.arrow {
+		width: 0;
+		height: 0;
+		border: 9px solid transparent;
+		border-right-color: #e6399b;
+		position: absolute;
+		left: -18px;
+		top: 0;
+	
+	}
+
+	#commands>div.status {
+		background-color: #a64b00;
+		color: #ffb273;
+	}
+	
+	#commands>div:before {
+		content: "git ";
+	}
+	
+	
+	body.stash #commands>div.stash {
+		opacity: 1.0;
+	}
+
+	body.workspace #commands>div.workspace {
+		opacity: 1.0;
+	}
+
+	body.index #commands>div.index {
+		opacity: 1.0;
+	}
+
+	body.local_repo #commands>div.local_repo {
+		opacity: 1.0;
+	}
+
+	body.remote_repo #commands>div.remote_repo {
+		opacity: 1.0;
+	}
+
+	</style>
+</head>
+<body class="stash workspace index local_repo remote_repo">
+<div  id="diagram" class="container_12">
+	<div id="stash" class="loc grid_2"><label>stash</label></div>
+	<div id="workspace" class="loc grid_3"><label>workspace</label></div>
+	<div id="index" class="loc grid_2 "><label>index<br />"staging area"</label><p>The "index" holds a snapshot of the content of the working tree, and it is this snapshot that is taken as the contents of the next
+       commit.</p></div>
+	<div id="local_repo" class="loc grid_2"><label>local_repo</label>
+		<ul>
+		<li>master</li>
+		<li>local_branch</li>
+		<li>feature1</li>
+		<li>feature2</li>
+		</ul>
+	</div>
+	<div id="remote_repo" class="loc grid_3"><label>upstream repository<br />default: origin</label>
+		<ul>
+		<li>master</li>
+		<li>shared_branch</li>
+		</ul>
+	</div>
+	<div id="commands">
+	</div>
+</div>
+</body>
 </html>
