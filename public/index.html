@@ -7,7 +7,7 @@
 	<title>Git Cheatsheet</title>
 	<link rel="stylesheet" href="stylesheets/960.css" type="text/css" />
 	<link rel="stylesheet" href="stylesheets/git-cheatsheet.css" type="text/css" />
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js' lang='text/javascript' /></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.js' lang='text/javascript' /></script>
 	<script lang="text/javascript">
 var commands = [
 
@@ -92,7 +92,8 @@ $(function() {
 	  if (c.docs)  e.append("<span class='docs'>" + esc(c.docs) + "</span>");
 	  $('#commands').append(e);
 	}
-
+	
+	// When you're outside the windown, make everything highlighted
 	$("body").hover(function() {
 		$.each(['stash','workspace','index','local_repo','remote_repo'], function() {
 			$('body').removeClass(this);
@@ -102,11 +103,33 @@ $(function() {
 			$('body').addClass(this);
 		});
 	});
-	$("#diagram .loc").hover(function() {
+
+	// When you're over a column, highlight it
+	/*$("#diagram .loc").hover(function() {
 		$('body').addClass(this.id);
 	}, function() {
 		$('body').removeClass(this.id);
+	});*/
+	
+	$('div.stash,div.workspace,div.index,div.local_repo,div.remote_repo').hover(function() {
+		var $elem = $(this);
+		$.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
+		    if ($elem.hasClass(value)) {
+				$('body').addClass(value);
+			}
+		});
+	},
+	function() {
+		var $elem = $(this);
+		$.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
+		    if ($elem.hasClass(value)) {
+				$('body').removeClass(value);
+			}
+		});
 	});
+
+
+
 
 });
 
