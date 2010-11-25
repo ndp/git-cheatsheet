@@ -1,162 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Git Cheatsheet</title>
-	<link rel="stylesheet" href="stylesheets/960.css" type="text/css" />
-	<link rel="stylesheet" href="stylesheets/git-cheatsheet.css" type="text/css" />
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.js' lang='text/javascript' /></script>
-	<script lang="text/javascript">
-var commands = [
-
-
-{ left: "workspace", right: "index", direction: "status", cmd: "status", docs: "Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by git." },
-{ left: "workspace", right: "index", direction: "status", cmd: "diff", docs: "Displays the differences are what you _could_ tell git to further add to the index but you still haven't. Stage these changes using git add" },
-
-
-{ left: "workspace", right: "index", direction: "up", cmd: "add <.|filepaths>", docs: "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit." },
-{ left: "workspace", right: "index", direction: "up", cmd: "add -u", docs: "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
-{ left: "workspace", right: "index", direction: "up", cmd: "add --interactive", docs: "Add modified contents in the working tree interactively to the index." },
-           
-{ left: "workspace", right: "index", direction: "dn", cmd: "checkout <.|paths>", docs: "Updates the named paths in the working tree from the index file. Does NOT switch branches." },
-
-
-{ left: "workspace", right: "local_repo", direction: "status", cmd: "diff HEAD", docs: "View the changes you have in your working tree relative to the named <commit>. You can use HEAD to compare it with the latest commit, or a branch name to compare with the tip of a different branch" },
-{ left: "workspace", right: "local_repo", direction: "dn", cmd: "checkout <HEAD|branch>", docs: "Switches branches by updating the index and working tree to reflect the specified branch, <branch>, and updating HEAD to be <branch>." },
-{ left: "workspace", right: "local_repo", direction: "dn", cmd: "checkout -b <name of new branch>", docs: "Create a branch and switch to it" },
-
-{ left: "workspace", right: "local_repo", direction: "dn", cmd: "merge <branch name>", docs: "Merge changes from <branch name> into current branch" },
-
-{ left: "workspace", right: "local_repo", direction: "dn", cmd: "rebase", docs: "Forward-port local commits to the updated upstream head." },
-
-
-{ left: "workspace", right: "local_repo", direction: "up", cmd: "commit -a -m 'msg'", docs: "Automatically 'add' changes from all known files (ie. all files that are already listed in the index) and to automatically 'rm' files in the index that have been removed from the working tree, and then perform the actual commit" },
-
-
-{ left: "index", right: "local_repo", direction: "status", cmd: "diff --cached <commit>", docs:
-		"View the changes you staged for the next commit relative to the named <commit>. Typically you would want comparison with the latest commit, so if you do not give <commit>, it defaults to HEAD. --staged is a synonym of --cached"},
-{ left: "index", right: "local_repo", direction: "up", cmd: "commit -m 'msg'", docs: "Stores the current contents of the index in a new commit along with a log message from the user describing the changes." },
-//{ left: "index", right: "local_repo", direction: "up", cmd: "commit --amend" },
-
-{ left: "local_repo", right: "local_repo", direction: "status", cmd: "log" },
-{ left: "local_repo", right: "local_repo", direction: "status", cmd: "diff <commit>..<commit>", docs: "View the changes between two arbitrary commits" },
-{ left: "local_repo", right: "local_repo", direction: "status", cmd: "branch", docs: "view all existing branches" },
-
-{ left: "local_repo", right: "local_repo", direction: "status", cmd: "branch -d <name>", docs: "delete an unused branch" },
-
-{ left: "local_repo", right: "local_repo", direction: "status", cmd: "branch -D <name>", docs: "force delete of a branch" },
-
-{ left: "workspace", right: "remote_repo", direction: "dn", cmd: "pull <repo> <refspec>", docs: "Fetch from and merge with another repository or a local branch." },
-{ left: "local_repo", right: "remote_repo", direction: "dn", cmd: "fetch <repo> <refspec>", docs: "Download objects and refs from another repository." },
-{ left: "local_repo", right: "remote_repo", direction: "up", cmd: "push" },
-{ left: "local_repo", right: "remote_repo", direction: "up", cmd: "push origin <new-remote>", docs: "Push new branch to remote repository" },
-
-
-{ left: "stash", right: "workspace", direction: "dn", cmd: "stash <name>", docs: 'Stashes current changes. Can provide name' },
-{ left: "stash", right: "workspace", direction: "status", cmd: "stash list", docs: "Show all stashed changes" },
-{ left: "stash", right: "workspace", direction: "up", cmd: "Stash pop" },
-{ left: "stash", right: "workspace", direction: "up", cmd: "Stash apply" },
-
-];
-	
-
-function esc(s) {
-	return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-$(function() {
-
-
-	jQuery('.loc').append('<div class="bar" />');
-	
-	var left_offset = $('#commands').offset().left;
-	for (i = 0; i < commands.length; i++) {
-	  c = commands[i];
-	  //console.log('cmd: ' + c.cmd + " looking for " + "#"+c.left+" div.bar" + " and found " + $("#"+c.left+" div.bar").length);
-	  var left = $("#"+c.left + " div.bar").offset().left - left_offset;
-	  var right = $("#"+c.right + " div.bar").offset().left - left_offset;
-	  //console.log("left = " + left);
-	  //console.log("right = " + right);
-	  //console.log("@" + $("#"+c.left+" div.bar").get(0).position)
-	  var width = right  - left;
-	  if (width < 1) {
-		left -= 70
-		width = 140;
-	  } else {
-	  	left += 10;
-	  	width -= 20;
-	  }
-	  var e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").css('margin-left', left + 'px').css('width',width + 'px').addClass(c.left).addClass(c.right).addClass(c.direction);
-	  if (c.docs)  e.append("<span class='docs'>" + esc(c.docs) + "</span>");
-	  $('#commands').append(e);
-	}
-	
-	// When you're outside the windown, make everything highlighted
-	$("body").hover(function() {
-		$.each(['stash','workspace','index','local_repo','remote_repo'], function() {
-			$('body').removeClass(this);
-		});
-	}, function() {
-		$.each(['stash','workspace','index','local_repo','remote_repo'], function() {
-			$('body').addClass(this);
-		});
-	});
-
-	// When you're over a column, highlight it
-	/*$("#diagram .loc").hover(function() {
-		$('body').addClass(this.id);
-	}, function() {
-		$('body').removeClass(this.id);
-	});*/
-	
-	$('div.stash,div.workspace,div.index,div.local_repo,div.remote_repo').hover(function() {
-		var $elem = $(this);
-		$.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
-		    if ($elem.hasClass(value)) {
-				$('body').addClass(value);
-			}
-		});
-	},
-	function() {
-		var $elem = $(this);
-		$.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
-		    if ($elem.hasClass(value)) {
-				$('body').removeClass(value);
-			}
-		});
-	});
-
-
-
-
-});
-
-	</script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Git Cheatsheet</title>
+    <link rel="stylesheet" href="stylesheets/1200.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/Impact-Label-fontfacekit/stylesheet.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="stylesheets/git-cheatsheet.css" type="text/css"/>-->
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.js' type='text/javascript'></script>
+    <script src='/javascripts/csster.js'></script>
+    <script src='/javascripts/styles.js'></script>
+    <script src='/javascripts/git-cheatsheet.js' type="text/javascript"></script>
 </head>
-<body class="stash workspace index local_repo remote_repo">
-<div  id="diagram" class="container_12">
-	<div id="stash" class="loc grid_2"><label>stash</label></div>
-	<div id="workspace" class="loc grid_3"><label>workspace</label></div>
-	<div id="index" class="loc grid_2 "><label>index<br />"staging area"</label><p>The "index" holds a snapshot of the content of the working tree, and it is this snapshot that is taken as the contents of the next
-       commit.</p></div>
-	<div id="local_repo" class="loc grid_2"><label>local_repo</label>
-		<ul>
-		<li>master</li>
-		<li>local_branch</li>
-		<li>feature1</li>
-		<li>feature2</li>
-		</ul>
-	</div>
-	<div id="remote_repo" class="loc grid_3"><label>upstream repository<br />default: origin</label>
-		<ul>
-		<li>master</li>
-		<li>shared_branch</li>
-		</ul>
-	</div>
-	<div id="commands">
-	</div>
+<body class=""><!-- stash workspace index local_repo remote_repo -->
+<div id="diagram" class="container_16">
+    <div id="stash" class="loc grid_2"><label>stash</label></div>
+    <div id="workspace" class="loc grid_4"><label>workspace</label></div>
+    <div id="index" class="loc grid_3 "><label>index</label>
+
+        <p>The "index"-- or "staging area"-- holds a snapshot of the content of the working tree, and it is this
+            snapshot that is taken as the
+            contents of the next
+            commit.</p></div>
+    <div id="local_repo" class="loc grid_3"><label>local repository</label>
+
+        <p>
+            Typical branches:
+            <em>master</em>
+            <em>local_branch</em>
+            <em>feature1</em>
+            <em>feature2</em>
+        </p>
+    </div>
+    <div id="remote_repo" class="loc grid_4"><label>upstream repository</label>
+        <p>Default: origin<br/>Typical branches:
+        <em>master</em>
+            <em>shared_branch</em>
+        </p>
+    </div>
+    <div id="commands">
+    </div>
 </div>
 </body>
 </html>

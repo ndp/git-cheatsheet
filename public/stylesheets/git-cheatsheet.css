@@ -2,6 +2,13 @@ html, body {
   font-family: verdana;
   font-size: 14px;
   background-color: #eeeeee;
+    margin: 0; padding: 0;
+}
+body {
+    background: url(/images/10GraphSMA.jpg);
+    background: url(/images/tn_graphpaper.gif);
+    background: url(/images/tn_notepaper.gif);
+
 }
 #diagram {
   position: relative;
@@ -12,7 +19,7 @@ html, body {
 .loc {
   position: relative;
   height: 100%;
-  background-color: white;
+  background-color: transparent;
 }
 .loc .bar {
   position: absolute;
