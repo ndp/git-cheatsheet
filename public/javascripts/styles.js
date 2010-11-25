@@ -15,19 +15,45 @@ var statusColor = '#846C6C';//'#a64b00';
 //backgroundColor: colors[value].saturate(-50).lighten(20)
 
 var css = {
-    'html, body': {
-        'font-family': 'verdana',
-        'font-size': 14,
+    'html,body': {
         margin: 0,
-        padding: 0
+        padding: 0,
+        background: 'url(/images/vCanvas.jpg)'
     },
-    'body': {
+    'a,a:link,a:visited': {
+        color: colors.local_repo,
+        textDecoration: 'none'
+    },
+    'a:hover': {
+        color: colors.local_repo.darken(10),
+        textDecoration: 'underline'
+    },
+//    'body': {
 //        background: 'url(/images/10GraphSMA.jpg)'
 //        background: 'url(/images/75572.png)'
 //        background: 'url(/images/vLegalPad.jpg)'
-        background: 'url(/images/vCanvas.jpg)'
 //        background: 'url(/images/tn_graphpaper.gif)'
 //        background: 'url(/images/tn_notepaper.gif)'
+//    },
+    '#hd': {
+        '*': {
+          margin: 0,
+          padding: 0
+        },
+        h1: {
+            font: '50px ImpactLabelRegular, ImpactLabelReversedRegular, verdana'
+        },
+        h2: {
+            paddingTop: 3,
+            textAlign: 'right',
+            color: colors.local_repo,
+            font: 'normal 25px ImpactLabelReversedRegular,ImpactLabelRegular,  verdana'
+        },
+        h6: {
+            textAlign: 'right',
+            color: colors.local_repo.saturate(-60).lighten(10),
+            font: '15px courier, monospaced'
+        }
     },
     '#diagram': {
         marginTop: 20,
@@ -55,8 +81,7 @@ var css = {
             width: '100%',
             'text-align': 'center',
             padding: '20px 0',
-            fontFamily: 'ImpactLabelReversedRegular, ImpactLabelRegular, verdana',
-            fontSize: 30,
+            font: '30px ImpactLabelReversedRegular, ImpactLabelRegular, verdana',
             color: '#333'
         },
         'p': {
@@ -115,20 +140,6 @@ var css = {
                 cursor: 'pointer',
                 '-moz-box-shadow': '1px 1px 10px #992667'
             },
-            '&:hover span.docs': {
-                display: 'block',
-                position: 'absolute',
-                'background-color': 'inherit',
-                padding: '5px 5px 25px 5px',
-                left: '100%',
-                top: 0,
-                opacity: 1,
-                'z-index': 100,
-                'line-height': '1.3em',
-                width: 210,
-                color: upColor,
-                'background-color': 'white'
-            },
             '&:first-line': { 'font-style': 'normal' },
             '&.up': {
                 'background-color': upColor,
@@ -159,10 +170,26 @@ var css = {
             '&.status': {
                 'background-color': statusColor,
                 color: statusColor.lighten(50)
-            },
-            '&:before': { 'content': '"git "' }
+            }
+//            '&:before': { 'content': '"git "' }
 
 
+        }
+    },
+    '#info': {
+        height: 60,
+        padding: '10px 0',
+        font: '15px/20px courier, monospaced',
+//        backgroundColor: 'black'.lighten(20),
+        '.cmd':{
+            color: 'black',
+            display: 'block',
+            marginLeft: 20
+        },
+        '.doc':{
+            display: 'block',
+            marginLeft: 20,
+            color: 'black'.lighten(40)
         }
     }
 };

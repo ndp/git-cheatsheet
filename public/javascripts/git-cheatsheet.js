@@ -42,13 +42,13 @@ var commands = [
     { left: "local_repo", right: "remote_repo", direction: "up", cmd: "push" },
     { left: "local_repo", right: "remote_repo", direction: "up", cmd: "push origin <branch>", docs: "Push new branch to remote repository" },
     { left: "local_repo", right: "remote_repo", direction: "up", cmd: "push origin <branch>:<branch>", docs: "Push new branch to remote repository with a different name" },
-    { left: "remote_repo", right: "remote_repo", direction: "up", cmd: "push origin :<branch>", docs: "Remove a remote branch" },
+    { left: "remote_repo", right: "remote_repo", direction: "status", cmd: "push origin :<branch>", docs: "Remove a remote branch" },
 
 
-    { left: "stash", right: "workspace", direction: "dn", cmd: "stash <name>", docs: 'Stashes current changes. Can provide name' },
+    { left: "stash", right: "workspace", direction: "dn", cmd: "stash save <name>", docs: 'Stashes current changes. Can provide a name.' },
     { left: "stash", right: "workspace", direction: "status", cmd: "stash list", docs: "Show all stashed changes" },
-    { left: "stash", right: "workspace", direction: "up", cmd: "Stash pop" },
-    { left: "stash", right: "workspace", direction: "up", cmd: "Stash apply" }
+    { left: "stash", right: "workspace", direction: "up", cmd: "stash apply <name>", docs: "Move changes from the specified stash into the workspace. The latest stash is the default." },
+    { left: "stash", right: "workspace", direction: "up", cmd: "stash pop", docs: 'Applies the changes from the last (or specified) stash and then removes the given stash.'}
 
 ];
 
@@ -73,16 +73,28 @@ $(function() {
         //console.log("@" + $("#"+c.left+" div.bar").get(0).position)
         var width = right - left;
         if (width < 1) {
-            left -= 70
-            width = 140;
+            left -= 90
+            width = 200;
         } else {
             left += 10;
             width -= 20;
         }
-        var e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").css('margin-left', left + 'px').css('width', width + 'px').addClass(c.left).addClass(c.right).addClass(c.direction);
-        if (c.docs)  e.append("<span class='docs'>" + esc(c.docs) + "</span>");
-        $('#commands').append(e);
+        var $e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").css('margin-left', left + 'px').css('width', width + 'px').addClass(c.left).addClass(c.right).addClass(c.direction);
+        $('#commands').append($e);
+
+        if (c.docs) {
+            $e.attr('data-docs', esc(c.docs));
+            $e.hover(function() {
+                var $info = $('#info');
+                $info.empty();
+                $('<span>').addClass('cmd').text('git ' + $(this).text()).appendTo($info);
+                $('<span>').addClass('doc').text($(this).attr('data-docs')).appendTo($info);
+            })
+//            $e.append("<span class='docs'>" + esc(c.docs) + "</span>");
+        }
+
     }
+
 
     // When you're outside the windown, make everything highlighted
 //    $("body").hover(function() {
