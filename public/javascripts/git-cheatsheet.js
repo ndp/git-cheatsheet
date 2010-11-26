@@ -53,7 +53,7 @@ var commands = [
 ];
 
 function esc(s) {
-    return s.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return s.replace(/</g, 'zyx').replace(/>/g, '</em>').replace(/zyx/g,'<em>');
 }
 
 
@@ -83,18 +83,23 @@ $(function() {
         $('#commands').append($e);
 
         if (c.docs) {
-            $e.attr('data-docs', esc(c.docs));
-            $e.hover(function() {
-                var $info = $('#info');
-                $info.empty();
-                $('<span>').addClass('cmd').text('git ' + $(this).text()).appendTo($info);
-                $('<span>').addClass('doc').text($(this).attr('data-docs')).appendTo($info);
-            })
-//            $e.append("<span class='docs'>" + esc(c.docs) + "</span>");
+            $e.attr('data-docs', c.docs);
         }
 
     }
 
+
+    $('[data-docs],.loc').live('mouseover', function() {
+        var $info = $('#info');
+        $info.find('.cmd,.doc').empty();
+
+        var cmd = $(this).html();
+        if ($(this).parent('#commands').length > 0) {
+            cmd = 'git ' + cmd;
+        }
+        $('<span>').html(cmd).appendTo($info.find('.cmd'));
+        $('<span>').text($(this).attr('data-docs')).appendTo($info.find('.doc'));
+    });
 
     // When you're outside the windown, make everything highlighted
 //    $("body").hover(function() {

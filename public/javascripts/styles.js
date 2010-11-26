@@ -14,6 +14,8 @@ var statusColor = '#846C6C';//'#a64b00';
 
 //backgroundColor: colors[value].saturate(-50).lighten(20)
 
+var c;
+
 var css = {
     'html,body': {
         margin: 0,
@@ -105,13 +107,68 @@ var css = {
                 visibility: 'visible'
             },
             'label': {
-//                fontFamily: 'ImpactLabelRegular,ImpactLabelReversedRegular,  verdana',
                 color: 'white'
             }
         },
         '&:hover,&.current': {
         }
 
+    },
+    'body.index #commands': {
+        'div.up': {
+            backgroundColor: c = colors.index.darken(30).saturate(0),
+            borderColor: c,
+            '> .arrow': {
+                'border-left-color': c
+            },
+            '&:hover': {
+                'background-color': c.darken(5),
+                '> .arrow': {
+                    'border-left-color': c.darken(5)
+                }
+            }
+        },
+        'div.dn': {
+            backgroundColor: c = colors.index.darken(10).saturate(-10),
+            borderColor: c,
+            '> .arrow': {
+                'border-right-color': c
+            },
+            '&:hover': {
+                'background-color': c.darken(5),
+                '> .arrow': {
+                    'border-right-color': c.darken(5)
+                }
+            }
+        }
+    },
+    'body.local_repo #commands': {
+        'div.up': {
+            backgroundColor: c = colors.local_repo.darken(10).saturate(0),
+            borderColor: c,
+            '> .arrow': {
+                'border-left-color': c
+            },
+            '&:hover': {
+                'background-color': c.darken(5),
+                '> .arrow': {
+                    'border-left-color': c.darken(5)
+                }
+            }
+        },
+        'div.dn': {
+            backgroundColor: c = colors.local_repo.darken(-10).saturate(-10),
+            borderColor: c,
+            '> .arrow': {
+                'border-right-color': c
+            },
+            '&:hover': {
+                'background-color': c.darken(5),
+                '> .arrow': {
+                    'border-right-color': c.darken(5)
+                }
+            }
+        }
     },
     '#commands': {
         position: 'absolute',
@@ -121,75 +178,89 @@ var css = {
         font: '15px courier, monospaced',
         height: 0,
         '> div': {
-            'background-color': 'darkblue',
             color: '#dddddd',
-            'margin-bottom': 2,
+            marginBottom: 2,
             'float': 'left',
             clear: 'left',
             padding: '2px 5px',
-            'font-style': 'italic',
             position: 'relative',
             opacity: 0.3,
             display: 'none',
-            'span.docs': {
-                display: 'none',
-                '-moz-box-shadow': '1px 1px 10px #992667'
-            },
             '&:hover': {
 //                opacity: 1,
                 cursor: 'pointer',
-                '-moz-box-shadow': '1px 1px 10px #992667'
+                has: boxShadow([1,1], 5, '#992667')
             },
-            '&:first-line': { 'font-style': 'normal' },
             '&.up': {
                 'background-color': upColor,
-                color: upColor.lighten(50)
-            },
-            '&.up > .arrow': {
-                width: 0,
-                height: 0,
-                border: '9px solid transparent',
-                'border-left-color': upColor,
-                position: 'absolute',
-                right: '-18px',
-                top: 0
+                'border-color': upColor.lighten(20),
+                color: upColor.lighten(50),
+                '> .arrow': {
+                    width: 0,
+                    height: 0,
+                    border: '9px solid transparent',
+                    'border-left-color': upColor,
+                    position: 'absolute',
+                    right: '-18px',
+                    top: 0
+                },
+                '&:hover': {
+                    'background-color': upColor.darken(5),
+                    '> .arrow': {
+                        'border-left-color': upColor.darken(5),
+                        'border-left-width': 11,
+                        right: '-20px'
+                    }
+                }
             },
             '&.dn': {
                 'background-color': dnColor,
-                color: dnColor.lighten(50)
-            },
-            '&.dn > .arrow': {
-                width: 0,
-                height: 0,
-                border: '9px solid transparent',
-                'border-right-color': dnColor,
-                position: 'absolute',
-                left: '-18px',
-                top: 0
+                'border-color': dnColor.lighten(20),
+                color: dnColor.lighten(50),
+                '> .arrow': {
+                    width: 0,
+                    height: 0,
+                    border: '9px solid transparent',
+                    'border-right-color': dnColor,
+                    position: 'absolute',
+                    left: '-18px',
+                    top: 0
+                },
+                '&:hover': {
+                    'background-color': dnColor.darken(5),
+                    '> .arrow': {
+                        'border-right-width': 11,
+                        'border-right-color': dnColor.darken(5),
+                        left: '-20px'
+                    }
+                }
             },
             '&.status': {
+                'border-color': statusColor.lighten(20),
                 'background-color': statusColor,
-                color: statusColor.lighten(50)
+                color: statusColor.lighten(50),
+                '&:hover': {
+                    'background-color': statusColor.darken(5)
+                }
             }
-//            '&:before': { 'content': '"git "' }
-
-
         }
     },
     '#info': {
         height: 60,
         padding: '10px 0',
+        marginTop: 10,
         font: '15px/20px courier, monospaced',
-//        backgroundColor: 'black'.lighten(20),
         '.cmd':{
             color: 'black',
             display: 'block',
-            marginLeft: 20
+            textAlign: 'right',
+            marginLeft: 20,
+            textDecoration: 'underline'
         },
         '.doc':{
             display: 'block',
             marginLeft: 20,
-            color: 'black'.lighten(40)
+            color: 'black'.lighten(30)
         }
     }
 };
@@ -204,10 +275,6 @@ $(function() {
             color: colors[value],
             backgroundColor: colors[value].saturate(-50).lighten(20)
         };
-        css['#' + value + ':hover'] = {
-//            borderColor: colors[value].darken(20),
-//            backgroundColor: colors[value].saturate(-40).lighten(10)
-        };
         css['#' + value + ' .bar'] = { borderColor: colors[value].darken(20)};
         css['body.' + value + ' #' + value] = {
             color: 'white',
@@ -217,11 +284,6 @@ $(function() {
             display: 'block',
             opacity: 1
         }
-//        css['#commands > div.status.' + value] = {
-//            backgroundColor: colors[value].saturate(-50),
-//            color: colors[value].saturate(-50).lighten(50)
-//
-//        }
 
     });
 
