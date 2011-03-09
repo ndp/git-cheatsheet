@@ -60,7 +60,7 @@ var css = {
     '#diagram': {
         marginTop: 20,
         position: 'relative',
-        height: '6in',
+        height: '6.2in',
         padding: '1px 0'
     },
     '.loc': {
@@ -172,7 +172,7 @@ var css = {
     },
     '#commands': {
         position: 'absolute',
-        top: 100,
+        top: 90,
         left: 0,
         width: '100%',
         font: '15px courier, monospaced',
