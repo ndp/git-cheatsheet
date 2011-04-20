@@ -28,17 +28,19 @@ var commands = [
   { left: "index", right: "index", direction: "status",
     cmd: "reset HEAD <file1> <file2> ...",
     docs: "Remove the specified files from the next commit" },
-  { left: "index", right: "local_repo", direction: "dn",
-    cmd: "reset --hard",
-    docs: "WARNING: Abandons everything since your last commit. " +
-          "Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD to undo the most recent successful merge and any changes after." },
-  { left: "index", right: "local_repo", direction: "dn",
-    cmd: "reset --soft HEAD^",
-    docs: "Undo the last commit, leaving changes in the the index." },
 
   { left: "workspace", right: "index", direction: "dn",
     cmd: "checkout <file...> or <dir...>",
     docs: "Updates the file or directory in the workspace, overwriting any local changes. Does NOT switch branches." },
+
+  { left: "workspace", right: "local_repo", direction: "dn",
+    cmd: "reset --hard",
+    docs: "Matches the workspace and index to the local tree. " +
+          "WARNING: Any changes to tracked files in the working tree since commit are lost." +
+          "Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD to undo the most recent successful merge and any changes after." },
+  { left: "index", right: "local_repo", direction: "dn",
+    cmd: "reset --soft HEAD^",
+    docs: "Undo the last commit, leaving changes in the the index." },
 
 
   { left: "workspace", right: "local_repo", direction: "dn",
@@ -82,9 +84,10 @@ var commands = [
           '--after="MMM DD YYYY" ex. ("Jun 20 2008") only commits after a certain date' +
           '--before="MMM DD YYYY" only commits that occur before a certain date' +
           '--merge       only the commits involved in the current merge conflicts' },
-  { left: "local_repo", right: "local_repo", direction: "status",
+  { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "revert <rev>",
-    docs: "Reverse commit specified by <rev> and commit the result." },
+    docs: "Reverse commit specified by <rev> and commit the result. " +
+          "This requires your working tree to be clean (no modifications from the HEAD commit)." },
   { left: "local_repo", right: "local_repo", direction: "status",
     cmd: "diff <commit>..<commit>",
     docs: "View the changes between two arbitrary commits" },
@@ -183,7 +186,8 @@ $(function() {
       cmd = 'git ' + cmd;
     }
     $('<span>').html(cmd).appendTo($info.find('.cmd'));
-    $('<span>').html($(this).attr('data-docs')).appendTo($info.find('.doc'));
+    var d = $(this).attr('data-docs') || '';
+    $('<span>').html(d).appendTo($info.find('.doc'));
   });
 
   // When you're outside the windown, make everything highlighted

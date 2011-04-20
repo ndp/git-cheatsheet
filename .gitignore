@@ -1,1 +1,7 @@
 .idea
+.DS_Store
+public/.DS_Store
+app/.DS_Store
+public/javascripts/.DS_Store
+public/stylesheets/.DS_Store
+.DS_Store
