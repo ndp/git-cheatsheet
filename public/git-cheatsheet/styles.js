@@ -7,12 +7,9 @@ var colors = {
 }
 
 
-var upColor = colors.workspace.darken(10).saturate(-30);//'#e6399b';
-var dnColor = colors.workspace.darken(0).saturate(-30);//'#e6399b';
-//var dnColor = colors.index.darken(10).saturate(0);//'#992667';
-var statusColor = '#846C6C';//'#a64b00';
-
-//backgroundColor: colors[value].saturate(-50).lighten(20)
+var upColor = colors.workspace.darken(10).saturate(-30);
+var dnColor = colors.workspace.darken(0).saturate(-30);
+var statusColor = '#846C6C';
 
 var c;
 
@@ -30,13 +27,6 @@ var css = {
         color: colors.local_repo.darken(10),
         textDecoration: 'underline'
     },
-//    'body': {
-//        background: 'url(/images/10GraphSMA.jpg)'
-//        background: 'url(/images/75572.png)'
-//        background: 'url(/images/vLegalPad.jpg)'
-//        background: 'url(/images/tn_graphpaper.gif)'
-//        background: 'url(/images/tn_notepaper.gif)'
-//    },
     '#hd': {
         '*': {
           margin: 0,
@@ -183,11 +173,12 @@ var css = {
             'float': 'left',
             clear: 'left',
             padding: '2px 5px',
+//            height: 16,
+            lineHeight: 16,
             position: 'relative',
             opacity: 0.3,
             display: 'none',
             '&:hover': {
-//                opacity: 1,
                 cursor: 'pointer',
                 has: boxShadow([1,1], 5, '#992667')
             },
