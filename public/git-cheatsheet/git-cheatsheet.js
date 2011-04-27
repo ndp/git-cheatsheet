@@ -117,8 +117,8 @@ var commands = [
     docs: "Download objects and refs from another repository." },
   { left: "local_repo", right: "remote_repo", direction: "up",
     cmd: "push",
-  docs: 'update the server with your commits across all branches that are *COMMON* between your local copy and the server.' +
-        'Local branches that were never pushed to the server in the first place are not shared'},
+    docs: 'update the server with your commits across all branches that are *COMMON* between your local copy and the server.' +
+          'Local branches that were never pushed to the server in the first place are not shared'},
   { left: "local_repo", right: "remote_repo", direction: "up",
     cmd: "push origin <branch>",
     docs: "Push new (or existing) branch to remote repository" },
@@ -173,7 +173,6 @@ $(function() {
     if (c.docs) {
       $e.attr('data-docs', esc(c.docs));
     }
-
   }
 
 
@@ -190,32 +189,22 @@ $(function() {
     $('<span>').html(d).appendTo($info.find('.doc'));
   });
 
-  // When you're outside the windown, make everything highlighted
-//    $("body").hover(function() {
-//        $.each(['stash','workspace','index','local_repo','remote_repo'], function() {
-//            $('body').removeClass(this);
-//        });
-//    }, function() {
-//        $.each(['stash','workspace','index','local_repo','remote_repo'], function() {
-//            $('body').addClass(this);
-//        });
-//    });
+  function selectLoc(id) {
+    $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
+    $('#diagram .loc.current').removeClass('current');
+    $('#' + id).addClass('current');
+    window.location.href='#loc='+id + ';';
+  }
 
-  // When you're over a column, highlight it
   $("#diagram .loc").
         click(
              function() {
-               $('body').removeClass('stash workspace index local_repo remote_repo').addClass(this.id);
-               $('#diagram .loc.current').removeClass('current');
-               $(this).addClass('current');
-
+               selectLoc(this.id);
              }).
         hover(function() {
     $(this).addClass('hovered');
-//        $('body').addClass(this.id);
   }, function() {
     $(this).removeClass('hovered');
-//        $('body').removeClass(this.id);
   });
 
 
@@ -228,28 +217,18 @@ $(function() {
         hover(
              function() {
                oldBodyClass = $('body').attr('class');
-//                     var showing = false;
-//                     var $elem = $(this);
-//                     $.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
-//                         if ($elem.hasClass(value) && $('body').hasClass(value)) showing= true;
-//                     });
-//                     if (showing) {
-//                         $.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
-//                             if ($elem.hasClass(value)) {
-//                                 $('body').addClass(value);
-//                             }
-//                         });
-//                     }
              },
              function() {
                $('body').attr('class', oldBodyClass);
-//                     var $elem = $(this);
-//                     $.each(['stash','workspace','index','local_repo','remote_repo'], function(index, value) {
-//                         if ($elem.hasClass(value)) {
-//                             $('body').removeClass(value);
-//                         }
-//                     });
              });
 
+  // Highlight given location specified by hash.
+  var hash = window.location.hash;
+  if (hash && hash.length > 1) {
+    var m = hash.match(/loc=([^;]*);/);
+    if (m && m.length == 2) {
+      selectLoc(m[1]);
+    }
+  }
 
 });
