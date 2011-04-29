@@ -65,7 +65,7 @@ var css = {
             border: '1px dashed white',
             'border-top': 'none',
             width: 10,
-            height: '90%'
+            height: 535
         },
         'label': {
             position: 'absolute',
@@ -253,6 +253,10 @@ var css = {
             marginLeft: 20,
             color: 'black'.lighten(30)
         }
+    },
+    '#remote_repo .bar, #local_repo .bar': {
+      top: 85,
+      height: 500
     }
 };
 

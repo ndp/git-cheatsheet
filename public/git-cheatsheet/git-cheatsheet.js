@@ -25,23 +25,32 @@ var commands = [
   { left: "workspace", right: "index", direction: "up",
     cmd: "rm <file...>",
     docs: "Remove file in the workspace and the index." },
-  { left: "index", right: "index", direction: "status",
-    cmd: "reset HEAD <file1> <file2> ...",
-    docs: "Remove the specified files from the next commit" },
+
+  { left: "workspace", right: "local_repo", direction: "up",
+    cmd: "commit -a -m 'msg'",
+    docs: "Commit all files changed since your last commit, except untracked files (ie. all files that are already listed in the index). " +
+          "Remove files in the index that have been removed from the workspace." },
 
   { left: "workspace", right: "index", direction: "dn",
     cmd: "checkout <file...> or <dir...>",
     docs: "Updates the file or directory in the workspace, overwriting any local changes. Does NOT switch branches." },
+
+  { left: "index", right: "index", direction: "status",
+    cmd: "reset HEAD <file1> <file2> ...",
+    docs: "Remove the specified files from the next commit. " +
+          "Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and " +
+          "reports what has not been updated." },
+
+  { left: "index", right: "local_repo", direction: "dn",
+    cmd: "reset --soft HEAD^",
+    docs: "Undo the last commit, leaving changes in the the index." },
 
   { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "reset --hard",
     docs: "Matches the workspace and index to the local tree. " +
           "WARNING: Any changes to tracked files in the working tree since commit are lost." +
           "Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD to undo the most recent successful merge and any changes after." },
-  { left: "index", right: "local_repo", direction: "dn",
-    cmd: "reset --soft HEAD^",
-    docs: "Undo the last commit, leaving changes in the the index." },
-
+      
 
   { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "checkout <branch>",
@@ -59,11 +68,11 @@ var commands = [
     docs: "Reverts all commits since the current branch diverged from <upstream>, and then re-applies them one-by-one on top of changes from the HEAD of <upstream>." },
 
 
-  { left: "workspace", right: "local_repo", direction: "up",
-    cmd: "commit -a -m 'msg'",
-    docs: "Commit all files changed since your last commit, except untracked files (ie. all files that are already listed in the index). " +
-          "Remove files in the index that have been removed from the workspace." },
 
+  { left: "workspace", right: "local_repo", direction: "dn",
+    cmd: "revert <rev>",
+    docs: "Reverse commit specified by <rev> and commit the result. " +
+          "This requires your working tree to be clean (no modifications from the HEAD commit)." },
 
   { left: "index", right: "local_repo", direction: "status",
     cmd: "diff --cached",
@@ -84,27 +93,19 @@ var commands = [
           '--after="MMM DD YYYY" ex. ("Jun 20 2008") only commits after a certain date' +
           '--before="MMM DD YYYY" only commits that occur before a certain date' +
           '--merge       only the commits involved in the current merge conflicts' },
-  { left: "workspace", right: "local_repo", direction: "dn",
-    cmd: "revert <rev>",
-    docs: "Reverse commit specified by <rev> and commit the result. " +
-          "This requires your working tree to be clean (no modifications from the HEAD commit)." },
   { left: "local_repo", right: "local_repo", direction: "status",
     cmd: "diff <commit>..<commit>",
     docs: "View the changes between two arbitrary commits" },
   { left: "local_repo", right: "local_repo", direction: "status",
     cmd: "branch",
     docs: "list all existing branches" },
+  { left: "local_repo", right: "local_repo", direction: "status",
+    cmd: "branch -d <branch_name>",
+    docs: "Delete an specified branch. Use -D to force." },
   { left: 'local_repo', right: 'remote_repo', direction: 'dn',
     cmd: 'branch --track <new> <remote/branch>',
     docs: 'Create a new local branch that tracks a remote branch.'},
 
-  { left: "local_repo", right: "local_repo", direction: "status",
-    cmd: "branch -d <branch_name>",
-    docs: "Delete an specified branch. Use -D to force." },
-
-  { left: "remote_repo", right: "remote_repo", direction: "status",
-    cmd: "branch -r",
-    docs: "List remote branches" },
 
   { left: "workspace", right: "remote_repo", direction: "dn",
     cmd: "clone <repo>",
@@ -125,6 +126,11 @@ var commands = [
   { left: "local_repo", right: "remote_repo", direction: "up",
     cmd: "push origin <branch>:<branch>",
     docs: "Push new branch to remote repository with a different name" },
+
+  { left: "remote_repo", right: "remote_repo", direction: "status",
+    cmd: "branch -r",
+    docs: "List remote branches" },
+
   { left: "remote_repo", right: "remote_repo", direction: "status",
     cmd: "push origin :<branch>",
     docs: "Remove a remote branch" },
