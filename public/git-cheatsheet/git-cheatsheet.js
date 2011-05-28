@@ -135,6 +135,9 @@ var commands = [
     cmd: "push origin :<branch>",
     docs: "Remove a remote branch" },
 
+  { left: "workspace", right: "workspace", direction: "status",
+    cmd: "clean",
+    docs: 'Cleans the working tree by recursively removing files that are not under version control, starting from the current directory.' },
 
   { left: "stash", right: "workspace", direction: "dn",
     cmd: "stash save <name>",
