@@ -196,6 +196,7 @@ $(function() {
     $('<span>').html(cmd).appendTo($info.find('.cmd'));
     var d = $(this).attr('data-docs') || '';
     $('<span>').html(d).appendTo($info.find('.doc'));
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', cmd, null]);
   });
 
   function selectLoc(id) {
@@ -203,6 +204,7 @@ $(function() {
     $('#diagram .loc.current').removeClass('current');
     $('#' + id).addClass('current');
     window.location.href='#loc='+id + ';';
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
   }
 
   $("#diagram .loc").
