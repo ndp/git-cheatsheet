@@ -15,13 +15,11 @@ var commands = [
 
   { left: "workspace", right: "index", direction: "up",
     cmd: "add <file... or dir...>",
-    docs: "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit." },
+    docs: "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit. " +
+            "Use 'add --interactive' to add the modified contents in the workspace interactively to the index." },
   { left: "workspace", right: "index", direction: "up",
     cmd: "add -u",
     docs: "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
-  { left: "workspace", right: "index", direction: "up",
-    cmd: "add --interactive",
-    docs: "Add modified contents in the workspace interactively to the index." },
   { left: "workspace", right: "index", direction: "up",
     cmd: "rm <file...>",
     docs: "Remove file in the workspace and the index." },
@@ -48,9 +46,10 @@ var commands = [
   { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "reset --hard",
     docs: "Matches the workspace and index to the local tree. " +
-          "WARNING: Any changes to tracked files in the working tree since commit are lost." +
-          "Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD to undo the most recent successful merge and any changes after." },
-      
+          "WARNING: Any changes to tracked files in the working tree since commit are lost. " +
+          "Use this if merging has resulted in conflicts and you'd like to start over. " +
+            "Pass ORIG_HEAD to undo the most recent successful merge and any changes after." },
+
 
   { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "checkout <branch>",
@@ -70,8 +69,11 @@ var commands = [
 
 
   { left: "workspace", right: "local_repo", direction: "dn",
-    cmd: "revert <rev>",
-    docs: "Reverse commit specified by <rev> and commit the result. " +
+    cmd: "cherry-pick <sha>",
+    docs: "Integrate changes in the given commit into the current branch." },
+  { left: "workspace", right: "local_repo", direction: "dn",
+    cmd: "revert <sha>",
+    docs: "Reverse commit specified by <sha> and commit the result. " +
           "This requires your working tree to be clean (no modifications from the HEAD commit)." },
 
   { left: "index", right: "local_repo", direction: "status",
@@ -113,6 +115,9 @@ var commands = [
   { left: "workspace", right: "remote_repo", direction: "dn",
     cmd: "pull <repo> <refspec>",
     docs: "Fetch changes from the remote repo and merge them into the current branch." },
+  { left: "workspace", right: "remote_repo", direction: "dn",
+    cmd: "reset --hard <remote>/<branch>",
+    docs: "Reset local repo and working tree to match a remote branch. Use 'reset --hard origin/master' to throw away all commits to the local master branch. Use this to start over on a failed merge." },
   { left: "local_repo", right: "remote_repo", direction: "dn",
     cmd: "fetch <repo> <refspec>",
     docs: "Download objects and refs from another repository." },
@@ -135,7 +140,7 @@ var commands = [
     cmd: "push origin :<branch>",
     docs: "Remove a remote branch" },
 
-  { left: "workspace", right: "workspace", direction: "status",
+  { left: "workspace", right: "workspace", direction: "dn",
     cmd: "clean",
     docs: 'Cleans the working tree by recursively removing files that are not under version control, starting from the current directory.' },
 
