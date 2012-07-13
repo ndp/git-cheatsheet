@@ -17,7 +17,7 @@ var css = {
     'html,body': {
         margin: 0,
         padding: 0,
-        background: 'url(/images/vCanvas.jpg)'
+        background: 'url(images/vCanvas.jpg)'
     },
     'a,a:link,a:visited': {
         color: colors.local_repo,
