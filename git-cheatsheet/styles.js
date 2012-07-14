@@ -237,20 +237,37 @@ var css = {
         }
     },
     '#info': {
-        height: 60,
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '100%',
         padding: '10px 0',
-        marginTop: 10,
         font: '15px/20px courier, monospaced',
+        zIndex: 1,
+        '.screen': {
+          zIndex: -1,
+          position: 'absolute',
+          left: -20,
+          top: 0,
+          height: '100%',
+          width: '150%',
+          backgroundColor: '#F6EBD9',
+          opacity: 0.5
+        },
+//        height: 60,
+        '.cmd, .doc': {
+        },
         '.cmd':{
+          float: 'left',
+            marginRight: 20,
+            width: '22%',
             color: 'black',
-            display: 'block',
             textAlign: 'right',
-            marginLeft: 20,
             textDecoration: 'underline'
         },
         '.doc':{
-            display: 'block',
-            marginLeft: 20,
+          float: 'left',
+            width: '75%',
             color: 'black'.lighten(30)
         }
     },
