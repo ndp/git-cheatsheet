@@ -27,6 +27,22 @@ var css = {
         color: colors.local_repo.darken(10),
         textDecoration: 'underline'
     },
+    'em:before':{
+      opacity:.5,
+      content:'"<"'
+    },
+    'em:after':{
+      opacity:.5,
+      content:'">"'
+    },
+    'span.optional:before':{
+      opacity:.5,
+      content:'"["'
+    },
+    'span.optional:after':{
+      opacity:.5,
+      content:'"]"'
+    },
     '#hd': {
         '*': {
           margin: 0,

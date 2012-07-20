@@ -160,7 +160,9 @@ var commands = [
 ];
 
 function esc(s) {
-  return s.replace(/</g, 'zyx').replace(/>/g, '</em>').replace(/zyx/g, '<em>');
+  return s.replace(/</g, 'zyx').replace(/>/g, '</em>').replace(/zyx/g, '<em>').
+      replace('[','<span class="optional">').replace(']','</span>').
+      replace('\r','<br>');
 }
 
 
