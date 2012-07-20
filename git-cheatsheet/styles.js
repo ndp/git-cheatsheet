@@ -66,13 +66,15 @@ var css = {
     '#diagram': {
         marginTop: 20,
         position: 'relative',
-        height: '6.2in',
+        height: '6.3in',
+        marginBottom: '2cm',
         padding: '1px 0'
     },
     '.loc': {
         position: 'relative',
         height: '100%',
         cursor: 'pointer',
+        opacity:.7,
         has: boxShadow([3,3], 2, '#ccc'),
         '.bar': {
             position: 'absolute',
@@ -185,18 +187,23 @@ var css = {
         height: 0,
         '> div': {
             color: '#dddddd',
-            marginBottom: 2,
+            marginBottom: 4,
             'float': 'left',
             clear: 'left',
             padding: '2px 5px',
 //            height: 16,
-            lineHeight: 16,
+            lineHeight: 13,
             position: 'relative',
-            opacity: 0.3,
-            display: 'none',
+            opacity:0.3,
+            display:'none',
+//            whiteSpace:'nowrap',
+//            textOverflow:'ellipsis',
+//            overflow:'hidden',
             '&:hover': {
                 cursor: 'pointer',
-                has: boxShadow([1,1], 5, '#992667')
+                 padding: '1px 5px 3px 5px',
+//                has: boxShadow([1,1], 5, '#992667')
+                has: boxShadow([1,1], 3, '#999')
             },
             '&.up': {
                 'background-color': upColor,
