@@ -23,7 +23,12 @@ $(function() {
       left += 10;
       width -= 20;
     }
-    var $e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").css('margin-left', left + 'px').css('width', width + 'px').addClass(c.left).addClass(c.right).addClass(c.direction);
+    var $e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").
+        css('margin-left', left + 'px').
+        css('width', width + 'px').
+        addClass(c.left).
+        addClass(c.right).
+        addClass(c.direction);
     $('#commands').append($e);
 
     if (c.docs) {
