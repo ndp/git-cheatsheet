@@ -279,18 +279,20 @@ var css = {
         },
 //        height: 60,
         '.cmd, .doc': {
+          minHeight: '3em',
+          fontSize: 18
         },
         '.cmd':{
           float: 'left',
             marginRight: 20,
-            width: '22%',
+            width: '35%',
             color: 'black',
             textAlign: 'right',
             textDecoration: 'underline'
         },
         '.doc':{
           float: 'left',
-            width: '75%',
+            width: '55%',
             color: 'black'.lighten(30)
         }
     },
