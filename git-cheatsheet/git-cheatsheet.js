@@ -1,4 +1,18 @@
 
+var clickMode = false;
+
+function showDocs(doc, cmd) {
+  var $info = $('#info');
+  $info.find('.cmd').html('<span>' + cmd + '</span>');
+  $info.find('.doc').html(doc);
+}
+
+function showDocsForElement($el) {
+  var doc = $el.attr('data-docs') || '',
+      cmd = $el.html();
+  showDocs(doc, cmd);
+}
+
 
 function currentLoc() {
   return $('#diagram .loc.current').attr('id');
@@ -20,10 +34,16 @@ function locs() {
 }
 
 function selectLoc(id) {
+//  console.log('selectLoc id=',id)
+  $('#commands>div').removeClass('selected');
+  clickMode = false;
   $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
   $('#diagram .loc.current').removeClass('current');
   $('#' + id).addClass('current');
+
+  showDocsForElement($('#' + id));
   window.location.href = '#loc=' + id + ';';
+
   _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
 }
 
@@ -37,6 +57,7 @@ $(function () {
 
 
   $('body').keydown(function (e) {
+    var $cmds = $('#commands>div:visible').toArray();
     if (e.keyCode == 39) {
       nextLoc();
       return false;
@@ -44,11 +65,15 @@ $(function () {
       prevLoc();
       return false;
     } else if (e.keyCode == 40) {
-      console.log('down');
+      var cmd = next($cmds, $('#commands>div.selected')[0]);
+      if (cmd) selectCommand($(cmd));
+      return false;
     } else if (e.keyCode == 38) {
-      console.log('up');
+      var cmd = prev($cmds, $('#commands>div.selected')[0]);
+      if (cmd) selectCommand($(cmd));
+      return false;
     } else {
-      console.log(e);
+//      console.log(e);
     }
   });
 
@@ -79,22 +104,11 @@ $(function () {
     }
   }
 
-  function showDocs(doc, cmd) {
-    var $info = $('#info');
-    $info.find('.cmd').html('<span>' + cmd + '</span>');
-    $info.find('.doc').html(doc);
-  }
-
 
   $('[data-docs]').live('mouseover', function () {
-    var doc = $(this).attr('data-docs') || '',
-        cmd = $(this).html();
-    if ($(this).parent('#commands').length > 0) {
-      cmd = 'git ' + cmd;
-    }
-    showDocs(doc, cmd);
-
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', cmd, null]);
+    if ($(this).parents('#commands').length) return; // handled separately
+    showDocsForElement($(this));
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(this).text(), null]);
   });
 
   $.fn.hoverClass = function (klass) {
@@ -105,7 +119,28 @@ $(function () {
     });
   }
 
-  $('#commands>div').hoverClass('selected');
+   function selectCommand($cmd) {
+    $('#commands>div').removeClass('selected');
+    $cmd.addClass('selected');
+
+    var doc = $cmd.attr('data-docs') || '',
+        cmd = 'git ' + $cmd.html();
+    showDocs(doc, cmd);
+
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
+  };
+
+  $('#commands>div').click(function(e) {
+    clickMode = !clickMode || (clickMode && !$(this).hasClass('selected'));
+    if (clickMode) {
+      selectCommand($(this));
+    } else {
+      selectCommand($('#nothing'));
+    }
+  }).mouseover(function(e) {
+        if ($(this).hasClass('selected') || clickMode) return;
+        selectCommand($(this));
+      });
 
   $("#diagram .loc").
       click(function () {

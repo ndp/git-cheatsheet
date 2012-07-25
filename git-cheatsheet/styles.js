@@ -141,7 +141,8 @@ var css = {
             '&.selected': {
                  padding: '2px 5px',
 //                has: boxShadow([1,1], 5, '#992667')
-                has: boxShadow([1,1], 3, '#999')
+                has: boxShadow([1,1], 3, '#999'),
+              opacity:0.8
             },
             '&.up': {
                 color: upColor.lighten(50),
@@ -235,33 +236,37 @@ $(function() {
         };
         css['body.' + value + ' #commands > div.' + value] = {
             display: 'block',
-            opacity: 1
+            opacity:0.9,
+          '&.selected': {
+            opacity: 1.0
+          }
+
         }
 
       css['body.' + value + ' #commands'] = {
         'div.up':{
-          backgroundColor:c = colors[value].darken(30).saturate(0),
+          backgroundColor:c = colors[value].darken(0).saturate(-10),
           borderColor:c,
           '> .arrow':{
             'border-left-color':c
           },
           '&.selected':{
-            'background-color':c.darken(5),
+            'background-color':c.darken(10),
             '> .arrow':{
-              'border-left-color':c.darken(5)
+              'border-left-color':c.darken(10)
             }
           }
         },
         'div.dn':{
-          backgroundColor:c = colors[value].darken(10).saturate(-10),
+          backgroundColor:c = colors[value].darken(5).saturate(-10),
           borderColor:c,
           '> .arrow':{
             'border-right-color':c
           },
           '&.selected':{
-            'background-color':c.darken(5),
+            'background-color':c.darken(10),
             '> .arrow':{
-              'border-right-color':c.darken(5)
+              'border-right-color':c.darken(10)
             }
           }
         }
