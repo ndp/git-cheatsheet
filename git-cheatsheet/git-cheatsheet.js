@@ -1,14 +1,57 @@
 
-function esc(s) {
-  return s.replace(/</g, 'zyx').replace(/>/g, '</em>').replace(/zyx/g, '<em>').
-      replace('[','<span class="optional">').replace(']','</span>').
-      replace('\r','<br>');
+
+function currentLoc() {
+  return $('#diagram .loc.current').attr('id');
+}
+
+function nextLoc() {
+  selectLoc(next(locs(), currentLoc()));
+}
+
+function prevLoc() {
+  selectLoc(prev(locs(), currentLoc()));
+}
+
+function locs() {
+  var locs = $('#diagram>.loc').map(function () {
+    return this.id
+  });
+  return $.makeArray(locs);
+}
+
+function selectLoc(id) {
+  $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
+  $('#diagram .loc.current').removeClass('current');
+  $('#' + id).addClass('current');
+  window.location.href = '#loc=' + id + ';';
+  _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
 }
 
 
-$(function() {
 
-  jQuery('.loc').append('<div class="bar" />');
+$(function () {
+
+  (function addBarsToLocDivs() {
+    jQuery('.loc').append('<div class="bar" />');
+  })();
+
+
+  $('body').keydown(function (e) {
+    if (e.keyCode == 39) {
+      nextLoc();
+      return false;
+    } else if (e.keyCode == 37) {
+      prevLoc();
+      return false;
+    } else if (e.keyCode == 40) {
+      console.log('down');
+    } else if (e.keyCode == 38) {
+      console.log('up');
+    } else {
+      console.log(e);
+    }
+  });
+
 
   var left_offset = $('#commands').offset().left;
   for (i = 0; i < commands.length; i++) {
@@ -36,54 +79,51 @@ $(function() {
     }
   }
 
-
-  $('[data-docs],.loc').live('mouseover', function() {
+  function showDocs(doc, cmd) {
     var $info = $('#info');
-    $info.find('.cmd,.doc').empty();
+    $info.find('.cmd').html('<span>' + cmd + '</span>');
+    $info.find('.doc').html(doc);
+  }
 
-    var cmd = $(this).html();
+
+  $('[data-docs]').live('mouseover', function () {
+    var doc = $(this).attr('data-docs') || '',
+        cmd = $(this).html();
     if ($(this).parent('#commands').length > 0) {
       cmd = 'git ' + cmd;
     }
-    $('<span>').html(cmd).appendTo($info.find('.cmd'));
-    var d = $(this).attr('data-docs') || '';
-    $('<span>').html(d).appendTo($info.find('.doc'));
+    showDocs(doc, cmd);
+
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', cmd, null]);
   });
 
-  function selectLoc(id) {
-    $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
-    $('#diagram .loc.current').removeClass('current');
-    $('#' + id).addClass('current');
-    window.location.href='#loc='+id + ';';
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
+  $.fn.hoverClass = function (klass) {
+    return $(this).hover(function () {
+      $(this).addClass(klass);
+    }, function () {
+      $(this).removeClass(klass);
+    });
   }
 
-  $("#diagram .loc").
-        click(
-             function() {
-               selectLoc(this.id);
-             }).
-        hover(function() {
-    $(this).addClass('hovered');
-  }, function() {
-    $(this).removeClass('hovered');
-  });
+  $('#commands>div').hoverClass('selected');
 
+  $("#diagram .loc").
+      click(function () {
+        selectLoc(this.id);
+      }).hoverClass('hovered');
 
   var oldBodyClass = '';
   $('div.stash,div.workspace,div.index,div.local_repo,div.remote_repo').
-        click(
-             function() {
-
-             }).
-        hover(
-             function() {
-               oldBodyClass = $('body').attr('class');
-             },
-             function() {
-               $('body').attr('class', oldBodyClass);
-             });
+      click(
+      function () {
+      }).
+      hover(
+      function () {
+        oldBodyClass = $('body').attr('class');
+      },
+      function () {
+        $('body').attr('class', oldBodyClass);
+      });
 
   // Highlight given location specified by hash.
   var hash = window.location.hash;

@@ -103,80 +103,18 @@ var css = {
             visibility: 'hidden'
         },
         '&.hovered': {
-            has: boxShadow([3,3], 6, '#777'),
-            p: {
-                visibility: 'visible'
-            }
-
+            has: boxShadow([2,2], 6, '#999')
         },
         '&.current': {
-            has: boxShadow([3,3], 6, '#777'),
+            has: boxShadow([4,4], 6, '#555'),
             p: {
                 visibility: 'visible'
             },
             'label': {
                 color: 'white'
             }
-        },
-        '&:hover,&.current': {
         }
 
-    },
-    'body.index #commands': {
-        'div.up': {
-            backgroundColor: c = colors.index.darken(30).saturate(0),
-            borderColor: c,
-            '> .arrow': {
-                'border-left-color': c
-            },
-            '&:hover': {
-                'background-color': c.darken(5),
-                '> .arrow': {
-                    'border-left-color': c.darken(5)
-                }
-            }
-        },
-        'div.dn': {
-            backgroundColor: c = colors.index.darken(10).saturate(-10),
-            borderColor: c,
-            '> .arrow': {
-                'border-right-color': c
-            },
-            '&:hover': {
-                'background-color': c.darken(5),
-                '> .arrow': {
-                    'border-right-color': c.darken(5)
-                }
-            }
-        }
-    },
-    'body.local_repo #commands': {
-        'div.up': {
-            backgroundColor: c = colors.local_repo.darken(10).saturate(0),
-            borderColor: c,
-            '> .arrow': {
-                'border-left-color': c
-            },
-            '&:hover': {
-                'background-color': c.darken(5),
-                '> .arrow': {
-                    'border-left-color': c.darken(5)
-                }
-            }
-        },
-        'div.dn': {
-            backgroundColor: c = colors.local_repo.darken(-10).saturate(-10),
-            borderColor: c,
-            '> .arrow': {
-                'border-right-color': c
-            },
-            '&:hover': {
-                'background-color': c.darken(5),
-                '> .arrow': {
-                    'border-right-color': c.darken(5)
-                }
-            }
-        }
     },
     '#commands': {
         position: 'absolute',
@@ -199,61 +137,39 @@ var css = {
 //            whiteSpace:'nowrap',
 //            textOverflow:'ellipsis',
 //            overflow:'hidden',
-            '&:hover': {
-                cursor: 'pointer',
-                 padding: '1px 5px 3px 5px',
+            cursor: 'pointer',
+            '&.selected': {
+                 padding: '2px 5px',
 //                has: boxShadow([1,1], 5, '#992667')
                 has: boxShadow([1,1], 3, '#999')
             },
             '&.up': {
-                'background-color': upColor,
-                'border-color': upColor.lighten(20),
                 color: upColor.lighten(50),
                 '> .arrow': {
                     width: 0,
                     height: 0,
                     border: '9px solid transparent',
-                    'border-left-color': upColor,
                     position: 'absolute',
                     right: '-18px',
                     top: 0
-                },
-                '&:hover': {
-                    'background-color': upColor.darken(5),
-                    '> .arrow': {
-                        'border-left-color': upColor.darken(5),
-                        'border-left-width': 11,
-                        right: '-20px'
-                    }
                 }
             },
             '&.dn': {
-                'background-color': dnColor,
-                'border-color': dnColor.lighten(20),
                 color: dnColor.lighten(50),
                 '> .arrow': {
                     width: 0,
                     height: 0,
                     border: '9px solid transparent',
-                    'border-right-color': dnColor,
                     position: 'absolute',
                     left: '-18px',
                     top: 0
-                },
-                '&:hover': {
-                    'background-color': dnColor.darken(5),
-                    '> .arrow': {
-                        'border-right-width': 11,
-                        'border-right-color': dnColor.darken(5),
-                        left: '-20px'
-                    }
                 }
             },
             '&.status': {
                 'border-color': statusColor.lighten(20),
                 'background-color': statusColor,
                 color: statusColor.lighten(50),
-                '&:hover': {
+                '&.selected': {
                     'background-color': statusColor.darken(5)
                 }
             }
@@ -322,10 +238,38 @@ $(function() {
             opacity: 1
         }
 
+      css['body.' + value + ' #commands'] = {
+        'div.up':{
+          backgroundColor:c = colors[value].darken(30).saturate(0),
+          borderColor:c,
+          '> .arrow':{
+            'border-left-color':c
+          },
+          '&.selected':{
+            'background-color':c.darken(5),
+            '> .arrow':{
+              'border-left-color':c.darken(5)
+            }
+          }
+        },
+        'div.dn':{
+          backgroundColor:c = colors[value].darken(10).saturate(-10),
+          borderColor:c,
+          '> .arrow':{
+            'border-right-color':c
+          },
+          '&.selected':{
+            'background-color':c.darken(5),
+            '> .arrow':{
+              'border-right-color':c.darken(5)
+            }
+          }
+        }
+      }
     });
 
 
-    Csster.style(css);
+  Csster.style(css);
 
 });
 
