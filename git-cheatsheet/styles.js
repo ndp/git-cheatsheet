@@ -57,10 +57,19 @@ var css = {
             color: colors.local_repo,
             font: 'normal 25px ImpactLabelReversedRegular,ImpactLabelRegular,  verdana'
         },
+      h3: {
+        textAlign: 'right',
+        marginTop: 2,
+        color: '#333',
+        font: '16px/16px courier, monospaced'
+      },
         h6: {
             textAlign: 'right',
             color: colors.local_repo.saturate(-60).lighten(10),
-            font: '15px courier, monospaced'
+          position: 'fixed',
+          bottom: 10,
+          left: 20,
+            font: '12px courier, monospaced'
         }
     },
     '#diagram': {

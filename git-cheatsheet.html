@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Google Analytics Content Experiment code -->
+  <script>function utmx_section(){}function utmx(){}(function(){var
+  k='2602198-1',d=document,l=d.location,c=d.cookie;
+  if(l.search.indexOf('utm_expid='+k)>0)return;
+  function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+  indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+  length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+  '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+  '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+  '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+  valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+  '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+  </script><script>utmx('url','A/B');</script>
+  <!-- End of Google Analytics Content Experiment code -->
+
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <title>Git Cheatsheet</title>
   <meta name="description" content="Interactive Git Cheatsheet, categorizing commands based on what they affect.">
@@ -37,6 +52,17 @@
     <h2 data-docs="another visualization from Andrew Peterson, NDP Software."><a href="http://ndpsoftware.com">an interaction
       from NDP Software</a></h2>
     <h6>(c) Andrew Peterson 2009-2012 All Rights Reserved.</h6>
+    <script type="text/javascript">
+      var p = /\?aw=([^\&]+)/.exec(document.location.search);
+      p = p && p[1].replace(/%20/g, ' ') || 'Discover Your Character (entity)&nbsp;&mdash;&nbsp;Visit &amp;what&raquo;';
+      document.write("<h3>");
+      document.write('<a href="http://amp-what.com?utm_source=Git+Cheatsheet&utm_campaign=Text+Link+' +
+              encodeURIComponent(p) +
+              '&utm_medium=web" onclick="  _gaq.push([\'_trackEvent\', \'git-cheatsheet\', \'refer\', \'amp-what\', null])">');
+      document.write(p);
+      document.write('</a>');
+      document.write("</h3>");
+    </script>
   </div>
 </div>
 <div class="clear"></div>
