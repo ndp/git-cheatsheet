@@ -146,7 +146,8 @@ var commands = [
   { left: "workspace", right: "remote_repo", direction: "dn",
     cmd: "pull <remote> <refspec>",
     tags: 'Sharing and Updating',
-    docs: "Fetch changes from the remote repo and merge them into the current branch." },
+    docs: "Incorporates changes from a remote repository into the current branch. "+
+        "In its default mode, `git pull` is shorthand for `git fetch` followed by `git merge FETCH_HEAD`." },
   { left: "workspace", right: "remote_repo", direction: "dn",
     cmd: "reset --hard <remote>/<branch>",
     tags: 'Basic Snapshotting',
