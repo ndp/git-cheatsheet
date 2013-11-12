@@ -33,7 +33,10 @@ function locs() {
   return $.makeArray(locs);
 }
 
-function selectLoc(id) {
+function selectLoc(id, options) {
+
+  options = options || {updateWindowLocation: true, updateTitle: true}
+
 //  console.log('selectLoc id=',id)
   $('#commands>div').removeClass('selected');
   clickMode = false;
@@ -42,11 +45,17 @@ function selectLoc(id) {
   $('#' + id).addClass('current');
 
   showDocsForElement($('#' + id));
-  window.location.href = '#loc=' + id + ';';
+
+  if (options.updateTitle) {
+    window.document.title = '' + id.replace('_',' ') + ' • Git Cheatsheet • NDP Software'
+  }
+
+  if (options.updateWindowLocation) {
+    window.location.href = '#loc=' + id + ';';
+  }
 
   _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
 }
-
 
 
 $(function () {
