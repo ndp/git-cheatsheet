@@ -22,7 +22,7 @@ var commands = [
     cmd: "add <file... or dir...>",
     tags: 'Basic Snapshotting',
     docs: "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit. " +
-            "Use 'add --interactive' to add the modified contents in the workspace interactively to the index." },
+            "Use `add --interactive` to add the modified contents in the workspace interactively to the index." },
   { left: "workspace", right: "index", direction: "up",
     cmd: "add -u",
     tags: 'Basic Snapshotting',
@@ -80,7 +80,8 @@ var commands = [
   { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "merge <commit or branch>",
     tags: 'Branching and Merging',
-    docs: "Merge changes from <branch name> into current branch. Use --no-commit to leave changes uncommitted." },
+    docs: "Merge changes from <branch name> into current branch.\r" +
+        "Use `--no-commit` to leave changes uncommitted." },
 
   { left: "workspace", right: "local_repo", direction: "dn",
     cmd: "rebase <upstream>",
@@ -151,7 +152,7 @@ var commands = [
   { left: "workspace", right: "remote_repo", direction: "dn",
     cmd: "reset --hard <remote>/<branch>",
     tags: 'Basic Snapshotting',
-    docs: "Reset local repo and working tree to match a remote branch. Use 'reset --hard origin/master' to throw away all commits to the local master branch. Use this to start over on a failed merge." },
+    docs: "Reset local repo and working tree to match a remote branch. Use `reset --hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge." },
   { left: "local_repo", right: "remote_repo", direction: "dn",
     cmd: "fetch <remote> <refspec>",
     tags: 'Sharing and Updating',
@@ -189,8 +190,8 @@ var commands = [
     cmd: "stash save [<msg>]",
     tags: 'Branching and Merging',
     docs: 'Save your local modifications to a new stash, and run git reset --hard to revert them. ' +
-        'The <message> part is optional and gives the description along with the stashed state. ' +
-        'For quickly making a snapshot, you can omit both "save" and <message>.' },
+        'The <msg> part is optional and gives the description along with the stashed state. ' +
+        'For quickly making a snapshot, you can omit both "save" and <msg>.' },
   { left: "stash", right: "workspace", direction: "up",
     cmd: "stash apply [<name>]",
     tags: 'Branching and Merging',

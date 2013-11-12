@@ -29,4 +29,20 @@ describe('git cheatsheet', function () {
     });
   });
 
+  describe('esc', function() {
+    it('replaces cr with <br>', function() {
+      expect(esc('foo\rbar')).toEqual('foo<br>bar')
+    })
+    it('replaces <x> with <ems>', function() {
+      expect(esc('foo <bar> baz')).toEqual('foo <em>bar</em> baz')
+    })
+    it('replaces [x] with <span>', function() {
+      expect(esc('foo [bar] baz')).toEqual('foo <span class="optional">bar</span> baz')
+    })
+    it('replaces `x=3` with <code>', function() {
+      expect(esc('foo `x=3` baz')).toEqual('foo <code>x=3</code> baz')
+      expect(esc('foo `x=3` baz `y=5`')).toEqual('foo <code>x=3</code> baz <code>y=5</code>')
+    })
+  });
+
 });
