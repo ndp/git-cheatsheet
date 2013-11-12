@@ -1,4 +1,3 @@
-
 var clickMode = false;
 
 function showDocs(doc, cmd) {
@@ -128,7 +127,7 @@ $(function () {
     });
   }
 
-   function selectCommand($cmd) {
+  function selectCommand($cmd) {
     $('#commands>div').removeClass('selected');
     $cmd.addClass('selected');
 
@@ -139,14 +138,14 @@ $(function () {
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
   };
 
-  $('#commands>div').click(function(e) {
+  $('#commands>div').click(function (e) {
     clickMode = !clickMode || (clickMode && !$(this).hasClass('selected'));
     if (clickMode) {
       selectCommand($(this));
     } else {
       selectCommand($('#nothing'));
     }
-  }).mouseover(function(e) {
+  }).mouseover(function (e) {
         if ($(this).hasClass('selected') || clickMode) return;
         selectCommand($(this));
       });
@@ -170,12 +169,16 @@ $(function () {
       });
 
   // Highlight given location specified by hash.
-  var hash = window.location.hash;
-  if (hash && hash.length > 1) {
-    var m = hash.match(/loc=([^;]*);/);
-    if (m && m.length == 2) {
-      selectLoc(m[1]);
+  window.onpopstate = function (event) {
+    var hash = window.location.hash;
+    if (hash && hash.length > 1) {
+      var m = hash.match(/loc=([^;]*);/);
+      if (m && m.length == 2) {
+        selectLoc(m[1], {updateWindowLocation: false, updateTitle: true});
+      }
     }
-  }
+  };
+
+  window.onpopstate();
 
 });
