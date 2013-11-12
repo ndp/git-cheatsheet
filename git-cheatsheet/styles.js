@@ -201,7 +201,7 @@ var css = {
           height: '100%',
           width: '150%',
           backgroundColor: '#F6EBD9',
-          opacity: 0.5
+          opacity: 0.8
         },
 //        height: 60,
         '.cmd, .doc': {
