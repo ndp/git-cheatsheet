@@ -2,8 +2,14 @@ var clickMode = false;
 
 function showDocs(doc, cmd) {
   var $info = $('#info');
-  $info.find('.cmd').html('<span>' + cmd + '</span>');
-  $info.find('.doc').html(doc);
+  if (doc) {
+    $info.find('.cmd').html('<span>' + cmd + '</span>');
+    $info.find('.doc').html(doc);
+    $info.slideDown()
+  } else {
+    $info.hide()
+  }
+
 }
 
 function showDocsForElement($el) {
@@ -46,7 +52,7 @@ function selectLoc(id, options) {
   showDocsForElement($('#' + id));
 
   if (options.updateTitle) {
-    window.document.title = '' + id.replace('_',' ') + ' • Git Cheatsheet • NDP Software'
+    window.document.title = '' + id.replace('_', ' ') + ' • Git Cheatsheet • NDP Software'
   }
 
   if (options.updateWindowLocation) {
@@ -86,11 +92,11 @@ $(function () {
   });
 
 
-  var left_offset = $('#commands').offset().left;
+  var leftOffset = $('#commands').offset().left;
   for (i = 0; i < commands.length; i++) {
     c = commands[i];
-    var left = $("#" + c.left + " div.bar").offset().left - left_offset;
-    var right = $("#" + c.right + " div.bar").offset().left - left_offset;
+    var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
+    var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
     var width = right - left;
     if (width < 1) {
       left -= 90
