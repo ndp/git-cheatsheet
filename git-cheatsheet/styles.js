@@ -11,7 +11,6 @@ var upColor = colors.workspace.darken(10).saturate(-30);
 var dnColor = colors.workspace.darken(0).saturate(-30);
 var statusColor = '#846C6C';
 
-var c;
 
 var css = {
   'html,body': {
@@ -234,6 +233,7 @@ var css = {
 
 $(function () {
   $.each(['stash', 'workspace', 'index', 'local_repo', 'remote_repo'], function (index, value) {
+    var c = colors[value].darken(0).saturate(-10);
     var width = $('#' + value).innerWidth();
     $('#' + value).css('width', width - 2);
 
@@ -258,7 +258,7 @@ $(function () {
 
     css['body.' + value + ' #commands'] = {
       'div.up': {
-        backgroundColor: c = colors[value].darken(0).saturate(-10),
+        backgroundColor: c,
         borderColor: c,
         '> .arrow': {
           'border-left-color': c
