@@ -45,4 +45,27 @@ describe('git cheatsheet', function () {
     })
   });
 
+  describe('detectLanguage', function() {
+    var navigator = {}
+    it('looks at navigation', function() {
+      navigator.language = 'fr-FR'
+      expect(detectLanguage(navigator)).toEqual('fr')
+    })
+    it('cookie can override', function() {
+      navigator.language = 'fr-FR'
+      spyOn(cookies, 'read').andReturn('de')
+      expect(detectLanguage(navigator)).toEqual('de')
+    })
+    it('works for IE', function() {
+      navigator.language = undefined
+      navigator.userLanguage = 'fr-FR'
+      expect(detectLanguage(navigator)).toEqual('fr')
+    })
+    it('works with nil', function() {
+      navigator.language = undefined
+      navigator.userLanguage = undefined
+      expect(detectLanguage(navigator)).toEqual('en')
+    })
+  })
+
 });

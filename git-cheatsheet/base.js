@@ -24,4 +24,9 @@ function esc(s) {
       replace(/\r/g, '<br>');
 }
 
+function detectLanguage(/*pass in navi*/gator) {
+  return (cookies.read('language') ||
+      gator.language ||
+      gator.userLanguage ||
+      'en').slice(0,2)
 }
