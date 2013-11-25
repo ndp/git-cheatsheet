@@ -21,5 +21,7 @@ function esc(s) {
   return s.replace(/</g, 'zyx').replace(/>/g, '</em>').replace(/zyx/g, '<em>').
       replace('[', '<span class="optional">').replace(']', '</span>').
       replace(/`(.*?)`/g, '<code>' + "$1" + '</code>').
-      replace('\r', '<br>');
+      replace(/\r/g, '<br>');
+}
+
 }
