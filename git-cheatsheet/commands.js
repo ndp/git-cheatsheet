@@ -1,3 +1,8 @@
+
+var canonize = function(k) {
+  return k.replace(/\[.*\]/,'').replace(/<[^>]+>/g,'x').toLowerCase()
+}
+
 var commands = [
 
   { left: "workspace", right: "index", direction: "status",
@@ -156,6 +161,51 @@ var commands = [
 
 
 en = {
+  commands: {
+    "status": "status",
+    "diff": "diff",
+    "diff x": "diff <commit or branch>",
+    "add x": "add <file... or dir...>",
+    "add -u": "add -u",
+    "rm x": "rm <file...>",
+    "mv x": "mv <file...>",
+    "commit -a ": "commit -a [-m 'msg']",
+    "checkout x": "checkout <branch>",
+    "reset HEAD x": "reset HEAD <file(s)...>",
+    "reset --soft HEAD^": "reset --soft HEAD^",
+    "reset --hard": "reset --hard",
+    "checkout -b x": "checkout -b <name of new branch>",
+    "merge x": "merge <commit or branch>",
+    "rebase x": "rebase <upstream>",
+    "cherry-pick x": "cherry-pick <commit>",
+    "revert x": "revert <commit>",
+    "diff --cached ": "diff --cached [<commit>]",
+    "commit ": "commit [-m 'msg']",
+    "commit --amend": "commit --amend",
+    "log": "log",
+    "diff x commit": "diff <commit> <commit>",
+    "branch": "branch",
+    "branch -d x": "branch -d <branch>",
+    "branch --track x remote/branch": "branch --track <new> <remote/branch>",
+    "clone x": "clone <repo>",
+    "pull x refspec": "pull <remote> <refspec>",
+    "reset --hard x/branch": "reset --hard <remote>/<branch>",
+    "fetch x refspec": "fetch <remote> <refspec>",
+    "push": "push",
+    "push x branch": "push <remote> <branch>",
+    "push x branch:branch": "push <remote> <branch>:<branch>",
+    "branch -r": "branch -r",
+    "push x :branch": "push <remote> :<branch>",
+    "clean": "clean",
+    "stash save ": "stash save [<msg>]",
+    "stash apply ": "stash apply [<stash>]",
+    "stash pop": "stash pop",
+    "stash list": "stash list",
+    "stash show ": "stash show [<stash>]",
+    "stash drop ": "stash drop [<stash>]",
+    "stash clear": "stash clear",
+    "stash branch x ": "stash branch <branchname> [<stash>]"
+  },
   "status": "Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the workspace and the index file, and paths in the workspace that are not tracked by git.",
   "diff": "Displays the differences not added to the index.",
   "diff <commit or branch>": "View the changes you have in your workspace relative to the named <commit>. You can use HEAD to compare it with the latest commit, or a branch name to compare with the tip of a different branch",
