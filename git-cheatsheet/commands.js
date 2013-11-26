@@ -252,6 +252,55 @@ en = {
   "stash branch <branchname> [<stash>]": "Creates and checks out a new branch named <branchname> starting from the commit at which the <stash> was originally created, applies the changes recorded in <stash> to the new working tree and index. \rIf that succeeds, and <stash> is a reference of the form stash@{<revision>}, it then drops the <stash>. When no <stash> is given, applies the latest one. \rThis is useful if the branch on which you ran git stash save has changed enough that git stash apply fails due to conflicts. Since the stash is applied on top of the commit that was HEAD at the time git stash was run, it restores the originally stashed state with no conflicts."
 }
 
+fr = {
+  "status": "Affiche les chemins des fichiers qui diffèrent entre l'INDEX et la HEAD du commit courant, ceux des fichiers qui diffèrent entre le WORKSPACE et l'INDEX, et ceux des fichiers qui sont dans le WORKSPACE mais ne sont pas encore suivis par git.",
+  "diff": "Affiche les différences entre le WORKSPACE et l'INDEX.",
+  "diff COMMIT ou BRANCHE": "Affiche les différences entre le WORKSPACE et le COMMIT ou la BRANCHE spécifié. Vous pouvez utiliser HEAD pour comparer avec le dernier commit.",
+  "add FICHIER(S) ou DOSSIER(S)": "Ajoute à l'INDEX le contenu des FICHIER(S) ou DOSSIER(S), nouveaux ou modifiés, les plaçant ainsi en attente d'inclusion dans le prochain commit. Utilisez 'git add --interactive' pour ajouter de manière interactive à l'INDEX les contenus modifiés dans le WORKSPACE.",
+  "add -u": "Ajoute à l'INDEX le contenu des fichiers (EXISTANTS) modifiés. C'est ce que fait 'git commit -a' en préparation à un commit.",
+  "rm FICHIER(S)": "Supprime des FICHIER(S) du WORKSPACE et de l'INDEX.",
+  "mv FICHIER(S)": "Déplace des FICHIER(S) du WORKSPACE et de l'INDEX.",
+  "commit -a -m 'MESSAGE'": "Fait un commit de tous les fichiers qui ont changé depuis le dernier commit, à l'exception des fichiers non suivis (ie. tous les fichiers qui sont dans l'INDEX). Supprime de l'INDEX les fichiers qui ont été supprimés du WORKSPACE.",
+  "checkout FICHIER(S) ou DOSSIER(S)": "Met à jour les FICHIER(S) ou DOSSIER(S) dans WORKSPACE en écrasant toutes modifications locales. Ne PAS changer de branches.",
+  "reset HEAD FICHIER(S)": "Supprime les FICHIER(S) spécifiés du prochain commit. Réinitialise l'INDEX mais pas le WORKSPACE (i.e. les fichiers modifiés sont préservés mais non marqués pour commit) et indique ce qui n'a pas été mis à jour.",
+  "reset --soft HEAD^": "Défait le dernier commit en laissant les modifications dans l'INDEX.",
+  "reset --hard": "Fait correspondre le WORKSPACE et l'INDEX avec le LOCAL REPOSITORY. ATTENTION : toutes les modifications apportées à des fichiers suivis dans le WORKSPACE depuis le dernier commit sont perdues. Utilisez ceci lorsqu'une fusion a engendré des conflits et que vous souhaitez recommencer. Précisez ORIG_HEAD pour défaire la dernière fusion réussie et les modifications qui ont suivi.",
+  "checkout BRANCHE": "Échange les branches en mettant à jour le WORKSPACE et l'INDEX pour charger la BRANCHE spécifiée en positionnant la HEAD dessus.",
+  "checkout -b BRANCHE": "Crée une nouvelle BRANCHE et se positionne dessus.",
+  "merge COMMIT ou BRANCHE": "Fusionne les modifications du COMMIT ou de la BRANCHE dans la branche courante. Utilisez --no-commit pour ignorer les modifications n'ayant pas encore fait l'objet d'un commit.",
+  "rebase SOURCE": "Défait tous les commits effectués depuis que la branche à divergé de SOURCE puis les refait tous un par un sur les modifications apportées à la HEAD de SOURCE.",
+  "cherry-pick COMMIT": "Intègre les modifications du COMMIT spécifié dans la branche courante.",
+  "revert COMMIT": "Défait le COMMIT spécifié puis fait un commit du résultat. Cela nécessite que le WORKSPACE soit propre (sans modifications sur la HEAD du commit).",
+  "diff --cached [COMMIT]": "Montre les modifications que vous avez placé dans le STASH par rapport au dernier commit. Vous pouvez préciser un COMMIT pour voir juste les modifications le concernant.",
+  "commit -m 'MESSAGE'": "Enregistre le contenu de l'INDEX dans un nouveau commit en y associant un MESSAGE utilisateur décrivant les modifications.",
+  "commit --amend": "Modifie le dernier commit en y apportant les modifications se trouvant dans l'INDEX.",
+  "log": "Montre les commits récents, les plus récents au début. Options : --decorate avec les noms de branches et d'étiquettes sur les commits, --stat avec des statistiques (fichiers modifiés, insertions et suppressions), --author=AUTEUR seuleument d'un certain AUTEUR, --after=\"MMM JJ AAAA\" ex. (\"Jun 20 2008\") limité aux commits faits après une certaine date, --before=\"MMM JJ AAAA\" limité aux commits faits avant une certaine date, --merge limité aux commits concernés par les conflits de fusion courants.",
+  "diff COMMIT_1 COMMIT_2": "Montre les modifications entre deux commits.",
+  "branch": "Liste les branches locales existantes. L'option -r permet de lister les branches distantes et l'option -a montre les branches locales et distantes.",
+  "branch -d BRANCHE": "Supprime la BRANCHE spécifiée. Utilisez -D pour forcer la suppression.",
+  "branch --track BRANCHE BRANCHE_DISTANTE": "Crée une BRANCHE locale qui suit la BRANCHE_DISTANTE.",
+  "clone DÉPÔT_DISTANT": "Télécharge le DÉPÔT_DISTANT et se positionne sur la HEAD de sa branche master.",
+  "pull DÉPÔT_DISTANT RÉFÉRENCE": "Récupère les modifications associées à la RÉFÉRENCE du DÉPÔT_DISTANT et les fusionne dans la branche courante.",
+  "reset --hard DÉPÔT_DISTANT BRANCHE": "Réinitialise le WORKSPACE et le LOCAL REPOSITORY pour les faire correspondre à la BRANCHE du DÉPÔT_DISTANT. Utilisez 'git reset --hard origin/master' pour rejeter tous les commits du LOCAL REPOSITORY. Utilisez ceci pour reprendre après une fusion qui a échoué.",
+  "fetch DÉPÔT_DISTANT RÉFÉRENCE": "Télécharge les objets et les références associés à la RÉFÉRENCE du DÉPÔT_DISTANT.",
+  "push": "Met à jour le serveur en appliquant les commits sur toutes les branches *COMMUNNES* au LOCAL REPOSITORY et au serveur. Les branches locales qui n'ont jamais été poussées sur le serveur ne sont pas partagées.",
+  "push DÉPÔT_DISTANT BRANCHE": "Pousse la BRANCHE spécifiée vers le DÉPÔT_DISTANT.",
+  "push DÉPÔT_DISTANT BRANCHE_1:BRANCHE_2": "Pousse la nouvelle BRANCHE_1 sur le DÉPÔT_DISTANT en la renommant BRANCHE_2.",
+  "branch -r": "Liste les branches distantes.",
+  "push DÉPÔT_DISTANT :BRANCHE": "Supprime la BRANCHE du DÉPÔT_DISTANT.",
+  "clean": "Nettoie le WORKSPACE en supprimant récursivement les fichiers qui ne sont pas sous le contrôle de version, en commençant par le répertoire courant.",
+  "stash save ['MESSAGE']": "Enregistre les modifications locales dans le STASH puis fait un 'git reset --hard' pour les défaire. Le 'MESSAGE' optionnel donne la description associée à l'état enregistré dans le STASH. Pour faire un instantanné rapide, vous pouvez omettre à la fois \"save\" et le 'MESSAGE'.",
+  "stash apply [ÉTAT]": "Déplace les modifications associées à l'ÉTAT du STASH vers le WORKSPACE. Le dernier STASH est pris par défaut.",
+  "stash pop": "Applique les modifications du dernier état du STASH puis les supprime du STASH.",
+  "stash list": "Liste les états dans le STASH.",
+  "stash show [ÉTAT]": "Montre les modifications associées à l'ÉTAT spécifié sous la forme d'un diff entre l'ÉTAT et son parent initial. Lorsqu'aucun ÉTAT n'est précisé, le dernier est montré.",
+  "stash drop [ÉTAT]": "Supprime l'ÉTAT du STASH. Lorsqu'aucun ÉTAT n'est précisé, le dernier est supprimé.",
+  "stash clear": "Supprime tous les états du STASH. Notez que ces états seront alors candidats à l'élagage et pourront être impossible à restaurer.",
+  "stash branch BRANCHE [ÉTAT]": "Crée et charge une nouvelle BRANCHE à partir du commit d'où provient l'ÉTAT puis applique les modifications enregistrées dans l'ÉTAT aux nouveaux WORKSPACE et INDEX. Si cela réussit, l'ÉTAT devient une référence de la forme ÉTAT@{RÉVISION} et l'ÉTAT est supprimé. Lorsqu'aucun ÉTAT n'est donné, le dernier est appliqué. Ceci est utile si une branche sur laquelle vous avez fait un 'stash' a suffisemment changée pour que 'stash apply' échoue à cause de conflits. Puisque l'état est apliqué sur le commit qui était en HEAD au moment où le 'stash' a été effectué, l'état original est restauré sans conflits."
+}
+
+
 for (var i = 0; i < commands.length; i++) {
-  commands[i].docs = en[commands[i].cmd]
+//  commands[i].docs = en[commands[i].cmd]
+//  commands[i].docs = fr[commands[i].cmd]
 }
