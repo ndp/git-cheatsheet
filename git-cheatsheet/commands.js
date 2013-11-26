@@ -24,15 +24,15 @@ var commands = [
     tags: 'Basic Snapshotting'},
 
   { left: "workspace", right: "local_repo", direction: "up",
-    cmd: "commit -a -m 'msg'",
+    cmd: "commit -a [-m 'msg']",
     tags: 'Basic Snapshotting'},
 
   { left: "workspace", right: "index", direction: "dn",
-    cmd: "checkout <file...> or <dir...>",
+    cmd: "checkout <file(s)|dir>",
     tags: 'Branching and Merging'},
 
   { left: "index", right: "index", direction: "status",
-    cmd: "reset HEAD <file1> <file2> ...",
+    cmd: "reset HEAD <file(s)...>",
     tags: 'Basic Snapshotting'},
 
   { left: "index", right: "local_repo", direction: "dn",
@@ -61,16 +61,16 @@ var commands = [
 
 
   { left: "workspace", right: "local_repo", direction: "dn",
-    cmd: "cherry-pick <sha>",
+    cmd: "cherry-pick <commit>",
     tags: 'Patching'},
   { left: "workspace", right: "local_repo", direction: "dn",
-    cmd: "revert <sha>"},
+    cmd: "revert <commit>"},
 
   { left: "index", right: "local_repo", direction: "status",
     cmd: "diff --cached [<commit>]",
     tags: 'Basic Snapshotting,Inspection and Comparison,Patching'},
   { left: "index", right: "local_repo", direction: "up",
-    cmd: "commit -m 'msg'",
+    cmd: "commit [-m 'msg']",
     tags: 'Basic Snapshotting'},
   { left: "index", right: "local_repo", direction: "up",
     cmd: "commit --amend",
