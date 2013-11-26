@@ -92,9 +92,17 @@ $(function () {
   });
 
 
+  // Build locations
+  $.each(locs(), function(i, loc) {
+    $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).find('label').html(translations[lang].locations[loc])
+  })
+
+  // Build commands
   var leftOffset = $('#commands').offset().left;
-  for (i = 0; i < commands.length; i++) {
-    c = commands[i];
+  for (var i = 0; i < commands.length; i++) {
+    var c = commands[i];
+    var cmd = translations[lang].commands[c.key]
+    var docs = translations[lang].commands.docs[c.key]
     var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
     var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
     var width = right - left;
@@ -105,7 +113,7 @@ $(function () {
       left += 10;
       width -= 20;
     }
-    var $e = $("<div>" + esc(c.cmd) + "<div class='arrow' /></div>").
+    var $e = $("<div>" + esc(cmd) + "<div class='arrow' /></div>").
         css('margin-left', left + 'px').
         css('width', width + 'px').
         addClass(c.left).
@@ -113,8 +121,8 @@ $(function () {
         addClass(c.direction);
     $('#commands').append($e);
 
-    if (c.docs) {
-      $e.attr('data-docs', esc(c.docs));
+    if (docs) {
+      $e.attr('data-docs', esc(docs));
     }
   }
 
@@ -160,19 +168,6 @@ $(function () {
       click(function () {
         selectLoc(this.id);
       }).hoverClass('hovered');
-
-  var oldBodyClass = '';
-  $('div.stash,div.workspace,div.index,div.local_repo,div.remote_repo').
-      click(
-      function () {
-      }).
-      hover(
-      function () {
-        oldBodyClass = $('body').attr('class');
-      },
-      function () {
-        $('body').attr('class', oldBodyClass);
-      });
 
   // Highlight given location specified by hash.
   window.onpopstate = function (event) {
