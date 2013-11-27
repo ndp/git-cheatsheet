@@ -101,8 +101,8 @@ $(function () {
   var leftOffset = $('#commands').offset().left;
   for (var i = 0; i < commands.length; i++) {
     var c = commands[i];
-    var cmd = translations[lang].commands[c.key]
-    var docs = translations[lang].commands.docs[c.key]
+    var cmd = translations[lang].commands[c.key].cmd
+    var docs = translations[lang].commands[c.key].docs
     var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
     var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
     var width = right - left;
