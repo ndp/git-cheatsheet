@@ -92,6 +92,25 @@ $(function () {
   });
 
 
+  // Figure the language
+  var lang = cookies.read('lang');
+  if (!lang) {
+    lang = detectLanguage(navigator)
+
+    if (lang !== 'en') {
+      cookies.create('lang', lang);
+    }
+  }
+  $('[data-lang='+lang+']').addClass('selected')
+
+  $('.lang').on('click', function() {
+    var newLang = $(this).attr('data-lang');
+    cookies.create('lang', newLang)
+    document.location.reload();
+  })
+
+
+
   // Build locations
   $.each(locs(), function(i, loc) {
     $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).find('label').html(translations[lang].locations[loc])

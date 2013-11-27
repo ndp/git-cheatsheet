@@ -143,7 +143,7 @@ var translations = {
       "add -u": {"cmd": "add -u", "docs": "Ajoute à l'INDEX le contenu des fichiers (ÉXISTANTS) modifiés. C'est ce que fait 'git commit -a' en préparation à un commit."},
       "rm x": {"cmd": "rm <fichier(s)>", "docs": "Supprime des FICHIER(S) de l'ESPACE_DE_TRAVAIL et de l'INDEX."},
       "mv x": {"cmd": "mv <fichier(s)>", "docs": "Déplace des FICHIER(S) de l'ESPACE_DE_TRAVAIL et de l'INDEX."},
-      "commit -a": {"cmd": "commit -a [-m 'MESSAGE']", "docs": "Fait un commit de tous les fichiers qui ont changé depuis le dernier commit, à l'exception des fichiers non suivis (ie. tous les fichiers qui sont dans l'INDEX). Supprime de l'INDEX les fichiers qui ont été supprimés de l'ESPACE_DE_TRAVAIL."},
+      "commit -a": {"cmd": "commit -a [-m 'message']", "docs": "Fait un commit de tous les fichiers qui ont changé depuis le dernier commit, à l'exception des fichiers non suivis (ie. tous les fichiers qui sont dans l'INDEX). Supprime de l'INDEX les fichiers qui ont été supprimés de l'ESPACE_DE_TRAVAIL."},
       "checkout x": {
         "cmd": "checkout <fichier(s) ou dossier(s)>",
         "docs": "Met à jour les FICHIER(S) ou DOSSIER(S) dans l'ESPACE_DE_TRAVAIL en écrasant toutes les modifications locales. Ne PAS changer de branches."
@@ -158,24 +158,24 @@ var translations = {
       "cherry-pick x": {"cmd": "cherry-pick <commit>", "docs": "Intègre les modifications du COMMIT spécifié dans la branche courante."},
       "revert x": {"cmd": "revert <commit>", "docs": "Défait le COMMIT spécifié puis fait un commit du résultat. Cela nécessite que l'ESPACE_DE_TRAVAIL soit propre (sans modifications sur la TÊTE du commit)."},
       "diff --cached": {"cmd": "diff --cached [COMMIT]", "docs": "Montre les modifications que vous avez placé dans la REMISE par rapport au dernier commit. Vous pouvez préciser un COMMIT pour voir juste les modifications le concernant."},
-      "commit": {"cmd": "commit [-m 'MESSAGE']", "docs": "Enregistre le contenu de l'INDEX dans un nouveau commit en y associant un MESSAGE utilisateur décrivant les modifications."},
+      "commit": {"cmd": "commit [-m 'message']", "docs": "Enregistre le contenu de l'INDEX dans un nouveau commit en y associant un message utilisateur décrivant les modifications."},
       "commit --amend": {"cmd": "commit --amend", "docs": "Modifie le dernier commit en y apportant les modifications se trouvant dans l'INDEX."},
       "log": {"cmd": "log", "docs": "Montre les commits récents, les plus récents au début. Options : --decorate avec les noms de branches et d'étiquettes sur les commits, --stat avec des statistiques (fichiers modifiés, insertions et suppressions), --author=AUTEUR seuleument d'un certain AUTEUR, --after=\"MMM JJ AAAA\" ex. (\"Jun 20 2008\") limité aux commits faits après une certaine date, --before=\"MMM JJ AAAA\" limité aux commits faits avant une certaine date, --merge limité aux commits concernés par les conflits de fusion courants."},
       "diff x x": {"cmd": "diff <COMMIT_1> <COMMIT_2>", "docs": "Montre les modifications entre deux commits."},
       "branch": {"cmd": "branch", "docs": "Liste les branches locales existantes. L'option -r permet de lister les branches distantes et l'option -a montre les branches locales et distantes."},
       "branch -d x": {"cmd": "branch -d <branche>", "docs": "Supprime la BRANCHE spécifiée. Utilisez -D pour forcer la suppression."},
-      "branch --track x x": {"cmd": "branch --track <branche> <BRANCHE_DISTANTE>", "docs": "Crée une BRANCHE locale qui suit la BRANCHE_DISTANTE."},
+      "branch --track x x": {"cmd": "branch --track <branche> <branche_distante>", "docs": "Crée une BRANCHE locale qui suit la branche_distante."},
       "clone x": {"cmd": "clone <dépôt_distant>", "docs": "Télécharge le DÉPÔT_DISTANT et se positionne sur la TÊTE de sa branche master."},
-      "pull x x": {"cmd": "pull <dépôt_distant> <RÉFÉRENCE>", "docs": "Récupère les modifications associées à la RÉFÉRENCE du DÉPÔT_DISTANT et les fusionne dans la branche courante."},
+      "pull x x": {"cmd": "pull <dépôt_distant> <référence>", "docs": "Récupère les modifications associées à la référence du DÉPÔT_DISTANT et les fusionne dans la branche courante."},
       "reset --hard x/x": {"cmd": "reset --hard <dépôt_distant> <branche>", "docs": "Réinitialise l'ESPACE_DE_TRAVAIL et le DÉPÔT_LOCAL pour les faire correspondre à la BRANCHE du DÉPÔT_DISTANT. Utilisez 'git reset --hard origin/master' pour rejeter tous les commits du DÉPÔT_LOCAL. Utilisez ceci pour reprendre après une fusion qui a échoué."},
-      "fetch x x": {"cmd": "fetch <dépôt_distant> <RÉFÉRENCE>", "docs": "Télécharge les objets et les références associés à la RÉFÉRENCE du DÉPÔT_DISTANT."},
+      "fetch x x": {"cmd": "fetch <dépôt_distant> <référence>", "docs": "Télécharge les objets et les références associés à la référence du DÉPÔT_DISTANT."},
       "push": {"cmd": "push", "docs": "Met à jour le serveur en appliquant les commits sur toutes les branches *COMMUNNES* au DÉPÔT_LOCAL et au serveur. Les branches locales qui n'ont jamais été poussées sur le serveur ne sont pas partagées."},
       "push x x": {"cmd": "push <dépôt_distant> <branche>", "docs": "Pousse la BRANCHE spécifiée vers le DÉPÔT_DISTANT."},
       "push x x:x": {"cmd": "push <dépôt_distant> <BRANCHE_1>:<BRANCHE_2>", "docs": "Pousse la nouvelle BRANCHE_1 vers le DÉPÔT_DISTANT en la renommant BRANCHE_2."},
       "branch -r": {"cmd": "branch -r", "docs": "Liste les branches distantes."},
       "push x :x": {"cmd": "push <dépôt_distant> :<branche>", "docs": "Supprime la BRANCHE du DÉPÔT_DISTANT."},
       "clean": {"cmd": "clean", "docs": "Nettoie l'ESPACE_DE_TRAVAIL en supprimant récursivement les fichiers qui ne sont pas sous le contrôle de version, en commençant par le répertoire courant."},
-      "stash save": {"cmd": "stash save ['MESSAGE']", "docs": "Enregistre les modifications locales dans la REMISE puis fait un 'git reset --hard' pour les défaire. Le 'MESSAGE' optionnel donne la description associée à l'état enregistré dans la REMISE. Pour faire un instantanné rapide, vous pouvez omettre à la fois \"save\" et le 'MESSAGE'."},
+      "stash save": {"cmd": "stash save ['message']", "docs": "Enregistre les modifications locales dans la REMISE puis fait un 'git reset --hard' pour les défaire. Le `message` optionnel donne la description associée à l'état enregistré dans la REMISE. Pour faire un instantanné rapide, vous pouvez omettre à la fois \"save\" et le `message`."},
       "stash apply": {"cmd": "stash apply [état]", "docs": "Déplace les modifications associées à l'ÉTAT de la REMISE vers l'ESPACE_DE_TRAVAIL. La dernière REMISE est prise par défaut."},
       "stash pop": {"cmd": "stash pop", "docs": "Applique les modifications du dernier état de la REMISE puis les supprime de la REMISE."},
       "stash list": {"cmd": "stash list", "docs": "Liste les états dans la REMISE."},
@@ -188,7 +188,7 @@ var translations = {
   }
 }
 
-lang = 'en'
-if (/lang=fr/.exec(document.location.search)) {
-  lang = 'fr'
-}
+//lang = 'en'
+//if (/lang=fr/.exec(document.location.search)) {
+//  lang = 'fr'
+//}
