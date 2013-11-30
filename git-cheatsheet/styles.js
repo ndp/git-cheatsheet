@@ -77,12 +77,13 @@ var css = {
     },
     '.lang': {
       cursor: 'pointer',
-      backgroundColor: '#e9bebe',
+      backgroundColor: '#e9bebe'.darken(10),
       color: '#b3a2a2'.lighten(25),
       border: '1px solid transparent',
       padding: '1px 2px',
       font: '12px courier, monospaced',
       '&.selected': {
+        backgroundColor: '#e9bebe'.darken(20),
         color: '#fff',
         '&:hover': {
           textDecoration: 'none'
