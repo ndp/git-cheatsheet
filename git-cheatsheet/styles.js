@@ -66,9 +66,10 @@ var css = {
       textAlign: 'right',
       color: colors.local_repo.saturate(-60).lighten(10),
       position: 'fixed',
-      bottom: 10,
+      bottom: 3,
       left: 20,
-      font: '12px courier, monospaced'
+      font: '12px courier, monospaced',
+      zIndex: 1000
     },
     'h4': {
       marginTop: 5,
@@ -210,7 +211,7 @@ var css = {
     bottom: 0,
     left: 0,
     width: '100%',
-    padding: '10px 0',
+    padding: '10px 0 20px 0',
     font: '15px/20px courier, monospaced',
     zIndex: 1,
     '.screen': {
