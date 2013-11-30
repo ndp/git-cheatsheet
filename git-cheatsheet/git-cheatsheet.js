@@ -96,16 +96,13 @@ $(function () {
   var lang = cookies.read('lang');
   if (!lang) {
     lang = detectLanguage(navigator)
-
-    if (lang !== 'en') {
-      cookies.create('lang', lang);
-    }
   }
   $('[data-lang='+lang+']').addClass('selected')
 
   $('.lang').on('click', function() {
     var newLang = $(this).attr('data-lang');
     cookies.create('lang', newLang)
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'lang', newLang, null])
     document.location.reload();
   })
 
