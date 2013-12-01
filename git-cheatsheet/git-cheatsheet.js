@@ -14,7 +14,7 @@ function showDocs(doc, cmd) {
 
 function showDocsForElement($el) {
   var doc = $el.attr('data-docs') || '',
-      cmd = $el.html();
+      cmd = $el.text();
   showDocs(doc, cmd);
 }
 

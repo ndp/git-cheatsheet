@@ -116,12 +116,13 @@ var css = {
       width: 10,
       height: 535
     },
-    'label': {
+    'h5': {
       position: 'absolute',
       top: 0,
+      margin: 0,
       width: '100%',
       'text-align': 'center',
-      padding: '20px 0',
+      padding: '8px 0 20px 0',
       font: '30px ImpactLabelReversedRegular, ImpactLabelRegular, verdana',
       color: '#333'
     },
@@ -141,7 +142,7 @@ var css = {
       p: {
         visibility: 'visible'
       },
-      'label': {
+      'h5': {
         color: 'white'
       }
     }
