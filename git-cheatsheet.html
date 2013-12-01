@@ -74,12 +74,163 @@
 </div>
 <div class="clear"></div>
 <div id="diagram" class="container_16">
-  <div id="commands"></div>
   <section id="stash" class="loc grid_2 alpha"><h5>stash</h5></section>
   <section id="workspace" class="loc grid_4"><h5>workspace</h5></section>
   <section id="index" class="loc grid_3"><h5>index</h5></section>
   <section id="local_repo" class="loc grid_4"><h5>local repository</h5></section>
   <section id="remote_repo" class="loc grid_3 omega"><h5>upstream repository</h5></section>
+  <dl id="commands">
+    <dt>status</dt>
+    <dd>Displays paths that have differences between the index file and the current HEAD commit, paths that have
+      differences between the workspace and the index file, and paths in the workspace that are not tracked by git.
+    </dd>
+    <dt>diff</dt>
+    <dd>Displays the differences not added to the index.</dd>
+    <dt>diff <em>commit or branch</em></dt>
+    <dd>View the changes you have in your workspace relative to the named &lt;em&gt;commit&lt;/em&gt;. You can use HEAD
+      to compare it with the latest commit, or a branch name to compare with the tip of a different branch
+    </dd>
+    <dt>add <em>file... or dir...</em></dt>
+    <dd>Adds the current content of new or modified files to the index, thus staging that content for inclusion in the
+      next commit. Use &lt;code&gt;add --interactive&lt;/code&gt; to add the modified contents in the workspace
+      interactively to the index.
+    </dd>
+    <dt>add -u</dt>
+    <dd>Adds the current content of modified (NOT NEW) files to the index. This is similar to what 'git commit -a' does
+      in preparation for making a commit.
+    </dd>
+    <dt>rm <em>file(s)...</em></dt>
+    <dd>Remove a file from the workspace and the index.</dd>
+    <dt>mv <em>file(s)...</em></dt>
+    <dd>Move file in the workspace and the index.</dd>
+    <dt>commit -a <span class="optional">-m 'msg'</span></dt>
+    <dd>Commit all files changed since your last commit, except untracked files (ie. all files that are already listed
+      in the index). Remove files in the index that have been removed from the workspace.
+    </dd>
+    <dt>checkout <em>files(s)... or dir</em></dt>
+    <dd>Updates the file or directory in the workspace. Does NOT switch branches.</dd>
+    <dt>reset HEAD <em>file(s)...</em></dt>
+    <dd>Remove the specified files from the next commit. Resets the index but not the working tree (i.e., the changed
+      files are preserved but not marked for commit) and reports what has not been updated.
+    </dd>
+    <dt>reset --soft HEAD^</dt>
+    <dd>Undo the last commit, leaving changes in the the index.</dd>
+    <dt>reset --hard</dt>
+    <dd>Matches the workspace and index to the local tree. WARNING: Any changes to tracked files in the working tree
+      since commit are lost. Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD
+      to undo the most recent successful merge and any changes after.
+    </dd>
+    <dt>checkout <em>branch</em></dt>
+    <dd>Switches branches by updating the index and workspace to reflect the specified branch, &lt;em&gt;branch&lt;/em&gt;,
+      and updating HEAD to be &lt;em&gt;branch&lt;/em&gt;.
+    </dd>
+    <dt>checkout -b <em>name of new branch</em></dt>
+    <dd>Create a branch and switch to it</dd>
+    <dt>merge <em>commit or branch</em></dt>
+    <dd>Merge changes from &lt;em&gt;branch name&lt;/em&gt; into current branch.&lt;br&gt;Use &lt;code&gt;&amp;#8209;&amp;#8209;no-commit&lt;/code&gt;
+      to leave changes uncommitted.
+    </dd>
+    <dt>rebase <em>upstream</em></dt>
+    <dd>Reverts all commits since the current branch diverged from &lt;em&gt;upstream&lt;/em&gt;, and then re-applies
+      them one-by-one on top of changes from the HEAD of &lt;em&gt;upstream&lt;/em&gt;.
+    </dd>
+    <dt>cherry-pick <em>commit</em></dt>
+    <dd>Integrate changes in the given commit into the current branch.</dd>
+    <dt>revert <em>commit</em></dt>
+    <dd>Reverse commit specified by &lt;em&gt;commit&lt;/em&gt; and commit the result. This requires your working tree
+      to be clean (no modifications from the HEAD commit).
+    </dd>
+    <dt>diff --cached <span class="optional"><em>commit</em></span></dt>
+    <dd>View the changes you staged vs the latest commit. Can pass a &lt;em&gt;commit&lt;/em&gt; to see changes relative
+      to it.
+    </dd>
+    <dt>commit <span class="optional">-m 'msg'</span></dt>
+    <dd>Stores the current contents of the index in a new commit along with a log message from the user describing the
+      changes.
+    </dd>
+    <dt>commit --amend</dt>
+    <dd>Modify the last commit with the current index changes.</dd>
+    <dt>log</dt>
+    <dd>Show recent commits, most recent on top. Options:&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;decorate&lt;/code&gt;
+      with branch and tag names on appropriate commits&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;stat&lt;/code&gt; with
+      stats (files changed, insertions, and deletions) &lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;author=&lt;em&gt;author&lt;/em&gt;&lt;/code&gt;
+      only by a certain author&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;after="MMM DD YYYY"&lt;/code&gt; ex. ("Jun 20
+      2008") only commits after a certain date&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;before="MMM DD YYYY"&lt;/code&gt;
+      only commits that occur before a certain date &lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;merge&lt;/code&gt; only
+      the commits involved in the current merge conflicts
+    </dd>
+    <dt>diff <em>commit</em> <em>commit</em></dt>
+    <dd>View the changes between two arbitrary commits</dd>
+    <dt>branch</dt>
+    <dd>List all existing branches. Option -r causes the remote-tracking branches to be listed, and option -a shows
+      both.
+    </dd>
+    <dt>branch -d <em>branch</em></dt>
+    <dd>Delete an specified branch. Use -D to force.</dd>
+    <dt>branch --track <em>new</em> <em>remote/branch</em></dt>
+    <dd>Create a new local branch that tracks a remote branch.</dd>
+    <dt>clone <em>repo</em></dt>
+    <dd>Download the repository specified by &lt;em&gt;repo&lt;/em&gt; and checkout HEAD of the master branch.</dd>
+    <dt>pull <em>remote</em> <em>refspec</em></dt>
+    <dd>Incorporates changes from a remote repository into the current branch. In its default mode, &lt;code&gt;git pull&lt;/code&gt;
+      is shorthand for &lt;code&gt;git fetch&lt;/code&gt; followed by &lt;code&gt;git merge FETCH_HEAD&lt;/code&gt;.
+    </dd>
+    <dt>reset --hard <em>remote</em>/<em>branch</em></dt>
+    <dd>Reset local repo and working tree to match a remote branch. Use &lt;code&gt;reset &amp;#8209;&amp;#8209;hard
+      origin/master&lt;/code&gt; to throw away all commits to the local master branch. Use this to start over on a
+      failed merge.
+    </dd>
+    <dt>fetch <em>remote</em> <em>refspec</em></dt>
+    <dd>Download objects and refs from another repository.</dd>
+    <dt>push</dt>
+    <dd>update the server with your commits across all branches that are *COMMON* between your local copy and the
+      server.Local branches that were never pushed to the server in the first place are not shared
+    </dd>
+    <dt>push <em>remote</em> <em>branch</em></dt>
+    <dd>Push new (or existing) branch to remote repository</dd>
+    <dt>push <em>remote</em> <em>branch</em>:<em>branch</em></dt>
+    <dd>Push new branch to remote repository with a different name</dd>
+    <dt>branch -r</dt>
+    <dd>List remote branches</dd>
+    <dt>push <em>remote</em> :<em>branch</em></dt>
+    <dd>Remove a remote branch. Literally &amp;quot;push nothing to this branch&amp;quot;</dd>
+    <dt>clean</dt>
+    <dd>Cleans the working tree by recursively removing files that are not under version control, starting from the
+      current directory.
+    </dd>
+    <dt>stash save <span class="optional"><em>msg</em></span></dt>
+    <dd>Save your local modifications to a new stash, and run git reset &amp;#8209;&amp;#8209;hard to revert them. The
+      &lt;em&gt;msg&lt;/em&gt; part is optional and gives the description along with the stashed state. For quickly
+      making a snapshot, you can omit both "save" and &lt;em&gt;msg&lt;/em&gt;.
+    </dd>
+    <dt>stash apply <span class="optional"><em>stash</em></span></dt>
+    <dd>Move changes from the specified stash into the workspace. The latest stash is the default.</dd>
+    <dt>stash pop</dt>
+    <dd>Applies the changes from the last (or specified) stash and then removes the given stash.</dd>
+    <dt>stash list</dt>
+    <dd>List the stashes that you currently have.</dd>
+    <dt>stash show <span class="optional"><em>stash</em></span></dt>
+    <dd>Show the changes recorded in the stash as a diff between the stashed state and its original parent. When no &lt;em&gt;stash&lt;/em&gt;
+      is given, shows the latest one.
+    </dd>
+    <dt>stash drop <span class="optional"><em>stash</em></span></dt>
+    <dd>Remove a single stashed state from the stash list. When no &lt;em&gt;stash&lt;/em&gt; is given, it removes the
+      latest one.
+    </dd>
+    <dt>stash clear</dt>
+    <dd>Remove all the stashed states. Note that those states will then be subject to pruning, and may be impossible to
+      recover.
+    </dd>
+    <dt>stash branch <em>branchname</em> <span class="optional"><em>stash</em></span></dt>
+    <dd>Creates and checks out a new branch named &lt;em&gt;branchname&lt;/em&gt; starting from the commit at which the
+      &lt;em&gt;stash&lt;/em&gt; was originally created, applies the changes recorded in &lt;em&gt;stash&lt;/em&gt; to
+      the new working tree and index. &lt;br&gt;If that succeeds, and &lt;em&gt;stash&lt;/em&gt; is a reference of the
+      form stash@{&lt;em&gt;revision&lt;/em&gt;}, it then drops the &lt;em&gt;stash&lt;/em&gt;. When no &lt;em&gt;stash&lt;/em&gt;
+      is given, applies the latest one. &lt;br&gt;This is useful if the branch on which you ran git stash save has
+      changed enough that git stash apply fails due to conflicts. Since the stash is applied on top of the commit that
+      was HEAD at the time git stash was run, it restores the originally stashed state with no conflicts.
+    </dd>
+  </dl>
   <div id="info">
     <div class="screen"></div>
     <div class="cmd">&nbsp;</div>
