@@ -122,7 +122,7 @@ var css = {
       margin: 0,
       width: '100%',
       'text-align': 'center',
-      padding: '8px 0 20px 0',
+      padding: '11px 0 20px 0',
       font: '30px ImpactLabelReversedRegular, ImpactLabelRegular, verdana',
       color: '#333'
     },
@@ -150,11 +150,16 @@ var css = {
   },
   '#commands': {
     position: 'absolute',
-    top: 90,
+    top: 85,
     left: 0,
     width: '100%',
     font: '15px courier, monospaced',
     height: 0,
+    margin: 0,
+    padding: 0,
+    '> dd': {
+      display: 'none'
+    },
     '> dt': {
       color: '#dddddd',
       marginBottom: 4,
@@ -250,8 +255,8 @@ var css = {
     }
   },
   '#remote_repo .bar, #local_repo .bar': {
-    top: 85,
-    height: 500
+    top: 78,
+    height: 507
   }
 };
 
