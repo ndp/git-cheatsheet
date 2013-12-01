@@ -142,9 +142,7 @@ $(function () {
     }
   }
 
-
-  $('[data-docs]').live('mouseover', function () {
-    if ($(this).parents('#commands').length) return; // handled separately
+  $('body').on('mouseover', ':not(#commands) [data-docs]', function () {
     showDocsForElement($(this));
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(this).text(), null]);
   });
