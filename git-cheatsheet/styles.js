@@ -155,7 +155,7 @@ var css = {
     width: '100%',
     font: '15px courier, monospaced',
     height: 0,
-    '> div': {
+    '> dt': {
       color: '#dddddd',
       marginBottom: 4,
       'float': 'left',
@@ -271,7 +271,7 @@ $(function () {
       color: 'white',
       backgroundColor: colors[value].lighten(0)
     };
-    css['body.' + value + ' #commands > div.' + value] = {
+    css['body.' + value + ' #commands > dt.' + value] = {
       display: 'block',
       opacity: 0.9,
       '&.selected': {
@@ -281,7 +281,7 @@ $(function () {
     }
 
     css['body.' + value + ' #commands'] = {
-      'div.up': {
+      'dt.up': {
         backgroundColor: c,
         borderColor: c,
         '> .arrow': {
@@ -294,7 +294,7 @@ $(function () {
           }
         }
       },
-      'div.dn': {
+      'dt.dn': {
         backgroundColor: c = colors[value].darken(5).saturate(-10),
         borderColor: c,
         '> .arrow': {

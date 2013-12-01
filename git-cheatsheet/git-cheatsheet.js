@@ -24,14 +24,14 @@ function currentLoc() {
 }
 
 function nextLoc() {
-  selectLoc(next(locs(), currentLoc()));
+  selectLoc(next(locationKeys(), currentLoc()));
 }
 
 function prevLoc() {
-  selectLoc(prev(locs(), currentLoc()));
+  selectLoc(prev(locationKeys(), currentLoc()));
 }
 
-function locs() {
+function locationKeys() {
   var locs = $('#diagram>.loc').map(function () {
     return this.id
   });
@@ -71,7 +71,7 @@ $(function () {
 
 
   $('body').keydown(function (e) {
-    var $cmds = $('#commands>div:visible').toArray();
+    var $cmds = $('#commands>dt:visible').toArray();
     if (e.keyCode == 39) {
       nextLoc();
       return false;
@@ -79,11 +79,11 @@ $(function () {
       prevLoc();
       return false;
     } else if (e.keyCode == 40) {
-      var cmd = next($cmds, $('#commands>div.selected')[0]);
+      var cmd = next($cmds, $('#commands>dt.selected')[0]);
       if (cmd) selectCommand($(cmd));
       return false;
     } else if (e.keyCode == 38) {
-      var cmd = prev($cmds, $('#commands>div.selected')[0]);
+      var cmd = prev($cmds, $('#commands>dt.selected')[0]);
       if (cmd) selectCommand($(cmd));
       return false;
     } else {
@@ -109,8 +109,9 @@ $(function () {
 
 
   // Build locations
-  $.each(locs(), function(i, loc) {
-    $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).find('label').html(translations[lang].locations[loc])
+  $.each(locationKeys(), function(i, loc) {
+    $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).
+        find('label').html(translations[lang].locations[loc])
   })
 
   // Build commands
@@ -129,7 +130,7 @@ $(function () {
       left += 10;
       width -= 20;
     }
-    var $e = $("<div>" + esc(cmd) + "<div class='arrow' /></div>").
+    var $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>").
         css('margin-left', left + 'px').
         css('width', width + 'px').
         addClass(c.left).
@@ -156,7 +157,7 @@ $(function () {
   }
 
   function selectCommand($cmd) {
-    $('#commands>div').removeClass('selected');
+    $('#commands>dt').removeClass('selected');
     $cmd.addClass('selected');
 
     var doc = $cmd.attr('data-docs') || '',
@@ -166,7 +167,7 @@ $(function () {
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
   };
 
-  $('#commands>div').click(function (e) {
+  $('#commands>dt').click(function (e) {
     clickMode = !clickMode || (clickMode && !$(this).hasClass('selected'));
     if (clickMode) {
       selectCommand($(this));
