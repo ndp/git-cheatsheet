@@ -1,6 +1,6 @@
 var colors = {
   stash: '#bf3030',
-  workspace: '#ff4040',
+  workspace: '#ff4040'.saturate(-15),
   index: '#ff9640',
   local_repo: '#cd0074',
   remote_repo: '#bf3030'
