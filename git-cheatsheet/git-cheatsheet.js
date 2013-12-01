@@ -115,11 +115,10 @@ $(function () {
   })
 
   // Build commands
-  var leftOffset = $('#commands').offset().left;
+  var leftOffset = $('#commands').empty().offset().left;
   for (var i = 0; i < commands.length; i++) {
     var c = commands[i];
     var cmd = translations[lang].commands[c.key].cmd
-    var docs = translations[lang].commands[c.key].docs
     var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
     var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
     var width = right - left;
@@ -138,8 +137,10 @@ $(function () {
         addClass(c.direction);
     $('#commands').append($e);
 
+    var docs = translations[lang].commands[c.key].docs
     if (docs) {
-      $e.attr('data-docs', esc(docs));
+      var $doc = $('<dd></dd>').text(esc(docs))
+      $('#commands').append($doc)
     }
   }
 
@@ -160,7 +161,7 @@ $(function () {
     $('#commands>dt').removeClass('selected');
     $cmd.addClass('selected');
 
-    var doc = $cmd.attr('data-docs') || '',
+    var doc = $cmd.next('dd').text() || '',
         cmd = 'git ' + $cmd.html();
     showDocs(doc, cmd);
 
