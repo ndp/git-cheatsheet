@@ -362,8 +362,3 @@ var translations = {
     }
   }
 }
-
-//lang = 'en'
-//if (/lang=fr/.exec(document.location.search)) {
-//  lang = 'fr'
-//}
