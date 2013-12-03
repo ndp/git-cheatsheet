@@ -1,4 +1,4 @@
-== Git Cheatsheet
+## Git Cheatsheet
 
 ... well, not really a cheatsheet
 
@@ -7,7 +7,7 @@ Built as I was learning git and trying to understand it. It's proved useful
 to others in the same endeavor.
 
 
-=== Contributors
+### Contributors
 
 * Andrew Peterson, NDP Software
 * French translation by <a href="http://blogs.media-tips.com/bernard.opic/">Bernard Opic</a>
@@ -15,9 +15,9 @@ to others in the same endeavor.
 
 Comments and pull requests welcome.
 
-=== FAQ
+### FAQ
 
-==== Why is it called "Cheat Sheet"?
+#### Why is it called "Cheat Sheet"?
 
 It's pretty silly, actually. I had a little SEO juice from a couple other real cheat sheets,
 so I thought I'd just leverage that term. In retrospect, I think this was an
