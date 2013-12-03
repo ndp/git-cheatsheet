@@ -93,10 +93,13 @@ $(function () {
 
 
   // Figure the language
-  var lang = cookies.read('lang');
-  if (!lang) {
-    lang = detectLanguage(navigator)
+  var lang = cookies.read('lang') || detectLanguage(navigator);
+  
+  // Fallback to english if the language is not translated
+  if(!translations[lang]){
+    lang = "en";
   }
+  
   $('[data-lang='+lang+']').addClass('selected')
 
   $('.lang').on('click', function() {
