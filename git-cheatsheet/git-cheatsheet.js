@@ -114,7 +114,7 @@ $(function () {
   // Build locations
   $.each(locationKeys(), function(i, loc) {
     $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).
-        find('label').html(translations[lang].locations[loc])
+        find('h5').html(translations[lang].locations[loc])
   })
 
   // Build commands
