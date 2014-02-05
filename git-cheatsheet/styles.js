@@ -53,16 +53,23 @@ $(function () {
         font: '50px ImpactLabelRegular, ImpactLabelReversedRegular, verdana'
       },
       h2: {
-        paddingTop: 3,
         textAlign: 'right',
+        position: 'absolute',
+        right: '0',
+        top: 44,
         color: colors.local_repo,
-        font: 'normal 25px ImpactLabelReversedRegular,ImpactLabelRegular, verdana'
+        backgroundColor: colors.remote_repo.saturate(-25).lighten(30),
+        font: 'normal 21px ImpactLabelReversedRegular,ImpactLabelRegular, verdana'
       },
-      h3: {
-        textAlign: 'right',
+      ul: {
         marginTop: 2,
-        color: '#333',
-        font: '16px/16px courier, monospaced'
+        marginBottom: -10,
+        li: {
+          font: '16px/20px courier, monospaced',
+          display: 'block',
+          textAlign: 'right',
+          color: colors.local_repo.lighten(10).saturate(-40)
+        }
       },
       h6: {
         textAlign: 'right',
