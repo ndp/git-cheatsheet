@@ -1,6 +1,9 @@
+/*
 var canonize = function (k) {
   return k.replace(/\[.*\]/, '').replace(/<[^>]+>/g, 'x').toLowerCase().trim()
 }
+*/
+var locations = ["stash", "workspace", "index", "local_repo", "remote_repo"]
 
 var commands = [
   {"left": "workspace",

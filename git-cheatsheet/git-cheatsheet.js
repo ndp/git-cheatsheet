@@ -24,25 +24,17 @@ function currentLoc() {
 }
 
 function nextLoc() {
-  selectLoc(next(locationKeys(), currentLoc()));
+  selectLoc(next(locations, currentLoc()));
 }
 
 function prevLoc() {
-  selectLoc(prev(locationKeys(), currentLoc()));
-}
-
-function locationKeys() {
-  var locs = $('#diagram>.loc').map(function () {
-    return this.id
-  });
-  return $.makeArray(locs);
+  selectLoc(prev(locations, currentLoc()));
 }
 
 function selectLoc(id, options) {
 
   options = options || {updateWindowLocation: true, updateTitle: true}
 
-//  console.log('selectLoc id=',id)
   $('#commands>div').removeClass('selected');
   clickMode = false;
   $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
@@ -112,7 +104,7 @@ $(function () {
 
 
   // Build locations
-  $.each(locationKeys(), function(i, loc) {
+  $.each(locations, function (i, loc) {
     $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).
         find('h5').html(translations[lang].locations[loc])
   })
