@@ -9,9 +9,10 @@ to others in the same endeavor.
 
 ### Contributors
 
-* Andrew Peterson, NDP Software
+* Andrew Peterson, <a href="http://ndpsoftware.com">NDP Software</a>
 * French translation by <a href="http://blogs.media-tips.com/bernard.opic/">Bernard Opic</a>
 * https://github.com/GerjanOnline
+* https://github.com/acecode -- simplified Chinese translation
 
 Comments and pull requests welcome.
 
