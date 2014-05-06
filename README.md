@@ -1,7 +1,5 @@
 ## Git Cheatsheet
 
-... well, not really a cheatsheet
-
 Standalone HTML page that organizes Git's commands by what they affect.
 Built as I was learning git and trying to understand it. It's proved useful
 to others in the same endeavor.
@@ -9,13 +7,18 @@ to others in the same endeavor.
 
 ### Contributors
 
-* Andrew Peterson, NDP Software
+* Andrew Peterson, <a href="http://ndpsoftware.com">NDP Software</a>
 * French translation by <a href="http://blogs.media-tips.com/bernard.opic/">Bernard Opic</a>
-* https://github.com/GerjanOnline
+* Simplified Chinese translation by https://github.com/acecode
+* https://github.com/GerjanOnline -- bug fix
 
 Comments and pull requests welcome.
 
 ### FAQ
+
+#### Are there any "features"?
+
+You can navigate over different "locations" and commands with the mouse, arrow keys, or vi-like keystrokes.
 
 #### Why is it called "Cheat Sheet"?
 
