@@ -118,8 +118,8 @@ $(function () {
     var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
     var width = right - left;
     if (width < 1) {
-      left -= 90
-      width = 200;
+      left -= Math.min(90, left + 10)
+      width = 220;
     } else {
       left += 10;
       width -= 20;
