@@ -238,7 +238,7 @@ var translations = {
       docs: {
         stash: 'A place to hide modifications while you work on something else',
         workspace: 'Local checkout',
-        index: 'The index (or "staging area) holds a snapshot of the content of the working tree. This snapshot is taken as the contents of the next commit.',
+        index: 'The index (or "staging area") holds a snapshot of the content of the working tree. This snapshot is taken as the contents of the next commit.',
         local_repo: 'A subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. Typical branches: <b>master</b>, <b>feature-x</b>, <b>bugfix-y</b>',
         remote_repo: 'Version(s) of your project that are hosted on the Internet or network, ensuring all your changes are available for other developers. Default is "origin". Typical branches here: <b>master</b>, <b>shared-feature-x</b>, <b>release-y</b>'
       }
