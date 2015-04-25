@@ -1,5 +1,9 @@
 $(function () {
 
+  var fixedWidth = function() {
+    window.document.location.pathname == '/git-cheatsheet.html'
+  }
+
   var colors = {
     stash: '#bf3030',
     workspace: '#ff4040'.saturate(-15),
@@ -267,7 +271,7 @@ $(function () {
   $.each(['stash', 'workspace', 'index', 'local_repo', 'remote_repo'], function (index, value) {
     var c = colors[value].darken(0).saturate(-10);
     var width = $('#' + value).innerWidth();
-    $('#' + value).css('width', width - 2);
+    if (fixedWidth()) $('#' + value).css('width', width - 2);
 
     css['#' + value] = {
       border: '1px dotted transparent',// + colors[value],
