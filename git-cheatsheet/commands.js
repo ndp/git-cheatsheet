@@ -256,7 +256,7 @@ var translations = {
       "commit -a": {"cmd": "commit -a [-m 'msg']", "docs": "Commit all files changed since your last commit, except untracked files (ie. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."},
       "checkout x": {"cmd": "checkout <files(s)... or dir>", "docs": "Updates the file or directory in the workspace. Does NOT switch branches."},
       "reset head x": {"cmd": "reset HEAD <file(s)...>", "docs": "Remove the specified files from the next commit. Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and reports what has not been updated."},
-      "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Undo the last commit, leaving changes in the the index."},
+      "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Undo the last commit, leaving changes in the index."},
       "reset --hard": {"cmd": "reset --hard", "docs": "Matches the workspace and index to the local tree. WARNING: Any changes to tracked files in the working tree since commit are lost. Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD to undo the most recent successful merge and any changes after."},
       "checkout b": {"cmd": "checkout <branch>", "docs": "Switches branches by updating the index and workspace to reflect the specified branch, <branch>, and updating HEAD to be <branch>."},
       "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Create a branch and switch to it"},
