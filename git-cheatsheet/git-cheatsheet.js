@@ -44,7 +44,7 @@ function selectLoc(id, options) {
   showDocsForElement($('#' + id));
 
   if (options.updateTitle) {
-    window.document.title = '' + id.replace('_', ' ') + ' • Git Cheatsheet • NDP Software'
+    window.document.title = '' + id.replace('_', ' ') + ' :: Git Cheatsheet'
   }
 
   if (options.updateWindowLocation) {
