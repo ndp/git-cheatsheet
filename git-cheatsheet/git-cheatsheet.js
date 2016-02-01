@@ -23,14 +23,6 @@ function currentLoc() {
   return $('#diagram .loc.current').attr('id');
 }
 
-function nextLoc() {
-  selectLoc(next(locations, currentLoc()));
-}
-
-function prevLoc() {
-  selectLoc(prev(locations, currentLoc()));
-}
-
 function selectLoc(id, options) {
 
   options = options || {updateWindowLocation: true, updateTitle: true}
@@ -62,27 +54,58 @@ $(function () {
   })();
 
 
-  $('body').keydown(function (e) {
-    var $cmds = $('#commands>dt:visible').toArray();
-    if (e.keyCode == 39) {
-      nextLoc();
-      return false;
-    } else if (e.keyCode == 37) {
-      prevLoc();
-      return false;
-    } else if (e.keyCode == 40) {
-      var cmd = next($cmds, $('#commands>dt.selected')[0]);
-      if (cmd) selectCommand($(cmd));
-      return false;
-    } else if (e.keyCode == 38) {
-      var cmd = prev($cmds, $('#commands>dt.selected')[0]);
-      if (cmd) selectCommand($(cmd));
-      return false;
-    } else {
-//      console.log(e);
-    }
-  });
+  var KEY_H = 72
+  var KEY_J = 74
+  var KEY_K = 75
+  var KEY_L = 76
+  var KEY_PAGE_UP = 38
+  var KEY_PAGE_DN = 40
+  var KEY_PAGE_LEFT = 37
+  var KEY_PAGE_RGHT = 39
 
+  var keyboardEvents = Rx.Observable.fromEvent(document, 'keydown')
+  //keyboardEvents.subscribe(function (e) {
+  //  console.log('saw keyboard event: ', e.keyCode)
+  //})
+
+  var nextLoc$ = keyboardEvents.filter(function (e) {
+    return e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L
+  })
+  var prevLoc$ = keyboardEvents.filter(function (e) {
+    return e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H
+  })
+
+  nextLoc$.map(function () {
+    return next(locations, currentLoc())
+  }).merge(
+    prevLoc$.map(function () {
+      return prev(locations, currentLoc())
+    }))
+    .subscribe(function (newLoc) {
+      selectLoc(newLoc)
+    })
+
+  var nextCmdRequest$ = keyboardEvents.filter(function (e) {
+    return e.keyCode == KEY_PAGE_DN || e.keyCode == KEY_J
+  })
+
+  var nextCmd$ = nextCmdRequest$.map(function () {
+    var cmds = $('#commands>dt:visible').toArray();
+    return next(cmds, $('#commands>dt.selected')[0]);
+  })
+
+  var prevCmdRequest$ = keyboardEvents.filter(function (e) {
+    return e.keyCode == KEY_PAGE_UP || e.keyCode == KEY_K
+  })
+
+  var prevCmd$ = prevCmdRequest$.map(function () {
+    var cmds = $('#commands>dt:visible').toArray();
+    return prev(cmds, $('#commands>dt.selected')[0]);
+  })
+
+  nextCmd$.merge(prevCmd$).subscribe(function (cmd) {
+    if (cmd) selectCommand($(cmd));
+  })
 
   // Figure the language
   var lang = cookies.read('lang') || detectLanguage(navigator);
