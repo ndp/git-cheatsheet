@@ -144,14 +144,6 @@ $(function () {
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(this).text(), null]);
   });
 
-  $.fn.hoverClass = function (klass) {
-    return $(this).hover(function () {
-      $(this).addClass(klass);
-    }, function () {
-      $(this).removeClass(klass);
-    });
-  }
-
   function selectCommand($cmd) {
     $('#commands>dt').removeClass('selected');
     $cmd.addClass('selected');

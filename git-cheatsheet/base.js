@@ -31,3 +31,12 @@ function detectLanguage(/*pass in navi*/gator) {
       gator.userLanguage ||
       'en').slice(0,2)
 }
+
+$.fn.hoverClass = function (klass) {
+  return $(this).hover(function () {
+    $(this).addClass(klass);
+  }, function () {
+    $(this).removeClass(klass);
+  });
+}
+
