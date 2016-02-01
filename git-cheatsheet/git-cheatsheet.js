@@ -14,7 +14,7 @@ function showDocs(doc, cmd) {
 
 function showDocsForElement($el) {
   var doc = $el.attr('data-docs') || '',
-      cmd = $el.text();
+    cmd = $el.text();
   showDocs(doc, cmd);
 }
 
@@ -86,15 +86,15 @@ $(function () {
 
   // Figure the language
   var lang = cookies.read('lang') || detectLanguage(navigator);
-  
+
   // Fallback to English if the language is not translated
   if (!translations[lang]) {
     lang = "en";
   }
-  
-  $('[data-lang='+lang+']').addClass('selected')
 
-  $('.lang').on('click', function() {
+  $('[data-lang=' + lang + ']').addClass('selected')
+
+  $('.lang').on('click', function () {
     var newLang = $(this).attr('data-lang');
     cookies.create('lang', newLang)
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'lang', newLang, null])
@@ -102,11 +102,10 @@ $(function () {
   })
 
 
-
   // Build locations
   $.each(locations, function (i, loc) {
     $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).
-        find('h5').html(translations[lang].locations[loc])
+      find('h5').html(translations[lang].locations[loc])
   })
 
   // Build commands
@@ -125,11 +124,11 @@ $(function () {
       width -= 20;
     }
     var $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>").
-        css('margin-left', left + 'px').
-        css('width', width + 'px').
-        addClass(c.left).
-        addClass(c.right).
-        addClass(c.direction);
+      css('margin-left', left + 'px').
+      css('width', width + 'px').
+      addClass(c.left).
+      addClass(c.right).
+      addClass(c.direction);
     $('#commands').append($e);
 
     var docs = translations[lang].commands[c.key].docs
@@ -149,7 +148,7 @@ $(function () {
     $cmd.addClass('selected');
 
     var doc = $cmd.next('dd').text() || '',
-        cmd = 'git ' + $cmd.html();
+      cmd = 'git ' + $cmd.html();
     showDocs(doc, cmd);
 
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
@@ -163,14 +162,14 @@ $(function () {
       selectCommand($('#nothing'));
     }
   }).mouseover(function (e) {
-        if ($(this).hasClass('selected') || clickMode) return;
-        selectCommand($(this));
-      });
+    if ($(this).hasClass('selected') || clickMode) return;
+    selectCommand($(this));
+  });
 
   $("#diagram .loc").
-      click(function () {
-        selectLoc(this.id);
-      }).hoverClass('hovered');
+    click(function () {
+      selectLoc(this.id);
+    }).hoverClass('hovered');
 
   // Highlight given location specified by hash.
   window.onpopstate = function (event) {
