@@ -253,6 +253,7 @@ $(function () {
       '.doc': {
         font: '300 15px/22px ' + bodyFont,
         width: '55%',
+        maxWidth: '70ex',
         color: 'black',
         'em,b': {
           font: '400 16px/22px ' + monospaced,
