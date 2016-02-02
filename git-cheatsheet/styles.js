@@ -13,6 +13,8 @@ $(function () {
   var dnColor = colors.workspace.darken(0).saturate(-30);
   var statusColor = '#846C6C';
 
+  monospaced = '"Source Code Pro", monospaced'
+  bodyFont = 'Merriweather, sanserif'
 
   var css = {
     'html,body': {
@@ -65,7 +67,7 @@ $(function () {
         marginTop: 2,
         marginBottom: -10,
         li: {
-          font: '16px/20px courier, monospaced',
+          font: '16px/20px ' + monospaced,
           display: 'block',
           textAlign: 'right',
           color: colors.local_repo.lighten(10).saturate(-40)
@@ -77,7 +79,7 @@ $(function () {
         position: 'fixed',
         bottom: 3,
         left: 20,
-        font: '12px courier, monospaced',
+        font: '12px ' + monospaced,
         zIndex: 1000
       },
       'h4': {
@@ -90,7 +92,7 @@ $(function () {
         color: '#b3a2a2'.lighten(25),
         border: '1px solid transparent',
         padding: '1px 2px',
-        font: '12px courier, monospaced',
+        font: '12px ' + monospaced,
         '&.selected': {
           backgroundColor: '#e9bebe'.darken(20),
           color: '#fff',
@@ -139,7 +141,7 @@ $(function () {
         bottom: 0,
         position: 'absolute',
         padding: '0 20px',
-        font: '15px courier, monospaced',
+        font: '15px ' + bodyFont,
         color: 'white',
         visibility: 'hidden'
       },
@@ -162,7 +164,7 @@ $(function () {
       top: 85,
       left: 0,
       width: '100%',
-      font: '15px courier, monospaced',
+      font: '200 15px ' + monospaced,
       height: 0,
       margin: 0,
       padding: 0,
@@ -183,6 +185,7 @@ $(function () {
         '&.selected': {
           padding: '2px 5px',
           has: boxShadow([1, 1], 3, '#999'),
+          fontWeight: '700',
           opacity: 0.8
         },
         '&.up': {
@@ -223,7 +226,6 @@ $(function () {
       left: 0,
       width: '100%',
       padding: '10px 0 20px 0',
-      font: '15px/20px courier, monospaced',
       zIndex: 1,
       '.screen': {
         zIndex: -1,
@@ -233,29 +235,28 @@ $(function () {
         height: '100%',
         width: '150%',
         backgroundColor: '#F6EBD9',
-        opacity: 0.8
+        opacity: 0.9
       },
-  //        height: 60,
-      '.cmd, .doc': {
+      '.cmd,.doc': {
         minHeight: '3em',
-        fontSize: 18
+        float: 'left',
       },
       '.cmd': {
-        float: 'left',
+        font: '500 16px/22px ' + monospaced,
         marginRight: 20,
+        marginTop: -2,
         width: '35%',
         color: 'black',
         textAlign: 'right',
-        textDecoration: 'underline'
+        textDecoration: 'underline',
       },
       '.doc': {
-        float: 'left',
+        font: '100 15px/22px ' + bodyFont,
         width: '55%',
-        color: 'black'.lighten(30),
-        code: {
-          color: 'black',
-          fontWeight: '600'
-        }
+        color: 'black',//.lighten(30),
+        'em,b': {
+          font: '400 16px/22px ' + monospaced,
+        },
       }
     },
     '#remote_repo .bar, #local_repo .bar': {
