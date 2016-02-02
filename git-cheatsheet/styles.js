@@ -255,7 +255,7 @@ $(function () {
         width: '55%',
         maxWidth: '70ex',
         color: 'black',
-        'em,b': {
+        'em,b,code': {
           font: '400 16px/22px ' + monospaced,
         },
       }

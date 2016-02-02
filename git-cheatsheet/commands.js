@@ -239,59 +239,156 @@ var translations = {
         stash: 'A place to hide modifications while you work on something else',
         workspace: 'Local checkout',
         index: 'Files you want to commit. Before you “commit” (checkin) files, you need to first add them to the index. Also called "current directory cache", "staging area", "cache" or "staged files".',
-        local_repo: 'A subdirectory named `.git` that contains all of your necessary repository files — a Git repository skeleton. Typical branches: <b>master</b>, <b>feature-x</b>, <b>bugfix-y</b>',
-        remote_repo: 'Version(s) of your project that are hosted on the Internet or network, ensuring all your changes are available for other developers. Default is "origin". Typical branches here: <b>master</b>, <b>shared-feature-x</b>, <b>release-y</b>'
+        local_repo: 'A subdirectory named `.git` that contains all of your necessary repository files — a Git repository skeleton. Typical branches: `master`, `feature-x`, `bugfix-y`',
+        remote_repo: 'Versions of your project that are hosted on the Internet or network, ensuring all your changes are available for other developers. The default name is `origin`. Typical branches here: `master`, `shared-feature-x`, `release-y`'
       }
     },
 
 
     commands: {
-      "status": {"cmd": "status", "docs": "Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the workspace and the index file, and paths in the workspace that are not tracked by git."},
+      "status": {
+        "cmd": "status",
+        "docs": "Displays: \r• paths that have differences between the index file and the current `HEAD` commit, \r• paths that have differences between the workspace and the index file, and \r• paths in the workspace that are not tracked by git."
+      },
       "diff": {"cmd": "diff", "docs": "Displays the differences not added to the index."},
-      "diff x": {"cmd": "diff <commit or branch>", "docs": "View the changes you have in your workspace relative to the named <commit>. You can use HEAD to compare it with the latest commit, or a branch name to compare with the tip of a different branch"},
-      "add x": {"cmd": "add <file... or dir...>", "docs": "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit. Use `add --interactive` to add the modified contents in the workspace interactively to the index."},
-      "add -u": {"cmd": "add -u", "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
+      "diff x": {
+        "cmd": "diff <commit or branch>",
+        "docs": "View the changes you have in your workspace relative to the named <commit>. You can use `HEAD` to compare it with the latest commit, or a branch name to compare with the tip of a different branch"
+      },
+      "add x": {
+        "cmd": "add <file... or dir...>",
+        "docs": "Adds the current content of new or modified files to the index, thus staging that content for inclusion in the next commit. Use `add --interactive` to add the modified contents in the workspace interactively to the index."
+      },
+      "add -u": {
+        "cmd": "add -u",
+        "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what `git commit -a` does in preparation for making a commit."
+      },
       "rm x": {"cmd": "rm <file(s)...>", "docs": "Remove a file from the workspace and the index."},
       "mv x": {"cmd": "mv <file(s)...>", "docs": "Move file in the workspace and the index."},
-      "commit -a": {"cmd": "commit -a [-m 'msg']", "docs": "Commit all files changed since your last commit, except untracked files (ie. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."},
-      "checkout x": {"cmd": "checkout <files(s)... or dir>", "docs": "Updates the file or directory in the workspace. Does NOT switch branches."},
-      "reset head x": {"cmd": "reset HEAD <file(s)...>", "docs": "Remove the specified files from the next commit. Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and reports what has not been updated."},
-      "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Undo the last commit, leaving changes in the index."},
-      "reset --hard": {"cmd": "reset --hard", "docs": "Matches the workspace and index to the local tree. WARNING: Any changes to tracked files in the working tree since commit are lost. Use this if merging has resulted in conflicts and you'd like to start over. Pass ORIG_HEAD to undo the most recent successful merge and any changes after."},
-      "checkout b": {"cmd": "checkout <branch>", "docs": "Switches branches by updating the index and workspace to reflect the specified branch, <branch>, and updating HEAD to be <branch>."},
+      "commit -a": {
+        "cmd": "commit -a [-m 'msg']",
+        "docs": "Commit all files changed since your last commit, except untracked files (ie. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."
+      },
+      "checkout x": {
+        "cmd": "checkout <files(s)... or dir>",
+        "docs": "Updates the file or directory in the workspace. Does NOT switch branches."
+      },
+      "reset head x": {
+        "cmd": "reset HEAD <file(s)...>",
+        "docs": "Remove the specified files from the next commit. Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and reports what has not been updated."
+      },
+      "reset --soft head^": {
+        "cmd": "reset --soft HEAD^",
+        "docs": "Undo the last commit, leaving changes in the index."
+      },
+      "reset --hard": {
+        "cmd": "reset --hard",
+        "docs": "Matches the workspace and index to the local tree. WARNING: Any changes to tracked files in the working tree since commit are lost. Use this if merging has resulted in conflicts and you'd like to start over. Pass `ORIG_HEAD` to undo the most recent successful merge and any changes after."
+      },
+      "checkout b": {
+        "cmd": "checkout <branch>",
+        "docs": "Switches branches by updating the index and workspace to reflect the specified branch, <branch>, and updating `HEAD` to be <branch>."
+      },
       "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Create a branch and switch to it"},
-      "merge x": {"cmd": "merge <commit or branch>", "docs": "Merge changes from <branch name> into current branch.\rUse `&#8209;&#8209;no-commit` to leave changes uncommitted."},
-      "rebase x": {"cmd": "rebase <upstream>", "docs": "Reverts all commits since the current branch diverged from <upstream>, and then re-applies them one-by-one on top of changes from the HEAD of <upstream>."},
-      "cherry-pick x": {"cmd": "cherry-pick <commit>", "docs": "Integrate changes in the given commit into the current branch."},
-      "revert x": {"cmd": "revert <commit>", "docs": "Reverse commit specified by <commit> and commit the result. This requires your working tree to be clean (no modifications from the HEAD commit)."},
-      "diff --cached": {"cmd": "diff --cached [<commit>]", "docs": "View the changes you staged vs the latest commit. Can pass a <commit> to see changes relative to it."},
-      "commit": {"cmd": "commit [-m 'msg']", "docs": "Stores the current contents of the index in a new commit along with a log message from the user describing the changes."},
+      "merge x": {
+        "cmd": "merge <commit or branch>",
+        "docs": "Merge changes from <branch name> into current branch.\rUse `&#8209;&#8209;no-commit` to leave" +
+        " changes uncommitted. Use `--no-ff` to create a merge commit even if the merge resolves as a fast forward."
+      },
+      "rebase x": {
+        "cmd": "rebase <upstream>",
+        "docs": "Reverts all commits since the current branch diverged from <upstream>, and then re-applies them one-by-one on top of changes from the `HEAD` of <upstream>."
+      },
+      "cherry-pick x": {
+        "cmd": "cherry-pick <commit>",
+        "docs": "Integrate changes in the given commit into the current branch."
+      },
+      "revert x": {
+        "cmd": "revert <commit>",
+        "docs": "Reverse commit specified by <commit> and commit the result. This requires your working tree to be clean (no modifications from the `HEAD` commit)."
+      },
+      "diff --cached": {
+        "cmd": "diff --cached [<commit>]",
+        "docs": "View the changes you staged vs the latest commit. Can pass a <commit> to see changes relative to it."
+      },
+      "commit": {
+        "cmd": "commit [-m 'msg']",
+        "docs": "Stores the current contents of the index in a new commit along with a log message from the user describing the changes."
+      },
       "commit --amend": {"cmd": "commit --amend", "docs": "Modify the last commit with the current index changes."},
-      "log": {"cmd": "log", "docs": "Show recent commits, most recent on top. Options:\r`&#8209;&#8209;decorate` with branch and tag names on appropriate commits\r`&#8209;&#8209;stat` with stats (files changed, insertions, and deletions) \r`&#8209;&#8209;author=<author>`  only by a certain author\r`&#8209;&#8209;after=\"MMM DD YYYY\"` ex. (\"Jun 20 2008\") only commits after a certain date\r`&#8209;&#8209;before=\"MMM DD YYYY\"` only commits that occur before a certain date \r`&#8209;&#8209;merge` only the commits involved in the current merge conflicts"},
+      "log": {
+        "cmd": "log",
+        "docs": "Show recent commits, most recent on top. Options:\r`&#8209;&#8209;decorate` with branch and tag names on appropriate commits\r`&#8209;&#8209;stat` with stats (files changed, insertions, and deletions) \r`&#8209;&#8209;author=<author>`  only by a certain author\r`&#8209;&#8209;after=\"MMM DD YYYY\"` ex. (`Jun 20 2008`) only commits after a certain date\r`&#8209;&#8209;before=\"MMM DD YYYY\"` only commits that occur before a certain date \r`&#8209;&#8209;merge` only the commits involved in the current merge conflicts"
+      },
       "diff x x": {"cmd": "diff <commit> <commit>", "docs": "View the changes between two arbitrary commits"},
-      "branch": {"cmd": "branch", "docs": "List all existing branches. Option -r causes the remote-tracking branches to be listed, and option -a shows both."},
-      "branch -d x": {"cmd": "branch -d <branch>", "docs": "Delete an specified branch. Use -D to force."},
-      "branch --track x x": {"cmd": "branch --track <new> <remote/branch>", "docs": "Create a new local branch that tracks a remote branch."},
-      "clone x": {"cmd": "clone <repo>", "docs": "Download the repository specified by <repo> and checkout HEAD of the master branch."},
-      "pull x x": {"cmd": "pull <remote> <refspec>", "docs": "Incorporates changes from a remote repository into the current branch. In its default mode, `git pull` is shorthand for `git fetch` followed by `git merge FETCH_HEAD`."},
-      "reset --hard x/x": {"cmd": "reset --hard <remote>/<branch>", "docs": "Reset local repo and working tree to match a remote branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."},
+      "branch": {
+        "cmd": "branch",
+        "docs": "List all existing branches. Option `-r` causes the remote-tracking branches to be listed, and option `-a` shows both."
+      },
+      "branch -d x": {"cmd": "branch -d <branch>", "docs": "Delete an specified branch. Use `-D` to force."},
+      "branch --track x x": {
+        "cmd": "branch --track <new> <remote/branch>",
+        "docs": "Create a new local branch that tracks a remote branch."
+      },
+      "clone x": {
+        "cmd": "clone <repo>",
+        "docs": "Download the repository specified by <repo> and checkout `HEAD` of the master branch."
+      },
+      "pull x x": {
+        "cmd": "pull <remote> <refspec>",
+        "docs": "Incorporates changes from a remote repository into the current branch. In its default mode, `git pull` is shorthand for `git fetch` followed by `git merge FETCH_HEAD`."
+      },
+      "reset --hard x/x": {
+        "cmd": "reset --hard <remote>/<branch>",
+        "docs": "Reset local repo and working tree to match a remote branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."
+      },
       "fetch x x": {"cmd": "fetch <remote> <refspec>", "docs": "Download objects and refs from another repository."},
-      "push": {"cmd": "push", "docs": "update the server with your commits across all branches that are *COMMON* between your local copy and the server.Local branches that were never pushed to the server in the first place are not shared"},
+      "push": {
+        "cmd": "push",
+        "docs": "Update the server with your commits across all branches that are *COMMON* between your local copy and the server. Local branches that were never pushed to the server in the first place are not shared."
+      },
       "push x x": {"cmd": "push <remote> <branch>", "docs": "Push new (or existing) branch to remote repository"},
-      "push x x:x": {"cmd": "push <remote> <branch>:<branch>", "docs": "Push new branch to remote repository with a different name"},
+      "push x x:x": {
+        "cmd": "push <remote> <branch>:<branch>",
+        "docs": "Push new branch to remote repository with a different name"
+      },
       "branch -r": {"cmd": "branch -r", "docs": "List remote branches"},
-      "push x :x": {"cmd": "push <remote> :<branch>", "docs": "Remove a remote branch. Literally &quot;push nothing to this branch&quot; "},
-      "clean": {"cmd": "clean", "docs": "Cleans the working tree by recursively removing files that are not under version control, starting from the current directory."},
-      "stash save": {"cmd": "stash save [<msg>]", "docs": "Save your local modifications to a new stash, and run git reset &#8209;&#8209;hard to revert them. The <msg> part is optional and gives the description along with the stashed state. For quickly making a snapshot, you can omit both \"save\" and <msg>."},
-      "stash apply": {"cmd": "stash apply [<stash>]", "docs": "Move changes from the specified stash into the workspace. The latest stash is the default."},
-      "stash pop": {"cmd": "stash pop", "docs": "Applies the changes from the last (or specified) stash and then removes the given stash."},
+      "push x :x": {
+        "cmd": "push <remote> :<branch>",
+        "docs": "Remove a remote branch. Literally \"push nothing to this branch\"."
+      },
+      "clean": {
+        "cmd": "clean",
+        "docs": "Cleans the working tree by recursively removing files that are not under version control, starting from the current directory. Use `-n` for a \"dry run\" to see what would be deleted. Use `-f` to delete the files."
+      },
+      "stash save": {
+        "cmd": "stash save [<msg>]",
+        "docs": "Save your local modifications to a new stash, and run `git reset &#8209;&#8209;hard` to revert them. The <msg> part is optional and gives the description along with the stashed state. For quickly making a snapshot, you can omit both `save` and <msg>."
+      },
+      "stash apply": {
+        "cmd": "stash apply [<stash>]",
+        "docs": "Move changes from the specified stash into the workspace. The latest stash is the default."
+      },
+      "stash pop": {
+        "cmd": "stash pop",
+        "docs": "Applies the changes from the last (or specified) stash and then removes the given stash."
+      },
       "stash list": {"cmd": "stash list", "docs": "List the stashes that you currently have."},
-      "stash show": {"cmd": "stash show [<stash>]", "docs": "Show the changes recorded in the stash as a diff between the stashed state and its original parent. When no <stash> is given, shows the latest one."},
-      "stash drop": {"cmd": "stash drop [<stash>]", "docs": "Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one."},
-      "stash clear": {"cmd": "stash clear", "docs": "Remove all the stashed states. Note that those states will then be subject to pruning, and may be impossible to recover."},
+      "stash show": {
+        "cmd": "stash show [<stash>]",
+        "docs": "Show the changes recorded in the stash as a diff between the stashed state and its original parent. When no <stash> is given, shows the latest one."
+      },
+      "stash drop": {
+        "cmd": "stash drop [<stash>]",
+        "docs": "Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one."
+      },
+      "stash clear": {
+        "cmd": "stash clear",
+        "docs": "Remove all the stashed states. Note that those states will then be subject to pruning, and may be impossible to recover."
+      },
       "stash branch x": {
         "cmd": "stash branch <branchname> [<stash>]",
-        "docs": "Creates and checks out a new branch named <branchname> starting from the commit at which the <stash> was originally created, applies the changes recorded in <stash> to the new working tree and index. \rIf that succeeds, and <stash> is a reference of the form stash@{<revision>}, it then drops the <stash>. When no <stash> is given, applies the latest one. \rThis is useful if the branch on which you ran git stash save has changed enough that git stash apply fails due to conflicts. Since the stash is applied on top of the commit that was HEAD at the time git stash was run, it restores the originally stashed state with no conflicts."
+        "docs": "Creates and checks out a new branch named <branchname> starting from the commit at which the <stash> was originally created, applies the changes recorded in <stash> to the new working tree and index. \rIf that succeeds, and <stash> is a reference of the form stash@{<revision>}, it then drops the <stash>. When no <stash> is given, applies the latest one. \rThis is useful if the branch on which you ran `git stash save` has changed enough that `git stash apply` fails due to conflicts. Since the stash is applied on top of the commit that was `HEAD` at the time `git stash` was run, it restores the originally stashed state with no conflicts."
       }
     }
   },
@@ -308,8 +405,8 @@ var translations = {
         stash: 'Un endroit où remiser des modifications pendant que vous travaillez sur autre chose',
         workspace: 'L\'espace de travail local',
         index: 'L\'index (ou "zone de transit") maintient un instantané de l\'espace de travail qui servira de base pour le prochain commit.',
-        local_repo: 'Un sous-répertoire nommé .git qui contient tous les fichiers nécessaires au référentiel. Branches typiques : <b>master</b>, <b>fonction-x</b>, <b>correctif-y</b>',
-        remote_repo: 'Versions de votre projet qui sont hébergés sur le réseau ou Internet, pour mettre toutes vos modifications à la disposition d\'autres développeurs. Par défaut «origin». Branches typiques : <b>master</b>, <b>fonction-x-partagée</b>, <b>version-y</b>'
+        local_repo: 'Un sous-répertoire nommé .git qui contient tous les fichiers nécessaires au référentiel. Branches typiques : `master`, `fonction-x`, `correctif-y`',
+        remote_repo: 'Versions de votre projet qui sont hébergés sur le réseau ou Internet, pour mettre toutes vos modifications à la disposition d\'autres développeurs. Par défaut «origin». Branches typiques : `master`, `fonction-x-partagée`, `version-y`'
       }
     },
 
@@ -329,7 +426,7 @@ var translations = {
       "checkout b": {"cmd": "checkout <branche>", "docs": "Échange les branches en mettant à jour l'ESPACE_DE_TRAVAIL et l'INDEX pour charger la BRANCHE spécifiée en positionnant la TÊTE dessus."},
       "reset head x": {"cmd": "reset HEAD <fichier(s)>", "docs": "Supprime les FICHIER(S) spécifiés du prochain commit. Réinitialise l'INDEX mais pas l'ESPACE_DE_TRAVAIL (i.e. les fichiers modifiés sont préservés mais non marqués pour commit) et indique ce qui n'a pas été mis à jour."},
       "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Défait le dernier commit en laissant les modifications dans l'INDEX."},
-      "reset --hard": {"cmd": "reset --hard", "docs": "Fait correspondre l'ESPACE_DE_TRAVAIL et l'INDEX avec le DÉPÔT_LOCAL. ATTENTION : toutes les modifications apportées à des fichiers suivis dans l'ESPACE_DE_TRAVAIL depuis le dernier commit sont perdues. Utilisez ceci lorsqu'une fusion a engendré des conflits et que vous souhaitez recommencer. Précisez ORIG_HEAD pour défaire la dernière fusion réussie et les modifications qui ont suivi."},
+      "reset --hard": {"cmd": "reset --hard", "docs": "Fait correspondre l'ESPACE_DE_TRAVAIL et l'INDEX avec le DÉPÔT_LOCAL. ATTENTION : toutes les modifications apportées à des fichiers suivis dans l'ESPACE_DE_TRAVAIL depuis le dernier commit sont perdues. Utilisez ceci lorsqu'une fusion a engendré des conflits et que vous souhaitez recommencer. Précisez `ORIG_HEAD` pour défaire la dernière fusion réussie et les modifications qui ont suivi."},
       "checkout -b x": {"cmd": "checkout -b <branche>", "docs": "Crée une nouvelle BRANCHE et se positionne dessus."},
       "merge x": {"cmd": "merge <commit ou branche>", "docs": "Fusionne les modifications du COMMIT ou de la BRANCHE dans la branche courante. Utilisez --no-commit pour ignorer les modifications n'ayant pas encore fait l'objet d'un commit."},
       "rebase x": {"cmd": "rebase <source>", "docs": "Défait tous les commits effectués depuis que la branche à divergé de SOURCE puis les refait tous un par un sur les modifications apportées à la TÊTE de SOURCE."},
@@ -442,16 +539,16 @@ var translations = {
         stash: 'Un lugar para ocultar cambios mientras trabajas en otra cosa',
         workspace: 'Espacio de trabajo: archivos locales posicionados en una rama',
         index: 'El index (o "staging area") contiene una captura del contenido del árbol de trabajo. Esta captura representa a los contenidos del próximo commit.',
-        local_repo: 'Un subdirectorio llamado .git que contiene todos los archivos necesarios — un esqueleto del repositorio Git. Ramas típicas: <b>master</b>, <b>feature-x</b>, <b>bugfix-y</b>',
-        remote_repo: 'Version(es) del proyecto que están alojadas en Internet o una red, asegurando que todos los cambios están disponibles para otros desarrolladores. Por defecto es "origin". Ramas típicas aquí son: <b>master</b>, <b>shared-feature-x</b>, <b>release-y</b>'
+        local_repo: 'Un subdirectorio llamado .git que contiene todos los archivos necesarios — un esqueleto del repositorio Git. Ramas típicas: `master`, `feature-x`, `bugfix-y`',
+        remote_repo: 'Version(es) del proyecto que están alojadas en Internet o una red, asegurando que todos los cambios están disponibles para otros desarrolladores. Por defecto es "origin". Ramas típicas aquí son: `master`, `shared-feature-x`, `release-y`'
       }
     },
 
 
     commands: {
-      "status": {"cmd": "status", "docs": "Muestra las localizaciones que tienen diferencias entre el index y el commit HEAD actual, localizaciones que tienen diferencias entre el workspace y el index, y localizaciones en el workspace que no están siendo registradas por git"},
+      "status": {"cmd": "status", "docs": "Muestra las localizaciones que tienen diferencias entre el index y el commit `HEAD` actual, localizaciones que tienen diferencias entre el workspace y el index, y localizaciones en el workspace que no están siendo registradas por git"},
       "diff": {"cmd": "diff", "docs": "Muestra las diferencias no añadidas al index."},
-      "diff x": {"cmd": "diff <commit or branch>", "docs": "Muestra los cambios que existen en el workspace relativos al <commit> mencionado. Puede usarse HEAD para comparar contra el último commit, o el nombre de una rama (branch) para comparar contra otra rama"},
+      "diff x": {"cmd": "diff <commit or branch>", "docs": "Muestra los cambios que existen en el workspace relativos al <commit> mencionado. Puede usarse `HEAD` para comparar contra el último commit, o el nombre de una rama (branch) para comparar contra otra rama"},
       "add x": {"cmd": "add <file... or dir...>", "docs": "Añade el contenido actual de archivos nuevos o modificados al index, preparando a la vez ese contenido para ser incluído en el próximo commit. Usar `add --interactive` para añadir los contenidos del espacio de trabajo al index de manera interactiva."},
       "add -u": {"cmd": "add -u", "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
       "add -u": {"cmd": "add -u", "docs": "Añade el contenido actual de los archivos modificados (NO NUEVOS) al index. Es similar a lo que hace 'git commit -a' al prepararse para realizar un commit."},
@@ -461,25 +558,25 @@ var translations = {
       "checkout x": {"cmd": "checkout <files(s)... or dir>", "docs": "Actualiza el archivo o directorio en el espacio de trabajo. Esto NO cambia de rama."},
       "reset head x": {"cmd": "reset HEAD <file(s)...>", "docs": "Descarta los archivos especificados del próximo commit. Restablece el index pero no el árbol de trabajo (ej:, los cambios en archivos se mantienen pero no se preparan para commit) y reporta cuales no han sido actualizados."},
       "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Deshace el último commit, dejando los cambio en el index."},
-      "reset --hard": {"cmd": "reset --hard", "docs": "Equipara el espacio de trabajo y el index al árbol local. ADVERTENCIA: Se pierden todos los cambios a archivos registrados por git desde el último commit. Usar este comando si una combinación/merge resultó en conflictos y es necesario comenzar de nuevo. Al pasar ORIG_HEAD puede deshacerse el merge más reciente y todos los cambios posteriores."},
-      "checkout b": {"cmd": "checkout <branch>", "docs": "Cambia de rama actualizando el index y el espacio de trabajo para reflejar la rama especificada, <branch>, y actualizando la posición de HEAD a <branch>."},
-      "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Crea una rama y posiciona el HEAD allí"},
+      "reset --hard": {"cmd": "reset --hard", "docs": "Equipara el espacio de trabajo y el index al árbol local. ADVERTENCIA: Se pierden todos los cambios a archivos registrados por git desde el último commit. Usar este comando si una combinación/merge resultó en conflictos y es necesario comenzar de nuevo. Al pasar `ORIG_HEAD` puede deshacerse el merge más reciente y todos los cambios posteriores."},
+      "checkout b": {"cmd": "checkout <branch>", "docs": "Cambia de rama actualizando el index y el espacio de trabajo para reflejar la rama especificada, <branch>, y actualizando la posición de `HEAD` a <branch>."},
+      "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Crea una rama y posiciona el `HEAD` allí"},
       "merge x": {"cmd": "merge <commit or branch>", "docs": "Combina (merge) los cambios de <branch name> con los de la rama actual.\rUsar `&#8209;&#8209;no-commit` para dejar los cambios sin realizar un commit."},
-      "rebase x": {"cmd": "rebase <upstream>", "docs": "Revierte todos los commits desde que la rama actual se separó del <upstream>, y luego los vuelve a aplicar uno por uno por sobre los commits del HEAD de <upstream>."},
+      "rebase x": {"cmd": "rebase <upstream>", "docs": "Revierte todos los commits desde que la rama actual se separó del <upstream>, y luego los vuelve a aplicar uno por uno por sobre los commits del `HEAD` de <upstream>."},
       "cherry-pick x": {"cmd": "cherry-pick <commit>", "docs": "Aplica los cambios del commit especificado en la rama actual."},
-      "revert x": {"cmd": "revert <commit>", "docs": "Revierte el <commit> especificado y realiza un commit con el resultado. Esto requiere que el árbol de trabajo esté limpio (sin modificaciones desde el HEAD commit)"},
+      "revert x": {"cmd": "revert <commit>", "docs": "Revierte el <commit> especificado y realiza un commit con el resultado. Esto requiere que el árbol de trabajo esté limpio (sin modificaciones desde el `HEAD` commit)"},
       "diff --cached": {"cmd": "diff --cached [<commit>]", "docs": "Visualiza los cambios que se han preparado vs el último commit. Se puede pasar un <commit> para ver los cambios relativos al mismo."},
-      "commit": {"cmd": "commit [-m 'msg']", "docs": "Almacena el contenido actual del index en un nuevo commit acompañado de un mensaje de log que describe esos cambios."},   
+      "commit": {"cmd": "commit [-m 'msg']", "docs": "Almacena el contenido actual del index en un nuevo commit acompañado de un mensaje de log que describe esos cambios."},
       "commit --amend": {"cmd": "commit --amend", "docs": "Modifica el último commit con los cambios actuales."},
       "log": {"cmd": "log", "docs": "Muestra los commits recientes, comenzando por los últimos. Optiones:\r`&#8209;&#8209;decorate` para incluir nombres de ramas y tags\r`&#8209;&#8209;stat` para incluir métricas (archivos modificados, insertados, and eliminados) \r`&#8209;&#8209;author=<author>`  para filtrar por autor\r`&#8209;&#8209;after=\"MMM DD YYYY\"` ej. (\"Jun 20 2008\") para incluir commits desde esa fecha\r`&#8209;&#8209;before=\"MMM DD YYYY\"` incluye commits anteriores a esa fecha \r`&#8209;&#8209;merge` incluye únicamente los commits involucrados en conflictos de combinación"},
       "diff x x": {"cmd": "diff <commit> <commit>", "docs": "Visualizar los cambios entre dos commits arbitrariamente"},
       "branch": {"cmd": "branch", "docs": "Lista todas las ramas existentes. Agregando -r lista las ramas registradas como remotas, la opción -a muestra ambas ramas."},
       "branch -d x": {"cmd": "branch -d <branch>", "docs": "Elimina la rama especificada. Usar -D para forzar esto."},
       "branch --track x x": {"cmd": "branch --track <new> <remote/branch>", "docs": "Crea una nueva rama local que sigue a una rama remota."},
-      "clone x": {"cmd": "clone <repo>", "docs": "Descarga el repositorio especificado por <repo> y posiciona el HEAD en la rama master."},
+      "clone x": {"cmd": "clone <repo>", "docs": "Descarga el repositorio especificado por <repo> y posiciona el `HEAD` en la rama master."},
       "pull x x": {"cmd": "pull <remote> <refspec>", "docs": "Incorpora los cambios desde un repositorio remoto en la rama actual. En su modo por defecto, `git pull` es un atajo de `git fetch` seguido por `git merge FETCH_HEAD`."},
       "reset --hard x/x": {"cmd": "reset --hard <remote>/<branch>", "docs": "Reset local repo and working tree to match a remote branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."},
-      "reset --hard x/x": {"cmd": "reset --hard <remote>/<branch>", "docs": "Equipara el espacio de trabajo y el index con una rama remota. Usar `reset &#8209;&#8209;hard origin/master` para descartar todos los commits en la rama local master. Se puede utilizar para comenzar de nuevo desde una combinación/merge fallida."},    
+      "reset --hard x/x": {"cmd": "reset --hard <remote>/<branch>", "docs": "Equipara el espacio de trabajo y el index con una rama remota. Usar `reset &#8209;&#8209;hard origin/master` para descartar todos los commits en la rama local master. Se puede utilizar para comenzar de nuevo desde una combinación/merge fallida."},
       "fetch x x": {"cmd": "fetch <remote> <refspec>", "docs": "Descarga los objetos y referencias desde otro repositorio."},
       "push": {"cmd": "push", "docs": "Actualiza el servidor con los commits de todas ramas que tienen en *COMÚN* entre el repositorio local y el remoto. Las ramas locales que nunca fueron enviadas al server (push) no están compartidas."},
       "push x x": {"cmd": "push <remote> <branch>", "docs": "Envía una nueva (o existente) rama al repositorio remoto"},
@@ -497,7 +594,7 @@ var translations = {
       "stash clear": {"cmd": "stash clear", "docs": "Elimina todos las entradas del stash. IMPORTANTE: estas entradas eliminadas pueden ser irrecuperables luego."},
       "stash branch x": {
         "cmd": "stash branch <branchname> [<stash>]",
-        "docs": "Crea y posiciona HEAD en el <branchname> apuntando al commit del cual el <stash> fue creado originalmente, aplicando luego los cambios almacenados en el <stash> al nuevo árbol de trabajo. \rSi se realiza exitosamente, y <stash> es una referencia tipo stash@{<revision>}, el comando elimina el <stash>. Cuando no se especifica un <stash>, aplica el último. \rEste comando es útil en los casos en que la rama en la que se ejecutó git stash save ha cambiado demasiado por lo que git stash apply fallaría por conflictos. Al aplicar los cambios sobre el commit que fue HEAD al momento de ejecutar git stash originalmente, se restauran los cambios sin conflictos."
+        "docs": "Crea y posiciona `HEAD` en el <branchname> apuntando al commit del cual el <stash> fue creado originalmente, aplicando luego los cambios almacenados en el <stash> al nuevo árbol de trabajo. \rSi se realiza exitosamente, y <stash> es una referencia tipo stash@{<revision>}, el comando elimina el <stash>. Cuando no se especifica un <stash>, aplica el último. \rEste comando es útil en los casos en que la rama en la que se ejecutó git stash save ha cambiado demasiado por lo que git stash apply fallaría por conflictos. Al aplicar los cambios sobre el commit que fue `HEAD` al momento de ejecutar git stash originalmente, se restauran los cambios sin conflictos."
       }
     }
   }
