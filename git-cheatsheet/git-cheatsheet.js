@@ -73,7 +73,7 @@ $(function () {
   })();
 
 
-  var popState$ = Rx.Observable.fromEvent(window, 'popstate')
+  var popStateLoc$ = Rx.Observable.fromEvent(window, 'popstate')
     .startWith(null) // on initial page view
     .map(function () {
       var m = (window.location.hash || '').match(/loc=([^;]*);/);
@@ -151,7 +151,7 @@ $(function () {
     keyDownPrevLoc$.map(function () {
       return prev(locations, currentLoc())
     }))
-    .merge(popState$)
+    .merge(popStateLoc$)
     .subscribe(function (newLoc) {
       selectLoc(newLoc)
     })
