@@ -99,28 +99,33 @@ $(function () {
     .map(function (ev) {
       return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
     })
-
+    .filter(function(el) {
+      return !!el
+    })
+    .map(function(el) {
+      clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'))
+      return clickMode ? el : '#nothing'
+    })
 
   var mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-docs]')
-    .debounce(100)
+    //.debounce(100)
+    .filter(function (ev) {
+      return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
+    })
     .map(function (ev) {
-      return ev.target
+      return $(ev.target).is('[data-docs]') ? ev.target : $(ev.target).closest('[data-docs]').get(0)
     })
     .filter(function (el) {
       return !clickMode || !$(el).hasClass('loc')
     })
-    .filter(function (el) {
-      return !$(el).is('dt')
-    })
     .distinctUntilChanged()
 
   var mouseOverCmd$ = Rx.Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
-    .debounce(10)
     .filter(function () {
       return !clickMode
     })
     .map(function (ev) {
-      return ev.target;
+      return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0);
     })
     .filter(function (el) {
       return $(el).is('dt')
@@ -169,10 +174,24 @@ $(function () {
     return prev(cmds, $('#commands>dt.selected')[0]);
   })
 
+
   // Select a command
-  nextCmd$.merge(prevCmd$).subscribe(function (cmd) {
-    if (cmd) selectCommand($(cmd));
+  nextCmd$
+    .merge(prevCmd$)
+    .merge(mouseOverCmd$)
+    .merge(clickCmd$)
+    .filter(function (el) {
+      return !!el
+    })
+    .subscribe(function (cmd) {
+      selectCommand($(cmd))
+    })
+
+  mouseOverDataDoc$.subscribe(function (el) {
+    showDocsForElement($(el));
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(el).text(), null]);
   })
+
 
   // Figure the language
   var lang = cookies.read('lang') || detectLanguage(navigator);
@@ -227,26 +246,6 @@ $(function () {
       $('#commands').append($doc)
     }
   }
-
-
-
-
-  mouseOverDataDoc$.subscribe(function (el) {
-    showDocsForElement($(el));
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(el).text(), null]);
-  })
-
-
-  clickCmd$
-    .subscribe(function (el) {
-      clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'));
-      selectCommand($(clickMode ? el : '#nothing'));
-    })
-
-
-  mouseOverCmd$.subscribe(function (el) {
-    selectCommand($(el))
-  })
 
   //Rx.Observable.interval(1000).subscribe(function (e) {
   //  console.log('clickMode ', clickMode)
