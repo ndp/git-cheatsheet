@@ -248,7 +248,7 @@ $(function () {
         width: '35%',
         color: 'black',
         textAlign: 'right',
-        textDecoration: 'underline',
+        //textDecoration: 'underline',
       },
       '.doc': {
         font: '300 15px/22px ' + bodyFont,
