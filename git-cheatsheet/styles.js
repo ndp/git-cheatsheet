@@ -78,7 +78,7 @@ $(function () {
         color: colors.local_repo.saturate(-60).lighten(10),
         position: 'fixed',
         bottom: 3,
-        left: 20,
+        right: 3,
         font: '300 12px ' + bodyFont,
         zIndex: 1000
       },
