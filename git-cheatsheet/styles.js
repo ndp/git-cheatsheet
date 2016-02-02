@@ -14,7 +14,7 @@ $(function () {
   var statusColor = '#846C6C';
 
   monospaced = '"Source Code Pro", monospaced'
-  bodyFont = 'Merriweather, sanserif'
+  bodyFont = 'Merriweather, sanserif' // 300, 400, 700, 900
 
   var css = {
     'html,body': {
