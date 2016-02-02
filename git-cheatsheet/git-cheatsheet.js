@@ -1,5 +1,16 @@
 var clickMode = false;
 
+var KEY_H = 72
+var KEY_J = 74
+var KEY_K = 75
+var KEY_L = 76
+var KEY_PAGE_UP = 38
+var KEY_PAGE_DN = 40
+var KEY_PAGE_LEFT = 37
+var KEY_PAGE_RGHT = 39
+
+
+
 function showDocs(doc, cmd) {
   var $info = $('#info');
   if (doc) {
@@ -9,7 +20,6 @@ function showDocs(doc, cmd) {
   } else {
     $info.hide()
   }
-
 }
 
 function showDocsForElement($el) {
@@ -23,28 +33,37 @@ function currentLoc() {
   return $('#diagram .loc.current').attr('id');
 }
 
-function selectLoc(id, options) {
+function selectLoc(id) {
 
-  options = options || {updateWindowLocation: true, updateTitle: true}
+  id = id || ''
 
-  $('#commands>div').removeClass('selected');
   clickMode = false;
+  $('#commands>div').removeClass('selected');
   $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
   $('#diagram .loc.current').removeClass('current');
   $('#' + id).addClass('current');
 
   showDocsForElement($('#' + id));
 
-  if (options.updateTitle) {
-    window.document.title = '' + id.replace('_', ' ') + ' :: Git Cheatsheet'
-  }
+  window.document.title = '' + id.replace('_', ' ') + ' :: Git Cheatsheet'
 
-  if (options.updateWindowLocation) {
+  if (!window.location.hash.match(RegExp('loc=' + id))) {
     window.location.href = '#loc=' + id + ';';
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
   }
-
-  _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
 }
+
+function selectCommand($cmd) {
+  $('#commands>dt').removeClass('selected');
+  $cmd.addClass('selected');
+
+  var doc = $cmd.next('dd').text() || '',
+    cmd = 'git ' + $cmd.html();
+  showDocs(doc, cmd);
+
+  _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
+}
+
 
 
 $(function () {
@@ -54,55 +73,103 @@ $(function () {
   })();
 
 
-  var KEY_H = 72
-  var KEY_J = 74
-  var KEY_K = 75
-  var KEY_L = 76
-  var KEY_PAGE_UP = 38
-  var KEY_PAGE_DN = 40
-  var KEY_PAGE_LEFT = 37
-  var KEY_PAGE_RGHT = 39
+  var popState$ = Rx.Observable.fromEvent(window, 'popstate')
+    .startWith(null) // on initial page view
+    .map(function () {
+      var m = (window.location.hash || '').match(/loc=([^;]*);/);
+      if (m && m.length == 2) {
+        return m[1]
+      }
+    })
+    .filter(function (loc) {
+      return !!loc || loc == ''
+    })
 
-  var keyboardEvents = Rx.Observable.fromEvent(document, 'keydown')
-  //keyboardEvents.subscribe(function (e) {
-  //  console.log('saw keyboard event: ', e.keyCode)
-  //})
+  var clickLoc$ = Rx.Observable.fromEvent(document, 'click', '#diagram .loc')
+    .filter(function (ev) {
+      return $(ev.target).closest('dt').length == 0
+    })
+    .map(function (ev) {
+      return $(ev.target).hasClass('loc') ?
+        ev.target.id :
+        $(ev.target).closest('.loc').attr('id')
+    })
 
-  var nextLoc$ = keyboardEvents.filter(function (e) {
+  var clickCmd$ = Rx.Observable.fromEvent(document, 'click', '#commands > dt')
+    .map(function (ev) {
+      return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
+    })
+
+
+  var mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-docs]')
+    .debounce(100)
+    .map(function (ev) {
+      return ev.target
+    })
+    .filter(function (el) {
+      return !clickMode || !$(el).hasClass('loc')
+    })
+    .filter(function (el) {
+      return !$(el).is('dt')
+    })
+    .distinctUntilChanged()
+
+  var mouseOverCmd$ = Rx.Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
+    .debounce(10)
+    .filter(function () {
+      return !clickMode
+    })
+    .map(function (ev) {
+      return ev.target;
+    })
+    .filter(function (el) {
+      return $(el).is('dt')
+    })
+    .distinctUntilChanged()
+
+
+  var keydown$ = Rx.Observable.fromEvent(document, 'keydown')
+
+  var keyDownNextLoc$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L
   })
-  var prevLoc$ = keyboardEvents.filter(function (e) {
+  var keyDownPrevLoc$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H
   })
 
-  nextLoc$.map(function () {
-    return next(locations, currentLoc())
-  }).merge(
-    prevLoc$.map(function () {
+  // Select a Loc
+  clickLoc$
+    .merge(keyDownNextLoc$.map(function () {
+      return next(locations, currentLoc())
+    }))
+    .merge(
+    keyDownPrevLoc$.map(function () {
       return prev(locations, currentLoc())
     }))
+    .merge(popState$)
     .subscribe(function (newLoc) {
       selectLoc(newLoc)
     })
 
-  var nextCmdRequest$ = keyboardEvents.filter(function (e) {
+  var keyDownNextCmd$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_DN || e.keyCode == KEY_J
   })
 
-  var nextCmd$ = nextCmdRequest$.map(function () {
+  var nextCmd$ = keyDownNextCmd$.map(function () {
     var cmds = $('#commands>dt:visible').toArray();
     return next(cmds, $('#commands>dt.selected')[0]);
   })
 
-  var prevCmdRequest$ = keyboardEvents.filter(function (e) {
+  var keyDownPrevCmd$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_UP || e.keyCode == KEY_K
   })
 
-  var prevCmd$ = prevCmdRequest$.map(function () {
+  var prevCmd$ = keyDownPrevCmd$.map(function () {
     var cmds = $('#commands>dt:visible').toArray();
     return prev(cmds, $('#commands>dt.selected')[0]);
   })
 
+  // Select a command
   nextCmd$.merge(prevCmd$).subscribe(function (cmd) {
     if (cmd) selectCommand($(cmd));
   })
@@ -161,50 +228,28 @@ $(function () {
     }
   }
 
-  $('body').on('mouseover', ':not(#commands) [data-docs]', function () {
-    showDocsForElement($(this));
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(this).text(), null]);
-  });
 
-  function selectCommand($cmd) {
-    $('#commands>dt').removeClass('selected');
-    $cmd.addClass('selected');
 
-    var doc = $cmd.next('dd').text() || '',
-      cmd = 'git ' + $cmd.html();
-    showDocs(doc, cmd);
 
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
-  };
+  mouseOverDataDoc$.subscribe(function (el) {
+    showDocsForElement($(el));
+    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(el).text(), null]);
+  })
 
-  $('#commands>dt').click(function (e) {
-    clickMode = !clickMode || (clickMode && !$(this).hasClass('selected'));
-    if (clickMode) {
-      selectCommand($(this));
-    } else {
-      selectCommand($('#nothing'));
-    }
-  }).mouseover(function (e) {
-    if ($(this).hasClass('selected') || clickMode) return;
-    selectCommand($(this));
-  });
 
-  $("#diagram .loc").
-    click(function () {
-      selectLoc(this.id);
-    }).hoverClass('hovered');
+  clickCmd$
+    .subscribe(function (el) {
+      clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'));
+      selectCommand($(clickMode ? el : '#nothing'));
+    })
 
-  // Highlight given location specified by hash.
-  window.onpopstate = function (event) {
-    var hash = window.location.hash;
-    if (hash && hash.length > 1) {
-      var m = hash.match(/loc=([^;]*);/);
-      if (m && m.length == 2) {
-        selectLoc(m[1], {updateWindowLocation: false, updateTitle: true});
-      }
-    }
-  };
 
-  window.onpopstate();
+  mouseOverCmd$.subscribe(function (el) {
+    selectCommand($(el))
+  })
+
+  //Rx.Observable.interval(1000).subscribe(function (e) {
+  //  console.log('clickMode ', clickMode)
+  //})
 
 });
