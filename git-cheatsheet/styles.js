@@ -79,7 +79,7 @@ $(function () {
         position: 'fixed',
         bottom: 3,
         left: 20,
-        font: '12px ' + monospaced,
+        font: '300 12px ' + bodyFont,
         zIndex: 1000
       },
       'h4': {
@@ -141,7 +141,7 @@ $(function () {
         bottom: 0,
         position: 'absolute',
         padding: '0 20px',
-        font: '15px ' + bodyFont,
+        font: '400 15px ' + bodyFont,
         color: 'white',
         visibility: 'hidden'
       },
@@ -251,9 +251,9 @@ $(function () {
         textDecoration: 'underline',
       },
       '.doc': {
-        font: '100 15px/22px ' + bodyFont,
+        font: '300 15px/22px ' + bodyFont,
         width: '55%',
-        color: 'black',//.lighten(30),
+        color: 'black',
         'em,b': {
           font: '400 16px/22px ' + monospaced,
         },
