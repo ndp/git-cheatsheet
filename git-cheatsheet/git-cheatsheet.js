@@ -1,4 +1,10 @@
 var clickMode = false;
+var log = function (x) {
+  console.log(x)
+}
+var logJSON = function (x) {
+  console.log(JSON.stringify(x))
+}
 
 var KEY_H = 72
 var KEY_J = 74
