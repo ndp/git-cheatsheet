@@ -142,19 +142,20 @@ $(function () {
   var keyDownNextLoc$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L
   })
+    .map(function () {
+      return next(locations, currentLoc())
+    })
+  
   var keyDownPrevLoc$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H
+  }).map(function () {
+    return prev(locations, currentLoc())
   })
 
   // Select a Loc
   clickLoc$
-    .merge(keyDownNextLoc$.map(function () {
-      return next(locations, currentLoc())
-    }))
-    .merge(
-    keyDownPrevLoc$.map(function () {
-      return prev(locations, currentLoc())
-    }))
+    .merge(keyDownNextLoc$)
+    .merge(keyDownPrevLoc$)
     .merge(popState$)
     .subscribe(function (newLoc) {
       selectLoc(newLoc)
@@ -187,9 +188,8 @@ $(function () {
     .filter(function (el) {
       return !!el
     })
-    .subscribe(function (cmd) {
-      selectCommand($(cmd))
-    })
+    .map($)
+    .subscribe(selectCommand)
 
   mouseOverDataDoc$.subscribe(function (el) {
     showDocsForElement($(el));
