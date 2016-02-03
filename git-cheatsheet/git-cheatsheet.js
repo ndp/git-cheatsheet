@@ -77,7 +77,7 @@ $(function () {
   })();
 
 
-  var popState$ = Rx.Observable.fromEvent(window, 'popstate')
+  var popStateLoc$ = Rx.Observable.fromEvent(window, 'popstate')
     .startWith(null) // on initial page view
     .map(function () {
       var m = (window.location.hash || '').match(/loc=([^;]*);/);
@@ -145,7 +145,7 @@ $(function () {
     .map(function () {
       return next(locations, currentLoc())
     })
-  
+
   var keyDownPrevLoc$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H
   }).map(function () {
@@ -156,7 +156,7 @@ $(function () {
   clickLoc$
     .merge(keyDownNextLoc$)
     .merge(keyDownPrevLoc$)
-    .merge(popState$)
+    .merge(popStateLoc$)
     .subscribe(function (newLoc) {
       selectLoc(newLoc)
     })
@@ -216,7 +216,7 @@ $(function () {
 
   // Build locations
   $.each(locations, function (i, loc) {
-    $('#' + loc).attr('data-docs', translations[lang].locations.docs[loc]).
+    $('#' + loc).attr('data-docs', esc(translations[lang].locations.docs[loc])).
       find('h5').html(translations[lang].locations[loc])
   })
 
