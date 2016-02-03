@@ -16,7 +16,6 @@ var KEY_PAGE_LEFT = 37
 var KEY_PAGE_RGHT = 39
 
 
-
 function showDocs(doc, cmd) {
   var $info = $('#info');
   if (doc) {
@@ -71,7 +70,6 @@ function selectCommand($cmd) {
 }
 
 
-
 $(function () {
 
   (function addBarsToLocDivs() {
@@ -105,10 +103,10 @@ $(function () {
     .map(function (ev) {
       return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
     })
-    .filter(function(el) {
+    .filter(function (el) {
       return !!el
     })
-    .map(function(el) {
+    .map(function (el) {
       clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'))
       return clickMode ? el : '#nothing'
     })
