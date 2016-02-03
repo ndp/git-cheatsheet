@@ -6,10 +6,25 @@ var logJSON = function (x) {
   console.log(JSON.stringify(x))
 }
 
+var KEY_1 = 49
+var KEY_2 = 50
+var KEY_3 = 51
+var KEY_4 = 52
+var KEY_5 = 53
 var KEY_H = 72
+var KEY_I = 73
 var KEY_J = 74
 var KEY_K = 75
 var KEY_L = 76
+var KEY_O = 79
+var KEY_R = 82
+var KEY_S = 83
+var KEY_W = 87
+var KEY_FN1 = 112
+var KEY_FN2 = 113
+var KEY_FN3 = 114
+var KEY_FN4 = 115
+var KEY_FN5 = 116
 var KEY_PAGE_UP = 38
 var KEY_PAGE_DN = 40
 var KEY_PAGE_LEFT = 37
@@ -138,6 +153,7 @@ $(function () {
 
 
   var keydown$ = Rx.Observable.fromEvent(document, 'keydown')
+  //keydown$.map(function(ev) {return ev.keyCode }).subscribe(log)
 
   var keyDownNextLoc$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L
@@ -152,11 +168,40 @@ $(function () {
     return prev(locations, currentLoc())
   })
 
+  var specificLoc$ = keydown$
+    .pluck('keyCode')
+    .map(function (keyCode) {
+      switch (keyCode) {
+        case KEY_1:
+        case KEY_FN1:
+        case KEY_S:
+              return 'stash'
+        case KEY_2:
+        case KEY_FN2:
+        case KEY_W:
+              return 'workspace'
+        case KEY_3:
+        case KEY_FN3:
+        case KEY_I:
+              return 'index'
+        case KEY_4:
+        case KEY_FN4:
+        case KEY_O:
+              return 'local_repo'
+        case KEY_5:
+        case KEY_FN5:
+        case KEY_R:
+              return 'remote_repo'
+      }
+    })
+    .filter(function(loc) { return !!loc} )
+
   // Select a Loc
   clickLoc$
     .merge(keyDownNextLoc$)
     .merge(keyDownPrevLoc$)
     .merge(popStateLoc$)
+    .merge(specificLoc$)
     .subscribe(function (newLoc) {
       selectLoc(newLoc)
     })
