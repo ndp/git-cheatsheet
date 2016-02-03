@@ -199,8 +199,7 @@ $(function () {
   })
 
 
-  // Figure the language
-  var lang = cookies.read('lang') || detectLanguage(navigator);
+  var lang = detectLanguage(navigator);
 
   // Fallback to English if the language is not translated
   if (!translations[lang]) {
