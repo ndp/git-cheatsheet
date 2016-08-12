@@ -202,9 +202,7 @@ $(function () {
     .merge(keyDownPrevLoc$)
     .merge(popStateLoc$)
     .merge(specificLoc$)
-    .subscribe(function (newLoc) {
-      selectLoc(newLoc)
-    })
+    .subscribe(selectLoc)
 
   var keyDownNextCmd$ = keydown$.filter(function (e) {
     return e.keyCode == KEY_PAGE_DN || e.keyCode == KEY_J
