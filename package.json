@@ -4,7 +4,8 @@
   "description": "Git Cheatsheet",
   "main": "git-cheatsheet.html",
   "scripts": {
-    "test": "jasmine spec/*_spec.js"
+    "test": "jasmine spec/*_spec.js",
+    "start": "ruby -run -e httpd . -p 9090"
   },
   "repository": {
     "type": "git",
