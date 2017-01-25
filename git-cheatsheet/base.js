@@ -33,11 +33,11 @@ function detectLanguage(/*pass in navi*/gator) {
     'en').slice(0, 2)
 }
 
-$.fn.hoverClass = function (klass) {
-  return $(this).hover(function () {
-    $(this).addClass(klass);
-  }, function () {
-    $(this).removeClass(klass);
-  });
+if (typeof(module) !== 'undefined') {
+  module.exports = {
+    detectLanguage: detectLanguage,
+    next: next,
+    prev: prev,
+    esc: esc
+  }
 }
-
