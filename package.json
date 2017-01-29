@@ -5,7 +5,7 @@
   "main": "git-cheatsheet.html",
   "scripts": {
     "test": "jasmine spec/*_spec.js",
-    "start": "ruby -run -e httpd . -p 9090"
+    "start": "static -p 9090"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ndp/git-cheatsheet#readme",
   "devDependencies": {
-    "jasmine": "2.5.3"
+    "jasmine": "2.5.3",
+    "node-static": "*"
   }
 }
