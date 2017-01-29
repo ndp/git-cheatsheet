@@ -1,0 +1,24 @@
+{
+  "name": "git-cheatsheet",
+  "version": "1.0.0",
+  "description": "Git Cheatsheet",
+  "main": "git-cheatsheet.html",
+  "scripts": {
+    "test": "jasmine spec/*_spec.js",
+    "start": "static -p 9090"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndp/git-cheatsheet.git"
+  },
+  "author": "Andrew J. Peterson / NDP Software",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ndp/git-cheatsheet/issues"
+  },
+  "homepage": "https://github.com/ndp/git-cheatsheet#readme",
+  "devDependencies": {
+    "jasmine": "2.5.3",
+    "node-static": "*"
+  }
+}

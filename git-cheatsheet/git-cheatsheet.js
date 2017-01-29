@@ -297,4 +297,13 @@ $(function () {
   //  console.log('clickMode ', clickMode)
   //})
 
+
+  $.fn.hoverClass = function (klass) {
+    return $(this).hover(function () {
+      $(this).addClass(klass);
+    }, function () {
+      $(this).removeClass(klass);
+    });
+  }
+
 });
