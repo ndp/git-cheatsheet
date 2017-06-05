@@ -11,6 +11,7 @@ to others in the same endeavor.
 * French translation by <a href="http://blogs.media-tips.com/bernard.opic/">Bernard Opic</a>
 * Simplified Chinese translation by https://github.com/acecode
 * https://github.com/GerjanOnline -- bug fix
+* Spanish translation by https://github.com/sminutoli
 
 Comments and pull requests welcome.
 

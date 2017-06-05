@@ -1,4 +1,4 @@
-describe('git cheatsheet', function () {
+describe('git cheatsheet / base', function () {
   describe('next()', function () {
     it('returns first item in list if nothing selected', function () {
       expect(next(['A','B','C'], null)).toEqual('A');
@@ -46,15 +46,19 @@ describe('git cheatsheet', function () {
   });
 
   describe('detectLanguage', function() {
-    var navigator = {}
+    const navigator = {}
     it('looks at navigation', function() {
       navigator.language = 'fr-FR'
       expect(detectLanguage(navigator)).toEqual('fr')
     })
     it('cookie can override', function() {
       navigator.language = 'fr-FR'
-      spyOn(cookies, 'read').andReturn('de')
-      expect(detectLanguage(navigator)).toEqual('de')
+      global.cookies.read = () => 'de'
+      try {
+        expect(detectLanguage(navigator)).toEqual('de')
+      } finally {
+        global.cookies.read = () => null
+      }
     })
     it('works for IE', function() {
       navigator.language = undefined

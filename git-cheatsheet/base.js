@@ -26,8 +26,18 @@ function esc(s) {
 
 // Return a two charact language code
 function detectLanguage(/*pass in navi*/gator) {
-  return (cookies.read('language') ||
-      gator.language ||
-      gator.userLanguage ||
-      'en').slice(0,2)
+  return cookies.read('lang') ||
+    (cookies.read('language') ||
+    gator.language ||
+    gator.userLanguage ||
+    'en').slice(0, 2)
+}
+
+if (typeof(module) !== 'undefined') {
+  module.exports = {
+    detectLanguage: detectLanguage,
+    next: next,
+    prev: prev,
+    esc: esc
+  }
 }

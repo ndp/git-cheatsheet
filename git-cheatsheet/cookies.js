@@ -13,3 +13,7 @@ var cookies = {
     return null;
   }
 }
+
+if (typeof(module) !== 'undefined') {
+  module.exports = cookies
+}
