@@ -253,45 +253,56 @@ $(function () {
     var newLang = $(this).attr('data-lang');
     cookies.create('lang', newLang)
     _gaq.push(['_trackEvent', 'git-cheatsheet', 'lang', newLang, null])
-    document.location.reload();
+    $('[data-lang=' + lang + ']').removeClass('selected');
+    $('[data-lang=' + newLang + ']').addClass('selected');
+    lang=newLang;
+    buildLocations();
+    buildCommands();
   })
 
 
   // Build locations
-  $.each(locations, function (i, loc) {
-    $('#' + loc).attr('data-docs', esc(translations[lang].locations.docs[loc])).
-      find('h5').html(translations[lang].locations[loc])
-  })
+  var buildLocations=function(){
+    $.each(locations, function (i, loc) {
+        $('#' + loc).attr('data-docs', esc(translations[lang].locations.docs[loc])).
+          find('h5').html(translations[lang].locations[loc])
+    })
+  }
 
   // Build commands
-  var leftOffset = $('#commands').empty().offset().left;
-  for (var i = 0; i < commands.length; i++) {
-    var c = commands[i];
-    var cmd = translations[lang].commands[c.key].cmd
-    var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
-    var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
-    var width = right - left;
-    if (width < 1) {
-      left -= Math.min(90, left + 10)
-      width = 220;
-    } else {
-      left += 10;
-      width -= 20;
-    }
-    var $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>").
-      css('margin-left', left + 'px').
-      css('width', width + 'px').
-      addClass(c.left).
-      addClass(c.right).
-      addClass(c.direction);
-    $('#commands').append($e);
+  var buildCommands=function(){
+    var leftOffset = $('#commands').empty().offset().left;
+    for (var i = 0; i < commands.length; i++) {
+      var c = commands[i];
+      var cmd = translations[lang].commands[c.key].cmd
+      var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
+      var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
+      var width = right - left;
+      if (width < 1) {
+        left -= Math.min(90, left + 10)
+        width = 220;
+      } else {
+        left += 10;
+        width -= 20;
+      }
+      var $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>").
+        css('margin-left', left + 'px').
+        css('width', width + 'px').
+        addClass(c.left).
+        addClass(c.right).
+        addClass(c.direction);
+      $('#commands').append($e);
 
-    var docs = translations[lang].commands[c.key].docs
-    if (docs) {
-      var $doc = $('<dd></dd>').text(esc(docs))
-      $('#commands').append($doc)
+      var docs = translations[lang].commands[c.key].docs
+      if (docs) {
+        var $doc = $('<dd></dd>').text(esc(docs))
+        $('#commands').append($doc)
+      }
     }
   }
+
+  buildLocations();
+  buildCommands();
 
   //Rx.Observable.interval(1000).subscribe(function (e) {
   //  console.log('clickMode ', clickMode)
