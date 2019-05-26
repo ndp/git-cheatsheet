@@ -26,3 +26,7 @@ You can navigate over different "locations" and commands with the mouse, arrow k
 It's pretty silly, actually. I had a little SEO juice from a couple other real cheat sheets,
 so I thought I'd just leverage that term. In retrospect, I think this was an
 okay tactic, as it brought people to the page.
+
+### Like it or have ideas?
+
+If you like this and would like me to do more intereactions like this, send me an email... or money https://venmo.com/ndpsoft or  https://www.gofundme.com/ndp-software
