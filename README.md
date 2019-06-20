@@ -12,6 +12,7 @@ to others in the same endeavor.
 * Simplified Chinese translation by https://github.com/acecode
 * https://github.com/GerjanOnline -- bug fix
 * Spanish translation by https://github.com/sminutoli
+* Korean translation by https://github.com/ujuc
 
 Comments and pull requests welcome.
 
