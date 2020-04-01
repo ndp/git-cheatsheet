@@ -36,6 +36,11 @@ var commands = [
     "direction": "up",
     "key": "rm x",
     "tags": "Basic Snapshotting"},
+  {"left": "index",
+    "right": "index",
+    "direction": "status",
+    "key": "rm --cached x",
+    "tags": "Basic Snapshotting"},
   {"left": "workspace",
     "right": "index",
     "direction": "up",
@@ -264,6 +269,7 @@ var translations = {
         "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what `git commit -a` does in preparation for making a commit."
       },
       "rm x": {"cmd": "rm <file(s)...>", "docs": "Remove a file from the workspace and the index."},
+      "rm --cached x": {"cmd": "rm --cached <file(s)...>", "docs": "Remove a file from the index."},
       "mv x": {"cmd": "mv <file(s)...>", "docs": "Move file in the workspace and the index."},
       "commit -a": {
         "cmd": "commit -a [-m 'msg']",
@@ -417,6 +423,7 @@ var translations = {
       "add x": {"cmd": "add <fichier(s) ou dossier(s)>", "docs": "Ajoute à l'INDEX le contenu des FICHIER(S) ou DOSSIER(S), nouveaux ou modifiés, les plaçant ainsi en attente d'inclusion dans le prochain commit. Utilisez 'git add --interactive' pour ajouter de manière interactive à l'INDEX les contenus modifiés dans l'ESPACE_DE_TRAVAIL."},
       "add -u": {"cmd": "add -u", "docs": "Ajoute à l'INDEX le contenu des fichiers (ÉXISTANTS) modifiés. C'est ce que fait 'git commit -a' en préparation à un commit."},
       "rm x": {"cmd": "rm <fichier(s)>", "docs": "Supprime des FICHIER(S) de l'ESPACE_DE_TRAVAIL et de l'INDEX."},
+      "rm --cached x": {"cmd": "rm --cached <fichier(s)...>", "docs": "Supprime des FICHIER(S) de l'INDEX."},
       "mv x": {"cmd": "mv <fichier(s)>", "docs": "Déplace des FICHIER(S) de l'ESPACE_DE_TRAVAIL et de l'INDEX."},
       "commit -a": {"cmd": "commit -a [-m 'message']", "docs": "Fait un commit de tous les fichiers qui ont changé depuis le dernier commit, à l'exception des fichiers non suivis (ie. tous les fichiers qui sont dans l'INDEX). Supprime de l'INDEX les fichiers qui ont été supprimés de l'ESPACE_DE_TRAVAIL."},
       "checkout x": {
@@ -485,6 +492,7 @@ var translations = {
       "add x": {"cmd": "add <file... or dir...>", "docs": "添加当前的新内容或是修改的文件到暂存区，作为下次提交的(部分)内容。用`add --interactive` 来交互式操作"},
       "add -u": {"cmd": "add -u", "docs": "添加当前修改(<strong>不包括新文件</strong>)到暂存区, 这与'git commit -a'准备提交内容的方式一致"},
       "rm x": {"cmd": "rm <file(s)...>", "docs": "从工作区和暂存区删除某个文件"},
+      "rm --cached x": {"cmd": "rm --cached <file(s)...>", "docs": "从工作区和暂存区删除某个文件"},
       "mv x": {"cmd": "mv <file(s)...>", "docs": "从工作区和暂存区移动文件"},
       "commit -a": {"cmd": "commit -a [-m 'msg']", "docs": "提交上次提交之后的所有修改，1)未追踪的除外(即：所有暂存区有记录的文件)；2)从暂存区删除已在工作区删除的文件"},
       "checkout x": {"cmd": "checkout <files(s)... or dir>", "docs": "更新工作区文件或文件夹，<strong>不会</strong>切换分支"},
@@ -553,6 +561,7 @@ var translations = {
       "add -u": {"cmd": "add -u", "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
       "add -u": {"cmd": "add -u", "docs": "Añade el contenido actual de los archivos modificados (NO NUEVOS) al index. Es similar a lo que hace 'git commit -a' al prepararse para realizar un commit."},
       "rm x": {"cmd": "rm <file(s)...>", "docs": "Elimina uno o varios archivos del espacio de trabajo e index."},
+      "rm --cached x": {"cmd": "rm --cached <file(s)...>", "docs": "Elimina uno o varios archivos del espacio de trabajo e index."},
       "mv x": {"cmd": "mv <file(s)...>", "docs": "Mueve uno o varios archivos del espacio de trabajo e index."},
       "commit -a": {"cmd": "commit -a [-m 'msg']", "docs": "Realiza un commit con todos los cambios en los archivos desde el último commit, excluyendo los archivos no registrados (ej: todos los archivos que están listados en index). Elimina archivos en index que fueron eliminados del espacio de trabajo."},
       "checkout x": {"cmd": "checkout <files(s)... or dir>", "docs": "Actualiza el archivo o directorio en el espacio de trabajo. Esto NO cambia de rama."},
@@ -633,6 +642,7 @@ var translations = {
         "docs": "Fügt geänderte (NICHT NEUE) Dateien dem Index hinzu. Das ist ähnlich dem, was ein `git commit -a` vor dem Commit macht."
       },
       "rm x": {"cmd": "rm <Datei(en)...>", "docs": "Entfernt eine Datei aus der Arbeitskopie und dem Index."},
+      "rm --cached x": {"cmd": "rm --cached <Datei(en)...>", "docs": "Entfernt eine Datei aus der Arbeitskopie und dem Index."},
       "mv x": {"cmd": "mv <Datei(en)...>", "docs": "Verschiebt eine Datei in der Arbeitskopie und dem Index."},
       "commit -a": {
         "cmd": "commit -a [-m 'Nachricht']",
@@ -794,6 +804,7 @@ var translations = {
         "docs": "수정된 (새롭게 만든게 아닌) 파일의 현재 내용을 인덱스에 추가합니다. 이는 `git commit -a`로 커밋을 준비하는 것과 비슷합니다."
       },
       "rm x": {"cmd": "rm <file(s)...>", "docs": "Workspace와 인덱스에서 파일을 삭제합니다."},
+      "rm --cached x": {"cmd": "rm --cached <file(s)...>", "docs": "색인에서 파일을 제거하십시오"},
       "mv x": {"cmd": "mv <file(s)...>", "docs": "Workspace와 인덱스에서 파일을 옮깁니다."},
       "commit -a": {
         "cmd": "commit -a [-m 'msg']",

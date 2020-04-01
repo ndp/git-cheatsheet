@@ -267,7 +267,7 @@ $(function () {
   var leftOffset = $('#commands').empty().offset().left;
   for (var i = 0; i < commands.length; i++) {
     var c = commands[i];
-    var cmd = translations[lang].commands[c.key].cmd
+    var cmd = translationFor(c).cmd
     var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
     var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
     var width = right - left;
@@ -286,11 +286,16 @@ $(function () {
       addClass(c.direction);
     $('#commands').append($e);
 
-    var docs = translations[lang].commands[c.key].docs
+    var docs = translationFor(c).docs
     if (docs) {
       var $doc = $('<dd></dd>').text(esc(docs))
       $('#commands').append($doc)
     }
+  }
+
+  function translationFor(c) {
+    return translations[lang].commands[c.key]
+           || translations['en'].commands[c.key]
   }
 
   //Rx.Observable.interval(1000).subscribe(function (e) {
