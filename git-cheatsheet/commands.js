@@ -69,7 +69,7 @@ var commands = [
   {"left": "workspace",
     "right": "local_repo",
     "direction": "dn",
-    "key": "checkout b",
+    "key": "switch",
     "tags": "Branching and Merging"},
   {"left": "workspace",
     "right": "local_repo",
@@ -186,17 +186,17 @@ var commands = [
     "key": "clean",
     "tags": "Administration"},
   {"left": "stash",
-    "right": "workspace",
+    "right": "index",
     "direction": "dn",
     "key": "stash save",
     "tags": "Branching and Merging"},
   {"left": "stash",
-    "right": "workspace",
+    "right": "index",
     "direction": "up",
     "key": "stash apply",
     "tags": "Branching and Merging"},
   {"left": "stash",
-    "right": "workspace",
+    "right": "index",
     "direction": "up",
     "key": "stash pop",
     "tags": "Branching and Merging"},
@@ -285,8 +285,8 @@ var translations = {
         "cmd": "reset --hard",
         "docs": "Matches the workspace and index to the local tree. WARNING: Any changes to tracked files in the working tree since commit are lost. Use this if merging has resulted in conflicts and you'd like to start over. Pass `ORIG_HEAD` to undo the most recent successful merge and any changes after."
       },
-      "checkout b": {
-        "cmd": "checkout <branch>",
+      "switch": {
+        "cmd": "switch <branch>",
         "docs": "Switches branches by updating the index and workspace to reflect the specified branch, <branch>, and updating `HEAD` to be <branch>."
       },
       "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Create a branch and switch to it"},
@@ -423,7 +423,7 @@ var translations = {
         "cmd": "checkout <fichier(s) ou dossier(s)>",
         "docs": "Met à jour les FICHIER(S) ou DOSSIER(S) dans l'ESPACE_DE_TRAVAIL en écrasant toutes les modifications locales. Ne PAS changer de branches."
       },
-      "checkout b": {"cmd": "checkout <branche>", "docs": "Échange les branches en mettant à jour l'ESPACE_DE_TRAVAIL et l'INDEX pour charger la BRANCHE spécifiée en positionnant la TÊTE dessus."},
+      "switch": {"cmd": "switch <branche>", "docs": "Échange les branches en mettant à jour l'ESPACE_DE_TRAVAIL et l'INDEX pour charger la BRANCHE spécifiée en positionnant la TÊTE dessus."},
       "reset head x": {"cmd": "reset HEAD <fichier(s)>", "docs": "Supprime les FICHIER(S) spécifiés du prochain commit. Réinitialise l'INDEX mais pas l'ESPACE_DE_TRAVAIL (i.e. les fichiers modifiés sont préservés mais non marqués pour commit) et indique ce qui n'a pas été mis à jour."},
       "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Défait le dernier commit en laissant les modifications dans l'INDEX."},
       "reset --hard": {"cmd": "reset --hard", "docs": "Fait correspondre l'ESPACE_DE_TRAVAIL et l'INDEX avec le DÉPÔT_LOCAL. ATTENTION : toutes les modifications apportées à des fichiers suivis dans l'ESPACE_DE_TRAVAIL depuis le dernier commit sont perdues. Utilisez ceci lorsqu'une fusion a engendré des conflits et que vous souhaitez recommencer. Précisez `ORIG_HEAD` pour défaire la dernière fusion réussie et les modifications qui ont suivi."},
@@ -491,7 +491,7 @@ var translations = {
       "reset head x": {"cmd": "reset HEAD <file(s)...>", "docs": "从下次提交中移除指定文件。重置暂存区记录但是不处理工作区(即: 文件改动被保留但不会被提交)，同时报告没有被更新的文件"},
       "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "恢复上一次提交，保留暂存区的改动"},
       "reset --hard": {"cmd": "reset --hard", "docs": "恢复工作区和暂存区到上次提交的状态，警告： 所有工作区修改都会被丢弃。使用这条命令来解决合并错误，如果你想从头开始的话传入 ORIG_HEAD 来撤销该次提交以来的所有改动"},
-      "checkout b": {"cmd": "checkout <branch>", "docs": "切换分支，更改工作区和暂存区为<branch>分支的内容，之后HEAD指向<branch>分支"},
+      "switch": {"cmd": "switch <branch>", "docs": "切换分支，更改工作区和暂存区为<branch>分支的内容，之后HEAD指向<branch>分支"},
       "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "新建一个分支并且立即切换过去"},
       "merge x": {"cmd": "merge <commit or branch>", "docs": "从<branch name>分支合并到当前分支，使用`&#8209;&#8209;no-commit`可以保持在(已经合并)但未提交状态"},
       "rebase x": {"cmd": "rebase <upstream>", "docs": "衍合：回滚从【当前提交和<upstream>分支分开处】开始直到当前提交的所有提交，将这些提交一一应用到<upstream>分支，结果作为<upstream>的新提交Reverts all commits since the current branch diverged from <upstream>, and then re-applies them one-by-one on top of changes from the HEAD of <upstream>."},
@@ -559,7 +559,7 @@ var translations = {
       "reset head x": {"cmd": "reset HEAD <file(s)...>", "docs": "Descarta los archivos especificados del próximo commit. Restablece el index pero no el árbol de trabajo (ej:, los cambios en archivos se mantienen pero no se preparan para commit) y reporta cuales no han sido actualizados."},
       "reset --soft head^": {"cmd": "reset --soft HEAD^", "docs": "Deshace el último commit, dejando los cambio en el index."},
       "reset --hard": {"cmd": "reset --hard", "docs": "Equipara el espacio de trabajo y el index al árbol local. ADVERTENCIA: Se pierden todos los cambios a archivos registrados por git desde el último commit. Usar este comando si una combinación/merge resultó en conflictos y es necesario comenzar de nuevo. Al pasar `ORIG_HEAD` puede deshacerse el merge más reciente y todos los cambios posteriores."},
-      "checkout b": {"cmd": "checkout <branch>", "docs": "Cambia de rama actualizando el index y el espacio de trabajo para reflejar la rama especificada, <branch>, y actualizando la posición de `HEAD` a <branch>."},
+      "switch": {"cmd": "switch <branch>", "docs": "Cambia de rama actualizando el index y el espacio de trabajo para reflejar la rama especificada, <branch>, y actualizando la posición de `HEAD` a <branch>."},
       "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Crea una rama y posiciona el `HEAD` allí"},
       "merge x": {"cmd": "merge <commit or branch>", "docs": "Combina (merge) los cambios de <branch name> con los de la rama actual.\rUsar `&#8209;&#8209;no-commit` para dejar los cambios sin realizar un commit."},
       "rebase x": {"cmd": "rebase <upstream>", "docs": "Revierte todos los commits desde que la rama actual se separó del <upstream>, y luego los vuelve a aplicar uno por uno por sobre los commits del `HEAD` de <upstream>."},
@@ -654,8 +654,8 @@ var translations = {
         "cmd": "reset --hard",
         "docs": "Setzt die Arbeitskopie auf den Stand des letzten Commits im lokalen Repository zurück. WARNUNG: Alle nicht committeten Änderungen und neue Dateien der Arbeitskopie und des Index gehen verloren. Dieses Kommando ist nützlich, wenn ein Merge fehlgeschlagen ist und man von vorne beginnen möchte. Mit dem Parameter `ORIG_HEAD` kann der letzte, erfolgreiche Merge und alle Änderungen danach rückgängig gemacht werden."
       },
-      "checkout b": {
-        "cmd": "checkout <Branch>",
+      "switch": {
+        "cmd": "switch <Branch>",
         "docs": "Checkt den <Branch> in die Arbeitskopie aus. Änderungen bleiben erhalten, so dass sie in den Branch committet werden können."
       },
       "checkout -b x": {"cmd": "checkout -b <Name des neuen Branches>", "docs": "Erzeugt einen neuen Branch und wechselt zu diesem"},
@@ -815,8 +815,8 @@ var translations = {
         "cmd": "reset --hard",
         "docs": "Workplace와 인덱스를 로컬 트리와 일치시킵니다. 경고: 커밋 이후 작업 중인 트리에서 추적 중인 파일에 대한 변경 사항이 사라집니다. 병합으로 인해 충돌이 발생하여 처음부터 다시 시작하려는 경우에 사용합니다. `ORGI_HEAD`로 수정하게되면 가장 최근에 성공한 병합과 이후 변경 사항을 취소할 수 있습니다."
       },
-      "checkout b": {
-        "cmd": "checkout <branch>",
+      "switch": {
+        "cmd": "switch <branch>",
         "docs": "지정한 branch인 <branch>를 인덱스와 workspace를 반영하고, `HEAD`를 <branch>로 업데이트하여 branch를 변경합니다."
       },
       "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Branch를 만들고 변경합니다."},
