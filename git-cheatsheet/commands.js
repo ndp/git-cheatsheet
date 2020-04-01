@@ -323,7 +323,7 @@ var translations = {
       "branch -d x": {"cmd": "branch -d <branch>", "docs": "Delete an specified branch. Use `-D` to force."},
       "branch --track x x": {
         "cmd": "branch --track <new> <remote/branch>",
-        "docs": "Create a new local branch that tracks a remote branch."
+        "docs": "Create a new local branch from a remote-tracking branch."
       },
       "clone x": {
         "cmd": "clone <repo>",
@@ -335,7 +335,7 @@ var translations = {
       },
       "reset --hard x/x": {
         "cmd": "reset --hard <remote>/<branch>",
-        "docs": "Reset local repo and working tree to match a remote branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."
+        "docs": "Reset local repo and working tree to match a remote-tracking branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."
       },
       "fetch x x": {"cmd": "fetch <remote> <refspec>", "docs": "Download objects and refs from another repository."},
       "push": {
