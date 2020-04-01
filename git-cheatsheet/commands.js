@@ -15,7 +15,7 @@ var commands = [
     "right": "index",
     "direction": "status",
     "key": "diff",
-    "tags": "Basic Snapshotting, Inspection and Comparison,Patching"},
+    "tags": "Basic Snapshotting,Inspection and Comparison,Patching"},
   {"left": "workspace",
     "right": "local_repo",
     "direction": "status",
@@ -267,7 +267,7 @@ var translations = {
       "mv x": {"cmd": "mv <file(s)...>", "docs": "Move file in the workspace and the index."},
       "commit -a": {
         "cmd": "commit -a [-m 'msg']",
-        "docs": "Commit all files changed since your last commit, except untracked files (ie. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."
+        "docs": "Commit all files changed since your last commit, except untracked files (i.e. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."
       },
       "checkout x": {
         "cmd": "checkout <files(s)... or dir>",
@@ -608,7 +608,7 @@ var translations = {
       docs: {
         stash: 'Hier können Änderungen "geparkt" werden, während man an etwas anderem arbeitet',
         workspace: 'Checkout des lokalen Repositories',
-        index: 'Zu commitende Dateien. Vor einem "commit" (checkin), müssen die Dateien zuerst zu dem Index hinzugefügt werden. Wird auch "staging area" order "staged files" genannt.',
+        index: 'Zu commitende Dateien. Vor einem "commit" (checkin), müssen die Dateien zuerst zu dem Index hinzugefügt werden. Wird auch "staging area" oder "staged files" genannt.',
         local_repo: 'Der lokale clone des Remote Repositories. Es wird in dem Verzeichnis `.git` verwaltet. Typische Branches sind: `master`, `feature-x`, `bugfix-y`',
         remote_repo: 'Der Ursprung des lokalen Repositories. Durch ein `clone` wird es automatisch als `origin` gesetzt.'
       }
@@ -652,7 +652,7 @@ var translations = {
       },
       "reset --hard": {
         "cmd": "reset --hard",
-        "docs": "Setzt die Arbeitskopie auf den Stand des letzten Commits im lokalen Repository zurück. WARNUNG: Alle nicht committeten Änderungen und neue Dateien der Arbeitskopie und des Index gehen verloren. Dieses Kommando ist nützlich, wenn ein Mergen fehlgeschlagen ist und man von vorne beginnen möchte. Mit dem Parameter `ORIG_HEAD` kann der letzte, erfolgreiche Merge und alle Änderungen danach rückgängig gemacht werden."
+        "docs": "Setzt die Arbeitskopie auf den Stand des letzten Commits im lokalen Repository zurück. WARNUNG: Alle nicht committeten Änderungen und neue Dateien der Arbeitskopie und des Index gehen verloren. Dieses Kommando ist nützlich, wenn ein Merge fehlgeschlagen ist und man von vorne beginnen möchte. Mit dem Parameter `ORIG_HEAD` kann der letzte, erfolgreiche Merge und alle Änderungen danach rückgängig gemacht werden."
       },
       "checkout b": {
         "cmd": "checkout <Branch>",
