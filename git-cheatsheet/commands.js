@@ -567,7 +567,7 @@ var translations = {
       "revert x": {"cmd": "revert <commit>", "docs": "Revierte el <commit> especificado y realiza un commit con el resultado. Esto requiere que el árbol de trabajo esté limpio (sin modificaciones desde el `HEAD` commit)"},
       "diff --cached": {"cmd": "diff --cached [<commit>]", "docs": "Visualiza los cambios que se han preparado vs el último commit. Se puede pasar un <commit> para ver los cambios relativos al mismo."},
       "commit": {"cmd": "commit [-m 'msg']", "docs": "Almacena el contenido actual del index en un nuevo commit acompañado de un mensaje de log que describe esos cambios."},
-      "commit --amend": {"cmd": "commit --amend", "docs": "Modifica el último commit con los cambios actuales."},
+      "commit --amend": {"cmd": "commit --amend", "docs": "Modifica el último commit con los cambios actuales en el index."},
       "log": {"cmd": "log", "docs": "Muestra los commits recientes, comenzando por los últimos. Optiones:\r`&#8209;&#8209;decorate` para incluir nombres de ramas y tags\r`&#8209;&#8209;stat` para incluir métricas (archivos modificados, insertados, and eliminados) \r`&#8209;&#8209;author=<author>`  para filtrar por autor\r`&#8209;&#8209;after=\"MMM DD YYYY\"` ej. (\"Jun 20 2008\") para incluir commits desde esa fecha\r`&#8209;&#8209;before=\"MMM DD YYYY\"` incluye commits anteriores a esa fecha \r`&#8209;&#8209;merge` incluye únicamente los commits involucrados en conflictos de combinación"},
       "diff x x": {"cmd": "diff <commit> <commit>", "docs": "Visualizar los cambios entre dos commits arbitrariamente"},
       "branch": {"cmd": "branch", "docs": "Lista todas las ramas existentes. Agregando -r lista las ramas registradas como remotas, la opción -a muestra ambas ramas."},
