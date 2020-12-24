@@ -223,7 +223,6 @@ $(function () {
   })
 
 
-  // Select a command
   nextCmd$
     .merge(prevCmd$)
     .merge(mouseOverCmd$)
