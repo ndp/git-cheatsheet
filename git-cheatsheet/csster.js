@@ -2,12 +2,12 @@
 // version 1.0.2
 // Copyright (c) Andrew J. Peterson / ndpsoftware.com
 // All Rights Reserved
-// 
-// See http://github.com/ndp/csster
-// 
+//
+// See https://github.com/ndp/csster
+//
 // Generated Fri May 25 20:28:34 PDT 2012
-// 
-// 
+//
+//
 if (!Csster) {
     var Csster = {}
 }
