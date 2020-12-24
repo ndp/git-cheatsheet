@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Google Analytics Content Experiment code -->
-  <script>function utmx_section(){}function utmx(){}(function(){var
-  k='2602198-1',d=document,l=d.location,c=d.cookie;
-  if(l.search.indexOf('utm_expid='+k)>0)return;
-  function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-  indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-  length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-  '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-  '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-  '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-  valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-  '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-  </script><script>utmx('url','A/B');</script>
-  <!-- End of Google Analytics Content Experiment code -->
-
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <title>NDP Software :: Git Cheatsheet</title>
   <link rel="SHORTCUT ICON" href="/favicon.ico"/>
@@ -43,21 +28,14 @@
   <script src='git-cheatsheet/commands.js'></script>
   <script src='git-cheatsheet/base.js?v=2'></script>
   <script src='git-cheatsheet/git-cheatsheet.js?v=2' type="text/javascript"></script>
-  <script type="text/javascript">
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1458227-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-
+    ga('create', 'UA-1458227-1', 'auto');
+    ga('send', 'pageview');
   </script>
   <script type="application/ld+json">
     {
@@ -70,7 +48,6 @@
         "https://github.com/ndp",
         "https://www.twitter.com/ndp8",
         "https://www.facebook.com/ndpsoft",
-        "https://plus.google.com/+Ndpsoftware"
       ],
 
       "logo": "https://ndpsoftware.com/images/brand/logo-square.png"
@@ -101,11 +78,11 @@
     <ul>
       <li><a href="http://justinhileman.info/article/git-pretty/git-pretty.png"
              target="_blank"
-             onclick="_gaq.push(['_trackEvent', 'git-cheatsheet', 'refer', 'git-pretty', null])">escape a git mess,
+             onclick="ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'refer', eventLabel: 'git-pretty'})">escape a git mess,
         step-by-step&raquo;</a></li>
       <li><a href="https://www.amp-what.com?utm_source=Git+Cheatsheet&amp;utm_campaign=Text+Link&amp;utm_medium=web"
              target="_blank"
-             onclick="_gaq.push(['_trackEvent', 'git-cheatsheet', 'refer', 'amp-what', null])">discover character
+             onclick="ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'refer', eventLabel: 'amp-what'})">discover character
         entities at &amp;what&raquo;</a></li>
     </ul>
   </div>

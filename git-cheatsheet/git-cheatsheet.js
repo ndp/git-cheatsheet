@@ -69,7 +69,7 @@ function selectLoc(id) {
 
   if (!window.location.hash.match(RegExp('loc=' + id))) {
     window.location.href = '#loc=' + id + ';';
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
+    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select-loc', eventLabel: id})
   }
 }
 
@@ -81,7 +81,7 @@ function selectCommand($cmd) {
     cmd = 'git ' + $cmd.html();
   showDocs(doc, cmd);
 
-  _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
+  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: 'git ' + $cmd.text()})
 }
 
 
@@ -232,7 +232,7 @@ $(function () {
 
   mouseOverDataDoc$.subscribe(function (el) {
     showDocsForElement($(el));
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(el).text(), null]);
+    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text()})
   })
 
 
@@ -248,7 +248,7 @@ $(function () {
   $('.lang').on('click', function () {
     var newLang = $(this).attr('data-lang');
     cookies.create('lang', newLang)
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'lang', newLang, null])
+    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'lang', eventLabel: newLang})
     document.location.reload();
   })
 
