@@ -155,18 +155,15 @@ $(function () {
   var keydown$ = Rx.Observable.fromEvent(document, 'keydown')
   //keydown$.map(function(ev) {return ev.keyCode }).subscribe(log)
 
-  var keyDownNextLoc$ = keydown$.filter(function (e) {
-    return e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L
-  })
-    .map(function () {
-      return next(locations, currentLoc())
-    })
+  var keyDownNextLoc$ = keydown$
+    .filter(e => e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L)
+    .tap(e => e.preventDefault())
+    .map(e => next(locations, currentLoc()))
 
-  var keyDownPrevLoc$ = keydown$.filter(function (e) {
-    return e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H
-  }).map(function () {
-    return prev(locations, currentLoc())
-  })
+  var keyDownPrevLoc$ = keydown$
+    .filter(e => e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H)
+    .tap(e => e.preventDefault())
+    .map(e => prev(locations, currentLoc()))
 
   var specificLoc$ = keydown$
     .pluck('keyCode')
@@ -204,18 +201,18 @@ $(function () {
     .merge(specificLoc$)
     .subscribe(selectLoc)
 
-  var keyDownNextCmd$ = keydown$.filter(function (e) {
-    return e.keyCode == KEY_PAGE_DN || e.keyCode == KEY_J
-  })
+  var keyDownNextCmd$ = keydown$
+    .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
+    .tap(e => e.preventDefault())
 
   var nextCmd$ = keyDownNextCmd$.map(function () {
     var cmds = $('#commands>dt:visible').toArray();
     return next(cmds, $('#commands>dt.selected')[0]);
   })
 
-  var keyDownPrevCmd$ = keydown$.filter(function (e) {
-    return e.keyCode == KEY_PAGE_UP || e.keyCode == KEY_K
-  })
+  var keyDownPrevCmd$ = keydown$
+    .filter(e => e.keyCode == KEY_PAGE_UP || e.keyCode == KEY_K)
+    .tap(e => e.preventDefault())
 
   var prevCmd$ = keyDownPrevCmd$.map(function () {
     var cmds = $('#commands>dt:visible').toArray();
