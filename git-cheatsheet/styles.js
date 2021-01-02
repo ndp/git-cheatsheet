@@ -171,10 +171,12 @@ $(function () {
         display: 'none'
       },
       '> dt': {
+        transitionDuration: '.333s',
+        transitionProperty: 'left, width',
         color: '#dddddd',
         marginBottom: 4,
-        'float': 'left',
-        clear: 'left',
+        // 'float': 'left',
+        // clear: 'left',
         padding: '2px 5px',
         lineHeight: 13,
         position: 'relative',
@@ -262,8 +264,8 @@ $(function () {
 
   $.each(['stash', 'workspace', 'index', 'local_repo', 'remote_repo'], function (index, value) {
     var c = colors[value].darken(0).saturate(-10);
-    var width = $('#' + value).innerWidth();
-    $('#' + value).css('width', width - 2);
+    // var width = $('#' + value).innerWidth();
+    // $('#' + value).css('width', width - 2);
 
     css['#' + value] = {
       border: '1px dotted transparent',// + colors[value],
@@ -314,8 +316,11 @@ $(function () {
     }
   });
 
-
-  Csster.style(css);
+  Csster.addPropertyNames([
+                            'transition-duration',
+                            'transition-property',
+                          ])
+  Csster.style(css)
 
 });
 

@@ -237,22 +237,28 @@ $(function () {
     ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text()})
   })
 
+  const lang = setupLang()
 
-  var lang = detectLanguage(navigator);
+  function setupLang() {
+    let lang = detectLanguage(navigator)
 
-  // Fallback to English if the language is not translated
-  if (!translations[lang]) {
-    lang = "en";
+    // Fallback to English if the language is not translated
+    if (!translations[lang]) {
+      lang = "en";
+    }
+
+    $('[data-lang=' + lang + ']').addClass('selected')
+
+    $('.lang').on('click', function () {
+      const newLang = $(this).attr('data-lang')
+      cookies.create('lang', newLang)
+      ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'lang', eventLabel: newLang})
+      document.location.reload();
+    })
+
+
+    return lang
   }
-
-  $('[data-lang=' + lang + ']').addClass('selected')
-
-  $('.lang').on('click', function () {
-    var newLang = $(this).attr('data-lang');
-    cookies.create('lang', newLang)
-    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'lang', eventLabel: newLang})
-    document.location.reload();
-  })
 
 
   // Build locations
@@ -261,40 +267,55 @@ $(function () {
       find('h5').html(translations[lang].locations[loc])
   })
 
-  // Build commands
-  var leftOffset = $('#commands').empty().offset().left;
-  for (var i = 0; i < commands.length; i++) {
-    var c = commands[i];
-    var cmd = translations[lang].commands[c.key].cmd
-    var left = $("#" + c.left + " div.bar").offset().left - leftOffset;
-    var right = $("#" + c.right + " div.bar").offset().left - leftOffset;
-    var width = right - left;
-    if (width < 1) {
-      left -= Math.min(90, left + 10)
-      width = 220;
-    } else {
-      left += 10;
-      width -= 20;
-    }
-    var $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>").
-      css('margin-left', left + 'px').
-      css('width', width + 'px').
-      addClass(c.left).
-      addClass(c.right).
-      addClass(c.direction);
-    $('#commands').append($e);
 
-    var docs = translations[lang].commands[c.key].docs
-    if (docs) {
-      var $doc = $('<dd></dd>').text(esc(docs))
-      $('#commands').append($doc)
-    }
+  function buildCommands(commands, translations) {
+    $('#commands').empty()
+    commands.forEach(function(c) {
+      const cmd = translations.commands[c.key].cmd
+      const $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>")
+        .addClass(c.left)
+        .addClass(c.right)
+        .addClass(c.direction)
+        .prop('id', `cmd/${c.key}`)
+      $('#commands').append($e);
+
+      const docs = translations.commands[c.key].docs
+      if (docs) {
+        const $doc = $('<dd></dd>').text(esc(docs))
+        $('#commands').append($doc)
+      }
+    })
   }
 
-  //Rx.Observable.interval(1000).subscribe(function (e) {
-  //  console.log('clickMode ', clickMode)
-  //})
+  function positionCommands(commands) {
+    const leftOffset = $('#commands').offset().left
 
+    commands.forEach(function(c) {
+
+      const right = $("#" + c.right + " div.bar").offset().left - leftOffset
+      let left    = $("#" + c.left + " div.bar").offset().left - leftOffset
+      let width   = right - left
+      if (width < 1) {
+        left -= Math.min(90, left + 10)
+        width = 220;
+      } else {
+        left += 10;
+        width -= 20;
+      }
+
+      $(document.getElementById(`cmd/${c.key}`))
+        .css('width', width + 'px')
+        .css('left', left + 'px')
+    })
+  }
+
+  buildCommands(commands, translations[lang])
+  positionCommands(commands)
+
+  Rx.Observable
+    .fromEvent(window, 'resize')
+    .debounce(333)
+    .subscribe(() => positionCommands(commands))
 
   $.fn.hoverClass = function (klass) {
     return $(this).hover(function () {
