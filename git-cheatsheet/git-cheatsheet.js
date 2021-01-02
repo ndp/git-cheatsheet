@@ -1,38 +1,38 @@
-var clickMode = false;
-var log = function (x) {
+let clickMode = false
+const log = function (x) {
   console.log(x)
 }
-var logJSON = function (x) {
+const logJSON = function (x) {
   console.log(JSON.stringify(x))
 }
 
-var KEY_1 = 49
-var KEY_2 = 50
-var KEY_3 = 51
-var KEY_4 = 52
-var KEY_5 = 53
-var KEY_H = 72
-var KEY_I = 73
-var KEY_J = 74
-var KEY_K = 75
-var KEY_L = 76
-var KEY_O = 79
-var KEY_R = 82
-var KEY_S = 83
-var KEY_W = 87
-var KEY_FN1 = 112
-var KEY_FN2 = 113
-var KEY_FN3 = 114
-var KEY_FN4 = 115
-var KEY_FN5 = 116
-var KEY_PAGE_UP = 38
-var KEY_PAGE_DN = 40
-var KEY_PAGE_LEFT = 37
-var KEY_PAGE_RGHT = 39
+const KEY_1 = 49
+const KEY_2 = 50
+const KEY_3 = 51
+const KEY_4 = 52
+const KEY_5 = 53
+const KEY_H = 72
+const KEY_I = 73
+const KEY_J = 74
+const KEY_K = 75
+const KEY_L = 76
+const KEY_O = 79
+const KEY_R = 82
+const KEY_S = 83
+const KEY_W = 87
+const KEY_FN1 = 112
+const KEY_FN2 = 113
+const KEY_FN3 = 114
+const KEY_FN4 = 115
+const KEY_FN5 = 116
+const KEY_PAGE_UP = 38
+const KEY_PAGE_DN = 40
+const KEY_PAGE_LEFT = 37
+const KEY_PAGE_RGHT = 39
 
 
 function showDocs(doc, cmd) {
-  var $info = $('#info');
+  const $info = $('#info')
   if (doc) {
     $info.find('.cmd').html('<span>' + cmd + '</span>');
     $info.find('.doc').html(doc);
@@ -43,8 +43,8 @@ function showDocs(doc, cmd) {
 }
 
 function showDocsForElement($el) {
-  var doc = $el.attr('data-docs') || '',
-    cmd = $el.text();
+  const doc = $el.attr('data-docs') || '',
+        cmd = $el.text()
   showDocs(doc, cmd);
 }
 
@@ -77,8 +77,8 @@ function selectCommand($cmd) {
   $('#commands>dt').removeClass('selected');
   $cmd.addClass('selected');
 
-  var doc = $cmd.next('dd').text() || '',
-    cmd = 'git ' + $cmd.html();
+  const doc = $cmd.next('dd').text() || '',
+        cmd = 'git ' + $cmd.html()
   showDocs(doc, cmd);
 
   ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: 'git ' + $cmd.text()})
@@ -92,106 +92,108 @@ $(function () {
   })();
 
 
-  var popStateLoc$ = Rx.Observable.fromEvent(window, 'popstate')
-    .startWith(null) // on initial page view
-    .map(function () {
-      var m = (window.location.hash || '').match(/loc=([^;]*);/);
-      if (m && m.length == 2) {
-        return m[1]
-      }
-    })
-    .filter(function (loc) {
-      return !!loc || loc == ''
-    })
+  const popStateLoc$ = Rx.Observable.fromEvent(window, 'popstate')
+                         .startWith(null) // on initial page view
+                         .map(function () {
+                           const m = (window.location.hash || '').match(/loc=([^;]*);/)
+                           if (m && m.length == 2) {
+                             return m[1]
+                           }
+                         })
+                         .filter(function (loc) {
+                           return !!loc || loc == ''
+                         })
 
-  var clickLoc$ = Rx.Observable.fromEvent(document, 'click', '#diagram .loc')
-    .filter(function (ev) {
-      return $(ev.target).closest('dt').length == 0
-    })
-    .map(function (ev) {
-      return $(ev.target).hasClass('loc') ?
-        ev.target.id :
-        $(ev.target).closest('.loc').attr('id')
-    })
+  const clickLoc$ = Rx.Observable.fromEvent(document, 'click', '#diagram .loc')
+                      .filter(function (ev) {
+                        return $(ev.target).closest('dt').length == 0
+                      })
+                      .map(function (ev) {
+                        return $(ev.target).hasClass('loc') ?
+                               ev.target.id :
+                               $(ev.target).closest('.loc').attr('id')
+                      })
 
-  var clickCmd$ = Rx.Observable.fromEvent(document, 'click', '#commands > dt')
-    .map(function (ev) {
-      return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
-    })
-    .filter(function (el) {
-      return !!el
-    })
-    .map(function (el) {
-      clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'))
-      return clickMode ? el : '#nothing'
-    })
+  const clickCmd$ = Rx.Observable.fromEvent(document, 'click', '#commands > dt')
+                      .map(function (ev) {
+                        return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
+                      })
+                      .filter(function (el) {
+                        return !!el
+                      })
+                      .map(function (el) {
+                        clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'))
+                        return clickMode ? el : '#nothing'
+                      })
 
-  var mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-docs]')
+  const mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-docs]')
     //.debounce(100)
-    .filter(function (ev) {
-      return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
-    })
-    .map(function (ev) {
-      return $(ev.target).is('[data-docs]') ? ev.target : $(ev.target).closest('[data-docs]').get(0)
-    })
-    .filter(function (el) {
-      return !clickMode || !$(el).hasClass('loc')
-    })
-    .distinctUntilChanged()
+                              .filter(function (ev) {
+                                return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
+                              })
+                              .map(function (ev) {
+                                return $(ev.target).is('[data-docs]') ? ev.target : $(ev.target).closest('[data-docs]').get(0)
+                              })
+                              .filter(function (el) {
+                                return !clickMode || !$(el).hasClass('loc')
+                              })
+                              .distinctUntilChanged()
 
-  var mouseOverCmd$ = Rx.Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
-    .filter(function () {
-      return !clickMode
-    })
-    .map(function (ev) {
-      return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0);
-    })
-    .filter(function (el) {
-      return $(el).is('dt')
-    })
-    .distinctUntilChanged()
+  const mouseOverCmd$ = Rx.Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
+                          .filter(function () {
+                            return !clickMode
+                          })
+                          .map(function (ev) {
+                            return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
+                          })
+                          .filter(function (el) {
+                            return $(el).is('dt')
+                          })
+                          .distinctUntilChanged()
 
 
-  var keydown$ = Rx.Observable.fromEvent(document, 'keydown')
+  const keydown$ = Rx.Observable.fromEvent(document, 'keydown')
   //keydown$.map(function(ev) {return ev.keyCode }).subscribe(log)
 
-  var keyDownNextLoc$ = keydown$
+  const keyDownNextLoc$ = keydown$
     .filter(e => e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L)
     .tap(e => e.preventDefault())
     .map(e => next(locations, currentLoc()))
 
-  var keyDownPrevLoc$ = keydown$
+  const keyDownPrevLoc$ = keydown$
     .filter(e => e.keyCode == KEY_PAGE_LEFT || e.keyCode == KEY_H)
     .tap(e => e.preventDefault())
     .map(e => prev(locations, currentLoc()))
 
-  var specificLoc$ = keydown$
+  const specificLoc$ = keydown$
     .pluck('keyCode')
     .map(function (keyCode) {
       switch (keyCode) {
         case KEY_1:
         case KEY_FN1:
         case KEY_S:
-              return 'stash'
+          return 'stash'
         case KEY_2:
         case KEY_FN2:
         case KEY_W:
-              return 'workspace'
+          return 'workspace'
         case KEY_3:
         case KEY_FN3:
         case KEY_I:
-              return 'index'
+          return 'index'
         case KEY_4:
         case KEY_FN4:
         case KEY_O:
-              return 'local_repo'
+          return 'local_repo'
         case KEY_5:
         case KEY_FN5:
         case KEY_R:
-              return 'remote_repo'
+          return 'remote_repo'
       }
     })
-    .filter(function(loc) { return !!loc} )
+    .filter(function (loc) {
+      return !!loc
+    })
 
   // Select a Loc
   clickLoc$
@@ -201,22 +203,22 @@ $(function () {
     .merge(specificLoc$)
     .subscribe(selectLoc)
 
-  var keyDownNextCmd$ = keydown$
+  const keyDownNextCmd$ = keydown$
     .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
     .tap(e => e.preventDefault())
 
-  var nextCmd$ = keyDownNextCmd$.map(function () {
-    var cmds = $('#commands>dt:visible').toArray();
-    return next(cmds, $('#commands>dt.selected')[0]);
+  const nextCmd$ = keyDownNextCmd$.map(function () {
+    const cmds = $('#commands>dt:visible').toArray()
+    return next(cmds, $('#commands>dt.selected')[0])
   })
 
-  var keyDownPrevCmd$ = keydown$
+  const keyDownPrevCmd$ = keydown$
     .filter(e => e.keyCode == KEY_PAGE_UP || e.keyCode == KEY_K)
     .tap(e => e.preventDefault())
 
-  var prevCmd$ = keyDownPrevCmd$.map(function () {
-    var cmds = $('#commands>dt:visible').toArray();
-    return prev(cmds, $('#commands>dt.selected')[0]);
+  const prevCmd$ = keyDownPrevCmd$.map(function () {
+    const cmds = $('#commands>dt:visible').toArray()
+    return prev(cmds, $('#commands>dt.selected')[0])
   })
 
 

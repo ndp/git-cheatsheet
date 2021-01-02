@@ -1,22 +1,21 @@
 $(function () {
 
-  var colors = {
-    stash: '#bf3030',
-    workspace: '#ff4040'.saturate(-15),
-    index: '#ff9640',
-    local_repo: '#cd0074',
-    remote_repo: '#bf3030'
+  const colors = {
+    stash:       '#bf3030',
+    workspace:   '#ff4040'.saturate(-15),
+    index:       '#ff9640',
+    local_repo:  '#cd0074',
+    remote_repo: '#bf3030',
   }
 
 
-  var upColor = colors.workspace.darken(10).saturate(-30);
-  var dnColor = colors.workspace.darken(0).saturate(-30);
-  var statusColor = '#846C6C';
+  const upColor     = colors.workspace.darken(10).saturate(-30)
+  const dnColor     = colors.workspace.darken(0).saturate(-30)
+  const statusColor = '#846C6C'
+  const monospaced  = '"Source Code Pro", monospaced'
+  const bodyFont    = 'Merriweather, sanserif' // 300, 400, 700, 900
 
-  monospaced = '"Source Code Pro", monospaced'
-  bodyFont = 'Merriweather, sanserif' // 300, 400, 700, 900
-
-  var css = {
+  const css = {
     'html,body': {
       margin: 0,
       padding: 0,
@@ -259,10 +258,6 @@ $(function () {
           font: '400 16px/22px ' + monospaced,
         },
       }
-    },
-    '#remote_repo .bar, #local_repo .bar': {
-      top: 78,
-      height: 507
     }
   };
 
