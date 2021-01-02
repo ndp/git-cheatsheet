@@ -141,7 +141,7 @@ var commands = [
     "key": "branch -d x",
     "tags": "Branching and Merging"},
   {"left": "local_repo",
-    "right": "local_repo",
+    "right": "remote_repo",
     "direction": "dn",
     "key": "branch --track x x",
     "tags": "Branching and Merging"},
