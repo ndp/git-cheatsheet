@@ -107,7 +107,7 @@ $(function () {
     '#diagram': {
       marginTop: 20,
       position: 'relative',
-      height: '6.3in',
+      height: '6.8in',
       marginBottom: '2cm',
       padding: '1px 0'
     },
@@ -120,11 +120,11 @@ $(function () {
       '.bar': {
         position: 'absolute',
         left: '45%',
-        top: 50,
+        top: '0.9in',
+        bottom: '0.1in',
         border: '1px dashed white',
         'border-top': 'none',
-        width: 10,
-        height: 535
+        width: 10
       },
       'h5': {
         position: 'absolute',
@@ -247,7 +247,6 @@ $(function () {
         width: '35%',
         color: 'black',
         textAlign: 'right',
-        //textDecoration: 'underline',
       },
       '.doc': {
         font: '300 15px/22px ' + bodyFont,
