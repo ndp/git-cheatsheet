@@ -3,9 +3,13 @@
 .container_16 {
 	margin-left: 20px;
 	margin-right: auto;
-	width: 1200px;
-
-
+	min-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 /* Grid >> Children (Alpha ~ First, Omega ~ Last)
@@ -40,8 +44,7 @@
 .grid_14,
 .grid_15,
 .grid_16{
-	display:inline;
-	float: left;
+	display:block;
 	position: relative;
 	margin-left: 10.0px;
 	margin-right: 10.0px;
@@ -52,67 +55,83 @@
 ----------------------------------------------------------------------------------------------------*/
 
 .container_16 .grid_1{
-	width:55px;
+  flex-grow: 1;
+  /*width: 8vh;*/
+	/*min-width:55px;*/
 }
 
 .container_16 .grid_2{
-	width:130px;
+  flex-grow: 2;
+  /*width: 16vh;*/
+  /*min-width:130px;*/
 }
 
 .container_16 .grid_3{
-	width:205px;
+  flex-grow: 3;
+  /*width: 24vh;*/
+  /*min-width:205px;*/
 }
 
 .container_16 .grid_4{
-	width:280px;
+  flex-grow: 4;
+  /*width: 32vh;*/
+  /*min-width:280px;*/
 }
 
 .container_16 .grid_5{
-	width:355px;
+  flex-grow: 5;
+  /*width: 40vh;*/
+  /*min-width:355px;*/
 }
 
 .container_16 .grid_6{
-	width:430px;
+  flex-grow: 6;
+  /*width: 48vh;*/
+  /*min-width:430px;*/
 }
 
 .container_16 .grid_7{
-	width:505px;
+  flex-grow: 7;
+  /*width: 56vh;*/
+  /*min-width:505px;*/
 }
 
 .container_16 .grid_8{
-	width:580px;
+  flex-grow: 8;
+  /*width: 64vh;*/
+  /*min-width:580px;*/
 }
 
 .container_16 .grid_9{
-	width:655px;
+  min-width:655px;
 }
 
 .container_16 .grid_10{
-	width:730px;
+  min-width:730px;
 }
 
 .container_16 .grid_11{
-	width:805px;
+  min-width:805px;
 }
 
 .container_16 .grid_12{
-	width:880px;
+  min-width:880px;
 }
 
 .container_16 .grid_13{
-	width:955px;
+  min-width:955px;
 }
 
 .container_16 .grid_14{
-	width:1030px;
+  min-width:1030px;
 }
 
 .container_16 .grid_15{
-	width:1105px;
+  min-width:1105px;
 }
 
 .container_16 .grid_16{
-	width:1180px;
+  min-width:1180px;
 }
 
 
