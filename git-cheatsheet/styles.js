@@ -172,30 +172,29 @@ $(function () {
       },
       '> dt': {
         transitionDuration: '.333s',
-        transitionProperty: 'left, width',
+        transitionProperty: 'left, width, opacity',
         color: '#dddddd',
-        marginBottom: 4,
-        // 'float': 'left',
-        // clear: 'left',
-        padding: '2px 5px',
+        marginBottom: 3,
+        padding: '1px 5px 4px 5px',
         lineHeight: 13,
-        position: 'relative',
         opacity: 0.3,
-        display: 'none',
+        visibility: 'hidden',
+        position: 'absolute',
         cursor: 'pointer',
         '&.selected': {
-          padding: '2px 5px',
-          has: boxShadow([1, 1], 3, '#999'),
+          has: boxShadow([2, 2], 4, 'rgba(0,0,0,20%)'),
           fontWeight: '700',
           opacity: 0.8
+        },
+        '> .arrow': {
+          width: 0,
+          height: 0,
+          border: '9px solid transparent',
+          position: 'absolute',
         },
         '&.up': {
           color: upColor.lighten(50),
           '> .arrow': {
-            width: 0,
-            height: 0,
-            border: '9px solid transparent',
-            position: 'absolute',
             right: '-18px',
             top: 0
           }
@@ -203,10 +202,6 @@ $(function () {
         '&.dn': {
           color: dnColor.lighten(50),
           '> .arrow': {
-            width: 0,
-            height: 0,
-            border: '9px solid transparent',
-            position: 'absolute',
             left: '-18px',
             top: 0
           }
@@ -262,59 +257,58 @@ $(function () {
     }
   };
 
-  $.each(['stash', 'workspace', 'index', 'local_repo', 'remote_repo'], function (index, value) {
-    var c = colors[value].darken(0).saturate(-10);
-    // var width = $('#' + value).innerWidth();
-    // $('#' + value).css('width', width - 2);
+  $.each(['stash', 'workspace', 'index', 'local_repo', 'remote_repo'], function (index, valueLeft) {
+    var c = colors[valueLeft].saturate(-10)
 
-    css['#' + value] = {
-      border: '1px dotted transparent',// + colors[value],
-      color: colors[value],
-      backgroundColor: colors[value].saturate(-50).lighten(20)
-    };
-    css['#' + value + ' .bar'] = { borderColor: colors[value].darken(20)};
-    css['body.' + value + ' #' + value] = {
-      color: 'white',
-      backgroundColor: colors[value].lighten(0)
-    };
-    css['body.' + value + ' #commands > dt.' + value] = {
-      display: 'block',
-      opacity: 0.9,
+    css['#' + valueLeft]                                      = {
+      border:          '1px dotted transparent',// + colors[value],
+      color:           colors[valueLeft],
+      backgroundColor: colors[valueLeft].saturate(-50).lighten(20),
+    }
+    css['#' + valueLeft + ' .bar']                            = { borderColor: colors[valueLeft].darken(20) }
+    css['body.' + valueLeft + ' #' + valueLeft]               = {
+      color:           'white',
+      backgroundColor: colors[valueLeft],
+    }
+    css['body.' + valueLeft + ' #commands > dt.' + valueLeft] = {
+      position:     'relative',
+      visibility:   'visible',
+      opacity:      0.9,
       '&.selected': {
-        opacity: 1.0
-      }
-
-    }
-
-    css['body.' + value + ' #commands'] = {
-      'dt.up': {
-        backgroundColor: c,
-        borderColor: c,
-        '> .arrow': {
-          'border-left-color': c
-        },
-        '&.selected': {
-          'background-color': c.darken(10),
-          '> .arrow': {
-            'border-left-color': c.darken(10)
-          }
-        }
+        opacity: 1.0,
       },
-      'dt.dn': {
-        backgroundColor: c = colors[value].darken(5).saturate(-10),
-        borderColor: c,
-        '> .arrow': {
-          'border-right-color': c
-        },
-        '&.selected': {
-          'background-color': c.darken(10),
-          '> .arrow': {
-            'border-right-color': c.darken(10)
-          }
-        }
-      }
     }
-  });
+
+    const colorLeft         = colors[valueLeft].saturate(-10).darken(10)
+    const colorLeftSelected = colorLeft.darken(10)
+
+    css[`#commands > dt.up.right-${valueLeft} > .arrow`]          = {
+      'border-left-color': colorLeft,
+    }
+    css[`#commands > dt.selected.up.right-${valueLeft} > .arrow`] = {
+      'border-left-color': colorLeftSelected,
+    }
+    css[`#commands > dt.dn.left-${valueLeft} > .arrow`]           = {
+      'border-right-color': colorLeft,
+    }
+    css[`#commands > dt.selected.dn.left-${valueLeft} > .arrow`]  = {
+      'border-right-color': colorLeftSelected,
+    }
+
+    $.each(['stash', 'workspace', 'index', 'local_repo', 'remote_repo'], function (index, valueRight) {
+      // if (valueLeft != valueRight) {
+
+        const colorRight = colors[valueRight].saturate(-10).darken(10)
+
+        css[`#commands > dt.left-${valueLeft}.right-${valueRight}`]          = {
+          background: `linear-gradient(to right, ${colorLeft}, ${colorRight})`,
+        }
+        css[`#commands > dt.selected.left-${valueLeft}.right-${valueRight}`] = {
+          background: `linear-gradient(to right, ${colorLeftSelected}, ${colorRight.darken(10)})`,
+        }
+      // }
+    })
+  })
 
   Csster.addPropertyNames([
                             'transition-duration',

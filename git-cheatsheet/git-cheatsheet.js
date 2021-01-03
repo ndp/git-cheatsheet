@@ -61,9 +61,9 @@ function selectLoc(id) {
   $('#commands>div').removeClass('selected');
   $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
   $('#diagram .loc.current').removeClass('current');
-  $('#' + id).addClass('current');
+  if (id)  $('#' + id).addClass('current');
 
-  showDocsForElement($('#' + id));
+  if (id)  showDocsForElement($('#' + id));
 
   window.document.title = '' + id.replace('_', ' ') + ' :: Git Cheatsheet'
 
@@ -207,28 +207,29 @@ $(function () {
     .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
     .tap(e => e.preventDefault())
 
-  const nextCmd$ = keyDownNextCmd$.map(function () {
-    const cmds = $('#commands>dt:visible').toArray()
-    return next(cmds, $('#commands>dt.selected')[0])
-  })
+  const visibleCmds = () => {
+    let curr      = $('#diagram .loc.current')
+    return curr
+           ? $(`#commands>dt.${curr.attr('id')}`).toArray()
+           : $(`#commands > dt`).toArray()
+  }
+
+  const nextCmd$ = keyDownNextCmd$
+    .map(() => next(visibleCmds(), $('#commands>dt.selected')[0]))
 
   const keyDownPrevCmd$ = keydown$
     .filter(e => e.keyCode == KEY_PAGE_UP || e.keyCode == KEY_K)
     .tap(e => e.preventDefault())
 
-  const prevCmd$ = keyDownPrevCmd$.map(function () {
-    const cmds = $('#commands>dt:visible').toArray()
-    return prev(cmds, $('#commands>dt.selected')[0])
-  })
+  const prevCmd$ = keyDownPrevCmd$
+    .map(() => prev(visibleCmds(), $('#commands>dt.selected')[0]))
 
 
   nextCmd$
     .merge(prevCmd$)
     .merge(mouseOverCmd$)
     .merge(clickCmd$)
-    .filter(function (el) {
-      return !!el
-    })
+    .filter(el => !!el)
     .map($)
     .subscribe(selectCommand)
 
@@ -275,6 +276,8 @@ $(function () {
       const $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>")
         .addClass(c.left)
         .addClass(c.right)
+        .addClass(`left-${c.left}`)
+        .addClass(`right-${c.right}`)
         .addClass(c.direction)
         .prop('id', `cmd/${c.key}`)
       $('#commands').append($e);
