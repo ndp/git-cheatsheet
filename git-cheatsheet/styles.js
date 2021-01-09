@@ -115,6 +115,9 @@ $(function () {
       position: 'relative',
       height: '100%',
       cursor: 'pointer',
+      transitionDuration: '.15s',
+      transitionProperty: 'color, background-color, opacity',
+      transitionDelay: '0s',
       opacity: .7,
       has: boxShadow([3, 3], 2, '#ccc'),
       '.bar': {
@@ -149,6 +152,8 @@ $(function () {
       },
       '&.current': {
         has: boxShadow([4, 4], 6, '#555'),
+        transitionDuration: '.2s',
+        transitionDelay: '.2s',
         p: {
           visibility: 'visible'
         },
@@ -171,8 +176,9 @@ $(function () {
         display: 'none'
       },
       '> dt': {
-        transitionDuration: '.333s',
-        transitionProperty: 'left, width, opacity',
+        transitionDuration: '.3s',
+        transitionProperty: 'left, width, opacity, color, background-color',
+        transitionDelay: '.3s',
         color: '#dddddd',
         marginBottom: 3,
         padding: '1px 5px 4px 5px',
@@ -311,6 +317,7 @@ $(function () {
   })
 
   Csster.addPropertyNames([
+                            'transition-delay',
                             'transition-duration',
                             'transition-property',
                           ])
