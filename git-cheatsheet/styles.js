@@ -236,8 +236,9 @@ $(function () {
         top: 0,
         height: '100%',
         width: '150%',
-        backgroundColor: '#F6EBD9',
-        opacity: 0.9
+        // backgroundImage: 'linear-gradient(90deg, rgba(246, 235, 217, 0) 5%, rgba(246, 235, 217, 1) 10%, rgba(246, 235, 217, 1) 70%, rgba(246, 235, 217, 0) 70%)',
+        backgroundImage: 'radial-gradient(circle at 40%, rgba(246, 235, 217, 1), 85%, rgba(246, 235, 217, 0))',
+        opacity: 1
       },
       '.cmd,.doc': {
         minHeight: '3em',
