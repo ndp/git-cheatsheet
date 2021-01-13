@@ -1,10 +1,4 @@
 let clickMode = false
-const log = function (x) {
-  console.log(x)
-}
-const logJSON = function (x) {
-  console.log(JSON.stringify(x))
-}
 
 const KEY_1 = 49
 const KEY_2 = 50
