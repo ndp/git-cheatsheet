@@ -18,7 +18,9 @@
       captureUncaught: true,
       captureUnhandledRejections: true,
       payload: {
-        environment: "production"
+        environment: document.location.hostname.endsWith('ndpsoftware.com')
+                     ? 'production'
+                     : 'dev',
       }
     };
     // Rollbar Snippet
