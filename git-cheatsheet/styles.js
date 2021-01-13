@@ -168,7 +168,7 @@ $(function () {
       top: 85,
       left: 0,
       width: '100%',
-      font: '200 15px ' + monospaced,
+      font: '400 15px ' + monospaced,
       height: 0,
       margin: 0,
       padding: 0,
