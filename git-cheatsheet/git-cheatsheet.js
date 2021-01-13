@@ -37,15 +37,19 @@ function showDocs(doc, cmd) {
   }
 }
 
-function showDocsForElement($el) {
-  const doc = $el.attr('data-docs') || '',
-        cmd = $el.text()
-  showDocs(doc, cmd);
+function showDocsForElement (el) {
+  const doc = el && el.attributes['data-docs'] && el.attributes['data-docs'].textContent
+  showDocs(doc, el && el.innerText)
 }
 
 
-function currentLoc() {
-  return $('#diagram .loc.current').attr('id');
+function currentLoc () {
+
+  const diagram = document.getElementById('diagram'),
+        el      = (diagram && diagram.querySelector('.loc.current')) || null,
+        loc     = el ? el.id : null
+
+  return loc
 }
 
 function selectLoc(id) {
@@ -56,9 +60,9 @@ function selectLoc(id) {
   $('#commands>div').removeClass('selected');
   $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
   $('#diagram .loc.current').removeClass('current');
-  if (id)  $('#' + id).addClass('current');
+  if (id)  document.getElementById(id).classList.add('current');
 
-  if (id)  showDocsForElement($('#' + id));
+  if (id)  showDocsForElement(document.getElementById(id));
 
   window.document.title = '' + id.replace('_', ' ') + ' :: Git Cheatsheet'
 
@@ -68,15 +72,25 @@ function selectLoc(id) {
   }
 }
 
-function selectCommand($cmd) {
-  $('#commands>dt').removeClass('selected');
-  $cmd.addClass('selected');
+function showDocsForCmdEl (newEl) {
+  const doc = newEl.nextElementSibling.innerText || '',
+        cmd = 'git ' + newEl.innerText
 
-  const doc = $cmd.next('dd').text() || '',
-        cmd = 'git ' + $cmd.html()
-  showDocs(doc, cmd);
+  showDocs(doc, cmd)
 
-  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: 'git ' + $cmd.text()})
+  return cmd
+}
+
+function selectCommand(newEl) {
+  document
+    .querySelectorAll('#commands>dt.selected')
+    .forEach(el => el.classList.remove('selected'))
+
+  newEl.classList.add('selected')
+
+  const cmd = showDocsForCmdEl(newEl)
+
+  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: cmd})
 }
 
 
@@ -225,11 +239,10 @@ $(function () {
     .merge(mouseOverCmd$)
     .merge(clickCmd$)
     .filter(el => !!el)
-    .map($)
     .subscribe(selectCommand)
 
   mouseOverDataDoc$.subscribe(function (el) {
-    showDocsForElement($(el));
+    showDocsForElement(el);
     ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text()})
   })
 
