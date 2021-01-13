@@ -249,6 +249,8 @@ $(function () {
       lang = "en";
     }
 
+    $('html').attr('lang', lang)
+
     $('[data-lang=' + lang + ']').addClass('selected')
 
     $('.lang').on('click', function () {
