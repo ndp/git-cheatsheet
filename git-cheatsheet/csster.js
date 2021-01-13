@@ -632,7 +632,6 @@ function boxShadow(offsetOrDirection, radius, color) {
     }
 
     return {
-        '-moz-box-shadow': '' + xOffset + 'px ' + yOffset + 'px ' + radius + 'px ' + color,
         '-webkit-box-shadow': '' + xOffset + 'px ' + yOffset + 'px ' + radius + 'px ' + color,
         boxShadow: '' + xOffset + 'px ' + yOffset + 'px ' + radius + 'px ' + color,
         '-ms-filter': "progid:DXImageTransform.Microsoft.Shadow(Strength=" + strength + ", Direction=" + direction + ", Color='" + color + "')",// IE 8
