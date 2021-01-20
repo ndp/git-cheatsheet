@@ -18,7 +18,8 @@
       captureUncaught: true,
       captureUnhandledRejections: true,
       payload: {
-        environment: document.location.hostname.endsWith('ndpsoftware.com')
+        host: document.location.hostname,
+        environment: document.location.hostname === 'ndpsoftware.com' || document.location.hostname === 'www.ndpsoftware.com'
                      ? 'production'
                      : 'dev',
       }
