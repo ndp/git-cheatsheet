@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ndp/git-cheatsheet.git"
   },
   "author": "Andrew J. Peterson / NDP Software",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ndp/git-cheatsheet/issues"
   },
