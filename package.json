@@ -4,6 +4,7 @@
   "description": "Git Cheatsheet",
   "main": "git-cheatsheet.html",
   "scripts": {
+    "build": "babel src -d git-cheatsheet",
     "test": "jasmine spec/*_spec.js",
     "start": "static -p 9090"
   },
@@ -18,6 +19,9 @@
   },
   "homepage": "https://github.com/ndp/git-cheatsheet#readme",
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "jasmine": "2.5.3",
     "node-static": "*"
   }
