@@ -60,7 +60,7 @@ function selectLoc(id) {
   $('#commands>div').removeClass('selected');
   $('body').removeClass('stash workspace index local_repo remote_repo').addClass(id);
   $('#diagram .loc.current').removeClass('current');
-  if (id)  document.getElementById(id).classList.add('current');
+  if (id)  $(`#${id}`).addClass('current')
 
   if (id)  showDocsForElement(document.getElementById(id));
 
@@ -82,11 +82,9 @@ function showDocsForCmdEl (newEl) {
 }
 
 function selectCommand(newEl) {
-  document
-    .querySelectorAll('#commands>dt.selected')
-    .forEach(el => el.classList.remove('selected'))
+  $('#commands>dt.selected').removeClass('selected')
 
-  newEl.classList.add('selected')
+  $(newEl).addClass('selected')
 
   const cmd = showDocsForCmdEl(newEl)
 
@@ -136,7 +134,7 @@ $(function () {
                       })
 
   const mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-docs]')
-    //.debounce(100)
+                              .debounce(100)
                               .filter(function (ev) {
                                 return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
                               })
@@ -281,7 +279,8 @@ $(function () {
 
   function buildCommands(commands, translations) {
     $('#commands').empty()
-    commands.forEach(function(c) {
+
+    for (let c of commands) {
       const cmd = translations.commands[c.key].cmd
       const $e = $("<dt>" + esc(cmd) + "<div class='arrow' /></dt>")
         .addClass(c.left)
@@ -297,14 +296,13 @@ $(function () {
         const $doc = $('<dd></dd>').text(esc(docs))
         $('#commands').append($doc)
       }
-    })
+    }
   }
 
   function positionCommands(commands) {
     const leftOffset = $('#commands').offset().left
 
-    commands.forEach(function(c) {
-
+    for (let c of commands) {
       const right = $("#" + c.right + " div.bar").offset().left - leftOffset
       let left    = $("#" + c.left + " div.bar").offset().left - leftOffset
       let width   = right - left
@@ -319,7 +317,7 @@ $(function () {
       $(document.getElementById(`cmd/${c.key}`))
         .css('width', width + 'px')
         .css('left', left + 'px')
-    })
+    }
   }
 
   buildCommands(commands, translations[lang])
