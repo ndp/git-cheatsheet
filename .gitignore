@@ -3,3 +3,4 @@ node_modules
 /git-cheatsheet/commands.js
 /git-cheatsheet/git-cheatsheet.js
 /git-cheatsheet/styles.js
+/git-cheatsheet/*.map

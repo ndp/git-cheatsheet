@@ -16,6 +16,15 @@ to others in the same endeavor.
 
 Comments and pull requests welcome.
 
+### Development
+
+I'm in the process of moving the source code into modern JS, and
+using `babel` to transpile it. New files are in the `src` folder, and using `yarn build` to transpile.
+
+### Deploy
+
+Use ftp to upload to www.ndpsoftware.com
+
 ### FAQ
 
 #### Are there any "features"?
