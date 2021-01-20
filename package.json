@@ -19,10 +19,10 @@
   },
   "homepage": "https://github.com/ndp/git-cheatsheet#readme",
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "jasmine": "2.5.3",
+    "@babel/cli": "*",
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "jasmine": "*",
     "node-static": "*"
   }
 }
