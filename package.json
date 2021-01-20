@@ -5,7 +5,7 @@
   "main": "git-cheatsheet.html",
   "scripts": {
     "build": "babel src --source-maps -d git-cheatsheet",
-    "test": "jasmine spec/*_spec.js",
+    "test": "yarn build && jasmine spec/*_spec.js",
     "start": "static -p 9090"
   },
   "repository": {
