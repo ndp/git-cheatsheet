@@ -75,8 +75,9 @@ function selectLoc(id) {
 }
 
 function showDocsForCmdEl (cmdEl) {
-  const doc = $(cmdEl).next('dd').text() || '',
-        cmd = 'git ' + $(cmdEl).html()
+  const $cmdEl = $(cmdEl),
+        doc    = $cmdEl.next('dd').text() || '',
+        cmd    = 'git ' + $cmdEl.html()
 
   showDocs(doc, cmd)
 
