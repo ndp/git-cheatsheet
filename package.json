@@ -5,7 +5,7 @@
   "main": "git-cheatsheet.html",
   "scripts": {
     "build": "babel src --source-maps -d git-cheatsheet",
-    "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/base.js git-cheatsheet/git-cheatsheet.js git-cheatsheet/commands.js git-cheatsheet/styles.js git-cheatsheet/cookies.js",
+    "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/base.js git-cheatsheet/git-cheatsheet.js git-cheatsheet/commands.js git-cheatsheet/styles.js git-cheatsheet/csster.js git-cheatsheet/cookies.js",
     "test": "yarn build && jasmine spec/*_spec.js",
     "start": "static -p 9090"
   },
