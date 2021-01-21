@@ -74,9 +74,9 @@ function selectLoc(id) {
   }
 }
 
-function showDocsForCmdEl (newEl) {
-  const doc = $(newEl).next('dd').text() || '',
-        cmd = 'git ' + $cmd.html()
+function showDocsForCmdEl (cmdEl) {
+  const doc = $(cmdEl).next('dd').text() || '',
+        cmd = 'git ' + $(cmdEl).html()
 
   showDocs(doc, cmd)
 
