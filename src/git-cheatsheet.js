@@ -327,6 +327,7 @@ $(function () {
 
   buildCommands(commands, translations[lang])
   positionCommands(commands)
+  setTimeout(() => positionCommands(commands), 5000)
 
   Rx.Observable
     .fromEvent(window, 'resize')

@@ -4,7 +4,7 @@
   "description": "Git Cheatsheet",
   "main": "git-cheatsheet.html",
   "scripts": {
-    "build": "babel src --source-maps -d git-cheatsheet",
+    "build": "babel --source-maps --compact true -o git-cheatsheet/main.js src/csster.js src/styles.js src/base.js src/commands.js src/cookies.js src/git-cheatsheet.js",
     "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js",
     "test": "yarn build && jasmine spec/*_spec.js",
     "start": "static -p 9090"
