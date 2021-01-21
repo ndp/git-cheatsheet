@@ -1,8 +1,3 @@
 node_modules
-/git-cheatsheet/cookies.js
-/git-cheatsheet/commands.js
-/git-cheatsheet/git-cheatsheet.js
-/git-cheatsheet/styles.js
+/git-cheatsheet/*.js
 /git-cheatsheet/*.map
-git-cheatsheet/base.js
-git-cheatsheet/csster.js
