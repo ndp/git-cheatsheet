@@ -21,6 +21,8 @@ Comments and pull requests welcome.
 I'm in the process of moving the source code into modern JS, and
 using `babel` to transpile it. New files are in the `src` folder, and using `yarn build` to transpile.
 
+CI is on [CircleCI](https://app.circleci.com/pipelines/github/ndp/git-cheatsheet)
+
 ### Deploy
 
 Use ftp to upload to www.ndpsoftware.com
