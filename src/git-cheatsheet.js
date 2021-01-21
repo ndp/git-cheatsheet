@@ -38,8 +38,10 @@ function showDocs(doc, cmd) {
 }
 
 function showDocsForElement (el) {
-  const doc = el && el.attributes['data-docs'] && el.attributes['data-docs'].textContent
-  showDocs(doc, el && el.innerText)
+  const $el = $(el),
+        doc = $el.attr('data-docs') || '',
+        cmd = $el.text()
+  showDocs(doc, cmd)
 }
 
 
@@ -73,8 +75,8 @@ function selectLoc(id) {
 }
 
 function showDocsForCmdEl (newEl) {
-  const doc = newEl.nextElementSibling.innerText || '',
-        cmd = 'git ' + newEl.innerText
+  const doc = $(newEl).next('dd').text() || '',
+        cmd = 'git ' + $cmd.html()
 
   showDocs(doc, cmd)
 
@@ -83,6 +85,8 @@ function showDocsForCmdEl (newEl) {
 
 function selectCommand(newEl) {
   $('#commands>dt.selected').removeClass('selected')
+
+  if (!newEl) return
 
   $(newEl).addClass('selected')
 
