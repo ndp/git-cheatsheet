@@ -1,5 +1,8 @@
 $(function () {
 
+  Csster.colorizeString()
+  const boxShadow = Csster.macros.boxShadow
+
   const colors = {
     stash:       '#bf3030',
     workspace:   '#ff4040'.saturate(-15),
