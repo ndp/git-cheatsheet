@@ -4,8 +4,9 @@
   "description": "Git Cheatsheet",
   "main": "git-cheatsheet.html",
   "scripts": {
-    "build": "babel --source-maps --compact true -o git-cheatsheet/main.js src/csster.js src/styles.js src/base.js src/commands.js src/cookies.js src/git-cheatsheet.js",
-    "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js",
+    "build": "babel --source-maps --compact true -o git-cheatsheet/main.js src/base.js src/commands.js src/cookies.js src/git-cheatsheet.js && yarn build-styles",
+    "build-styles": "node ./src/build-styles.js",
+    "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js ./git-cheatsheet/styles.css",
     "test": "jasmine spec/*_spec.js",
     "start": "static -p 9090"
   },
