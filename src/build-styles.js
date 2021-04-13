@@ -192,7 +192,7 @@ const css = {
       position:           'absolute',
       cursor:             'pointer',
       '&.selected':       {
-        has:        boxShadow([2, 2], 4, 'rgba(0,0,0,20%)'),
+        has:        boxShadow([2, 2], 4, 'rgba(0,0,0,20)'),
         fontWeight: '700',
         opacity:    0.8,
       },
@@ -241,7 +241,7 @@ const css = {
       height:   '100%',
       width:    '150%',
       // backgroundImage: 'linear-gradient(90deg, rgba(246, 235, 217, 0) 5%, rgba(246, 235, 217, 1) 10%, rgba(246, 235, 217, 1) 70%, rgba(246, 235, 217, 0) 70%)',
-      backgroundImage: 'radial-gradient(circle at 40%, rgba(246, 235, 217, 1), 85%, rgba(246, 235, 217, 0))',
+      backgroundImage: 'radial-gradient(circle at 40%, rgba(246, 235, 217, 1) 85%,rgba(246, 235, 217, 0))',
       opacity:         1,
     },
     '.cmd,.doc': {
@@ -329,10 +329,11 @@ Csster.addPropertyNames([
 
 const fs = require('fs')
 
-fs.writeFile('./git-cheatsheet/styles.css', Csster.buildCss(css), err => {
-  if (err) {
-    console.error(err)
-    return
-  }
-  console.log('File written successfully.')
-})
+fs.writeFile('./git-cheatsheet/styles.css',
+             `/* DO NOT EDIT! Generated ${new Date()} */\n`
+             + Csster.buildCss(css), err => {
+    if (err)
+      console.error(err)
+    else
+      console.log('File written successfully.')
+  })

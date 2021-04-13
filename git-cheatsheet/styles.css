@@ -1,3 +1,4 @@
+/* DO NOT EDIT! Generated Tue Apr 13 2021 16:38:21 GMT-0700 (Pacific Daylight Time) */
 html, body { margin: 0;padding: 0;background: url(images/vCanvas.jpg); }
 a, a:link, a:visited { color: #cd0074;text-decoration: none; }
 a:hover { color: #990057;text-decoration: underline; }
@@ -28,7 +29,7 @@ span.optional:after { opacity: 0.5;content: "]"; }
 #commands { position: absolute;top: 85px;left: 0;width: 100%;font: 400 15px "Source Code Pro", monospaced;height: 0;margin: 0;padding: 0; }
 #commands > dd { display: none; }
 #commands > dt { transition-duration: .3s;transition-property: left, width, opacity, color, background-color;transition-delay: .3s;color: #dddddd;margin-bottom: 3px;padding: 1px 5px 4px 5px;line-height: 13px;opacity: 0.3;visibility: hidden;position: absolute;cursor: pointer; }
-#commands > dt.selected { -moz-box-shadow: 2px 2px 4px rgba(0,0,0,20%);-webkit-box-shadow: 2px 2px 4px rgba(0,0,0,20%);box-shadow: 2px 2px 4px rgba(0,0,0,20%);-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='rgba(0,0,0,20%)');filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='rgba(0,0,0,20%)');font-weight: 700;opacity: 0.8; }
+#commands > dt.selected { -moz-box-shadow: 2px 2px 4px rgba(0,0,0,20);-webkit-box-shadow: 2px 2px 4px rgba(0,0,0,20);box-shadow: 2px 2px 4px rgba(0,0,0,20);-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='rgba(0,0,0,20)');filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='rgba(0,0,0,20)');font-weight: 700;opacity: 0.8; }
 #commands > dt > .arrow { width: 0;height: 0;border: 9px solid transparent;position: absolute; }
 #commands > dt.up { color: #ffffff; }
 #commands > dt.up > .arrow { right: -18px;top: 0; }
@@ -37,7 +38,7 @@ span.optional:after { opacity: 0.5;content: "]"; }
 #commands > dt.status { border-color: #b3a2a2;background-color: #846C6C;color: #f8f7f7; }
 #commands > dt.status.selected { background-color: #766060; }
 #info { position: fixed;bottom: 0;left: 0;width: 100%;padding: 10px 0 20px 0;z-index: 1; }
-#info .screen { z-index: -1;position: absolute;left: -20px;top: 0;height: 100%;width: 150%;background-image: radial-gradient(circle at 40%, rgba(246, 235, 217, 1), 85%, rgba(246, 235, 217, 0));opacity: 1; }
+#info .screen { z-index: -1;position: absolute;left: -20px;top: 0;height: 100%;width: 150%;background-image: radial-gradient(circle at 40%, rgba(246, 235, 217, 1) 85%,rgba(246, 235, 217, 0));opacity: 1; }
 #info .cmd,#info .doc { min-height: 3em;float: left; }
 #info .cmd { font: 500 16px/22px "Source Code Pro", monospaced;margin-right: 20px;margin-top: -2px;width: 35%;color: black;text-align: right; }
 #info .doc { font: 300 15px/22px Merriweather, sanserif;width: 55%;max-width: 70ex;color: black; }
