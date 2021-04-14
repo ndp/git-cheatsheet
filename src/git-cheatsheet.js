@@ -276,9 +276,11 @@ $(function () {
 
 
   // Build locations
-  $.each(locations, function (i, loc) {
-    $('#' + loc).attr('data-docs', esc(translations[lang].locations.docs[loc])).
-      find('h5').html(translations[lang].locations[loc])
+  locations.forEach(function (loc) {
+    $('#' + loc)
+      .attr('data-docs', esc(translations[lang].locations.docs[loc]))
+      .find('h5')
+      .html(translations[lang].locations[loc])
   })
 
 
