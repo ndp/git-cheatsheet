@@ -192,7 +192,7 @@ const css = {
       position:           'absolute',
       cursor:             'pointer',
       '&.selected':       {
-        has:        boxShadow([2, 2], 4, 'rgba(0,0,0,20)'),
+        has:        boxShadow([2, 2], 4, '#00000040'),
         fontWeight: '700',
         opacity:    0.8,
       },
