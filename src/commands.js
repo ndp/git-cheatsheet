@@ -363,7 +363,7 @@ var translations = {
       },
       "stash push": {
         "cmd": "stash push [<msg>]",
-        "docs": "Save your local modifications to a new stash, and run `git reset &#8209;&#8209;hard` to revert them. The <msg> part is optional and gives the description along with the stashed state. For quickly making a snapshot, you can omit both `save` and <msg>."
+        "docs": "Save your local modifications to a new stash, and run `git reset &#8209;&#8209;hard` to revert them. The <msg> part is optional and gives the description along with the stashed state. For quickly making a snapshot, you can omit both `push` and <msg>."
       },
       "stash apply": {
         "cmd": "stash apply [<stash>]",
@@ -450,7 +450,7 @@ var translations = {
       "branch -r": {"cmd": "branch -r", "docs": "Liste les branches distantes."},
       "push x :x": {"cmd": "push <dépôt_distant> :<branche>", "docs": "Supprime la BRANCHE du DÉPÔT_DISTANT."},
       "clean": {"cmd": "clean", "docs": "Nettoie l'ESPACE_DE_TRAVAIL en supprimant récursivement les fichiers qui ne sont pas sous le contrôle de version, en commençant par le répertoire courant."},
-      "stash push": {"cmd": "stash push ['message']", "docs": "Enregistre les modifications locales dans la REMISE puis fait un 'git reset --hard' pour les défaire. Le `message` optionnel donne la description associée à l'état enregistré dans la REMISE. Pour faire un instantanné rapide, vous pouvez omettre à la fois \"save\" et le `message`."},
+      "stash push": {"cmd": "stash push ['message']", "docs": "Enregistre les modifications locales dans la REMISE puis fait un 'git reset --hard' pour les défaire. Le `message` optionnel donne la description associée à l'état enregistré dans la REMISE. Pour faire un instantanné rapide, vous pouvez omettre à la fois \"push\" et le `message`."},
       "stash apply": {"cmd": "stash apply [état]", "docs": "Déplace les modifications associées à l'ÉTAT de la REMISE vers l'ESPACE_DE_TRAVAIL. La dernière REMISE est prise par défaut."},
       "stash pop": {"cmd": "stash pop", "docs": "Applique les modifications du dernier état de la REMISE puis les supprime de la REMISE."},
       "stash list": {"cmd": "stash list", "docs": "Liste les états dans la REMISE."},
@@ -515,7 +515,7 @@ var translations = {
       "branch -r": {"cmd": "branch -r", "docs": "显示远程端分支"},
       "push x :x": {"cmd": "push <remote> :<branch>", "docs": "删除一个远程分支，通过向远程分支推送空内容"},
       "clean": {"cmd": "clean", "docs": "从当前文件夹开始递归清理不受版本管理的内容"},
-      "stash push": {"cmd": "stash push [<msg>]", "docs": "保存当前修改到新的存档库，并且执行`git reset &#8209;&#8209;hard`来回滚. <msg>是可选的来描述存档。想快速建立存档，省略掉\"save\"和<msg>."},
+      "stash push": {"cmd": "stash push [<msg>]", "docs": "保存当前修改到新的存档库，并且执行`git reset &#8209;&#8209;hard`来回滚. <msg>是可选的来描述存档。想快速建立存档，省略掉\"push\"和<msg>."},
       "stash apply": {"cmd": "stash apply [<stash>]", "docs": "从某个存档中将改变应用到工作区，默认是最近的存档"},
       "stash pop": {"cmd": "stash pop", "docs": "应用最后一个（或指定的）存档中的改动，然后从存档库丢弃它"},
       "stash list": {"cmd": "stash list", "docs": "显示当前你有的所有存档"},
@@ -584,7 +584,7 @@ var translations = {
       "branch -r": {"cmd": "branch -r", "docs": "Lista las ramas remotas"},
       "push x :x": {"cmd": "push <remote> :<branch>", "docs": "Elimina una rama remota. Literalmente &quot;envía nada a ese branch&quot; "},
       "clean": {"cmd": "clean", "docs": "Limpia el árbol de trabajo eliminando de forma recursiva los archivos que no están bajo el control de versionado, comenzando por el directorio actual"},
-      "stash push": {"cmd": "stash push [<msg>]", "docs": "Guarda las modificaciones locales en un nuevo stash, y luego ejecuta git reset &#8209;&#8209;hard para revertirlas. El <msg> es optativo y agrega una descripción adicional al estado. Para realizar una captura rápida, se pueden omitir tanto \"save\" como <msg>."},
+      "stash push": {"cmd": "stash push [<msg>]", "docs": "Guarda las modificaciones locales en un nuevo stash, y luego ejecuta git reset &#8209;&#8209;hard para revertirlas. El <msg> es optativo y agrega una descripción adicional al estado. Para realizar una captura rápida, se pueden omitir tanto \"push\" como <msg>."},
       "stash apply": {"cmd": "stash apply [<stash>]", "docs": "Aplica los cambios del stash especificado en el espacio de trabajo. Por defecto aplica el último stash."},
       "stash pop": {"cmd": "stash pop", "docs": "Aplica los cambios del stash especificado y luego lo elimina de los temporales. Por defecto aplica el último stash."},
       "stash list": {"cmd": "stash list", "docs": "Lista los stashes disponibles actualmente."},
@@ -731,7 +731,7 @@ var translations = {
       },
       "stash push": {
         "cmd": "stash push [<Nachricht>]",
-        "docs": "Speichert aktuelle Änderungen der Arbeitskopie in einem neuen \"Stash\" und ruft `git reset &#8209;&#8209;hard` auf. Die <Nachricht> ist optional, wird keine <Nachricht> angegeben kann `save` auch weggelassen werden."
+        "docs": "Speichert aktuelle Änderungen der Arbeitskopie in einem neuen \"Stash\" und ruft `git reset &#8209;&#8209;hard` auf. Die <Nachricht> ist optional, wird keine <Nachricht> angegeben kann `push` auch weggelassen werden."
       },
       "stash apply": {
         "cmd": "stash apply [<Stash>]",
@@ -892,7 +892,7 @@ var translations = {
       },
       "stash push": {
         "cmd": "stash push [<msg>]",
-        "docs": "로컬 변경 내용을 새로운 stash 저장하고, `git reset &#8209;&#8209;hard`를 실행하여 되돌립니다. <msg> 항목은 선택 사항이며, 숨기는 상태와 그에 대한 설명을 입력할 수 있습니다. 스냅 샷을 빠르게 작성하려면 `save`와 <msg>를 생략할 수 있습니다."
+        "docs": "로컬 변경 내용을 새로운 stash 저장하고, `git reset &#8209;&#8209;hard`를 실행하여 되돌립니다. <msg> 항목은 선택 사항이며, 숨기는 상태와 그에 대한 설명을 입력할 수 있습니다. 스냅 샷을 빠르게 작성하려면 `push`와 <msg>를 생략할 수 있습니다."
       },
       "stash apply": {
         "cmd": "stash apply [<stash>]",
