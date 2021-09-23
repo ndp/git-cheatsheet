@@ -329,8 +329,11 @@ Csster.addPropertyNames([
 
 const fs = require('fs')
 
+twelve00 = fs.readFileSync('./src/lib/1200.css')
+
 fs.writeFile('./git-cheatsheet/styles.css',
              `/* DO NOT EDIT! Generated ${new Date()} */\n`
+             + twelve00.toString()
              + Csster.buildCss(css), err => {
     if (err)
       console.error(err)

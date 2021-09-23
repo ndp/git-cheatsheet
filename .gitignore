@@ -1,3 +1,4 @@
 node_modules
 /git-cheatsheet/*.js
 /git-cheatsheet/*.map
+git-cheatsheet/styles.css

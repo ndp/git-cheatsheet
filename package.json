@@ -5,7 +5,7 @@
   "main": "git-cheatsheet.html",
   "scripts": {
     "build": "yarn build-js && yarn build-styles",
-    "build-js": "babel --source-maps --compact true -o git-cheatsheet/main.js src/lib/rx.lite.js src/base.js src/commands.js src/cookies.js src/git-cheatsheet.js",
+    "build-js": "babel --source-maps --compact true -o git-cheatsheet/main.js node_modules/jquery/dist/jquery.min.js src/lib/rx.lite.js src/base.js src/commands.js src/cookies.js src/git-cheatsheet.js",
     "build-styles": "node ./src/build-styles.js",
     "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js ./git-cheatsheet/styles.css",
     "test": "jasmine spec/*_spec.js",
@@ -26,6 +26,7 @@
     "@babel/core": "*",
     "@babel/preset-env": "*",
     "jasmine": "*",
+    "jquery": "^3.6.0",
     "node-static": "*"
   },
   "dependencies": {}
