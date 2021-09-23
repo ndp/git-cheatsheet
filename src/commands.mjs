@@ -3,9 +3,9 @@ var canonize = function (k) {
   return k.replace(/\[.*\]/, '').replace(/<[^>]+>/g, 'x').toLowerCase().trim()
 }
 */
-var locations = ["stash", "workspace", "index", "local_repo", "remote_repo"]
+export const locations = ["stash", "workspace", "index", "local_repo", "remote_repo"]
 
-var commands = [
+export const commands = [
   {"left": "workspace",
     "right": "index",
     "direction": "status",
@@ -227,7 +227,7 @@ var commands = [
     "tags": "Branching and Merging"}
 ];
 
-var translations = {
+export const translations = {
   en: {
     locations: {
       stash: 'stash',
@@ -550,7 +550,6 @@ var translations = {
       "diff": {"cmd": "diff", "docs": "Muestra las diferencias no añadidas al index."},
       "diff x": {"cmd": "diff <commit or branch>", "docs": "Muestra los cambios que existen en el workspace relativos al <commit> mencionado. Puede usarse `HEAD` para comparar contra el último commit, o el nombre de una rama (branch) para comparar contra otra rama"},
       "add x": {"cmd": "add <file... or dir...>", "docs": "Añade el contenido actual de archivos nuevos o modificados al index, preparando a la vez ese contenido para ser incluído en el próximo commit. Usar `add --interactive` para añadir los contenidos del espacio de trabajo al index de manera interactiva."},
-      "add -u": {"cmd": "add -u", "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what 'git commit -a' does in preparation for making a commit."},
       "add -u": {"cmd": "add -u", "docs": "Añade el contenido actual de los archivos modificados (NO NUEVOS) al index. Es similar a lo que hace 'git commit -a' al prepararse para realizar un commit."},
       "rm x": {"cmd": "rm <file(s)...>", "docs": "Elimina uno o varios archivos del espacio de trabajo e index."},
       "mv x": {"cmd": "mv <file(s)...>", "docs": "Mueve uno o varios archivos del espacio de trabajo e index."},

@@ -1,3 +1,13 @@
+import {
+  detectLanguage,
+  next,
+  prev,
+  esc
+} from '../src/base.mjs'
+import {
+  cookies
+} from '../src/cookies.mjs'
+
 describe('git cheatsheet / base', function () {
   describe('next()', function () {
     it('returns first item in list if nothing selected', function () {
@@ -53,11 +63,11 @@ describe('git cheatsheet / base', function () {
     })
     it('cookie can override', function() {
       navigator.language = 'fr-FR'
-      global.cookies.read = () => 'de'
+      cookies.read = () => 'de'
       try {
         expect(detectLanguage(navigator)).toEqual('de')
       } finally {
-        global.cookies.read = () => null
+        cookies.read = () => null
       }
     })
     it('works for IE', function() {
