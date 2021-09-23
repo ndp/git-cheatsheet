@@ -26,5 +26,6 @@
     "@babel/preset-env": "*",
     "jasmine": "*",
     "node-static": "*"
-  }
+  },
+  "dependencies": {}
 }
