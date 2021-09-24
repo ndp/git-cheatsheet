@@ -35,6 +35,5 @@
     "webpack": "*",
     "webpack-cli": "*"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
