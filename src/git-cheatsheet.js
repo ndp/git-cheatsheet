@@ -52,7 +52,6 @@ function showDocs(doc, cmd) {
   if (doc) {
     $info.find('.cmd').html('<span>' + cmd + '</span>');
     $info.find('.doc').html(doc);
-    // $info.slideDown()
     $info.show()
   } else {
     $info.slideUp()
@@ -280,7 +279,8 @@ mouseOverDataDoc$.subscribe(function (el) {
 })
 
 function buildCommands(commands, translations) {
-  $('#commands').empty()
+  const $commands = $('#commands')
+  $commands.empty()
 
   for (let c of commands) {
     const cmd = translations.commands[c.key].cmd
@@ -291,12 +291,12 @@ function buildCommands(commands, translations) {
       .addClass(`right-${c.right}`)
       .addClass(c.direction)
       .prop('id', `cmd/${c.key}`)
-    $('#commands').append($e);
+    $commands.append($e);
 
     const docs = translations.commands[c.key].docs
     if (docs) {
       const $doc = $('<dd></dd>').text(esc(docs))
-      $('#commands').append($doc)
+      $commands.append($doc)
     }
   }
 }

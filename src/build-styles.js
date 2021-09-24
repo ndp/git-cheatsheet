@@ -1,6 +1,6 @@
 var window=global
 
-const Csster = require('./csster')
+const Csster = require('./lib/csster')
 Csster.colorizeString()
 const boxShadow = Csster.macros.boxShadow
 
