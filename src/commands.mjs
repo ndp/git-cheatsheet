@@ -574,7 +574,6 @@ export const translations = {
       "branch --track x x": {"cmd": "branch --track <new> <remote/branch>", "docs": "Crea una nueva rama local que sigue a una rama remota."},
       "clone x": {"cmd": "clone <repo>", "docs": "Descarga el repositorio especificado por <repo> y posiciona el `HEAD` en la rama master."},
       "pull x x": {"cmd": "pull <remote> <refspec>", "docs": "Incorpora los cambios desde un repositorio remoto en la rama actual. En su modo por defecto, `git pull` es un atajo de `git fetch` seguido por `git merge FETCH_HEAD`."},
-      "reset --hard x/x": {"cmd": "reset --hard <remote>/<branch>", "docs": "Reset local repo and working tree to match a remote branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."},
       "reset --hard x/x": {"cmd": "reset --hard <remote>/<branch>", "docs": "Equipara el espacio de trabajo y el index con una rama remota. Usar `reset &#8209;&#8209;hard origin/master` para descartar todos los commits en la rama local master. Se puede utilizar para comenzar de nuevo desde una combinación/merge fallida."},
       "fetch x x": {"cmd": "fetch <remote> <refspec>", "docs": "Descarga los objetos y referencias desde otro repositorio."},
       "push": {"cmd": "push", "docs": "Actualiza el servidor con los commits de todas ramas que tienen en *COMÚN* entre el repositorio local y el remoto. Las ramas locales que nunca fueron enviadas al server (push) no están compartidas."},
@@ -588,7 +587,6 @@ export const translations = {
       "stash pop": {"cmd": "stash pop", "docs": "Aplica los cambios del stash especificado y luego lo elimina de los temporales. Por defecto aplica el último stash."},
       "stash list": {"cmd": "stash list", "docs": "Lista los stashes disponibles actualmente."},
       "stash show": {"cmd": "stash show [<stash>]", "docs": "Muestra los cambios almacenados en el stash aplicando un diff entre ese stash y su padre original. Por defecto utiliza el último stash."},
-      "stash drop": {"cmd": "stash drop [<stash>]", "docs": "Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one."},
       "stash drop": {"cmd": "stash drop [<stash>]", "docs": "Elimina una entrada del listado de stash. Por defecto elimina el último stash."},
       "stash clear": {"cmd": "stash clear", "docs": "Elimina todos las entradas del stash. IMPORTANTE: estas entradas eliminadas pueden ser irrecuperables luego."},
       "stash branch x": {
