@@ -27,6 +27,8 @@ CI is on [CircleCI](https://app.circleci.com/pipelines/github/ndp/git-cheatsheet
 
 Use ftp to upload to www.ndpsoftware.com
 
+Exceptions caught and logged on [Rollbar](https://rollbar.com/ndpsoftware/git-cheatsheet/) (private).
+
 ### FAQ
 
 #### Are there any "features"?

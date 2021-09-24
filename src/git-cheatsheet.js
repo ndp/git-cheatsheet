@@ -1,3 +1,25 @@
+import jQuery from 'jquery';
+const $ = jQuery
+const Rx = require ('./lib/rx.lite')
+const Observable = Rx.Observable
+
+import {
+  next,
+  prev,
+  esc,
+  detectLanguage
+} from './base.mjs'
+
+import {
+  cookies
+} from './cookies.mjs'
+
+import {
+  commands,
+  locations,
+  translations
+} from './commands.mjs'
+
 let clickMode = false
 
 const KEY_1 = 49
@@ -111,7 +133,7 @@ function selectCommand(newEl) {
   ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: cmd})
 }
 
-const popStateLoc$ = Rx.Observable.fromEvent(window, 'popstate')
+const popStateLoc$ = Observable.fromEvent(window, 'popstate')
                        .startWith(null) // on initial page view
                        .map(function () {
                          const m = (window.location.hash || '').match(/loc=([^;]*);/)
@@ -123,7 +145,7 @@ const popStateLoc$ = Rx.Observable.fromEvent(window, 'popstate')
                          return !!loc || loc == ''
                        })
 
-const clickLoc$ = Rx.Observable.fromEvent(document, 'click', '#diagram .loc')
+const clickLoc$ = Observable.fromEvent(document, 'click', '#diagram .loc')
                     .filter(function (ev) {
                       return $(ev.target).closest('dt').length == 0
                     })
@@ -133,7 +155,7 @@ const clickLoc$ = Rx.Observable.fromEvent(document, 'click', '#diagram .loc')
                              $(ev.target).closest('.loc').attr('id')
                     })
 
-const clickCmd$ = Rx.Observable.fromEvent(document, 'click', '#commands > dt')
+const clickCmd$ = Observable.fromEvent(document, 'click', '#commands > dt')
                     .map(function (ev) {
                       return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
                     })
@@ -145,7 +167,7 @@ const clickCmd$ = Rx.Observable.fromEvent(document, 'click', '#commands > dt')
                       return clickMode ? el : '#nothing'
                     })
 
-const mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-docs]')
+const mouseOverDataDoc$ = Observable.fromEvent(document, 'mousemove', '[data-docs]')
                             .debounce(100)
                             .filter(function (ev) {
                               return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
@@ -158,7 +180,7 @@ const mouseOverDataDoc$ = Rx.Observable.fromEvent(document, 'mousemove', '[data-
                             })
                             .distinctUntilChanged()
 
-const mouseOverCmd$ = Rx.Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
+const mouseOverCmd$ = Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
                         .filter(function () {
                           return !clickMode
                         })
@@ -170,7 +192,7 @@ const mouseOverCmd$ = Rx.Observable.fromEvent(document, 'mousemove', '#commands>
                         })
                         .distinctUntilChanged()
 
-const keydown$ = Rx.Observable.fromEvent(document, 'keydown')
+const keydown$ = Observable.fromEvent(document, 'keydown')
 
 const keyDownNextLoc$ = keydown$
   .filter(e => e.keyCode == KEY_PAGE_RGHT || e.keyCode == KEY_L)
@@ -343,7 +365,7 @@ $(function () {
   positionCommands(commands)
   setTimeout(() => positionCommands(commands), 5000)
 
-  Rx.Observable
+  Observable
     .fromEvent(window, 'resize')
     .debounce(333)
     .subscribe(() => positionCommands(commands))

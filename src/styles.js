@@ -121,7 +121,7 @@ $(function () {
       transitionDuration: '.15s',
       transitionProperty: 'color, background-color, opacity',
       transitionDelay: '0s',
-      opacity: .7,
+      opacity: 0.6, // based on "feedback" from Reddit
       has: boxShadow([3, 3], 2, '#ccc'),
       '.bar': {
         position: 'absolute',
