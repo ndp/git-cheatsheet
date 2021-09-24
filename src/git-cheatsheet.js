@@ -369,4 +369,6 @@ $(function () {
     .fromEvent(window, 'resize')
     .debounce(333)
     .subscribe(() => positionCommands(commands))
+
+  if (currentLoc () === null) selectLoc('index')
 });
