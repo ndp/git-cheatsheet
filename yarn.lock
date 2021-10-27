@@ -1183,7 +1183,7 @@ braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-browserlist@^1.0.1:
+browserlist@*:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/browserlist/-/browserlist-1.0.1.tgz#8c52c4fd5ba49c7464b9e0f85d519598b5833ed9"
   integrity sha512-nYq9jiWv+qXcgrJxQzivfEc7Wo2GvAKkeRViE5L3cUJpq4SZO6NZR710I/8T+OjE5BPECbzpm8rpUkwslE3nTg==
