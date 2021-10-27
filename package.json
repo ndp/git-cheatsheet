@@ -29,11 +29,12 @@
     "@babel/cli": "*",
     "@babel/core": "*",
     "@babel/preset-env": "*",
+    "browserlist": "*",
     "jasmine": "*",
     "jquery": "*",
     "node-static": "*",
     "webpack": "*",
     "webpack-cli": "*"
   },
-  "dependencies": {}
+  "browserslist": "> 0.05%, not dead"
 }
