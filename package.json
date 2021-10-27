@@ -1,8 +1,5 @@
 {
-  "browserslist": [
-    "defaults",
-    "last 5 years"
-  ],
+  "browserslist": "> 0.05%, not dead",
   "name": "git-cheatsheet",
   "version": "1.0.0",
   "description": "Git Cheatsheet",
@@ -35,6 +32,5 @@
     "node-static": "*",
     "webpack": "*",
     "webpack-cli": "*"
-  },
-  "browserslist": "> 0.05%, not dead"
+  }
 }
