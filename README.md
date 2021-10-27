@@ -13,6 +13,7 @@ to others in the same endeavor.
 * https://github.com/GerjanOnline -- bug fix
 * Spanish translation by https://github.com/sminutoli
 * Korean translation by https://github.com/ujuc
+* Italian translation by https://github.com/antoniopantaleo
 
 Comments and pull requests welcome.
 

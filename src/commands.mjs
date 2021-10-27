@@ -918,4 +918,166 @@ export const translations = {
       }
     }
   },
+  it: {
+    locations: {
+      stash: 'stash',
+      workspace: 'workspace',
+      index: 'index',
+      local_repo: 'repository locale',
+      remote_repo: 'repository remoto',
+      docs: {
+        stash: 'Uno spazio in cui conservare le modifiche mentre si lavora a qualcos\'altro.',
+        workspace: 'Lo spazio di lavoro locale (la cartella nella quale si lavora). Spesso è noto anche come "working tree".',
+        index: 'Uno spazio che contiene i file pronti per essere committati. Spesso è noto anche come "current directory cache", "cache" o "staging area". I file al suo interno spesso sono noti anche come "staged files".',
+        local_repo: 'Uno spazio che contiene tutti i file committati e le informazioni sui branch. Si presenta come una sotto-cartella denominata `.git`. I nomi tipici per i branch usati qui sono: `master`, `feature-x`, `bugfix-y`.',
+        remote_repo: 'Uno spazio online che contiene tutte le varie versioni del progetto, accessibile anche agli altri sviluppatori. Il nome usato per identificare un repository remoto di solito è `origin`. I nomi tipici per i branch usati qui sono: `master`, `shared-feature-x`, `release-y`.'
+      }
+    },
+    commands: {
+      "status": {
+        "cmd": "status",
+        "docs": "Elenca: \r• i file che presentano differenze tra l'indice e il workspace\r• i file che presentano differenze tra l'indice e l'`HEAD` attuale\r• i file del workspace che non sono tracciati da git."
+      },
+      "diff": {"cmd": "diff", "docs": "Elenca le differenze tra il workspace e l'indice."},
+      "diff x": {
+        "cmd": "diff <commit or branch>",
+        "docs": "Elenca i cambiamenti tra il workspace ed il <commit> specificato. È possibile utilizzare `HEAD` per considerare l'ultimo commit, o specificare il nome di un branch."
+      },
+      "add x": {
+        "cmd": "add <file... or dir...>",
+        "docs": "Aggiunge i file specificati (nuovi o modificati) all'indice, così da prepararli al prossimo commit. Si può usare `add --interactive` per aggiungere file all'indice in maniera interattiva."
+      },
+      "add -u": {
+        "cmd": "add -u",
+        "docs": "Aggiunge solamente i file modificati (NON QUELLI NUOVI) all'indice. Simile a ciò che il comando `git commit -a` fa in preparazione di un nuovo commit."
+      },
+      "rm x": {"cmd": "rm <file(s)...>", "docs": "Rimuove uno o più file dal workspace e dall'indice."},
+      "mv x": {"cmd": "mv <file(s)...>", "docs": "Sposta uno o più file nel workspace e nell'indice."},
+      "commit -a": {
+        "cmd": "commit -a [-m 'msg']",
+        "docs": "Esegue un commit di tutti i file modificati dal commit precedente, eccetto quelli non tracciati (i.e. esegue un commit dei soli file che sono già presenti nell'indice). Rimuove dall'indice i file che sono stati rimossi dal workspace."
+      },
+      "checkout x": {
+        "cmd": "checkout <files(s)... or dir>",
+        "docs": "Aggiorna i file o le directory nel workspace. NON cambia branch."
+      },
+      "reset head x": {
+        "cmd": "reset HEAD <file(s)...>",
+        "docs": "Rimuove i file specificati dal commit successivo. Esegue un reset dell'indice, ma non del workspace (i.e. le modifiche ai file vengono mantenute, ma non sono considerate nel commit) e segnala cosa non è stato aggiornato."
+      },
+      "reset --soft head^": {
+        "cmd": "reset --soft HEAD^",
+        "docs": "Annulla l'ultimo commit, mantenendo i cambiamenti nell'indice."
+      },
+      "reset --hard": {
+        "cmd": "reset --hard",
+        "docs": "Uguaglia il workspace e l'indice allo stato del repository locale. ATTENZIONE: I cambiamenti dei file nel workspace dall'ultimo commit verranno persi. Usare questo comando è utile se un'operazione di merge ha presentato dei conflitti e si intente procedere da capo. È possibile specificare `ORIG_HEAD` per annullare l'ultimo merge effettuato con successo e qualsiasi cambiamento successivo ad esso."
+      },
+      "switch": {
+        "cmd": "switch <branch>",
+        "docs": "Cambia il branch corrente. Aggiorna il workspace e l'indice per riflettere lo stato del branch specificato e sposta l'`HEAD` su <branch>."
+      },
+      "checkout -b x": {"cmd": "checkout -b <name of new branch>", "docs": "Crea un nuovo branch e ci si posiziona."},
+      "merge x": {
+        "cmd": "merge <commit or branch>",
+        "docs": "Unisce i cambiamenti di <branch> o di <commit> nel branch corrente.\rSpecificare `&#8209;&#8209;no-commit` per non eseguire" +
+        " il commit al termine del comando.\rSpecificare `--no-ff` per creare un nuovo commit di merge anche se si tratta di un fast forward."
+      },
+      "rebase x": {
+        "cmd": "rebase <upstream>",
+        "docs": "Annulla tutti i commit del branch corrente che divergono da <upstream>, per poi riapplicarli uno ad uno a partire dall'`HEAD` di <upstream>."
+      },
+      "cherry-pick x": {
+        "cmd": "cherry-pick <commit>",
+        "docs": "Integra i cambiamenti del commit specificato nel branch corrente."
+      },
+      "revert x": {
+        "cmd": "revert <commit>",
+        "docs": "Inverte il commit specificato e crea un nuovo commit con il risultato. Occorre che il workspace sia pulito (i.e. nessuna nuova modifica dall'`HEAD`)."
+      },
+      "diff --cached": {
+        "cmd": "diff --cached [<commit>]",
+        "docs": "Elenca le differenze tra l'indice e l'ultimo commit. Specificare un <commit> per elencare i cambiamenti relativi ad esso."
+      },
+      "commit": {
+        "cmd": "commit [-m 'msg']",
+        "docs": "Memorizza il contenuto corrente dell'indice in un nuovo commit.\rIl messaggio <msg> ne descrive i cambiamenti."
+      },
+      "commit --amend": {"cmd": "commit --amend", "docs": "Modifica l'ultimo commit con lo stato attuale dell'indice."},
+      "log": {
+        "cmd": "log",
+        "docs": "Elenca gli ultimi commit, i più recenti in cima. Opzioni:\r`&#8209;&#8209;decorate` aggiunge il nome dei branch ed i tag ai commit\r`&#8209;&#8209;stat` aggiunge statistiche (file modificati, inseriti ed eliminati) \r`&#8209;&#8209;author=<author>` filtra per autore\r`&#8209;&#8209;after=\"MMM DD YYYY\"` es. (`Jun 20 2008`) filtra per specifica data\r`&#8209;&#8209;before=\"MMM DD YYYY\"` filtra per date inferiori a quella specificata \r`&#8209;&#8209;merge` mostra solo i commit coinvolti nel merge attuale."
+      },
+      "diff x x": {"cmd": "diff <commit> <commit>", "docs": "Elenca i cambiamenti tra  due commit specificati."},
+      "branch": {
+        "cmd": "branch",
+        "docs": "Elenca tutti i branch esistenti. L'opzione `-r` elenca solamente i branch remoti, l'opzione `-a` elenca sia quelli remoti che quelli locali."
+      },
+      "branch -d x": {"cmd": "branch -d <branch>", "docs": "Elimina il branch specificato. L'opzione `-D` forza l'eliminazione."},
+      "branch --track x x": {
+        "cmd": "branch --track <new> <remote/branch>",
+        "docs": "Crea un nuovo branch locale a partire da un branch remoto."
+      },
+      "clone x": {
+        "cmd": "clone <repo>",
+        "docs": "Effettua il download del repository specificato e si posiziona sull'`HEAD` del master branch."
+      },
+      "pull x x": {
+        "cmd": "pull <remote> <refspec>",
+        "docs": "Incorpora i cambiamenti di un repository remoto nel branch locale corrente. Di default, `git pull` è un'abbreviazione del comando `git fetch` seguito dal comando `git merge FETCH_HEAD`."
+      },
+      "reset --hard x/x": {
+        "cmd": "reset --hard <remote>/<branch>",
+        "docs": "Ripristina il workspace ed il repository locale allo stato del branch remoto specificato. Utilizzare `reset &#8209;&#8209;hard origin/master` per cancellare tutti i commit del master branch locale. Utile per procedere da capo dopo un tentativo di merge fallito."
+      },
+      "fetch x x": {"cmd": "fetch <remote> <refspec>", "docs": "Effettua il download di file e riferimenti da un altro repository."},
+      "push": {
+        "cmd": "push",
+        "docs": "Aggiorna il server con i commit locali in tutti i branch che sono *IN COMUNE* tra il repository locale ed il server. I branch locali che non sono mai stati inviati al server non sono condivisi."
+      },
+      "push x x": {"cmd": "push <remote> <branch>", "docs": "Invia un nuovo (o già esistente) branch al repository remoto."},
+      "push x x:x": {
+        "cmd": "push <remote> <branch>:<branch>",
+        "docs": "Invia un nuovo branch al repository remoto con un nome differente."
+      },
+      "branch -r": {"cmd": "branch -r", "docs": "Elenca i branch remoti."},
+      "push x :x": {
+        "cmd": "push <remote> :<branch>",
+        "docs": "Elimina un branch remoto. Letteralmente \"invia nulla a questo branch\"."
+      },
+      "clean": {
+        "cmd": "clean",
+        "docs": "Pulisce il workspace eliminando ricorsivamente i file che non sono tracciati da git, partendo dalla directory corrente. Specificare `-n` per un \"dry run\" e vedere cosa verrà eliminato. Specificare `-f` per eliminare i file."
+      },
+      "stash push": {
+        "cmd": "stash push [<msg>]",
+        "docs": "Salva le modifiche locali in un nuovo stash, ed esegue il comando `git reset &#8209;&#8209;hard` per invertirle. Il messaggio <msg> è opzionale e dà una descrizione dello stato dello stash. Per velocizzare l'operazione, è possibile omettere `push` e <msg>."
+      },
+      "stash apply": {
+        "cmd": "stash apply [<stash>]",
+        "docs": "Applica i cambiamenti dello stash specificato nel workspace. Se lo <stash> non è specificato, viene considerato l'ultimo aggiunto."
+      },
+      "stash pop": {
+        "cmd": "stash pop",
+        "docs": "Applica i cambiamenti dell'ultimo stash (o quello specificato) nel workspace e successivamente lo elimina."
+      },
+      "stash list": {"cmd": "stash list", "docs": "Elenca tutti gli stash salvati."},
+      "stash show": {
+        "cmd": "stash show [<stash>]",
+        "docs": "Mostra i cambiamenti tra il contenuto di <stash> e lo stato del workspace da cui esso è stato originato. Se lo <stash> non è specificato, viene considerato l'ultimo aggiunto."
+      },
+      "stash drop": {
+        "cmd": "stash drop [<stash>]",
+        "docs": "Elimina uno stash. Se lo <stash> non è specificato, viene considerato l'ultimo aggiunto."
+      },
+      "stash clear": {
+        "cmd": "stash clear",
+        "docs": "Elimina tutti gli stash. ATTENZIONE: gli stash eliminati potrebbero essere impossibili da recuperare."
+      },
+      "stash branch x": {
+        "cmd": "stash branch <branchname> [<stash>]",
+        "docs": "Crea un nuovo branch chiamato <branchname> e ci si posiziona, partendo dal commit da cui è stato generato lo <stash> ed applicando i cambiamenti conservati in esso nell'indice e nel nuovo workspace. \rSe l'operazione ha successo, e lo <stash> è un riferimento del tipo stash@{<revision>}, lo <stash> viene eliminato. Se lo <stash> non è specificato, viene considerato l'ultimo aggiunto. \rQuesto comando è utile se il branch da cui è stato lanciato `git stash push` è cambiato tanto da far fallire `git stash apply` a causa di conflitti. Poiché lo stash viene applicato in cima al commit `HEAD` precedente al comando `git stash`, lo stato originale viene ripristinato senza conflitti."
+      }
+    }
+  }
 }
