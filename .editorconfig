@@ -5,7 +5,7 @@
 root = true
 
 # Set default charset
-[*.{js,py,rb,erb}]
+[*.{js,mjs,py,rb,erb}]
 charset = utf-8
 
 [*]
