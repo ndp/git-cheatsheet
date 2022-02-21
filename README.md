@@ -18,6 +18,7 @@ to others in the same endeavor.
 * Spanish translation by https://github.com/sminutoli
 * Korean translation by https://github.com/ujuc
 * Italian translation by https://github.com/antoniopantaleo
+* Vietnamese translation by https://github.com/trgiangdo
 
 Comments and pull requests welcome.
 
