@@ -9,7 +9,7 @@
     "build-js": "webpack --entry ./src/git-cheatsheet.js -o ./git-cheatsheet/ --mode production --target browserslist --devtool source-map",
     "build-styles": "node ./src/build-styles.js",
     "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js ./git-cheatsheet/styles.css",
-    "test": "jasmine spec/*_spec.js spec/*_spec.mjs",
+    "test": "jasmine spec/*_spec.mjs",
     "start": "static -p 9090"
   },
   "repository": {

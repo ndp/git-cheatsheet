@@ -6,52 +6,9 @@ orbs:
   # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
   # Orbs reduce the amount of configuration required for common tasks.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
-  node: circleci/node@4.1
-
+  node: circleci/node@5.0.1
 
 jobs:
-  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test-node-12:
-    # These next lines define a docker executor: https://circleci.com/docs/2.0/executor-types/
-    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # A list of available CircleCI docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
-    docker:
-      - image: circleci/node:12
-    # Then run your tests!
-    # CircleCI will report the results back to your VCS provider.
-    steps:
-      # Checkout the code as the first step.
-      - checkout
-      # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
-      - node/install-packages:
-          pkg-manager: yarn
-      - run:
-          name: Build
-          command: yarn build
-      - run:
-          name: Run tests
-          command: yarn test
-
-  build-and-test-node-14:
-    # These next lines define a docker executor: https://circleci.com/docs/2.0/executor-types/
-    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # A list of available CircleCI docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
-    docker:
-      - image: circleci/node:14
-    # Then run your tests!
-    # CircleCI will report the results back to your VCS provider.
-    steps:
-      # Checkout the code as the first step.
-      - checkout
-      # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
-      - node/install-packages:
-          pkg-manager: yarn
-      - run:
-          name: Build
-          command: yarn build
-      - run:
-          name: Run tests
-          command: yarn test
 
   build-and-test-node-15:
     # These next lines define a docker executor: https://circleci.com/docs/2.0/executor-types/
@@ -62,11 +19,28 @@ jobs:
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
     steps:
-      # Checkout the code as the first step.
       - checkout
-      # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Run tests
+          command: yarn test
+
+  build-and-test-node-16:
+    # These next lines define a docker executor: https://circleci.com/docs/2.0/executor-types/
+    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # A list of available CircleCI docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
+    docker:
+      - image: cimg/node:16.5
+    # Then run your tests!
+    # CircleCI will report the results back to your VCS provider.
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn-berry
       - run:
           name: Build
           command: yarn build
@@ -75,14 +49,10 @@ jobs:
           command: yarn test
 
 workflows:
-  # Below is the definition of your workflow.
-  # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
-  # CircleCI will run this workflow on every commit.
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
-  sample:
+  run-tests:
     jobs:
-      - build-and-test-node-12
-      - build-and-test-node-14
       - build-and-test-node-15
+      - build-and-test-node-16
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
       # - node/test
