@@ -22,7 +22,6 @@ jobs:
     steps:
       - checkout
       - install-yarn
-          version: 3.2.0
       - node/install-packages:
           pkg-manager: yarn
       - run:
@@ -42,7 +41,6 @@ jobs:
     # CircleCI will report the results back to your VCS provider.
     steps:
       - install-yarn
-          version: 3.2.0
       - checkout
       - node/install-packages:
           pkg-manager: yarn
