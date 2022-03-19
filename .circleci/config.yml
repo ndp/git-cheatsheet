@@ -22,8 +22,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          install-yarn: true
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
       - run:
           name: Build
           command: yarn build
@@ -42,8 +41,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          install-yarn: true
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
       - run:
           name: Build
           command: yarn build
