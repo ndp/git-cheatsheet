@@ -3,3 +3,10 @@ node_modules
 /git-cheatsheet/*.map
 git-cheatsheet/styles.css
 git-cheatsheet/main.js.LICENSE.txt
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
