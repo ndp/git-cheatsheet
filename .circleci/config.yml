@@ -6,7 +6,7 @@ orbs:
   # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
   # Orbs reduce the amount of configuration required for common tasks.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
-  node: circleci/node@4.1
+  node: circleci/node@5.0.1
 
 
 jobs:
@@ -21,8 +21,8 @@ jobs:
     # CircleCI will report the results back to your VCS provider.
     steps:
       - checkout
-      - install-yarn
       - node/install-packages:
+          install-yarn: true
           pkg-manager: yarn
       - run:
           name: Build
@@ -40,9 +40,9 @@ jobs:
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
     steps:
-      - install-yarn
       - checkout
       - node/install-packages:
+          install-yarn: true
           pkg-manager: yarn
       - run:
           name: Build
