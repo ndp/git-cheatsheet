@@ -32,5 +32,6 @@
     "node-static": "*",
     "webpack": "*",
     "webpack-cli": "*"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
