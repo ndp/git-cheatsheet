@@ -1,0 +1,194 @@
+{
+  "commands": {
+    "status": {
+      "cmd": "status",
+      "docs": "Hiển thị: \r• đường dẫn tới các tệp có sự thay đổi giữa các tệp trong chỉ mục và commit `HEAD` hiện tại, \r• đường dẫn tới các sự thay đổi giữa không gian làm việc và tệp chỉ mục và \r• đường dẫn tới các tệp trong không gian làm việc mà git chưa theo dõi sự thay đổi."
+    },
+    "diff": {
+      "cmd": "diff",
+      "docs": "Hiển thị các sự thay đổi chưa được thêm vào vùng chỉ mục."
+    },
+    "diff x": {
+      "cmd": "diff <commit hoặc branch>",
+      "docs": "Hiển thị các sự thay đổi được thực hiện trên không gian làm việc hiện tại so với commit có tên <commit>. Bạn có thể sử dụng `HEAD` để so sánh với commit mới nhất, hoặc sử dụng tên nhánh để so sánh với commit mới nhất trong 1 nhánh khác."
+    },
+    "add x": {
+      "cmd": "add <tệp ... hoặc thư mục ...>",
+      "docs": "Thêm nội dung hiện tại của tệp mới (hoặc tệp đã bị chỉnh sửa) vào vùng chỉ mục, tức là stage phần nội dung đó để thêm vào commit tiếp theo. Sử dụng lệnh `add --interactive` để lần lượt thêm nội dung đã chỉnh sửa từ không gian làm việc vào vùng chỉ mục bằng cách tương tác trực tiếp với cửa sổ lệnh."
+    },
+    "add -u": {
+      "cmd": "add -u",
+      "docs": "Thêm các tệp có nội dung được chỉnh sửa (KHÔNG PHẢI TỆP MỚI) vào vùng chỉ mục. Lệnh này tương tự với các việc mà lệnh `git commit -a` thực hiện để chuẩn bị cho việc thực hiện một commit."
+    },
+    "rm x": {
+      "cmd": "rm <(các) tệp...>",
+      "docs": "Xoá một tệp khỏi không gian làm việc và vùng chỉ mục."
+    },
+    "mv x": {
+      "cmd": "mv <(các) tệp...>",
+      "docs": "Di chuyển một tệp trong không gian làm việc hoặc vùng chỉ mục."
+    },
+    "commit -a": {
+      "cmd": "commit -a [-m 'msg']",
+      "docs": "Commit tất cả (all) các tệp đã được chỉnh sửa từ commit gần nhất, trừ các tệp chưa được theo dõi (tức là tất cả các tệp đã được liệt kê trong vùng chỉ mục). Lệnh này cũng xoá các tệp trong vùng chỉ mục mà đã bị xoá khỏi không gian làm việc."
+    },
+    "checkout x": {
+      "cmd": "checkout <(các) tệp ... hoặc thư mục>",
+      "docs": "Cập nhật các tệp và thư mục trong không gian làm việc. Lệnh này KHÔNG chuyển nhánh."
+    },
+    "reset head x": {
+      "cmd": "reset HEAD <(các) tệp...>",
+      "docs": "Xoá một số tệp nhất định khỏi commit tiếp theo. Lệnh này đặt lại (reset) vùng chỉ mục nhưng không đặt lại cây thư mục làm việc (tức là các tệp bị chỉnh sửa được giữ nguyên nhưng sẽ không được đánh dấu để commit) và hiển thị những gì không được cập nhật."
+    },
+    "reset --soft head^": {
+      "cmd": "reset --soft HEAD^",
+      "docs": "Hoàn tác commit gần nhất, giữ nguyên các thay đổi trên vùng chỉ mục."
+    },
+    "reset --hard": {
+      "cmd": "reset --hard",
+      "docs": "Khớp không gian làm việc và vùng chỉ mục với cây thư mục làm việc hiện tại. CHÚ Ý: Bất cứ thay đổi nào trên các tệp đang được theo dõi trên cây thư mục so với commit gần nhất sẽ bị hoàn tác. Sử dụng lệnh này khi việc sát nhập (merge) gây ra xung đột và bạn muốn bắt đầu lại từ commit cuối. Truyền vào `ORIG_HEAD` để hoàn tác việc sát nhập mới nhất và tất cả các thay đổi sau đó."
+    },
+    "switch": {
+      "cmd": "switch <branch>",
+      "docs": "Chuyển sang một nhánh được chỉ định <branch> bằng cách cập nhật vùng chỉ mục và không gian làm việc theo nhánh đó, và cập nhật `HEAD` thành <branch>."
+    },
+    "checkout -b x": {
+      "cmd": "checkout -b <name of new branch>",
+      "docs": "Tạo một nhánh mới và chuyển sang nhánh đó."
+    },
+    "merge x": {
+      "cmd": "merge <commit or branch>",
+      "docs": "Sát nhập các sự thay đổi từ nhánh <branch> hoặc từ 1 commit vào nhánh hiện tại.\rSử dụng `&#8209;&#8209;no-commit` để bỏ qua các sự thay đổi chưa được commit. Sử dụng `--no-ff` để sát nhập commit ngay cả khi việc sát nhập được coi là một \"fast-forward\"."
+    },
+    "rebase x": {
+      "cmd": "rebase <upstream>",
+      "docs": "Khôi phục tất cả các commit từ thời điểm mà nhánh hiện tại rẽ nhánh khỏi <upstream>, và thêm từng commit một vào sau `HEAD` của <upstream>."
+    },
+    "cherry-pick x": {
+      "cmd": "cherry-pick <commit>",
+      "docs": "Kết hợp các sự thay đổi trong commit được chỉ định vào nhánh hiện tại."
+    },
+    "revert x": {
+      "cmd": "revert <commit>",
+      "docs": "Hoàn tác commit được chỉ định <commit> và commit kết quả quá trình hoàn tác. Lệnh này yêu cầu cây thư mục làm việc phải sạch (không có bất cứ sự thay đổi này so với commit `HEAD`)."
+    },
+    "diff --cached": {
+      "cmd": "diff --cached [<commit>]",
+      "docs": "Hiển thị các sự thay đổi mà bạn đã stage so với commit gần nhất, và CÓ thể truyền vào tên <commit> để so sánh các thay đổi so với commit đó."
+    },
+    "commit": {
+      "cmd": "commit [-m 'msg']",
+      "docs": "Lưu nội dung của vùng chỉ mục hiện tại thành một commit mới cùng với một thông điệp mô tả các thay đổi trong commit này."
+    },
+    "commit --amend": {
+      "cmd": "commit --amend",
+      "docs": "Chỉnh sửa commit mới nhất theo các thay đổi trong vùng chỉ mục hiện tại."
+    },
+    "log": {
+      "cmd": "log",
+      "docs": "Hiện thị các commit gần đây, với commit mới nhất được hiện thị đầu tiên. Các tuỳ chọn:\r`&#8209;&#8209;decorate` hiện thị tên nhánh và tên các thẻ trên các commit thích hợp\r`&#8209;&#8209;stat` hiện thị thêm các thông số (các tệp thay đổi, số dòng thêm, và số dòng xoá) \r`&#8209;&#8209;author=<author>` hiện thị các commit bởi một tác giả nhất định\r`&#8209;&#8209;after=\"MMM DD YYYY\"` ví dụ (`Jun 20 2008`) chỉ hiện thị các commit sau một ngày nhất định\r`&#8209;&#8209;before=\"MMM DD YYYY\"` chỉ hiển thị các commit trước một ngày nhất định\r`&#8209;&#8209;merge` chỉ hiện thị các commit liên quan đến các xung đột trong quá trình sát nhập hiện tại"
+    },
+    "diff x x": {
+      "cmd": "diff <commit> <commit>",
+      "docs": "Hiển thị sự thay đổi giữa 2 commit bất kỳ."
+    },
+    "branch": {
+      "cmd": "branch",
+      "docs": "Liệt kê các nhánh hiện có. Tuỳ chọn `-r` sẽ liệt kê các nhánh được theo dõi trên remote, và tuỳ chọn `-a` hiện thị cả hai."
+    },
+    "branch -d x": {
+      "cmd": "branch -d <branch>",
+      "docs": "Xoá một nhánh nhất định. Sử dụng `-D` để bắt buộc việc xoá."
+    },
+    "branch --track x x": {
+      "cmd": "branch --track <new> <remote/branch>",
+      "docs": "Tạo một nhánh cục bộ mới từ một nhánh đang được theo dõi trên remote."
+    },
+    "clone x": {
+      "cmd": "clone <repo>",
+      "docs": "Tải một kho chứa chỉ định bởi đường dẫn <repo> về và checkout sang `HEAD` của nhánh master."
+    },
+    "pull x x": {
+      "cmd": "pull <remote> <refspec>",
+      "docs": "Khớp các sự thay đổi trên kho chứa remote vào nhánh hiện tại. Ở dạng mặc định, `git pull` có thể coi là viết tắt của 2 lệnh `git fetch` nối tiếp bởi `git merge FETCH_HEAD`."
+    },
+    "reset --hard x/x": {
+      "cmd": "reset --hard <remote>/<branch>",
+      "docs": "Đặt lại kho chứa cục bộ và cây thư mục để khớp với một nhánh được theo dõi trên remote. Sử dụng `reset &#8209;&#8209;hard origin/master` để bỏ qua tất cả các commit của nhánh master cục bộ. Hãy sử dụng tuỳ chọn này nếu cần thực hiện lại một quá trình sát nhập lỗi."
+    },
+    "fetch x x": {
+      "cmd": "fetch <remote> <refspec>",
+      "docs": "Tải về các đối tượng và các tham chiếu (refspec) từ một kho chứa khác."
+    },
+    "push": {
+      "cmd": "push",
+      "docs": "Cập nhật máy chủ với tất cả các commit trên tất cả các nhánh *CHUNG* giữa bản sao cục bộ của bạn và máy chủ. Các nhánh cục bộ mà chưa từng được đẩy (*push*) lên máy chủ thì sẽ không được chia sẻ."
+    },
+    "push x x": {
+      "cmd": "push <remote> <branch>",
+      "docs": "Đẩy một nhánh mới (hoặc đã tồn tại) lên kho chứa remote."
+    },
+    "push x x:x": {
+      "cmd": "push <remote> <branch>:<branch>",
+      "docs": "Đẩy một nhánh mới lên kho chứa remote với một tên gọi khác."
+    },
+    "branch -r": {
+      "cmd": "branch -r",
+      "docs": "Liệt kê các nhánh remote."
+    },
+    "push x :x": {
+      "cmd": "push <remote> :<branch>",
+      "docs": "Xoá một nhánh remote, theo đúng nghĩa đen ký hiệu bởi câu lệnh \"không đẩy bất cứ gì lên nhánh này nữa\"."
+    },
+    "clean": {
+      "cmd": "clean",
+      "docs": "Làm sạch cây thư mục làm việc hiện tại bằng cách loại bỏ tất cả các tệp không thuộc trình quản lý phiên bản, bắt đầu từ thư mục hiện tại và đệ quy tới tất cả các thư mục con. Sử dụng `-n` để thực hiện một \"bản chạy nháp\" để xem những gì sẽ bị xoá. Sử dụng `-f` để xoá các tệp."
+    },
+    "stash push": {
+      "cmd": "stash push [<msg>]",
+      "docs": "Lưu các chỉnh sửa cục bộ của bạn vào một stash mới, và chạy `git reset &#8209;&#8209;hard` để hoàn tác toàn bộ. Tham số <msg> là không bắt buộc để mô tả cho stash kèm với trạng thái stash. Để lưu nhanh các thay đổi, bạn có thể bỏ qua cả `push` lẫn <msg>."
+    },
+    "stash apply": {
+      "cmd": "stash apply [<stash>]",
+      "docs": "Đưa các thay đổi trong 1 stash nhất định vào không gian làm việc. Mặc định lệnh này sẽ chọn stash mới nhất."
+    },
+    "stash pop": {
+      "cmd": "stash pop",
+      "docs": "Kết hợp các thay đổi trong stash mới nhất (hoặc được chỉ định) và xoá stash đó."
+    },
+    "stash list": {
+      "cmd": "stash list",
+      "docs": "Liệt kê các stash mà bạn hiện đang có."
+    },
+    "stash show": {
+      "cmd": "stash show [<stash>]",
+      "docs": "Hiển thị các thay đổi được lưu trong stash như một câu lệnh `diff` giữa trạng thái được stash và trạng thái cha. Khi không chỉ định stash, hiển thị stash mới nhất."
+    },
+    "stash drop": {
+      "cmd": "stash drop [<stash>]",
+      "docs": "Xoá một trạng thái stash khỏi danh sách các stash. Khi không chỉ định stash, xoá stash mới nhất."
+    },
+    "stash clear": {
+      "cmd": "stash clear",
+      "docs": "Xoá tất cả các trạng thái stash. Chú ý rằng các trạng thái này đôi khi sẽ không thể khôi phục lại được sau khi xoá."
+    },
+    "stash branch x": {
+      "cmd": "stash branch <branchname> [<stash>]",
+      "docs": "Tạo và chuyển sang một nhánh mới có tên <branchname> bắt đầu tại commit mà <stash> được tạo trên, và kết hợp các thay đổi trong <stash> vào cây thư mục làm việc và vùng chỉ mục mới. \rNếu thành công, và <stash> là một tham chiếu theo dạng stash@{<revision>}, thì stash đó bị xoá. Khi không chỉ định <stash>, sử dụng stash mới nhất. \rLệnh này sẽ giúp ích nếu nhánh mà bạn đã chạy `git stash push` thay đổi quá nhiều khiến cho `git stash apply` thất bại do xung đột. Do stash được kết hợp với commit mà là `HEAD` tại thời điểm `git stash` được chạy, nó sẽ khôi phục lại trạng thái stash ban đầu và không có xung đột nào."
+    }
+  },
+  "locations": {
+    "stash": "vùng stash",
+    "workspace": "không gian làm việc",
+    "index": "vùng chỉ mục",
+    "local_repo": "kho chứa cục bộ",
+    "remote_repo": "kho chứa remote",
+    "docs": {
+      "stash": "Nơi lưu trữ, cất giấu những chỉnh sửa chưa hoàn thiện khi bạn đang thực hiện một công việc khác.",
+      "workspace": "Không gian làm việc cục bộ của người dùng.",
+      "index": "Nơi chứa các tệp bạn muốn commit. Trước khi thực hiện \"commit\" các thay đổi, bạn cần thêm chúng vào vùng chỉ mục. Vùng này cũng có thể được gọi là \"vùng staging\", \"cache\", hay các \"tệp staged\".",
+      "local_repo": "Gồm có thư mục con có tên `.git` chứa tất cả các tệp cần thiết của kho chứa — một bộ khung cho kho chứa Git. Các nhánh thường có tên: `master`, `feature-x`, `bugfix-y`",
+      "remote_repo": "Các phiên bản của dự án được lưu trữ trên mạng Internet, giúp đảm bảo rằng tất cả các cập nhật của bạn có thể được truy cập bởi các nhà phát triển khác. Tên mặc định của kho chứa này là `origin`. Các nhánh thường có tên: `master`, `shared-feature-x`, `release-y`"
+    }
+  }
+}

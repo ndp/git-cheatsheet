@@ -1,0 +1,194 @@
+{
+  "commands": {
+    "status": {
+      "cmd": "status",
+      "docs": "Zeigt: \r• Pfade mit Unterschieden zwischen dem Index und dem aktuellen `HEAD` commit \r• Pfade mit Unterschieden zwischen der Arbeitskopie und dem Index \r• Pfade in der Arbeitskopie, die nicht durch Git verwaltet werden"
+    },
+    "diff": {
+      "cmd": "diff",
+      "docs": "Zeigt die Änderungen, die noch nicht dem Index hinzugefügt wurden."
+    },
+    "diff x": {
+      "cmd": "diff <Commit oder Branch>",
+      "docs": "Zeigt die Änderungen in der Arbeitskopie im Vergleich zu dem <Commit>. `HEAD` kann als synonym für den letzten Commit im aktuellen Branch verwendet werden. Wird ein Branch-Name angegeben, wird mit dem letzten Commit auf diesem Branch verglichen"
+    },
+    "add x": {
+      "cmd": "add <Datei(en) oder Verzeichnis(se)>",
+      "docs": "Fügt neue oder geänderte Dateien oder Verzeichnisse dem Index hinzu."
+    },
+    "add -u": {
+      "cmd": "add -u",
+      "docs": "Fügt geänderte (NICHT NEUE) Dateien dem Index hinzu. Das ist ähnlich dem, was ein `git commit -a` vor dem Commit macht."
+    },
+    "rm x": {
+      "cmd": "rm <Datei(en)...>",
+      "docs": "Entfernt eine Datei aus der Arbeitskopie und dem Index."
+    },
+    "mv x": {
+      "cmd": "mv <Datei(en)...>",
+      "docs": "Verschiebt eine Datei in der Arbeitskopie und dem Index."
+    },
+    "commit -a": {
+      "cmd": "commit -a [-m 'Nachricht']",
+      "docs": "Fügt automatisch alle geänderten und gelöschte Dateien dem Index hinzu und committet diese dann. Neue Dateien bleiben unberücksichtigt."
+    },
+    "checkout x": {
+      "cmd": "checkout <Datei(en)... oder Verzeichnis>",
+      "docs": "Aktualisiert die Datei oder das Verzeichnis in der Arbeitskopie vom lokalen Repository. Arbeitet auf dem aktuellen Branch."
+    },
+    "reset head x": {
+      "cmd": "reset HEAD <Datei(en)...>",
+      "docs": "Entfernt die <Datei(en)> aus dem Index, in der Arbeitskopie bleibt die Änderung erhalten."
+    },
+    "reset --soft head^": {
+      "cmd": "reset --soft HEAD^",
+      "docs": "Setzt die Arbeitskopie auf den Stand des letzten Commits im lokalen Repository zurück. Der Inhalt im Index bleibt erhalten."
+    },
+    "reset --hard": {
+      "cmd": "reset --hard",
+      "docs": "Setzt die Arbeitskopie auf den Stand des letzten Commits im lokalen Repository zurück. WARNUNG: Alle nicht committeten Änderungen und neue Dateien der Arbeitskopie und des Index gehen verloren. Dieses Kommando ist nützlich, wenn ein Merge fehlgeschlagen ist und man von vorne beginnen möchte. Mit dem Parameter `ORIG_HEAD` kann der letzte, erfolgreiche Merge und alle Änderungen danach rückgängig gemacht werden."
+    },
+    "switch": {
+      "cmd": "switch <Branch>",
+      "docs": "Checkt den <Branch> in die Arbeitskopie aus. Änderungen bleiben erhalten, so dass sie in den Branch committet werden können."
+    },
+    "checkout -b x": {
+      "cmd": "checkout -b <Name des neuen Branches>",
+      "docs": "Erzeugt einen neuen Branch und wechselt zu diesem"
+    },
+    "merge x": {
+      "cmd": "merge <Commit oder Branch>",
+      "docs": "Mergt Änderungen aus <Branch> oder <Commit> in den aktuellen Branch.\rMit `&#8209;&#8209;no-commit` wird kein automatisches Commit durchgeführt. Mit `--no-ff` wird auch dann ein Merge-Commit erzeugt, wenn ein Fast-Forward Merge gemacht werden könnte."
+    },
+    "rebase x": {
+      "cmd": "rebase <upstream>",
+      "docs": "Alle lokalen Commits werden in einen temporären Bereich verschoben und nacheinander auf den HEAD vom <upstream> wieder aufgespielt. Wird genutzt, um eigene Änderungen mit dem letzten Stand des Remote Repositories ohne einen Merge Commit zusammenzuführen."
+    },
+    "cherry-pick x": {
+      "cmd": "cherry-pick <Commit>",
+      "docs": "Integriert Änderungen des <Commit>s in den aktuellen Branch."
+    },
+    "revert x": {
+      "cmd": "revert <Commit>",
+      "docs": "Erzeugt einen Commit, der die Änderungen in <Commit> rückgängig macht."
+    },
+    "diff --cached": {
+      "cmd": "diff --cached [<Commit>]",
+      "docs": "Vergleicht die Änderungen im Index mit dem letzten Commit. Wird ein <Commit> angegeben, wird der Index damit verglichen."
+    },
+    "commit": {
+      "cmd": "commit [-m 'Nachricht']",
+      "docs": "Erzeugt einen neuen Commit mit dem Inhalt des Index und der eingegebenen Nachricht."
+    },
+    "commit --amend": {
+      "cmd": "commit --amend",
+      "docs": "Fügt den Inhalt des Index dem letzten Commit hinzu. Kann auch genutzt werden, um Parameter des Commits zu ändern."
+    },
+    "log": {
+      "cmd": "log",
+      "docs": "Zeigt die Commit-Historie. Parameter: \r`&#8209;&#8209;decorate` zeigt Branch- und Tag-Namen\r`&#8209;&#8209;stat` zeigt die Anzahl der Veränderungen je Datei\r`&#8209;&#8209;author=<Autor>` zeigt nur Commits des <Author>s\r`&#8209;&#8209;after=\"MMM DD YYYY\"` z.B. (`Jun 20 2008`) zeigt nur Commits nach einem bestimmten Zeitpunkt\r`&#8209;&#8209;before=\"MMM DD YYYY\"` zeigt nur Commits vor einem bestimmten Datum\r`&#8209;&#8209;merge` zeigt nur Commits die an einem bestehenden Merge-Konflikt beteiligt sind"
+    },
+    "diff x x": {
+      "cmd": "diff <Commit> <Commit>",
+      "docs": "Zeigt die Unterschiede zwischen zwei Commits"
+    },
+    "branch": {
+      "cmd": "branch",
+      "docs": "Listet alle existierenden Branches auf. Mit `-r` werden die Remote-Tracking-Branches angezeigt und `-a` listet beide auf."
+    },
+    "branch -d x": {
+      "cmd": "branch -d <Branch>",
+      "docs": "Löscht den angegebenen <Branch>. `-D` erzwingt das Löschen."
+    },
+    "branch --track x x": {
+      "cmd": "branch --track <new> <remote/branch>",
+      "docs": "Erzeugt einen neuen lokalen Branch, der <remote/branch> als Remote-Tracking-Branch verwendet."
+    },
+    "clone x": {
+      "cmd": "clone <Repository>",
+      "docs": "Kopiert das <Repository> in ein neues Verzeichnis und checkt den master Branch aus. Der Remote-Tracking-Branch verweist auf das Quell-Repository."
+    },
+    "pull x x": {
+      "cmd": "pull <remote> <refspec>",
+      "docs": "Lädt die Änderungen des aktuellen Branches von seinem origin und überträgt sie in das lokale Repository und die Arbeitskopie. In der Standardkonfiguration ist `git pull` ein Abkürzung für `git fetch` gefolgt von `git merge FETCH_HEAD`."
+    },
+    "reset --hard x/x": {
+      "cmd": "reset --hard <remote>/<branch>",
+      "docs": "Setzt das lokale Repository und die Arbeitskopie auf den Stand des Remote Repositories. Zum Beispiel verwirft `reset &#8209;&#8209;hard origin/master` alle Änderungen am lokalen master-Branches."
+    },
+    "fetch x x": {
+      "cmd": "fetch <remote> <refspec>",
+      "docs": "Lädt die Änderungen des aktuellen Branches von seinem origin und überträgt sie in das lokale Repository. Die Arbeitskopie bleibt unverändert. Das ist nützlich, um den eigenen Stand mit dem Remote-Stand zu vergleichen."
+    },
+    "push": {
+      "cmd": "push",
+      "docs": "Überträgt die neuen Commits des lokalen Repositories für den aktuellen Branches in das Remote Repository. `--all` überträgt die Commits aller Branches."
+    },
+    "push x x": {
+      "cmd": "push <remote> <branch>",
+      "docs": "Überträgt einen neuen (oder existierenden) Branch in das Remote Repository"
+    },
+    "push x x:x": {
+      "cmd": "push <remote> <branch>:<branch>",
+      "docs": "Überträgt einen neuen Branch mit einem anderen Namen in das Remote Repository."
+    },
+    "branch -r": {
+      "cmd": "branch -r",
+      "docs": "Zeigt die Branches des Remote Repositories"
+    },
+    "push x :x": {
+      "cmd": "push <remote> :<branch>",
+      "docs": "Löscht den Branch im Remote Repository."
+    },
+    "clean": {
+      "cmd": "clean",
+      "docs": "Löscht (rekursiv, vom aktuellen Verzeichnis) alle Dateien der Arbeitskopie, die nicht unter Versionskontrolle stehen (die sich noch nicht im lokalen Repository oder im Index befinden). `-n` führt einen \"dry run\" durch und zeigt an, welche Dateien gelöscht werden würden. `-f` führt das Löschen aus."
+    },
+    "stash push": {
+      "cmd": "stash push [<Nachricht>]",
+      "docs": "Speichert aktuelle Änderungen der Arbeitskopie in einem neuen \"Stash\" und ruft `git reset &#8209;&#8209;hard` auf. Die <Nachricht> ist optional, wird keine <Nachricht> angegeben kann `push` auch weggelassen werden."
+    },
+    "stash apply": {
+      "cmd": "stash apply [<Stash>]",
+      "docs": "Fügt die Änderungen des angegebenen <Stash> in die Arbeitskopie ein. Wird <Stash> nicht angegeben, wird der zuletzt erstellte verwendet."
+    },
+    "stash pop": {
+      "cmd": "stash pop",
+      "docs": "Fügt die Änderungen des letzten Stash in die Arbeitskopie ein und entfernt den Stash."
+    },
+    "stash list": {
+      "cmd": "stash list",
+      "docs": "Zeigt alle vorhandenen Stashes an."
+    },
+    "stash show": {
+      "cmd": "stash show [<Stash>]",
+      "docs": "Zeigt die Änderungen des <Stash> im Vergleich zum ursprünglichen Zustand. Wenn kein <Stash> angegeben ist, wird der neueste verwendet."
+    },
+    "stash drop": {
+      "cmd": "stash drop [<Stash>]",
+      "docs": "Löscht einen vorhandenen \"Stash\". Wird kein <Stash> angegeben, wird der neueste gelöscht."
+    },
+    "stash clear": {
+      "cmd": "stash clear",
+      "docs": "Lösche alle vorhandenen \"Stashes\"."
+    },
+    "stash branch x": {
+      "cmd": "stash branch <Branch> [<Stash>]",
+      "docs": "Erzeugt einen neuen <Branch> und checkt diesen aus. Der Branch zweigt von dem Commit ab, auf dem der <Stash> basiert. Die Änderungen des Stashes werden dann in die Arbeitskopie des neuen Branches eingespielt.\rWenn das erfolgreich ist und der <Stash> eine Referenz in der Form stash@{<revision>} ist, dann wird der <Stash> entfernt. Wenn <Stash> nicht angegeben ist, wird der neueste verwendet.\rDas ist nützlich, wenn sich der Branch auf dem der Stash eingespielt werden soll, so stark verändert hat, dass `git stash apply` aufgrund von Konflikten fehlschlägt. Da der Stash mit diesem Kommando auf dem ursprünglichen Commit zum Zeitpunkt von `git stash` eingespielt wird, wird so der Originalzustand des Stashes ohne Konflikte wiederhergestellt."
+    }
+  },
+  "locations": {
+    "stash": "Stash",
+    "workspace": "Arbeitskopie",
+    "index": "Index",
+    "local_repo": "Lokales Repository",
+    "remote_repo": "Remote Repository",
+    "docs": {
+      "stash": "Hier können Änderungen \"geparkt\" werden, während man an etwas anderem arbeitet",
+      "workspace": "Checkout des lokalen Repositories",
+      "index": "Zu commitende Dateien. Vor einem \"commit\" (checkin), müssen die Dateien zuerst zu dem Index hinzugefügt werden. Wird auch \"staging area\" oder \"staged files\" genannt.",
+      "local_repo": "Der lokale clone des Remote Repositories. Es wird in dem Verzeichnis `.git` verwaltet. Typische Branches sind: `master`, `feature-x`, `bugfix-y`",
+      "remote_repo": "Der Ursprung des lokalen Repositories. Durch ein `clone` wird es automatisch als `origin` gesetzt."
+    }
+  }
+}

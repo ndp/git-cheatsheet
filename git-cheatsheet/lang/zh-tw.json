@@ -1,0 +1,194 @@
+{
+  "commands": {
+    "status": {
+      "cmd": "status",
+      "docs": "顯示狀態變化，包括了以下文件的路徑：\r• 暫存區與當前 `HEAD` 提交之間的差異（即將提交）\r• 工作區與暫存區之間的差異（下次不會提交）\r• 沒有被 Git 所追蹤（沒有歷史記錄）"
+    },
+    "diff": {
+      "cmd": "diff",
+      "docs": "顯示工作區中尚未添加到暫存區中檔案的不同，亦即對比執行 `git add` 命令之前的檔案"
+    },
+    "diff x": {
+      "cmd": "diff <commit or branch>",
+      "docs": "查看工作區與某一次提交（commit）之間的不同，你也可以指定 `HEAD` 來對比上一次的提交，或者是使用分支（branch）名稱來和分支進行比較"
+    },
+    "add x": {
+      "cmd": "add <file... or dir...>",
+      "docs": "添加當前的更新內容或是修改的文件到暫存區，作為下次提交的部分內容。可以使用 `add --interactive` 進行互動式操作"
+    },
+    "add -u": {
+      "cmd": "add -u",
+      "docs": "添加當前修改（但不包含新的文件）到暫存區, 這與 `git commit -a` 準備提交內容的方式一致"
+    },
+    "rm x": {
+      "cmd": "rm <file(s)...>",
+      "docs": "從工作區和暫存區刪除檔案"
+    },
+    "mv x": {
+      "cmd": "mv <file(s)...>",
+      "docs": "從工作區和暫存區移動檔案"
+    },
+    "commit -a": {
+      "cmd": "commit -a [-m 'msg']",
+      "docs": "提交上次提交之後的所有修改，但未被追蹤的文件（亦即所有暫存區中有記錄的文件）除外，並且會從暫存區刪除已在工作區刪除的文件"
+    },
+    "checkout x": {
+      "cmd": "checkout <files(s)... or dir>",
+      "docs": "更新工作區文件或目錄，這並不會切換分支（branch）"
+    },
+    "reset head x": {
+      "cmd": "reset HEAD <file(s)...>",
+      "docs": "刪除下一次提交中的指定文件，這會重置索引區記錄但是不會影響到工作樹（也就是說，改動的文件會被保留，但不會被提交），並列出沒有被更新的文件"
+    },
+    "reset --soft head^": {
+      "cmd": "reset --soft HEAD^",
+      "docs": "恢復上一次提交，保留暫存區的改動"
+    },
+    "reset --hard": {
+      "cmd": "reset --hard",
+      "docs": "恢復工作區和暫存區到上次提交的狀態。[警告] 所有工作區中所做的修改都會被丟棄，因此可以使用這條指令來解決合併衝突，會將狀態從新開始。傳入 `ORIG_HEAD` 可以用來撤銷該次提交以來的所有改動"
+    },
+    "switch": {
+      "cmd": "switch <branch>",
+      "docs": "切換分支，更改工作區和暫存區為 `<branch>` 分支的內容，之後 `HEAD` 會指向 `<branch>` 分支"
+    },
+    "checkout -b x": {
+      "cmd": "checkout -b <name of new branch>",
+      "docs": "創建一個分支並且立即切換過去"
+    },
+    "merge x": {
+      "cmd": "merge <commit or branch>",
+      "docs": "從 `<branch name>` 分支合併到當前分支。使用 `--no-commit` 可以在合併後保持為尚未提交的狀態；使用 `--no-ff` 可以創建一個合併的提交狀態，即使合併的分支內容是自己的直接後代（fast-forward）"
+    },
+    "rebase x": {
+      "cmd": "rebase <upstream>",
+      "docs": "回滾當前分支與 `<upstream>` 分開處的所有提交紀錄，將這些提交紀錄一一應用到 `<upstream>` 分支的 `HEAD` 作為新的提交紀錄"
+    },
+    "cherry-pick x": {
+      "cmd": "cherry-pick <commit>",
+      "docs": "把某個提交移動到當前分支來"
+    },
+    "revert x": {
+      "cmd": "revert <commit>",
+      "docs": "回滾 `<commit>` 指定的提交，這需要當前工作區是乾凈的，即相比於 `HEAD` 提交沒有修改"
+    },
+    "diff --cached": {
+      "cmd": "diff --cached [<commit>]",
+      "docs": "查看已經暫存的內容和上次提交的區別，也可指定某一提交"
+    },
+    "commit": {
+      "cmd": "commit [-m 'msg']",
+      "docs": "暫存區中的當前內容連同提交信息儲存為新提交"
+    },
+    "commit --amend": {
+      "cmd": "commit --amend",
+      "docs": "用當前暫存區的內容修改最近一次的提交，也可以拿來修改提交訊息（commit messages）"
+    },
+    "log": {
+      "cmd": "log",
+      "docs": "顯示最近的提交紀錄，最新的紀錄會在上方。參數可以為：\r`--decorate` 顯示分支（branch）和標籤（tag）名稱到對應的提交紀錄\r`--stat` 顯示狀態（文件修改、添加或刪除）\r`--author=<author>` 只顯示特定作者的提交紀錄\r`--after=\"MMM DD YYYY\"` 只顯示特定時間之後的提交紀錄，時間格式如 `\"Jun 20 2008\"`\r`--before=\"MMM DD YYYY\"` 只顯示特定時間之前的提交紀錄\r`--merge` 只顯示與當前合併衝突有關的提交紀錄"
+    },
+    "diff x x": {
+      "cmd": "diff <commit> <commit>",
+      "docs": "顯示兩個提交之間的不同"
+    },
+    "branch": {
+      "cmd": "branch",
+      "docs": "顯示所有（本地）存在的分支。參數 `-r` 顯示遠端追蹤分支，參數 `-a` 顯示全部"
+    },
+    "branch -d x": {
+      "cmd": "branch -d <branch>",
+      "docs": "刪除某個分支，使用 `—D` 來強制刪除"
+    },
+    "branch --track x x": {
+      "cmd": "branch --track <new> <remote/branch>",
+      "docs": "添加一個本地分支來跟蹤某個遠端分支"
+    },
+    "clone x": {
+      "cmd": "clone <repo>",
+      "docs": "下載 `<repo>` 指定的版本倉庫，並在工作區中檢出主要分支（通常為 `master` 或 `main` 分支）的 `HEAD` 紀錄"
+    },
+    "pull x x": {
+      "cmd": "pull <remote> <refspec>",
+      "docs": "從遠端版本倉庫取得修改到當前分支。一般來說, `git pull` 相當於 `git fetch` 然後做 `git merge FETCH_HEAD`"
+    },
+    "reset --hard x/x": {
+      "cmd": "reset --hard <remote>/<branch>",
+      "docs": "重置本地版本倉庫，讓它與遠端版本一致；可以使用 `reset --hard origin/master` 來丟棄所有的本地改動，通常會使用這個指令來處理失敗的合併，紀錄會直接從遠端倉庫開始"
+    },
+    "fetch x x": {
+      "cmd": "fetch <remote> <refspec>",
+      "docs": "從遠端版本倉庫下載對象和引用（亦即版本資訊）"
+    },
+    "push": {
+      "cmd": "push",
+      "docs": "從本地提交推送分支改變到遠端，分支為所有推送過的分支"
+    },
+    "push x x": {
+      "cmd": "push <remote> <branch>",
+      "docs": "向遠端版本倉庫推送新的（已存在的）分支"
+    },
+    "push x x:x": {
+      "cmd": "push <remote> <branch>:<branch>",
+      "docs": "向遠端版本倉庫推送分支，但是從不同的（本地）分支名稱推送"
+    },
+    "branch -r": {
+      "cmd": "branch -r",
+      "docs": "顯示遠端倉庫分支"
+    },
+    "push x :x": {
+      "cmd": "push <remote> :<branch>",
+      "docs": "刪除一個遠端分支，通過向遠端分支推送空內容"
+    },
+    "clean": {
+      "cmd": "clean",
+      "docs": "從當前目錄遞迴地清除沒有進行版本控制的內容"
+    },
+    "stash push": {
+      "cmd": "stash push [<msg>]",
+      "docs": "將當前本地的修改保存到新的存檔中，並且執行 `git reset --hard` 回滾。其中 `<msg>` 是可選項，用來描述存檔的說明，如果想要快速創建存檔，可以同時省略掉 `push` 和 `<msg>`"
+    },
+    "stash apply": {
+      "cmd": "stash apply [<stash>]",
+      "docs": "將指定存檔 `<stash>` 中的變動應用到工作區中，預設狀態是最近的存檔"
+    },
+    "stash pop": {
+      "cmd": "stash pop",
+      "docs": "應用上一次（或指定）的存檔變動，並將其從儲藏區中移除"
+    },
+    "stash list": {
+      "cmd": "stash list",
+      "docs": "顯示目前所有的儲存狀態紀錄"
+    },
+    "stash show": {
+      "cmd": "stash show [<stash>]",
+      "docs": "顯示儲藏區中存檔的改動，對比存檔生成時的原始狀態，如果沒有指定 `<stash>` 則會顯示上一次添加存檔的變動情形"
+    },
+    "stash drop": {
+      "cmd": "stash drop [<stash>]",
+      "docs": "從儲藏區中刪除單個狀態，如果沒有指定 `<stash>` 則會刪除上一次添加的存檔"
+    },
+    "stash clear": {
+      "cmd": "stash clear",
+      "docs": "清除儲藏區中的所有存檔。注意這個指令會清除相關存檔，並且此操作不能恢復"
+    },
+    "stash branch x": {
+      "cmd": "stash branch <branchname> [<stash>]",
+      "docs": "新建並檢出一個新的分支 `<branchname>`，這個分支會以 `<stash>` 存檔建立時的來源進行提交，並將 `<stash>` 中所記錄的狀態應用到新的工作樹與索引上。如果指令執行成功，並且 `<stash>` 是參照到 `stash@{<revision>}` 存檔，則會將該存檔從暫存區中刪除。如果沒有指定 `<stash>`，則會使用最後一個存檔。這個指令在當前分支運行 `git stash push` 導致衝突時十分好用，因為存檔會被應用在 `git stash` 被執行時的 `HEAD` 上，並還原原始存檔狀態所以不會導致衝突"
+    }
+  },
+  "locations": {
+    "stash": "儲藏區（Stash）",
+    "workspace": "工作區（Workspace）",
+    "index": "暫存區（Index）",
+    "local_repo": "本地倉庫（Local Repository）",
+    "remote_repo": "遠端倉庫（Upstream Repository）",
+    "docs": {
+      "stash": "當你去修改其他東西時，用來隱藏（臨時保存）當前修改內容的地方",
+      "workspace": "本地專案中存放原始檔案的資料夾，即本地檢出（Local checkout）",
+      "index": "保存你所要提交（commit）的檔案。在提交檔案之前，你必須先將這些檔案添加到 Index 中，因此又稱為「當前目錄快取（current directory cache）」、「暫存區域（staging area）」、「快取（cache）」或「暫存檔案（staged files）」",
+      "local_repo": "有一個名稱為 `.git` 的子目錄，用以保存版本倉庫所需要的全部資訊 —— 亦即 Git 倉庫的骨架。一般典型的分支（branch）會有：`master`, `feature-x`, `bugfix-y` 等",
+      "remote_repo": "存放於區域網路或網際網路上，供其他開發者使用的版本倉庫，預設名稱為 `origin`。一般典型的分支（branch）會有：`master`, `feature-x`, `bugfix-y` 等"
+    }
+  }
+}

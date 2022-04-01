@@ -1,0 +1,194 @@
+{
+  "commands": {
+    "status": {
+      "cmd": "status",
+      "docs": "표시: \r• 인덱스 파일과 현재 `HEAD` 커밋 사이에 차이가 있는 경로, \r• 작업 공간과 인덱스 카일간 차이가 나는 경로, \r• git에서 추적하지 않는 작업 영역에서의 경로."
+    },
+    "diff": {
+      "cmd": "diff",
+      "docs": "인덱스에 추가되지 않은 차이점을 보여줍니다."
+    },
+    "diff x": {
+      "cmd": "diff <commit or branch>",
+      "docs": "이름이 정해진 <commit>과 관련된 workplace의 변경 사항을 확인합니다. `HEAD`를 사용하여 최신 커밋과 비교하거나 branch 이름을 이용하여 다른 branch를 비교할 수 있습니다."
+    },
+    "add x": {
+      "cmd": "add <file... or dir...>",
+      "docs": "새로운 파일 또는 수정된 파일에 대한 현재 내용을 인덱스에 추가하여 다음 커밋에 포함할 내용을 준비합니다. `add --interactive`를 이용하여 수정된 내용을 대화식으로 workplace에서 인덱스로 추가할 수 있습니다."
+    },
+    "add -u": {
+      "cmd": "add -u",
+      "docs": "수정된 (새롭게 만든게 아닌) 파일의 현재 내용을 인덱스에 추가합니다. 이는 `git commit -a`로 커밋을 준비하는 것과 비슷합니다."
+    },
+    "rm x": {
+      "cmd": "rm <file(s)...>",
+      "docs": "Workspace와 인덱스에서 파일을 삭제합니다."
+    },
+    "mv x": {
+      "cmd": "mv <file(s)...>",
+      "docs": "Workspace와 인덱스에서 파일을 옮깁니다."
+    },
+    "commit -a": {
+      "cmd": "commit -a [-m 'msg']",
+      "docs": "추적하지 않는 파일을 제외하고, 마지막 커밋 이후 인덱스에 나열된 모든 파일을 커밋합니다. 인덱스에서 삭제된 파일은 workspace에서 삭제됩니다."
+    },
+    "checkout x": {
+      "cmd": "checkout <files(s)... or dir>",
+      "docs": "Workspace에 있는 파일과 디렉토리를 업데이트 합니다. 브런치를 바꾸지 말아야합니다."
+    },
+    "reset head x": {
+      "cmd": "reset HEAD <file(s)...>",
+      "docs": "다음 커밋에서 지정된 파일을 제거합니다. 인덱스를 재설정하지만, 작업 트리는 다시 설정 하지 않습니다. 변경된 파일은 보존되지만 커밋으로 표시되지 않습니다. 그리고 업데이트 하지 않은 내용을 보여줍니다."
+    },
+    "reset --soft head^": {
+      "cmd": "reset --soft HEAD^",
+      "docs": "마지막 커밋을 실행 취소하고, 인덱스에서 변경 내용을 남겨둡니다."
+    },
+    "reset --hard": {
+      "cmd": "reset --hard",
+      "docs": "Workplace와 인덱스를 로컬 트리와 일치시킵니다. 경고: 커밋 이후 작업 중인 트리에서 추적 중인 파일에 대한 변경 사항이 사라집니다. 병합으로 인해 충돌이 발생하여 처음부터 다시 시작하려는 경우에 사용합니다. `ORGI_HEAD`로 수정하게되면 가장 최근에 성공한 병합과 이후 변경 사항을 취소할 수 있습니다."
+    },
+    "switch": {
+      "cmd": "switch <branch>",
+      "docs": "지정한 branch인 <branch>를 인덱스와 workspace를 반영하고, `HEAD`를 <branch>로 업데이트하여 branch를 변경합니다."
+    },
+    "checkout -b x": {
+      "cmd": "checkout -b <name of new branch>",
+      "docs": "Branch를 만들고 변경합니다."
+    },
+    "merge x": {
+      "cmd": "merge <commit or branch>",
+      "docs": "<branch name>에서 변경한 내용을 현재 branch로 병합합니다.\r`&#8209;&#8209;no-commit`을 사용하여 커밋되지 않은 변경 내용을 남겨둘 수 있습니다. 만약 병합을 빠른 감기(fast forward)로 진행되더라도 `--no-ff` 를 사용하여 병합 커밋을 만듭니다."
+    },
+    "rebase x": {
+      "cmd": "rebase <upstream>",
+      "docs": "현재 branch가 <upstream>에서 분기된 이후 모든 커밋을 되돌리고, <upstream> `HEAD`에서 변경 내용을 하나씩 다시 적용합니다."
+    },
+    "cherry-pick x": {
+      "cmd": "cherry-pick <commit>",
+      "docs": "선택한 커밋의 변경 내용을 현재 branch에 통합합니다."
+    },
+    "revert x": {
+      "cmd": "revert <commit>",
+      "docs": "선택한 <commit>을 역방향 커밋을 실행하고 그 결과를 커밋합니다. 이렇게하려면 작업 트리를 정리해야합니다 (`HEAD` 커밋을 수정할 필요는 없습니다)."
+    },
+    "diff --cached": {
+      "cmd": "diff --cached [<commit>]",
+      "docs": "작업 중인 변경 내용과 최신 커밋을 비교합니다. <commit>을 추가하면 해당 커밋에서의 변경 내용을 확인할 수 있습니다."
+    },
+    "commit": {
+      "cmd": "commit [-m 'msg']",
+      "docs": "변경 내용을 설명하는 메시지와 인덱스에 있는 내용을 새로운 커밋에 저장합니다."
+    },
+    "commit --amend": {
+      "cmd": "commit --amend",
+      "docs": "현재 인덱스 변경으로 마지막 커밋을 수정합니다."
+    },
+    "log": {
+      "cmd": "log",
+      "docs": "최근 커밋을 보여줍니다. 가장 최근 커밋이 맨위에 있습니다. 옵션:\r`&#8209;&#8209;decorate` 커밋에 있는 branch와 태그 이름으로 보여줍니다.\r`&#8209;&#8209;stat` 로그 통계를 냅니다. (파일 변경, 추가, 삭제)\r`&#8209;&#8209;author=<author>` 특정 사용자가 커밋한 내용으로 보여줍니다.\r`&#8209;&#8209;after=\"MMM DD YYYY\"` 예(`Jun 20 2008`) 특정 날짜 이전에 커밋된 커밋을 보여줍니다.\r`&#8209;&#8209;before=\"MMM DD YYYY\"` 특정 날짜 이후에 커밋된 커밋을 보여줍니다.\r`&#8209;&#8209;merge` 현재 병합 충돌에 관련된 커밋만 보여줍니다."
+    },
+    "diff x x": {
+      "cmd": "diff <commit> <commit>",
+      "docs": "임의의 두 커밋간의 변경 내용을 확인합니다."
+    },
+    "branch": {
+      "cmd": "branch",
+      "docs": "모든 branch를 보여줍니다. `-r` 옵션은 원격 branch를 보여주고, `-a`는 원격, 로컬에 있는 branch를 보여줍니다."
+    },
+    "branch -d x": {
+      "cmd": "branch -d <branch>",
+      "docs": "특정 branch를 삭제합니다. `-D`를 이용하여 강제로 삭제할 수 있습니다."
+    },
+    "branch --track x x": {
+      "cmd": "branch --track <new> <remote/branch>",
+      "docs": "원격 branch를 따르는 새 로컬 branch를 만듭니다."
+    },
+    "clone x": {
+      "cmd": "clone <repo>",
+      "docs": "<repo>로 지정된 저장소를 다운로드하고 master 브런치의 `HEAD`를 체크아웃 합니다."
+    },
+    "pull x x": {
+      "cmd": "pull <remote> <refspec>",
+      "docs": "원격 저장소의 변경 내용을 현재 branch에 반영합니다. 기본 모드에서 `git pull` 명령은 `git fetch`와 `git merge FETCH_HEAD`를 줄인 명령어입니다."
+    },
+    "reset --hard x/x": {
+      "cmd": "reset --hard <remote>/<branch>",
+      "docs": "로컬 저장소와 작업 트리를 리셋하여 원격 branch와 일치시킵니다. `reset &#8209;&#8209;hard origin/master`를 사용하여 로컬 마스터 branch에서 모든 커밋을 버립니다. 이를 사용하여 실패한 병합을 다시 시작합니다."
+    },
+    "fetch x x": {
+      "cmd": "fetch <remote> <refspec>",
+      "docs": "다른 저장소에서 object와 refs를 다운받습니다."
+    },
+    "push": {
+      "cmd": "push",
+      "docs": "로컬 저장소와 원격 저장소 사이의 *공통적인* 모든 지점에서 커밋을 사용하여 원격 저장소로 업데이트합니다. 처음부터 원격 저장소에 업데이트되지 않은 로컬 branch는 공유되지 않습니다."
+    },
+    "push x x": {
+      "cmd": "push <remote> <branch>",
+      "docs": "새로운 저장소 (또는 기존 저장소)를 원격 저장소로 업로드합니다."
+    },
+    "push x x:x": {
+      "cmd": "push <remote> <branch>:<branch>",
+      "docs": "다른 이름으로 새로운 저장소를 원격 저장소로 업로드합니다."
+    },
+    "branch -r": {
+      "cmd": "branch -r",
+      "docs": "원격 branch를 보여줍니다."
+    },
+    "push x :x": {
+      "cmd": "push <remote> :<branch>",
+      "docs": "원격 브런치를 삭제합니다. 글자 그대로 \"이 지점에 아무것도 보내지마라.\" 입니다."
+    },
+    "clean": {
+      "cmd": "clean",
+      "docs": "현재 디렉토리에서 시작하여 버전 제어하고 있지 않은 파일을 재귀적으로 제거하여 작업 트리를 정리합니다. `-n`을 사용하여 \"dry run\" 형식으로 삭제될 내용을 확인할 수 있습니다. `-f`는 파일을 삭제합니다."
+    },
+    "stash push": {
+      "cmd": "stash push [<msg>]",
+      "docs": "로컬 변경 내용을 새로운 stash 저장하고, `git reset &#8209;&#8209;hard`를 실행하여 되돌립니다. <msg> 항목은 선택 사항이며, 숨기는 상태와 그에 대한 설명을 입력할 수 있습니다. 스냅 샷을 빠르게 작성하려면 `push`와 <msg>를 생략할 수 있습니다."
+    },
+    "stash apply": {
+      "cmd": "stash apply [<stash>]",
+      "docs": "변경 내역을 stash 영역에서 workspace 영역으로 이동합니다. 최근에 저장한 stash 값이 기본 값입니다."
+    },
+    "stash pop": {
+      "cmd": "stash pop",
+      "docs": "마지막이나 지정된 stash 변경 내용을 적용한뒤 stash에서 해당 내용을 삭제합니다."
+    },
+    "stash list": {
+      "cmd": "stash list",
+      "docs": "현재 가지고 있는 stash 항목을 보여줍니다."
+    },
+    "stash show": {
+      "cmd": "stash show [<stash>]",
+      "docs": "Stash에 기록된 변경 내용을 stash 상태와 원래 부모 커밋 사이의 차이점을 보여줍니다. <stash>가 명시되지 않은 경우, 가장 최근의 stash 항목에대한 내용을 보여줍니다."
+    },
+    "stash drop": {
+      "cmd": "stash drop [<stash>]",
+      "docs": "Stash 항목에서 하나의 stash 항목을 삭제합니다. <stash>가 명시되지 않은 경우, 가장 최근의 stash 항목을 삭제합니다."
+    },
+    "stash clear": {
+      "cmd": "stash clear",
+      "docs": "Stash 항목을 모두 삭제합니다. 이럴경우, 가지 치기의 대상이되며, 복구가 불가능합니다."
+    },
+    "stash branch x": {
+      "cmd": "stash branch <branchname> [<stash>]",
+      "docs": "<stash>를 기존 작성된 커밋에서 시작하여 <branchname>으로 brach를 생성하고 체크 아웃합니다. <stash>에 기록된 변경 내용은 새 작업 트리와 색인에 적용됩니다. \r성공하면 <stash>는 stash@{<revision>} 형식의 참조하고 <stash>를 삭제합니다. <stash>가 주어지지 않으면, 최근 저장된 stash 항목을 사용합니다. \r이것은 `git stash push`를 실행한 브런치가 변경되어 `git stash apply`시 충돌이 날때 유용합니다. stash는 `git stash`가 실행될 때, `HEAD`였던 커밋의 맨 위에 적용되기 때문에 충돌없이 기존 stash 상태로 복원합니다."
+    }
+  },
+  "locations": {
+    "stash": "stash",
+    "workspace": "workspace",
+    "index": "index",
+    "local_repo": "local repository",
+    "remote_repo": "upstream repository",
+    "docs": {
+      "stash": "다른 작업을하는 동안 수정 사항을 숨겨둘 수 있는 장소",
+      "workspace": "로컬 체크 아웃",
+      "index": "커밋하기를 원하는 파일. 파일을 \"commit\"(checkin) 하기 전에 먼저 Index에 추가하여야 합니다. \"현재 디렉토리 캐시\", \"스테이징 영역\", \"캐시\", 스태이지 파일\" 으로 불리웁니다.",
+      "local_repo": "필요한 저장소 파일들을 모두 포함하고 있는 `.git`이라는 서브 디렉토리 (Git 저장소 뼈대를 말한다). 일반적인 브런치: `master`, `feature-x`, `bugfix-y`",
+      "remote_repo": "인터넷이나 네트워크로 호스팅되는 프로젝트 버전으로, 모든 변경 사항을 다른 개발자들과 공유하여 사용할 수 있습니다. 기본 이름은 `origin`. 일반적인 브런치: `master`, `shared-feature-x`, `release-y`"
+    }
+  }
+}
