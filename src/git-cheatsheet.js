@@ -17,8 +17,10 @@ import {
 import {
   commands,
   locations,
-  translations
 } from './commands.mjs'
+
+const en           = require('../git-cheatsheet/lang/en.json')
+const translations = { en }
 
 let clickMode = false
 
@@ -133,26 +135,32 @@ function selectCommand(newEl) {
 }
 
 const popStateLoc$ = Observable.fromEvent(window, 'popstate')
-                       .startWith(null) // on initial page view
-                       .map(function () {
-                         const m = (window.location.hash || '').match(/loc=([^;]*);/)
-                         if (m && m.length == 2) {
-                           return m[1]
-                         }
-                       })
-                       .filter(function (loc) {
-                         return !!loc || loc == ''
-                       })
+                               .startWith(null) // on initial page view
+                               .map(function () {
+                                 const m = (window.location.hash || '').match(/loc=([^;]*);/)
+                                 if (m && m.length === 2) {
+                                   return m[1]
+                                 }
+                               })
+                               .filter(function (loc) {
+                                 return !!loc || loc === ''
+                               })
 
 const clickLoc$ = Observable.fromEvent(document, 'click', '#diagram .loc')
-                    .filter(function (ev) {
-                      return $(ev.target).closest('dt').length == 0
-                    })
-                    .map(function (ev) {
-                      return $(ev.target).hasClass('loc') ?
-                             ev.target.id :
-                             $(ev.target).closest('.loc').attr('id')
-                    })
+                            .filter(function (ev) {
+                              return $(ev.target).closest('dt').length === 0
+                            })
+                            .map(function (ev) {
+                              return $(ev.target).hasClass('loc') ?
+                                     ev.target :
+                                     $(ev.target).closest('.loc')[0]
+                            })
+                            .filter(function (target) {
+                              return !!target
+                            })
+                            .map(function (target) {
+                              return target.id
+                            })
 
 const clickCmd$ = Observable.fromEvent(document, 'click', '#commands > dt')
                     .map(function (ev) {
@@ -249,9 +257,9 @@ const keyDownNextCmd$ = keydown$
   .tap(e => e.preventDefault())
 
 const visibleCmds = () => {
-  let curr      = $('#diagram .loc.current')
+  let curr = $('#diagram .loc.current')
   return curr
-         ? $(`#commands>dt.${curr.attr('id')}`).toArray()
+         ? $(`#commands > dt.${curr.attr('id')}`).toArray()
          : $(`#commands > dt`).toArray()
 }
 
@@ -278,7 +286,16 @@ mouseOverDataDoc$.subscribe(function (el) {
   ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text()})
 })
 
-function buildCommands(commands, translations) {
+function translateLocations(lang) {
+  eachLocation(function (loc) {
+    $('#' + loc)
+      .attr('data-docs', esc(translations[lang].locations.docs[loc]))
+      .find('h5')
+      .html(translations[lang].locations[loc])
+  })
+}
+
+function rebuildCommands (commands, translations) {
   const $commands = $('#commands')
   $commands.empty()
 
@@ -322,27 +339,14 @@ function positionCommands(commands) {
   }
 }
 
-function setupLang() {
-  let lang = detectLanguage(navigator)
-
-  // Fallback to English if the language is not translated
-  if (!translations[lang]) {
-    lang = "en";
-  }
-
-  $('html').attr('lang', lang)
-
-  $('[data-lang=' + lang + ']').addClass('selected')
-
-  $('.lang').on('click', function () {
-    const newLang = $(this).attr('data-lang')
-    cookies.create('lang', newLang)
-    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'lang', eventLabel: newLang})
-    document.location.reload();
-  })
-
-  return lang
+async function loadTranslations (lang) {
+  return await fetch(`/git-cheatsheet/lang/${lang}.json`)
+    .then(r => r.json())
+    .then(r => translations[lang] = r)
+    .then(() => true)
+    .catch(() => false)
 }
+
 
 function eachLocation(f) {
   locations.forEach(f)
@@ -350,20 +354,36 @@ function eachLocation(f) {
 
 $(function () {
 
-  const lang = setupLang()
-
-  // Build locations
   $('.loc').append('<div class="bar" />')
-  eachLocation(function (loc) {
-    $('#' + loc)
-      .attr('data-docs', esc(translations[lang].locations.docs[loc]))
-      .find('h5')
-      .html(translations[lang].locations[loc])
-  })
 
-  buildCommands(commands, translations[lang])
-  positionCommands(commands)
-  setTimeout(() => positionCommands(commands), 5000)
+  async function onChooseLang(lang) {
+
+    // Fallback to English if the language is not translated
+    if (!translations[lang] && !await loadTranslations(lang))
+      lang = 'en'
+
+    $('html').attr('lang', lang)
+    $('[data-lang]').removeClass('selected')
+    $('[data-lang=' + lang + ']').addClass('selected')
+
+    translateLocations(lang)
+    rebuildCommands(commands, translations[lang])
+    positionCommands(commands)
+    setTimeout(() => positionCommands(commands), 5000)
+
+    return lang
+  }
+
+  let lang = detectLanguage(navigator)
+  lang = onChooseLang(lang)
+
+  $('.lang').on('click', function () {
+    const newLang = $(this).attr('data-lang')
+    cookies.create('lang', newLang)
+    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'lang', eventLabel: newLang })
+
+    lang = onChooseLang(newLang)
+  })
 
   Observable
     .fromEvent(window, 'resize')
