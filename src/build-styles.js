@@ -35,11 +35,11 @@ const css = {
   },
   'em:before':            {
     opacity: .5,
-    content: '"<"',
+    content: '"‹"',
   },
   'em:after':             {
     opacity: .5,
-    content: '">"',
+    content: '"›"',
   },
   'span.optional:before': {
     opacity: .5,
@@ -83,7 +83,7 @@ const css = {
       bottom:    3,
       right:     3,
       font:      '300 12px ' + bodyFont,
-      zIndex:    1000,
+      zIndex:    1,
     },
     'h4':    {
       marginTop:    5,
@@ -241,30 +241,48 @@ const css = {
       height:   '100%',
       width:    '150%',
       // backgroundImage: 'linear-gradient(90deg, rgba(246, 235, 217, 0) 5%, rgba(246, 235, 217, 1) 10%, rgba(246, 235, 217, 1) 70%, rgba(246, 235, 217, 0) 70%)',
-      backgroundImage: 'radial-gradient(circle at 40%, rgba(246, 235, 217, 1) 85%,rgba(246, 235, 217, 0))',
+      backgroundImage: 'radial-gradient(circle at 40%, rgba(246, 235, 217, 0.97) 85%,rgba(246, 235, 217, 0))',
       opacity:         1,
     },
     '.cmd,.doc': {
-      minHeight: '3em',
-      float:     'left',
+      minHeight: '2em',
+      marginLeft: 20,
     },
     '.cmd':      {
       font:        '500 16px/22px ' + monospaced,
       marginRight: 20,
       marginTop:   -2,
-      width:       '35%',
+      width:       '100%',
       color:       'black',
-      textAlign:   'right',
+      textAlign:   'left',
+      lineHeight: 24,
+      '> span':   {
+        padding:    '3px 10px 3px 0',
+        fontWeight: 'bold',
+        display:    'inline-block',
+      },
+      '> span:after': {
+        maxWidth: '70ex',
+        width: '100vh',
+        background: `linear-gradient(to right, ${colors.stash}, ${colors.workspace}, ${colors.index}, ${colors.local_repo}, ${colors.remote_repo}, ${colors.remote_repo}00)`,
+        height: '0.5px',
+        content: '""',
+        display: 'block',
+        marginTop: 5,
+      }
     },
     '.doc':      {
       font:        '300 15px/22px ' + bodyFont,
-      width:       '55%',
+      width:       'calc(100% - 40px)',
       maxWidth:    '70ex',
+      marginLeft:    20,
       color:       'black',
       'em,b,code': {
         font: '400 16px/22px ' + monospaced,
       },
     },
+
+
   },
 };
 
