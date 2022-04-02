@@ -106,7 +106,7 @@
     },
     "clone x": {
       "cmd": "clone <repo>",
-      "docs": "下载<repo>指定的版本库，并在工作区迁出master分支的HEAD版本"
+      "docs": "下载<repo>指定的版本库，并在工作区迁出main分支的HEAD版本"
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -114,7 +114,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "重置本地版本库，让它与远程版本一致；用 `reset &#8209;&#8209;hard origin/master` 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始"
+      "docs": "重置本地版本库，让它与远程版本一致；用 `reset &#8209;&#8209;hard origin/main` 来丢弃所有的本地改动；用这个来处理失败的合并，直接从远程开始"
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",
@@ -187,8 +187,8 @@
       "stash": "当你去修改别的东西的时候，隐藏（临时保存）当前的修改",
       "workspace": "本地检出",
       "index": "索引（暂存区）保存了一份工作(树)的快照,作为下次提交的内容",
-      "local_repo": ".git 文件夹保存版本库需要的全部信息(Git 版本库的骨架)，一般包括分支<strong>master</strong>, <strong>feature-x</strong>, <strong>bugfix-y</strong>",
-      "remote_repo": "在网络（局域或因特网）上共享给其他开发者的版本库，一般叫\"origin\". 一般包括分支<strong>master</strong>, <strong>shared-feature-x</strong>, <strong>release-y</strong>"
+      "local_repo": ".git 文件夹保存版本库需要的全部信息(Git 版本库的骨架)，一般包括分支<strong>main</strong>, <strong>feature-x</strong>, <strong>bugfix-y</strong>",
+      "remote_repo": "在网络（局域或因特网）上共享给其他开发者的版本库，一般叫\"origin\". 一般包括分支<strong>main</strong>, <strong>shared-feature-x</strong>, <strong>release-y</strong>"
     }
   }
 }

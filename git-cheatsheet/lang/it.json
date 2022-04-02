@@ -106,7 +106,7 @@
     },
     "clone x": {
       "cmd": "clone <repo>",
-      "docs": "Effettua il download del repository specificato e si posiziona sull'`HEAD` del master branch."
+      "docs": "Effettua il download del repository specificato e si posiziona sull'`HEAD` del main branch."
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -114,7 +114,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "Ripristina il workspace ed il repository locale allo stato del branch remoto specificato. Utilizzare `reset &#8209;&#8209;hard origin/master` per cancellare tutti i commit del master branch locale. Utile per procedere da capo dopo un tentativo di merge fallito."
+      "docs": "Ripristina il workspace ed il repository locale allo stato del branch remoto specificato. Utilizzare `reset &#8209;&#8209;hard origin/main` per cancellare tutti i commit del main branch locale. Utile per procedere da capo dopo un tentativo di merge fallito."
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",
@@ -187,8 +187,8 @@
       "stash": "Uno spazio in cui conservare le modifiche mentre si lavora a qualcos'altro.",
       "workspace": "Lo spazio di lavoro locale (la cartella nella quale si lavora). Spesso è noto anche come \"working tree\".",
       "index": "Uno spazio che contiene i file pronti per essere committati. Spesso è noto anche come \"current directory cache\", \"cache\" o \"staging area\". I file al suo interno spesso sono noti anche come \"staged files\".",
-      "local_repo": "Uno spazio che contiene tutti i file committati e le informazioni sui branch. Si presenta come una sotto-cartella denominata `.git`. I nomi tipici per i branch usati qui sono: `master`, `feature-x`, `bugfix-y`.",
-      "remote_repo": "Uno spazio online che contiene tutte le varie versioni del progetto, accessibile anche agli altri sviluppatori. Il nome usato per identificare un repository remoto di solito è `origin`. I nomi tipici per i branch usati qui sono: `master`, `shared-feature-x`, `release-y`."
+      "local_repo": "Uno spazio che contiene tutti i file committati e le informazioni sui branch. Si presenta come una sotto-cartella denominata `.git`. I nomi tipici per i branch usati qui sono: `main`, `feature-x`, `bugfix-y`.",
+      "remote_repo": "Uno spazio online che contiene tutte le varie versioni del progetto, accessibile anche agli altri sviluppatori. Il nome usato per identificare un repository remoto di solito è `origin`. I nomi tipici per i branch usati qui sono: `main`, `shared-feature-x`, `release-y`."
     }
   }
 }

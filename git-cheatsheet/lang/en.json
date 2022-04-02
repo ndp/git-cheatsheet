@@ -106,7 +106,7 @@
     },
     "clone x": {
       "cmd": "clone <repo>",
-      "docs": "Download the repository specified by <repo> and checkout `HEAD` of the master branch."
+      "docs": "Download the repository specified by <repo> and checkout `HEAD` of the main branch."
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -114,7 +114,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "Reset local repo and working tree to match a remote-tracking branch. Use `reset &#8209;&#8209;hard origin/master` to throw away all commits to the local master branch. Use this to start over on a failed merge."
+      "docs": "Reset local repo and working tree to match a remote-tracking branch. Use `reset &#8209;&#8209;hard origin/main` to throw away all commits to the local main branch. Use this to start over on a failed merge."
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",
@@ -184,11 +184,11 @@
     "local_repo": "local repository",
     "remote_repo": "upstream repository",
     "docs": {
-      "stash": "A place to hide modifications while you work on something else",
-      "workspace": "Local checkout",
-      "index": "Files you want to commit. Before you “commit” (checkin) files, you need to first add them to the index. Also called \"current directory cache\", \"staging area\", \"cache\" or \"staged files\".",
-      "local_repo": "A subdirectory named `.git` that contains all of your necessary repository files — a Git repository skeleton. Typical branches: `master`, `feature-x`, `bugfix-y`",
-      "remote_repo": "Versions of your project that are hosted on the Internet or network, ensuring all your changes are available for other developers. The default name is `origin`. Typical branches here: `master`, `shared-feature-x`, `release-y`"
+      "stash": "A place to hide modifications while you work on something else.",
+      "workspace": "Local checkout of your code. Also called 'Working Copy' or just 'checkout'.",
+      "index": "A staging are for file changes to commit. Before you “commit” (or checkin) files, you need to first add them to the index. This is also called \"current directory cache\", \"staging area\", \"cache\" or \"staged files\".",
+      "local_repo": "A directory named `.git` that contains all of your necessary repository files — a Git repository skeleton. Typical branches: `main`, `master`, `feature-x`, `bugfix-y`. The local repository has exactly the same features and functionality as any other Git repository.",
+      "remote_repo": "A repository of your code to share and collaborate with other developers. It's hosted on some the Internet or a remote, eg. Github. The default name is `origin`. Typical branches here: `main`, `master`, `shared-feature-x`, `release-y`. Also called 'remote repository', or just 'remote'."
     }
   }
 }

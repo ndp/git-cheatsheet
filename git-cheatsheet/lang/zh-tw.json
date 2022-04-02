@@ -106,7 +106,7 @@
     },
     "clone x": {
       "cmd": "clone <repo>",
-      "docs": "下載 `<repo>` 指定的版本倉庫，並在工作區中檢出主要分支（通常為 `master` 或 `main` 分支）的 `HEAD` 紀錄"
+      "docs": "下載 `<repo>` 指定的版本倉庫，並在工作區中檢出主要分支（通常為 `main` 或 `main` 分支）的 `HEAD` 紀錄"
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -114,7 +114,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "重置本地版本倉庫，讓它與遠端版本一致；可以使用 `reset --hard origin/master` 來丟棄所有的本地改動，通常會使用這個指令來處理失敗的合併，紀錄會直接從遠端倉庫開始"
+      "docs": "重置本地版本倉庫，讓它與遠端版本一致；可以使用 `reset --hard origin/main` 來丟棄所有的本地改動，通常會使用這個指令來處理失敗的合併，紀錄會直接從遠端倉庫開始"
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",
@@ -187,8 +187,8 @@
       "stash": "當你去修改其他東西時，用來隱藏（臨時保存）當前修改內容的地方",
       "workspace": "本地專案中存放原始檔案的資料夾，即本地檢出（Local checkout）",
       "index": "保存你所要提交（commit）的檔案。在提交檔案之前，你必須先將這些檔案添加到 Index 中，因此又稱為「當前目錄快取（current directory cache）」、「暫存區域（staging area）」、「快取（cache）」或「暫存檔案（staged files）」",
-      "local_repo": "有一個名稱為 `.git` 的子目錄，用以保存版本倉庫所需要的全部資訊 —— 亦即 Git 倉庫的骨架。一般典型的分支（branch）會有：`master`, `feature-x`, `bugfix-y` 等",
-      "remote_repo": "存放於區域網路或網際網路上，供其他開發者使用的版本倉庫，預設名稱為 `origin`。一般典型的分支（branch）會有：`master`, `feature-x`, `bugfix-y` 等"
+      "local_repo": "有一個名稱為 `.git` 的子目錄，用以保存版本倉庫所需要的全部資訊 —— 亦即 Git 倉庫的骨架。一般典型的分支（branch）會有：`main`, `feature-x`, `bugfix-y` 等",
+      "remote_repo": "存放於區域網路或網際網路上，供其他開發者使用的版本倉庫，預設名稱為 `origin`。一般典型的分支（branch）會有：`main`, `feature-x`, `bugfix-y` 等"
     }
   }
 }

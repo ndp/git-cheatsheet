@@ -9,8 +9,8 @@
       "stash": "Un lugar para ocultar cambios mientras trabajas en otra cosa",
       "workspace": "Espacio de trabajo: archivos locales posicionados en una rama",
       "index": "El index (o \"staging area\") contiene una captura del contenido del árbol de trabajo. Esta captura representa a los contenidos del próximo commit.",
-      "local_repo": "Un subdirectorio llamado .git que contiene todos los archivos necesarios — un esqueleto del repositorio Git. Ramas típicas: `master`, `feature-x`, `bugfix-y`",
-      "remote_repo": "Version(es) del proyecto que están alojadas en Internet o una red, asegurando que todos los cambios están disponibles para otros desarrolladores. Por defecto es \"origin\". Ramas típicas aquí son: `master`, `shared-feature-x`, `release-y`"
+      "local_repo": "Un subdirectorio llamado .git que contiene todos los archivos necesarios — un esqueleto del repositorio Git. Ramas típicas: `main`, `feature-x`, `bugfix-y`",
+      "remote_repo": "Version(es) del proyecto que están alojadas en Internet o una red, asegurando que todos los cambios están disponibles para otros desarrolladores. Por defecto es \"origin\". Ramas típicas aquí son: `main`, `shared-feature-x`, `release-y`"
     }
   },
   "commands": {
@@ -120,7 +120,7 @@
     },
     "clone x": {
       "cmd": "clone <repo>",
-      "docs": "Descarga el repositorio especificado por <repo> y posiciona el `HEAD` en la rama master."
+      "docs": "Descarga el repositorio especificado por <repo> y posiciona el `HEAD` en la rama main."
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -128,7 +128,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "Equipara el espacio de trabajo y el index con una rama remota. Usar `reset &#8209;&#8209;hard origin/master` para descartar todos los commits en la rama local master. Se puede utilizar para comenzar de nuevo desde una combinación/merge fallida."
+      "docs": "Equipara el espacio de trabajo y el index con una rama remota. Usar `reset &#8209;&#8209;hard origin/main` para descartar todos los commits en la rama local main. Se puede utilizar para comenzar de nuevo desde una combinación/merge fallida."
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",

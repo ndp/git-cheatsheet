@@ -106,7 +106,7 @@
     },
     "clone x": {
       "cmd": "clone <repo>",
-      "docs": "Tải một kho chứa chỉ định bởi đường dẫn <repo> về và checkout sang `HEAD` của nhánh master."
+      "docs": "Tải một kho chứa chỉ định bởi đường dẫn <repo> về và checkout sang `HEAD` của nhánh main."
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -114,7 +114,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "Đặt lại kho chứa cục bộ và cây thư mục để khớp với một nhánh được theo dõi trên remote. Sử dụng `reset &#8209;&#8209;hard origin/master` để bỏ qua tất cả các commit của nhánh master cục bộ. Hãy sử dụng tuỳ chọn này nếu cần thực hiện lại một quá trình sát nhập lỗi."
+      "docs": "Đặt lại kho chứa cục bộ và cây thư mục để khớp với một nhánh được theo dõi trên remote. Sử dụng `reset &#8209;&#8209;hard origin/main` để bỏ qua tất cả các commit của nhánh main cục bộ. Hãy sử dụng tuỳ chọn này nếu cần thực hiện lại một quá trình sát nhập lỗi."
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",
@@ -187,8 +187,8 @@
       "stash": "Nơi lưu trữ, cất giấu những chỉnh sửa chưa hoàn thiện khi bạn đang thực hiện một công việc khác.",
       "workspace": "Không gian làm việc cục bộ của người dùng.",
       "index": "Nơi chứa các tệp bạn muốn commit. Trước khi thực hiện \"commit\" các thay đổi, bạn cần thêm chúng vào vùng chỉ mục. Vùng này cũng có thể được gọi là \"vùng staging\", \"cache\", hay các \"tệp staged\".",
-      "local_repo": "Gồm có thư mục con có tên `.git` chứa tất cả các tệp cần thiết của kho chứa — một bộ khung cho kho chứa Git. Các nhánh thường có tên: `master`, `feature-x`, `bugfix-y`",
-      "remote_repo": "Các phiên bản của dự án được lưu trữ trên mạng Internet, giúp đảm bảo rằng tất cả các cập nhật của bạn có thể được truy cập bởi các nhà phát triển khác. Tên mặc định của kho chứa này là `origin`. Các nhánh thường có tên: `master`, `shared-feature-x`, `release-y`"
+      "local_repo": "Gồm có thư mục con có tên `.git` chứa tất cả các tệp cần thiết của kho chứa — một bộ khung cho kho chứa Git. Các nhánh thường có tên: `main`, `feature-x`, `bugfix-y`",
+      "remote_repo": "Các phiên bản của dự án được lưu trữ trên mạng Internet, giúp đảm bảo rằng tất cả các cập nhật của bạn có thể được truy cập bởi các nhà phát triển khác. Tên mặc định của kho chứa này là `origin`. Các nhánh thường có tên: `main`, `shared-feature-x`, `release-y`"
     }
   }
 }

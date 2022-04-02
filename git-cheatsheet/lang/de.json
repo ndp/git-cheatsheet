@@ -21,11 +21,11 @@
       "docs": "Fügt geänderte (NICHT NEUE) Dateien dem Index hinzu. Das ist ähnlich dem, was ein `git commit -a` vor dem Commit macht."
     },
     "rm x": {
-      "cmd": "rm <Datei(en)...>",
+      "cmd": "rm <Datei(en)…>",
       "docs": "Entfernt eine Datei aus der Arbeitskopie und dem Index."
     },
     "mv x": {
-      "cmd": "mv <Datei(en)...>",
+      "cmd": "mv <Datei(en)…>",
       "docs": "Verschiebt eine Datei in der Arbeitskopie und dem Index."
     },
     "commit -a": {
@@ -33,11 +33,11 @@
       "docs": "Fügt automatisch alle geänderten und gelöschte Dateien dem Index hinzu und committet diese dann. Neue Dateien bleiben unberücksichtigt."
     },
     "checkout x": {
-      "cmd": "checkout <Datei(en)... oder Verzeichnis>",
+      "cmd": "checkout <Datei(en)… oder Verzeichnis>",
       "docs": "Aktualisiert die Datei oder das Verzeichnis in der Arbeitskopie vom lokalen Repository. Arbeitet auf dem aktuellen Branch."
     },
     "reset head x": {
-      "cmd": "reset HEAD <Datei(en)...>",
+      "cmd": "reset HEAD <Datei(en)…>",
       "docs": "Entfernt die <Datei(en)> aus dem Index, in der Arbeitskopie bleibt die Änderung erhalten."
     },
     "reset --soft head^": {
@@ -106,7 +106,7 @@
     },
     "clone x": {
       "cmd": "clone <Repository>",
-      "docs": "Kopiert das <Repository> in ein neues Verzeichnis und checkt den master Branch aus. Der Remote-Tracking-Branch verweist auf das Quell-Repository."
+      "docs": "Kopiert das <Repository> in ein neues Verzeichnis und checkt den main Branch aus. Der Remote-Tracking-Branch verweist auf das Quell-Repository."
     },
     "pull x x": {
       "cmd": "pull <remote> <refspec>",
@@ -114,7 +114,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <remote>/<branch>",
-      "docs": "Setzt das lokale Repository und die Arbeitskopie auf den Stand des Remote Repositories. Zum Beispiel verwirft `reset &#8209;&#8209;hard origin/master` alle Änderungen am lokalen master-Branches."
+      "docs": "Setzt das lokale Repository und die Arbeitskopie auf den Stand des Remote Repositories. Zum Beispiel verwirft `reset &#8209;&#8209;hard origin/main` alle Änderungen am lokalen main-Branches."
     },
     "fetch x x": {
       "cmd": "fetch <remote> <refspec>",
@@ -187,7 +187,7 @@
       "stash": "Hier können Änderungen \"geparkt\" werden, während man an etwas anderem arbeitet",
       "workspace": "Checkout des lokalen Repositories",
       "index": "Zu commitende Dateien. Vor einem \"commit\" (checkin), müssen die Dateien zuerst zu dem Index hinzugefügt werden. Wird auch \"staging area\" oder \"staged files\" genannt.",
-      "local_repo": "Der lokale clone des Remote Repositories. Es wird in dem Verzeichnis `.git` verwaltet. Typische Branches sind: `master`, `feature-x`, `bugfix-y`",
+      "local_repo": "Der lokale clone des Remote Repositories. Es wird in dem Verzeichnis `.git` verwaltet. Typische Branches sind: `main`, `feature-x`, `bugfix-y`",
       "remote_repo": "Der Ursprung des lokalen Repositories. Durch ein `clone` wird es automatisch als `origin` gesetzt."
     }
   }

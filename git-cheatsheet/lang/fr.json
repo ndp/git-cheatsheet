@@ -9,8 +9,8 @@
       "stash": "Un endroit où remiser des modifications pendant que vous travaillez sur autre chose",
       "workspace": "L'espace de travail local",
       "index": "L'index (ou \"zone de transit\") maintient un instantané de l'espace de travail qui servira de base pour le prochain commit.",
-      "local_repo": "Un sous-répertoire nommé .git qui contient tous les fichiers nécessaires au référentiel. Branches typiques : `master`, `fonction-x`, `correctif-y`",
-      "remote_repo": "Versions de votre projet qui sont hébergés sur le réseau ou Internet, pour mettre toutes vos modifications à la disposition d'autres développeurs. Par défaut «origin». Branches typiques : `master`, `fonction-x-partagée`, `version-y`"
+      "local_repo": "Un sous-répertoire nommé .git qui contient tous les fichiers nécessaires au référentiel. Branches typiques : `main`, `fonction-x`, `correctif-y`",
+      "remote_repo": "Versions de votre projet qui sont hébergés sur le réseau ou Internet, pour mettre toutes vos modifications à la disposition d'autres développeurs. Par défaut «origin». Branches typiques : `main`, `fonction-x-partagée`, `version-y`"
     }
   },
   "commands": {
@@ -120,7 +120,7 @@
     },
     "clone x": {
       "cmd": "clone <dépôt_distant>",
-      "docs": "Télécharge le DÉPÔT_DISTANT et se positionne sur la TÊTE de sa branche master."
+      "docs": "Télécharge le DÉPÔT_DISTANT et se positionne sur la TÊTE de sa branche main."
     },
     "pull x x": {
       "cmd": "pull <dépôt_distant> <référence>",
@@ -128,7 +128,7 @@
     },
     "reset --hard x/x": {
       "cmd": "reset --hard <dépôt_distant> <branche>",
-      "docs": "Réinitialise l'ESPACE_DE_TRAVAIL et le DÉPÔT_LOCAL pour les faire correspondre à la BRANCHE du DÉPÔT_DISTANT. Utilisez 'git reset --hard origin/master' pour rejeter tous les commits du DÉPÔT_LOCAL. Utilisez ceci pour reprendre après une fusion qui a échoué."
+      "docs": "Réinitialise l'ESPACE_DE_TRAVAIL et le DÉPÔT_LOCAL pour les faire correspondre à la BRANCHE du DÉPÔT_DISTANT. Utilisez 'git reset --hard origin/main' pour rejeter tous les commits du DÉPÔT_LOCAL. Utilisez ceci pour reprendre après une fusion qui a échoué."
     },
     "fetch x x": {
       "cmd": "fetch <dépôt_distant> <référence>",
