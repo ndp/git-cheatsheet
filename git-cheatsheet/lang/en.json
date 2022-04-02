@@ -42,7 +42,7 @@
     },
     "reset --soft head^": {
       "cmd": "reset --soft HEAD^",
-      "docs": "Undo the last commit, leaving changes in the index."
+      "docs": "Undo the last commit, leaving its changes in the workspace, uncommitted."
     },
     "reset --hard": {
       "cmd": "reset --hard",
