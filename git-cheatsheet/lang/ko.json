@@ -136,8 +136,8 @@
       "cmd": "branch -r",
       "docs": "원격 branch를 보여줍니다."
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
       "docs": "원격 브런치를 삭제합니다. 글자 그대로 \"이 지점에 아무것도 보내지마라.\" 입니다."
     },
     "clean": {

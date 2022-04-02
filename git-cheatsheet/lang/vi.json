@@ -136,8 +136,8 @@
       "cmd": "branch -r",
       "docs": "Liệt kê các nhánh remote."
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
       "docs": "Xoá một nhánh remote, theo đúng nghĩa đen ký hiệu bởi câu lệnh \"không đẩy bất cứ gì lên nhánh này nữa\"."
     },
     "clean": {

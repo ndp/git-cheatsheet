@@ -136,8 +136,8 @@
       "cmd": "branch -r",
       "docs": "Zeigt die Branches des Remote Repositories"
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
       "docs": "Löscht den Branch im Remote Repository."
     },
     "clean": {

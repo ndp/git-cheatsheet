@@ -61,8 +61,8 @@
       "docs": "Merge changes from <branch name> into current branch.\rUse `&#8209;&#8209;no-commit` to leave changes uncommitted. Use `--no-ff` to create a merge commit even if the merge resolves as a fast forward."
     },
     "rebase x": {
-      "cmd": "rebase <upstream>",
-      "docs": "Reverts all commits since the current branch diverged from <upstream>, and then re-applies them one-by-one on top of changes from the `HEAD` of <upstream>."
+      "cmd": "rebase <upstream branch>",
+      "docs": "Reverts all commits since the current branch diverged from <upstream branch>, and then re-applies them one-by-one on top of changes from the `HEAD` of <upstream branch>."
     },
     "cherry-pick x": {
       "cmd": "cherry-pick <commit>",
@@ -101,7 +101,7 @@
       "docs": "Delete an specified branch. Use `-D` to force."
     },
     "branch --track x x": {
-      "cmd": "branch --track <new> <remote/branch>",
+      "cmd": "branch --track <new branch name> <remote>/<branch>",
       "docs": "Create a new local branch from a remote-tracking branch."
     },
     "clone x": {
@@ -129,16 +129,16 @@
       "docs": "Push new (or existing) branch to remote repository"
     },
     "push x x:x": {
-      "cmd": "push <remote> <branch>:<branch>",
-      "docs": "Push new branch to remote repository with a different name"
+      "cmd": "push <remote> <local>:<name>",
+      "docs": "Push a branch to remote repository with a different name. <local> is the local branch name, and <name> is the branch name in the remote repository."
     },
     "branch -r": {
       "cmd": "branch -r",
       "docs": "List remote branches"
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
-      "docs": "Remove a remote branch. Literally \"push nothing to this branch\"."
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
+      "docs": "Remove a remote branch."
     },
     "clean": {
       "cmd": "clean",

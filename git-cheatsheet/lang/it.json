@@ -136,9 +136,9 @@
       "cmd": "branch -r",
       "docs": "Elenca i branch remoti."
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
-      "docs": "Elimina un branch remoto. Letteralmente \"invia nulla a questo branch\"."
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
+      "docs": "Elimina un branch remoto."
     },
     "clean": {
       "cmd": "clean",

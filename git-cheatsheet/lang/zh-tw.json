@@ -136,8 +136,8 @@
       "cmd": "branch -r",
       "docs": "顯示遠端倉庫分支"
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
       "docs": "刪除一個遠端分支，通過向遠端分支推送空內容"
     },
     "clean": {

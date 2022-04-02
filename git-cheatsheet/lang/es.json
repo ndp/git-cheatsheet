@@ -150,9 +150,9 @@
       "cmd": "branch -r",
       "docs": "Lista las ramas remotas"
     },
-    "push x :x": {
-      "cmd": "push <remote> :<branch>",
-      "docs": "Elimina una rama remota. Literalmente &quot;envía nada a ese branch&quot; "
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
+      "docs": "Elimina una rama remota."
     },
     "clean": {
       "cmd": "clean",

@@ -245,7 +245,7 @@ export const commands = [
     "left":      "remote_repo",
     "right":     "remote_repo",
     "direction": "status",
-    "key":       "push x :x",
+    "key":       "push --delete",
     "tags":      "Sharing and Updating",
   },
   {
@@ -451,8 +451,8 @@ export const translations = {
         "docs": "Push new branch to remote repository with a different name",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "List remote branches" },
-      "push x :x":          {
-        "cmd":  "push <remote> :<branch>",
+      "push --delete":          {
+        "cmd":  "push <remote> --delete <branch>",
         "docs": "Remove a remote branch. Literally \"push nothing to this branch\".",
       },
       "clean":              {
@@ -639,8 +639,8 @@ export const translations = {
         "docs": "Pousse la nouvelle BRANCHE_1 vers le DÉPÔT_DISTANT en la renommant BRANCHE_2.",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "Liste les branches distantes." },
-      "push x :x":          {
-        "cmd":  "push <dépôt_distant> :<branche>",
+      "push --delete":          {
+        "cmd":  "push <dépôt_distant> --delete <branche>",
         "docs": "Supprime la BRANCHE du DÉPÔT_DISTANT.",
       },
       "clean":              {
@@ -766,7 +766,7 @@ export const translations = {
       "push x x":           { "cmd": "push <remote> <branch>", "docs": "向远端版本库推送新的(已存在的)分支" },
       "push x x:x":         { "cmd": "push <remote> <branch>:<branch>", "docs": "向远端版本库推送分支，但是从不同的（本地）分支名" },
       "branch -r":          { "cmd": "branch -r", "docs": "显示远程端分支" },
-      "push x :x":          { "cmd": "push <remote> :<branch>", "docs": "删除一个远程分支，通过向远程分支推送空内容" },
+      "push --delete":          { "cmd": "push <remote> --delete <branch>", "docs": "删除一个远程分支，通过向远程分支推送空内容" },
       "clean":              { "cmd": "clean", "docs": "从当前文件夹开始递归清理不受版本管理的内容" },
       "stash push":         {
         "cmd":  "stash push [<msg>]",
@@ -932,8 +932,8 @@ export const translations = {
         docs: "向遠端版本倉庫推送分支，但是從不同的（本地）分支名稱推送",
       },
       "branch -r":          { cmd: "branch -r", docs: "顯示遠端倉庫分支" },
-      "push x :x":          {
-        cmd:  "push <remote> :<branch>",
+      "push --delete":          {
+        cmd:  "push <remote> --delete <branch>",
         docs: "刪除一個遠端分支，通過向遠端分支推送空內容",
       },
       clean:                {
@@ -1119,8 +1119,8 @@ export const translations = {
         "docs": "Envía una rama al repositorio remoto con otro nombre",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "Lista las ramas remotas" },
-      "push x :x":          {
-        "cmd":  "push <remote> :<branch>",
+      "push --delete":          {
+        "cmd":  "push <remote> --delete <branch>",
         "docs": "Elimina una rama remota. Literalmente &quot;envía nada a ese branch&quot; ",
       },
       "clean":              {
@@ -1305,8 +1305,8 @@ export const translations = {
         "docs": "Überträgt einen neuen Branch mit einem anderen Namen in das Remote Repository.",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "Zeigt die Branches des Remote Repositories" },
-      "push x :x":          {
-        "cmd":  "push <remote> :<branch>",
+      "push --delete":          {
+        "cmd":  "push <remote> --delete <branch>",
         "docs": "Löscht den Branch im Remote Repository.",
       },
       "clean":              {
@@ -1466,8 +1466,8 @@ export const translations = {
         "docs": "다른 이름으로 새로운 저장소를 원격 저장소로 업로드합니다.",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "원격 branch를 보여줍니다." },
-      "push x :x":          {
-        "cmd":  "push <remote> :<branch>",
+      "push --delete":          {
+        "cmd":  "push <remote> --delete <branch>",
         "docs": "원격 브런치를 삭제합니다. 글자 그대로 \"이 지점에 아무것도 보내지마라.\" 입니다.",
       },
       "clean":              {
@@ -1646,8 +1646,8 @@ export const translations = {
         "docs": "Invia un nuovo branch al repository remoto con un nome differente.",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "Elenca i branch remoti." },
-      "push x :x":          {
-        "cmd":  "push <remote> :<branch>",
+      "push --delete":          {
+        "cmd":  "push <remote> --delete <branch>",
         "docs": "Elimina un branch remoto. Letteralmente \"invia nulla a questo branch\".",
       },
       "clean":              {
@@ -1825,8 +1825,8 @@ export const translations = {
         "docs": "Đẩy một nhánh mới lên kho chứa remote với một tên gọi khác.",
       },
       "branch -r":          { "cmd": "branch -r", "docs": "Liệt kê các nhánh remote." },
-      "push x :x":          {
-        "cmd":  "push <remote> :<branch>",
+      "push --delete":          {
+        "cmd":  "push <remote> --delete <branch>",
         "docs": "Xoá một nhánh remote, theo đúng nghĩa đen ký hiệu bởi câu lệnh \"không đẩy bất cứ gì lên nhánh này nữa\".",
       },
       "clean":              {
