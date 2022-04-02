@@ -34,20 +34,24 @@ const css = {
     textDecoration: 'underline',
   },
   'em:before':            {
-    opacity: .5,
+    opacity: .6,
     content: '"‹"',
+    margin: '0 -2px',
   },
   'em:after':             {
-    opacity: .5,
+    opacity: .6,
     content: '"›"',
+    margin: '0 -2px',
   },
   'span.optional:before': {
-    opacity: .5,
+    opacity: .6,
     content: '"["',
+    margin: '0 -2px',
   },
   'span.optional:after':  {
-    opacity: .5,
+    opacity: .6,
     content: '"]"',
+    margin: '0 -2px',
   },
   '#hd':                  {
     '*':     {
