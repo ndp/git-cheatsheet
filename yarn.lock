@@ -2341,7 +2341,7 @@ __metadata:
     "@babel/core": "*"
     "@babel/preset-env": "*"
     browserlist: "*"
-    jasmine: "*"
+    jasmine: ^4.1.0
     jquery: "*"
     node-static: "*"
     webpack: "*"
@@ -2639,22 +2639,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jasmine-core@npm:~3.10.0":
-  version: 3.10.1
-  resolution: "jasmine-core@npm:3.10.1"
-  checksum: 77ee26aaf29576e982a2ebe6586218ff4d7cc4305ad18c400954bbdeb3c7987e9a4a8ac6d6548b65838852f325395fc901d69bf8c24bdccfbd67b263fbf5d4fd
+"jasmine-core@npm:^4.1.0":
+  version: 4.1.1
+  resolution: "jasmine-core@npm:4.1.1"
+  checksum: 0488f1ac38f2acbe54bfec57d2be8a4c63c9af1bb2076fbfe84008b79b6f26a54a1ca8bf4021bb0afc84ae1de2773356f69fdb9bd886a4717d1d3599b5e7eddb
   languageName: node
   linkType: hard
 
-"jasmine@npm:*":
-  version: 3.10.0
-  resolution: "jasmine@npm:3.10.0"
+"jasmine@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "jasmine@npm:4.1.0"
   dependencies:
     glob: ^7.1.6
-    jasmine-core: ~3.10.0
+    jasmine-core: ^4.1.0
   bin:
     jasmine: bin/jasmine.js
-  checksum: 38c534148238ae3fa1bdce0a22176e447eb2961eccd4513d3c52e8f2580dfe04655c25d6da955aa850402231e3d5f9f7d58ae55bbe6f23ac2e24d66b7045b2ab
+  checksum: 1654ad3de46c5575c1fcfbf0bd8f84c01dd468f03035431254e4efea8cb98cd74f9444307ac5f6ca2bd3821e6f0f6343ee739de1b891de39283bb0f17cae1621
   languageName: node
   linkType: hard
 
