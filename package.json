@@ -23,15 +23,15 @@
   },
   "homepage": "https://github.com/ndp/git-cheatsheet#readme",
   "devDependencies": {
-    "@babel/cli": "*",
-    "@babel/core": "*",
-    "@babel/preset-env": "*",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "browserlist": "*",
     "jasmine": "^4.1.0",
     "jquery": "*",
     "node-static": "*",
-    "webpack": "*",
-    "webpack-cli": "*"
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
   },
   "packageManager": "yarn@3.2.1"
 }
