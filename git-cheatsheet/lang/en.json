@@ -186,7 +186,7 @@
     "docs": {
       "stash": "A place to hide modifications while you work on something else.",
       "workspace": "Local checkout of your code. Also called 'Working Copy' or just 'checkout'.",
-      "index": "A staging are for file changes to commit. Before you “commit” (or checkin) files, you need to first add them to the index. This is also called \"current directory cache\", \"staging area\", \"cache\" or \"staged files\".",
+      "index": "A staging area for file changes to commit. Before you “commit” (or checkin) files, you need to first add them to the index. This is also called \"current directory cache\", \"staging area\", \"cache\" or \"staged files\".",
       "local_repo": "A directory named `.git` that contains all of your necessary repository files — a Git repository skeleton. Typical branches: `main`, `master`, `feature-x`, `bugfix-y`. The local repository has exactly the same features and functionality as any other Git repository.",
       "remote_repo": "A repository of your code to share and collaborate with other developers. It's hosted on some the Internet or a remote, eg. Github. The default name is `origin`. Typical branches here: `main`, `master`, `shared-feature-x`, `release-y`. Also called 'remote repository', or just 'remote'."
     }
