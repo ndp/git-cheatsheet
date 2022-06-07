@@ -115,7 +115,7 @@ function selectLoc (id) {
 function showDocsForCmdEl (cmdEl) {
   const $cmdEl = $(cmdEl),
         doc    = $cmdEl.next('dd').text() || '',
-        cmd    = 'git ' + $cmdEl.html()
+        cmd    = 'git&nbsp;' + $cmdEl.html()
 
   showDocs(doc, cmd)
 
@@ -388,6 +388,8 @@ function eachCommand (commands, f) {
   for (let c of commands) f({ cmd: c, el: document.getElementById(`cmd/${c.key}`) })
 }
 
+let direction = 'ltr'
+
 $(function () {
 
   $('.loc').append('<div class="bar" />')
@@ -399,8 +401,9 @@ $(function () {
       lang = 'en'
 
     $('html').attr('lang', lang)
-    $('body').css('direction', translations[lang].dir || 'ltr')
-    $('body').attr('dir', translations[lang].dir || 'ltr')
+    direction = translations[lang].dir || 'ltr'
+    $('body').css('direction', direction)
+    $('body').attr('dir', direction)
     $('[data-lang]').removeClass('selected')
     $('[data-lang=' + lang + ']').addClass('selected')
 
