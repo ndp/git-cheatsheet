@@ -1,23 +1,13 @@
-import jQuery from 'jquery';
+import jQuery                              from 'jquery'
+import { detectLanguage, esc, next, prev } from './base.mjs'
+
+import { commands, locations } from './commands.mjs'
+
+import { cookies } from './cookies.mjs'
+
 const $          = jQuery
 const Rx         = require('./lib/rx.lite')
 const Observable = Rx.Observable
-
-import {
-  next,
-  prev,
-  esc,
-  detectLanguage
-} from './base.mjs'
-
-import {
-  cookies
-} from './cookies.mjs'
-
-import {
-  commands,
-  locations,
-} from './commands.mjs'
 
 const en           = require('../git-cheatsheet/lang/en.json')
 const translations = { en }
