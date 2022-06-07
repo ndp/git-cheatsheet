@@ -318,28 +318,45 @@ function rebuildCommands (commands, translations) {
   }
 }
 
-function positionCommandsLtr (commands) {
-  const leftOffset = $('#commands').offset().left
 
-  for (let c of commands) {
-    const right = $("#" + c.right + " div.bar").offset().left - leftOffset
-    let left    = $("#" + c.left + " div.bar").offset().left - leftOffset
+
+function positionCommands (commands) {
+
+  function positionCommandsRtl ({ cmd, el }) {
+
+    let left  = bars[cmd.right].left
+    let right = bars[cmd.left].left
+
+    if ((right - left) < 1) {
+      left -= Math.min(90, left + 10)
+      right = left + 220
+    } else {
+      left += 20
+    }
+
+    $(el)
+      .css('width', right - left + 'px')
+      .css('right', `${cmds.offsetWidth - right}px`)
+  }
+
+  function positionCommandsLtr ({cmd, el}) {
+    const leftOffset = $('#commands').offset().left
+
+    const right = $('#' + cmd.right + ' div.bar').offset().left - leftOffset
+    let left    = $('#' + cmd.left + ' div.bar').offset().left - leftOffset
     let width   = right - left
     if (width < 1) {
       left -= Math.min(90, left + 10)
-      width = 220;
+      width = 220
     } else {
-      left += 10;
-      width -= 20;
+      left += 10
+      width -= 20
     }
 
-    $(document.getElementById(`cmd/${c.key}`))
+    $(el)
       .css('width', width + 'px')
       .css('left', left + 'px')
   }
-}
-
-function positionCommandsRtl (commands) {
 
   const bars = {}
   eachLocation(loc => {
@@ -350,31 +367,8 @@ function positionCommandsRtl (commands) {
     }
   })
   const cmds = document.getElementById('commands')
-  const rightOffset = cmds.offsetWidth
 
-  eachCommand(commands, ({cmd, el}) => {
-    let left  = bars[cmd.right].left
-    let right = bars[cmd.left].left
-
-    if ((right - left) < 1) {
-      left -= Math.min(90, left + 10)
-      right = left + 220
-    } else {
-      left += 20
-      // right += 20
-    }
-
-    $(el)
-      .css('width', right - left + 'px')
-      .css('right', `${rightOffset - right}px`)
-  })
-}
-
-function positionCommands (commands) {
-  if ($('body').attr('dir') === 'rtl')
-    positionCommandsRtl(commands)
-  else
-    positionCommandsLtr(commands)
+  eachCommand(commands, $('body').attr('dir') === 'rtl' ? positionCommandsRtl : positionCommandsLtr)
 }
 
 async function loadTranslations (lang) {
