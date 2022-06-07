@@ -242,16 +242,16 @@ clickLoc$
   .merge(specificLoc$)
   .subscribe(selectLoc)
 
-const keyDownNextCmd$ = keydown$
-  .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
-  .tap(e => e.preventDefault())
-
 const visibleCmds = () => {
   let curr = $('#diagram .loc.current')
   return curr
          ? $(`#commands > dt.${curr.attr('id')}`).toArray()
          : $(`#commands > dt`).toArray()
 }
+
+const keyDownNextCmd$ = keydown$
+  .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
+  .tap(e => e.preventDefault())
 
 const nextCmd$ = keyDownNextCmd$
   .map(() => next(visibleCmds(), $('#commands>dt.selected')[0]))
