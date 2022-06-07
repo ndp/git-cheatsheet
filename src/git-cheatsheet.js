@@ -330,11 +330,8 @@ function positionCommands (commands) {
   }
 
   function positionCommandsLtr ({cmd, el}) {
-    const leftOffset = $('#commands').offset().left
-
-    const right = $('#' + cmd.right + ' div.bar').offset().left - leftOffset
-    let left    = $('#' + cmd.left + ' div.bar').offset().left - leftOffset
-    let width   = right - left
+    let left    = bars[cmd.left].left
+    let width   = bars[cmd.right].left - left
     if (width < 1) {
       left -= Math.min(90, left + 10)
       width = 220
