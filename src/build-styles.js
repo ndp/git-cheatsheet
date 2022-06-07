@@ -233,7 +233,7 @@ const css = {
   },
   // TBD Not sure how this actually works, so I'm asking
   'body[dir=rtl]': {
-    '#commands > dt, body[dir=rtl] .cmd': {
+    '#commands > dt, #info .cmd': {
       direction: 'ltr',
       textAlign: 'right',
     },
