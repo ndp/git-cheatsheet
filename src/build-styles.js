@@ -62,7 +62,7 @@ const css = {
       font: '50px ImpactLabelRegular, ImpactLabelReversedRegular, verdana',
     },
     h2:      {
-      textAlign:       'right',
+      textAlign:       'end',
       position:        'absolute',
       right:           '0',
       top:             44,
@@ -76,12 +76,12 @@ const css = {
       li:           {
         font:      '16px/20px ' + monospaced,
         display:   'block',
-        textAlign: 'right',
+        textAlign: 'end',
         color:     colors.local_repo.lighten(10).saturate(-40),
       },
     },
     h6:      {
-      textAlign: 'right',
+      textAlign: 'end',
       color:     colors.local_repo.saturate(-60).lighten(10),
       position:  'fixed',
       bottom:    3,
@@ -258,7 +258,7 @@ const css = {
       marginTop:   -2,
       width:       '100%',
       color:       'black',
-      textAlign:   'left',
+      textAlign:   'start',
       lineHeight: 24,
       '> span':   {
         padding:    '3px 10px 3px 0',
