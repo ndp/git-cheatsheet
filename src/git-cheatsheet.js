@@ -312,7 +312,9 @@ function rebuildCommands (commands, translations) {
 
 function positionCommands (commands) {
 
-  function positionCommandsRtl ({ cmd, el }) {
+  const cmds = document.getElementById('commands')
+
+  function rtl ({ cmd, el }) {
 
     let left  = bars[cmd.right].left
     let right = bars[cmd.left].left
@@ -329,7 +331,7 @@ function positionCommands (commands) {
       .css('right', `${cmds.offsetWidth - right}px`)
   }
 
-  function positionCommandsLtr ({cmd, el}) {
+  function ltr ({cmd, el}) {
     let left    = bars[cmd.left].left
     let width   = bars[cmd.right].left - left
     if (width < 1) {
@@ -353,9 +355,8 @@ function positionCommands (commands) {
       left: bar.offsetLeft + bar.querySelector('div.bar').offsetLeft,
     }
   })
-  const cmds = document.getElementById('commands')
 
-  eachCommand(commands, $('body').attr('dir') === 'rtl' ? positionCommandsRtl : positionCommandsLtr)
+  eachCommand(commands, $('body').attr('dir') === 'rtl' ? rtl : ltr)
 }
 
 async function loadTranslations (lang) {
