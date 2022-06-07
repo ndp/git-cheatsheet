@@ -230,6 +230,17 @@ const css = {
       },
     },
   },
+  // TBD Not sure how this actually works, so I'm asking
+  'body[dir=rtl]': {
+    '#commands > dt, body[dir=rtl] .cmd': {
+      direction: 'ltr',
+      textAlign: 'right',
+    },
+    '#hd h2':                                   {
+      right: 'auto',
+      left:  0,
+    },
+  },
   '#info':                {
     position:    'fixed',
     bottom:      0,
