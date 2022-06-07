@@ -291,6 +291,7 @@ const css = {
       width:       'calc(100% - 40px)',
       maxWidth:    '70ex',
       marginLeft:    20,
+      marginRight:    20,
       color:       'black',
       'em,b,code': {
         font: '400 16px/22px ' + monospaced,
