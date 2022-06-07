@@ -24,6 +24,7 @@ const css = {
     margin:     0,
     padding:    0,
     background: 'url(images/vCanvas.jpg)',
+    boxSizing: 'border-box'
   },
   'a,a:link,a:visited':   {
     color:          colors.local_repo,
