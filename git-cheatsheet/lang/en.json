@@ -1,4 +1,5 @@
 {
+  "dir": "ltr",
   "commands": {
     "status": {
       "cmd": "status",
