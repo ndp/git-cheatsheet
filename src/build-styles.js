@@ -233,6 +233,24 @@ const css = {
   },
   // TBD Not sure how this actually works, so I'm asking
   'body[dir=rtl]': {
+    '#commands':            {
+      '> dt':   {
+        '&.up':             {
+          color:      upColor.lighten(50),
+          '> .arrow': {
+            right: 'auto',
+            left: '-18px',
+          },
+        },
+        '&.dn':             {
+          color:      dnColor.lighten(50),
+          '> .arrow': {
+            left: 'auto',
+            right: '-18px',
+          },
+        },
+      },
+    },
     '#commands > dt, #info .cmd': {
       direction: 'ltr',
       textAlign: 'right',
@@ -328,17 +346,29 @@ const css = {
   const colorLeft         = colors[valueLeft].saturate(-10).darken(10)
   const colorLeftSelected = colorLeft.darken(10)
 
-  css[`#commands > dt.up.right-${valueLeft} > .arrow`]          = {
+  css[`body[dir=ltr] #commands > dt.up.right-${valueLeft} > .arrow`]          = {
     'border-left-color': colorLeft,
   }
-  css[`#commands > dt.selected.up.right-${valueLeft} > .arrow`] = {
-    'border-left-color': colorLeftSelected,
-  }
-  css[`#commands > dt.dn.left-${valueLeft} > .arrow`]           = {
+  css[`body[dir=rtl] #commands > dt.up.right-${valueLeft} > .arrow`]          = {
     'border-right-color': colorLeft,
   }
-  css[`#commands > dt.selected.dn.left-${valueLeft} > .arrow`]  = {
+  css[`body[dir=ltr] #commands > dt.selected.up.right-${valueLeft} > .arrow`] = {
+    'border-left-color': colorLeftSelected,
+  }
+  css[`body[dir=rtl] #commands > dt.selected.up.right-${valueLeft} > .arrow`] = {
     'border-right-color': colorLeftSelected,
+  }
+  css[`body[dir=ltr] #commands > dt.dn.left-${valueLeft} > .arrow`]           = {
+    'border-right-color': colorLeft,
+  }
+  css[`body[dir=rtl] #commands > dt.dn.left-${valueLeft} > .arrow`]           = {
+    'border-left-color': colorLeft,
+  }
+  css[`body[dir=ltr] #commands > dt.selected.dn.left-${valueLeft} > .arrow`]  = {
+    'border-right-color': colorLeftSelected,
+  };
+  css[`body[dir=rtl] #commands > dt.selected.dn.left-${valueLeft} > .arrow`]  = {
+    'border-left-color': colorLeftSelected,
   };
 
   ['stash', 'workspace', 'index', 'local_repo', 'remote_repo'].forEach(function (valueRight, index) {
@@ -346,11 +376,17 @@ const css = {
 
     const colorRight = colors[valueRight].saturate(-10).darken(10)
 
-    css[`#commands > dt.left-${valueLeft}.right-${valueRight}`]          = {
+    css[`body[dir=ltr] #commands > dt.left-${valueLeft}.right-${valueRight}`]          = {
       background: `linear-gradient(to right, ${colorLeft}, ${colorRight})`,
     }
-    css[`#commands > dt.selected.left-${valueLeft}.right-${valueRight}`] = {
+    css[`body[dir=ltr] #commands > dt.selected.left-${valueLeft}.right-${valueRight}`] = {
       background: `linear-gradient(to right, ${colorLeftSelected}, ${colorRight.darken(10)})`,
+    }
+    css[`body[dir=rtl] #commands > dt.left-${valueLeft}.right-${valueRight}`]          = {
+      background: `linear-gradient(to left, ${colorLeft}, ${colorRight})`,
+    }
+    css[`body[dir=rtl] #commands > dt.selected.left-${valueLeft}.right-${valueRight}`] = {
+      background: `linear-gradient(to left, ${colorLeftSelected}, ${colorRight.darken(10)})`,
     }
     // }
   })
