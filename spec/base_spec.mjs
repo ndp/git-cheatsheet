@@ -49,6 +49,9 @@ describe('git cheatsheet / base', function () {
     it('replaces [x] with <span>', function() {
       expect(esc('foo [bar] baz')).toEqual('foo <span class="optional">bar</span> baz')
     })
+    it('replaces multiple [x]s with <span>s', function() {
+      expect(esc('foo [bar] baz [bat]')).toEqual('foo <span class="optional">bar</span> baz <span class="optional">bat</span>')
+    })
     it('replaces `x=3` with <code>', function() {
       expect(esc('foo `x=3` baz')).toEqual('foo <code>x=3</code> baz')
       expect(esc('foo `x=3` baz `y=5`')).toEqual('foo <code>x=3</code> baz <code>y=5</code>')

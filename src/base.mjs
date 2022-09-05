@@ -24,8 +24,8 @@ export function esc(s) {
     .replace(/</g, 'zyx')
     .replace(/>/g, '</em>')
     .replace(/zyx/g, '<em>')
-    .replace('[', '<span class="optional">')
-    .replace(']', '</span>')
+    .replace(/\[/g, '<span class="optional">')
+    .replace(/]/g, '</span>')
     .replace(/`(.*?)`/g, '<code>' + "$1" + '</code>')
     .replace(/\r/g, '<br>');
 }
