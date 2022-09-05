@@ -33,7 +33,7 @@
       "docs": "提交上次提交之後的所有修改，但未被追蹤的文件（亦即所有暫存區中有記錄的文件）除外，並且會從暫存區刪除已在工作區刪除的文件"
     },
     "checkout x": {
-      "cmd": "checkout <files(s)... or dir>",
+      "cmd": "checkout <file(s)... or dir>",
       "docs": "更新工作區文件或目錄，這並不會切換分支（branch）"
     },
     "reset head x": {

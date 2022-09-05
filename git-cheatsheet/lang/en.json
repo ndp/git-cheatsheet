@@ -34,7 +34,7 @@
       "docs": "Commit all files changed since your last commit, except untracked files (i.e. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."
     },
     "checkout x": {
-      "cmd": "checkout <files(s)... or dir>",
+      "cmd": "checkout <file(s)... or dir>",
       "docs": "Updates the file or directory in the workspace. Does NOT switch branches."
     },
     "reset head x": {

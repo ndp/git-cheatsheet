@@ -33,7 +33,7 @@
       "docs": "提交上次提交之后的所有修改，1)未追踪的除外(即：所有暂存区有记录的文件)；2)从暂存区删除已在工作区删除的文件"
     },
     "checkout x": {
-      "cmd": "checkout <files(s)... or dir>",
+      "cmd": "checkout <file(s)... or dir>",
       "docs": "更新工作区文件或文件夹，<strong>不会</strong>切换分支"
     },
     "reset head x": {

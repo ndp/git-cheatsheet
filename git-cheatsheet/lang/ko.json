@@ -33,7 +33,7 @@
       "docs": "추적하지 않는 파일을 제외하고, 마지막 커밋 이후 인덱스에 나열된 모든 파일을 커밋합니다. 인덱스에서 삭제된 파일은 workspace에서 삭제됩니다."
     },
     "checkout x": {
-      "cmd": "checkout <files(s)... or dir>",
+      "cmd": "checkout <file(s)... or dir>",
       "docs": "Workspace에 있는 파일과 디렉토리를 업데이트 합니다. 브런치를 바꾸지 말아야합니다."
     },
     "reset head x": {

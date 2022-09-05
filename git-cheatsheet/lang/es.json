@@ -47,7 +47,7 @@
       "docs": "Realiza un commit con todos los cambios en los archivos desde el último commit, excluyendo los archivos no registrados (ej: todos los archivos que están listados en index). Elimina archivos en index que fueron eliminados del espacio de trabajo."
     },
     "checkout x": {
-      "cmd": "checkout <files(s)... or dir>",
+      "cmd": "checkout <file(s)... or dir>",
       "docs": "Actualiza el archivo o directorio en el espacio de trabajo. Esto NO cambia de rama."
     },
     "reset head x": {

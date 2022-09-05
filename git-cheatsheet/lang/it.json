@@ -33,7 +33,7 @@
       "docs": "Esegue un commit di tutti i file modificati dal commit precedente, eccetto quelli non tracciati (i.e. esegue un commit dei soli file che sono già presenti nell'indice). Rimuove dall'indice i file che sono stati rimossi dal workspace."
     },
     "checkout x": {
-      "cmd": "checkout <files(s)... or dir>",
+      "cmd": "checkout <file(s)... or dir>",
       "docs": "Aggiorna i file o le directory nel workspace. NON cambia branch."
     },
     "reset head x": {
