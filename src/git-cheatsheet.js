@@ -1,55 +1,45 @@
-import jQuery from 'jquery';
-const $ = jQuery
-const Rx = require ('./lib/rx.lite')
+import jQuery                              from 'jquery'
+import { detectLanguage, esc, next, prev } from './base.mjs'
+
+import { commands, locations } from './commands.mjs'
+
+import { cookies } from './cookies.mjs'
+
+const $          = jQuery
+const Rx         = require('./lib/rx.lite')
 const Observable = Rx.Observable
-
-import {
-  next,
-  prev,
-  esc,
-  detectLanguage
-} from './base.mjs'
-
-import {
-  cookies
-} from './cookies.mjs'
-
-import {
-  commands,
-  locations,
-} from './commands.mjs'
 
 const en           = require('../git-cheatsheet/lang/en.json')
 const translations = { en }
 
 let clickMode = false
 
-const KEY_1 = 49
-const KEY_2 = 50
-const KEY_3 = 51
-const KEY_4 = 52
-const KEY_5 = 53
-const KEY_H = 72
-const KEY_I = 73
-const KEY_J = 74
-const KEY_K = 75
-const KEY_L = 76
-const KEY_O = 79
-const KEY_R = 82
-const KEY_S = 83
-const KEY_W = 87
-const KEY_FN1 = 112
-const KEY_FN2 = 113
-const KEY_FN3 = 114
-const KEY_FN4 = 115
-const KEY_FN5 = 116
-const KEY_PAGE_UP = 38
-const KEY_PAGE_DN = 40
+const KEY_1         = 49
+const KEY_2         = 50
+const KEY_3         = 51
+const KEY_4         = 52
+const KEY_5         = 53
+const KEY_H         = 72
+const KEY_I         = 73
+const KEY_J         = 74
+const KEY_K         = 75
+const KEY_L         = 76
+const KEY_O         = 79
+const KEY_R         = 82
+const KEY_S         = 83
+const KEY_W         = 87
+const KEY_FN1       = 112
+const KEY_FN2       = 113
+const KEY_FN3       = 114
+const KEY_FN4       = 115
+const KEY_FN5       = 116
+const KEY_PAGE_UP   = 38
+const KEY_PAGE_DN   = 40
 const KEY_PAGE_LEFT = 37
 const KEY_PAGE_RGHT = 39
 
 
-function showDocs(doc, cmd) {
+function showDocs (doc, cmd) {
   const $info = $('#info')
   if (doc) {
     $info.find('.cmd').html('<span>' + cmd + '</span>');
@@ -77,7 +67,7 @@ function currentLoc () {
   return loc
 }
 
-function selectLoc(id) {
+function selectLoc (id) {
 
   id = id || ''
 
@@ -106,23 +96,23 @@ function selectLoc(id) {
                                   title,
                                   newUrl)
     } else {
-      window.location.href  = '#loc=' + id + ';'
+      window.location.href = '#loc=' + id + ';'
     }
-    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select-loc', eventLabel: id})
+    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select-loc', eventLabel: id })
   }
 }
 
 function showDocsForCmdEl (cmdEl) {
   const $cmdEl = $(cmdEl),
         doc    = $cmdEl.next('dd').text() || '',
-        cmd    = 'git ' + $cmdEl.html()
+        cmd    = 'git&nbsp;' + $cmdEl.html()
 
   showDocs(doc, cmd)
 
   return cmd
 }
 
-function selectCommand(newEl) {
+function selectCommand (newEl) {
   $('#commands>dt.selected').removeClass('selected')
 
   if (!newEl) return
@@ -131,7 +121,7 @@ function selectCommand(newEl) {
 
   const cmd = showDocsForCmdEl(newEl)
 
-  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: cmd})
+  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: cmd })
 }
 
 const popStateLoc$ = Observable.fromEvent(window, 'popstate')
@@ -163,41 +153,41 @@ const clickLoc$ = Observable.fromEvent(document, 'click', '#diagram .loc')
                             })
 
 const clickCmd$ = Observable.fromEvent(document, 'click', '#commands > dt')
-                    .map(function (ev) {
-                      return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
-                    })
-                    .filter(function (el) {
-                      return !!el
-                    })
-                    .map(function (el) {
-                      clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'))
-                      return clickMode ? el : '#nothing'
-                    })
-
-const mouseOverDataDoc$ = Observable.fromEvent(document, 'mousemove', '[data-docs]')
-                            .debounce(100)
-                            .filter(function (ev) {
-                              return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
-                            })
                             .map(function (ev) {
-                              return $(ev.target).is('[data-docs]') ? ev.target : $(ev.target).closest('[data-docs]').get(0)
+                              return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
                             })
                             .filter(function (el) {
-                              return !clickMode || !$(el).hasClass('loc')
+                              return !!el
                             })
-                            .distinctUntilChanged()
+                            .map(function (el) {
+                              clickMode = !clickMode || (clickMode && !$(el).hasClass('selected'))
+                              return clickMode ? el : '#nothing'
+                            })
+
+const mouseOverDataDoc$ = Observable.fromEvent(document, 'mousemove', '[data-docs]')
+                                    .debounce(100)
+                                    .filter(function (ev) {
+                                      return !$(ev.target).is('dt') && $(ev.target).closest('dt').length == 0
+                                    })
+                                    .map(function (ev) {
+                                      return $(ev.target).is('[data-docs]') ? ev.target : $(ev.target).closest('[data-docs]').get(0)
+                                    })
+                                    .filter(function (el) {
+                                      return !clickMode || !$(el).hasClass('loc')
+                                    })
+                                    .distinctUntilChanged()
 
 const mouseOverCmd$ = Observable.fromEvent(document, 'mousemove', '#commands>dt:not(:selected)')
-                        .filter(function () {
-                          return !clickMode
-                        })
-                        .map(function (ev) {
-                          return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
-                        })
-                        .filter(function (el) {
-                          return $(el).is('dt')
-                        })
-                        .distinctUntilChanged()
+                                .filter(function () {
+                                  return !clickMode
+                                })
+                                .map(function (ev) {
+                                  return $(ev.target).is('dt') ? ev.target : $(ev.target).closest('dt').get(0)
+                                })
+                                .filter(function (el) {
+                                  return $(el).is('dt')
+                                })
+                                .distinctUntilChanged()
 
 const keydown$ = Observable.fromEvent(document, 'keydown')
 
@@ -252,16 +242,16 @@ clickLoc$
   .merge(specificLoc$)
   .subscribe(selectLoc)
 
-const keyDownNextCmd$ = keydown$
-  .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
-  .tap(e => e.preventDefault())
-
 const visibleCmds = () => {
   let curr = $('#diagram .loc.current')
   return curr
          ? $(`#commands > dt.${curr.attr('id')}`).toArray()
          : $(`#commands > dt`).toArray()
 }
+
+const keyDownNextCmd$ = keydown$
+  .filter(e => e.keyCode === KEY_PAGE_DN || e.keyCode === KEY_J)
+  .tap(e => e.preventDefault())
 
 const nextCmd$ = keyDownNextCmd$
   .map(() => next(visibleCmds(), $('#commands>dt.selected')[0]))
@@ -282,11 +272,11 @@ nextCmd$
   .subscribe(selectCommand)
 
 mouseOverDataDoc$.subscribe(function (el) {
-  showDocsForElement(el);
-  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text()})
+  showDocsForElement(el)
+  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text() })
 })
 
-function translateLocations(lang) {
+function translateLocations (lang) {
   eachLocation(function (loc) {
     $('#' + loc)
       .attr('data-docs', esc(translations[lang].locations.docs[loc]))
@@ -318,25 +308,55 @@ function rebuildCommands (commands, translations) {
   }
 }
 
-function positionCommands(commands) {
-  const leftOffset = $('#commands').offset().left
 
-  for (let c of commands) {
-    const right = $("#" + c.right + " div.bar").offset().left - leftOffset
-    let left    = $("#" + c.left + " div.bar").offset().left - leftOffset
-    let width   = right - left
-    if (width < 1) {
+
+function positionCommands (commands) {
+
+  const cmds = document.getElementById('commands')
+
+  function rtl ({ cmd, el }) {
+
+    let left  = bars[cmd.right].left
+    let right = bars[cmd.left].left
+
+    if ((right - left) < 1) {
       left -= Math.min(90, left + 10)
-      width = 220;
+      right = left + 220
     } else {
-      left += 10;
-      width -= 20;
+      left += 20
     }
 
-    $(document.getElementById(`cmd/${c.key}`))
+    $(el)
+      .css('width', right - left + 'px')
+      .css('right', `${cmds.offsetWidth - right}px`)
+  }
+
+  function ltr ({cmd, el}) {
+    let left    = bars[cmd.left].left
+    let width   = bars[cmd.right].left - left
+    if (width < 1) {
+      left -= Math.min(90, left + 10)
+      width = 220
+    } else {
+      left += 10
+      width -= 20
+    }
+
+    $(el)
       .css('width', width + 'px')
       .css('left', left + 'px')
   }
+
+  const bars = {}
+  eachLocation(loc => {
+    const bar = document.getElementById(loc)
+    bars[loc] = {
+      bar,
+      left: bar.offsetLeft + bar.querySelector('div.bar').offsetLeft,
+    }
+  })
+
+  eachCommand(commands, $('body').attr('dir') === 'rtl' ? rtl : ltr)
 }
 
 async function loadTranslations (lang) {
@@ -348,21 +368,30 @@ async function loadTranslations (lang) {
 }
 
 
-function eachLocation(f) {
+function eachLocation (f) {
   locations.forEach(f)
 }
+
+function eachCommand (commands, f) {
+  for (let c of commands) f({ cmd: c, el: document.getElementById(`cmd/${c.key}`) })
+}
+
+let direction = 'ltr'
 
 $(function () {
 
   $('.loc').append('<div class="bar" />')
 
-  async function onChooseLang(lang) {
+  async function onChooseLang (lang) {
 
     // Fallback to English if the language is not translated
     if (!translations[lang] && !await loadTranslations(lang))
       lang = 'en'
 
     $('html').attr('lang', lang)
+    direction = translations[lang].dir || 'ltr'
+    $('body').css('direction', direction)
+    $('body').attr('dir', direction)
     $('[data-lang]').removeClass('selected')
     $('[data-lang=' + lang + ']').addClass('selected')
 
@@ -375,7 +404,7 @@ $(function () {
   }
 
   let lang = detectLanguage(navigator)
-  lang = onChooseLang(lang)
+  lang     = onChooseLang(lang)
 
   $('.lang').on('click', function () {
     const newLang = $(this).attr('data-lang')
@@ -390,5 +419,5 @@ $(function () {
     .debounce(333)
     .subscribe(() => positionCommands(commands))
 
-  if (currentLoc () === null) selectLoc('index')
-});
+  if (currentLoc() === null) selectLoc('index')
+})
