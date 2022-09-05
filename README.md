@@ -22,6 +22,23 @@ to others in the same endeavor.
 
 Comments and pull requests welcome.
 
+## To add a translation
+
+1. Determine the 2-letter language code (ISO 639-1). See the existing files in `git-cheatsheet/lang`.
+2. Create a new JSON file with the name of the code in `git-cheatsheet/lang`. Choose one of the other languages as a starting point.
+3. Write your translation. Use the exact identical property keys in the JSON structure. Only change the values.
+4. Add a link for users to choose the translation. In `git-cheatsheet.html`, insert (alphabetically) a new line that looks like:
+```
+<a class="lang" data-lang="vi" data-docs="Vietnamese translation by trgiangdo">vn</a>
+```
+5. Add your name to the README.md above.
+6. Test manually
+7. Create a pull request. Give me a couple days to reply, but then feel free to write.
+8. Once it's merged, tell people about it.
+
+Keep the PR restricted to changes related to the translation.
+
+
 ## Development
 
 I'm in the process of moving the source code into modern JS, and
