@@ -10,7 +10,7 @@
     "build-styles": "node ./src/build-styles.js",
     "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js ./git-cheatsheet/styles.css",
     "test": "jasmine spec/*_spec.mjs",
-    "start": "static -p 9090"
+    "start": "npx http-server"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,6 @@
     "browserlist": "*",
     "jasmine": "*",
     "jquery": "*",
-    "node-static": "*",
     "webpack": "*",
     "webpack-cli": "*"
   },
