@@ -1,0 +1,195 @@
+{
+  "dir": "ltr",
+  "commands": {
+    "status": {
+      "cmd": "status",
+      "docs": "Mosta: \r• Diferenças entre os arquivos na fila (staging ou index) e o commit atual `HEAD`, \r• Diferenças entre os arquivos na máquina local (workspace) e na fila (index), e \r• arquivos na máquina local que não são rastreados pelo git."
+    },
+    "diff": {
+      "cmd": "diff",
+      "docs": "Mosta a diferença entre os arquivos que ainda não foram adicionados à fila (index)."
+    },
+    "diff x": {
+      "cmd": "diff <commit ou branch>",
+      "docs": "Visualiza as diferenças que há entre o código na máquina local (workspace) relativo ao número do commit. É possível usar `HEAD` para comparar com o último commit, ou uma branch para comparar com outra."
+    },
+    "add x": {
+      "cmd": "add <file... or dir...>",
+      "docs": "Adiciona as modificações da máquina local (workspace) à fila, preparando-as para serem inclusas no próximo commit. Use `add --interactive` para adicionar modificações da máquina local de forma interativa."
+    },
+    "add -u": {
+      "cmd": "add -u",
+      "docs": "Adds the current content of modified (NOT NEW) files to the index.  This is similar to what `git commit -a` does in preparation for making a commit."
+    },
+    "rm x": {
+      "cmd": "rm <arquivo(s)...>",
+      "docs": "Remove um arquivo da máquina local (workspace) e da fila (index)."
+    },
+    "mv x": {
+      "cmd": "mv <arquivo(s)...>",
+      "docs": "Move arquivos na maquina local (workspace) e na fila (index)."
+    },
+    "commit -a": {
+      "cmd": "commit -a [-m 'msg']",
+      "docs": "Commit all files changed since your last commit, except untracked files (i.e. all files that are already listed in the index). Remove files in the index that have been removed from the workspace."
+    },
+    "checkout x": {
+      "cmd": "checkout <arquivo(s)... ou diretorio>",
+      "docs": "Atualiza o arquivo ou diretório da máquina local (workspace). NÃO muda de branch."
+    },
+    "reset head x": {
+      "cmd": "reset HEAD <arquivo(s)...>",
+      "docs": "Remove os arquivos especificados do próximo commit. Reseta a fila (index) mas não do diretório de trabalho. Em outras palavras, os arquivos alterados são preservados, mas não marcados para commit) e relata o que não foi atualizado."
+    },
+    "reset --soft head^": {
+      "cmd": "reset --soft HEAD^",
+      "docs": "Desfaz o último commit, deixando as alterações na máquina local (workspace), sem serem commitadas."
+    },
+    "reset --hard": {
+      "cmd": "reset --hard",
+      "docs": "Força todas as alterações na máquina local (workspace) e na fila à ficarem igual ao diretório atual. AVISO: Quaisquer arquivos modificados serão perdidos desde o commit. Use apenas se houver conflitos de merge e deseja recomeçar do zero a resolução. Passe o último commit no repositório remoto, `ORIGIN HEAD` para apagar todas as alterações após último merge feito com sucesso no repositório remoto."
+    },
+    "switch": {
+      "cmd": "switch <branch>",
+      "docs": "Muda da branch atual para branch escolhida, <branch>, e atualizando `HEAD` para <branch>."
+    },
+    "checkout -b x": {
+      "cmd": "checkout -b <nome da nova branch>",
+      "docs": "Cria uma nova branch e muda para ela."
+    },
+    "merge x": {
+      "cmd": "merge <commit ou branch>",
+      "docs": "Realiza o merge da <nome da branch> para a branch atual. \rUse `--no-commit` para deixar as modificações intactas (sem serem commitadas). Use `--no-ff` para criar um commit de merge mesmo se o merge puder ser feito com o método fast foward."
+    },
+    "rebase x": {
+      "cmd": "rebase <upstream branch>",
+      "docs": "Reaplicar os commits na <upstream branch> em cima de outra branch base."
+    },
+    "cherry-pick x": {
+      "cmd": "cherry-pick <commit>",
+      "docs": "Aplica o <commit> na branch atual."
+    },
+    "revert x": {
+      "cmd": "revert <commit>",
+      "docs": "Desfaz o commit <commit> e commita o resultado novamente. Esta ação requer que não haja modificações no diretório atual (sem modificações no commit `HEAD`)."
+    },
+    "diff --cached": {
+      "cmd": "diff --cached [<commit>]",
+      "docs": "Visualiza as modificações na fila vs o último commit. É possível passar um <commit> específico para visualizar as alterações relativas à ele."
+    },
+    "commit": {
+      "cmd": "commit [-m 'msg']",
+      "docs": "Grava as modificações que estavam na fila (index) em um commit junto com uma mensagem de log do usuário, descrevendo as modificações."
+    },
+    "commit --amend": {
+      "cmd": "commit --amend",
+      "docs": "Adiciona as modificações na fila (index) ao último commit."
+    },
+    "log": {
+      "cmd": "log",
+      "docs": "Mosta os últimos commits, os mais recentes acima. Opções:\r `--decorate` com nome da branch e tags nos commits\r`--stat` com status do commit (arquivos alterados, inserções e deleções)\r`--author=<autor> commits apenas de um determinado autor\r`--after=\"MMM DD YYYY\" exemplo: (`Jun 20 2021`) somente commits após certa data\r`--before=\"MMM DD YYYY\"` somene commit depois de cereta data\r`--merge` apenas commits envolvidos no conflito de merge."
+    },
+    "diff x x": {
+      "cmd": "diff <commit> <commit>",
+      "docs": "Visualiza a diferença entre dois commits"
+    },
+    "branch": {
+      "cmd": "branch",
+      "docs": "Lista todas as branches locais disponíveis. Opção `-r` mostra as branches remotas, e `-a` ambas."
+    },
+    "branch -d x": {
+      "cmd": "branch -d <branch>",
+      "docs": "Deleta uma branch específica. Use `-D` para forçar a deleção mesmo sem ter realizado o merge."
+    },
+    "branch --track x x": {
+      "cmd": "branch --track <nome branch nova> <repositorio remoto>/<branch>",
+      "docs": "Cria uma branch local a partir de uma branch remota."
+    },
+    "clone x": {
+      "cmd": "clone <repo>",
+      "docs": "Realiza o download do repositório sempre a partir da branch remota padrão definida."
+    },
+    "pull x x": {
+      "cmd": "pull <remote> <refspec>",
+      "docs": "Traz as modificações do repositório remoto para a branch local atual. No modo padrão, `git pull` é uma combinação de `git fetch` seguido de `git merge`."
+    },
+    "reset --hard x/x": {
+      "cmd": "reset --hard <remote>/<branch>",
+      "docs": "Reseta a branch local para ser igual à branch remota. Use `--hard origin/main` para descartar todos os commits feitos na branch local. AVISO: use este comando apenas para reiniciar um conflito de merge falho."
+    },
+    "fetch x x": {
+      "cmd": "fetch <remote> <refspec>",
+      "docs": "Realiza download dos objetos e referências do repositório remoto."
+    },
+    "push": {
+      "cmd": "push",
+      "docs": "Envia ao servidor remoto os commits em todas as branches que são **COMUNS** entre a máquina local e o servidor. As branches locais que não estão no servidor não são compartilhadas."
+    },
+    "push x x": {
+      "cmd": "push <remote> <branch>",
+      "docs": "Envia uma branch local nova (ou existente) para o servidor remoto."
+    },
+    "push x x:x": {
+      "cmd": "push <remote> <local>:<nome>",
+      "docs": "Envia uma branch local ao servidor com um nome diferente. <local> é o nome da branch local, e <nome> é o nome da branch no repositório remoto."
+    },
+    "branch -r": {
+      "cmd": "branch -r",
+      "docs": "Lista todas as branches remotas."
+    },
+    "push --delete": {
+      "cmd": "push <remote> --delete <branch>",
+      "docs": "Remove uma branch remota."
+    },
+    "clean": {
+      "cmd": "clean",
+      "docs": "Limpa o diretório atual removendo de forma recursiva arquivos não rastreados pelo git (untracked), começando do diretório atual. Use `-n` para verificar previamente quais arquivos seriam deletados. Use `-f` para deletá-los."
+    },
+    "stash push": {
+      "cmd": "stash push [<mensagem>]",
+      "docs": "Salva as suas modificações locais em uma área temporária (stash) e rode `git reset --hard` para desfazê-las. A <mensagem> é opcional e fornece a descrição do que foi salvo. Para salvar de forma mais rápida, você pode omitir o `push` e <mensagem>."
+    },
+    "stash apply": {
+      "cmd": "stash apply [<stash>]",
+      "docs": "Traz de volta as modificações da área temporária (stash) para a máquina local (workspace). O padrão é trazer a última modificação salva. A modificação continua salva na área temporária"
+    },
+    "stash pop": {
+      "cmd": "stash pop",
+      "docs": "Traz de volta as modificações da área temporária (stash) para a máquina local (workspace). O padrão é trazer a última modificação salva. A modificação é removida da área temporária"
+    },
+    "stash list": {
+      "cmd": "stash list",
+      "docs": "Lista as modificações salvas na área temporária (stash)."
+    },
+    "stash show": {
+      "cmd": "stash show [<stash>]",
+      "docs": "Show the changes recorded in the stash as a diff between the stashed state and its original parent. When no <stash> is given, shows the latest one."
+    },
+    "stash drop": {
+      "cmd": "stash drop [<stash>]",
+      "docs": "Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one."
+    },
+    "stash clear": {
+      "cmd": "stash clear",
+      "docs": "Remove todas as modificaçẽos armazenadas na área temporária (stash). AVISO: é impossível recuperá-las posteriormente."
+    },
+    "stash branch x": {
+      "cmd": "stash branch <nome da branch> [<stash>]",
+      "docs": "CCria e muda para uma branch chamada <nome branch> a partir do commit no qual o <stash> foi originalmente criado, aplica as alterações registradas em <stash> ao diretório e à fila.\rSe isso for bem-sucedido, e <stash> for uma referência do formato stash@{<revision>}, ele descartará o <stash>. Quando nenhum <stash> é fornecido, aplica-se o mais recente. \rIsto é útil se a branch no qual você executou o `git stash push` mudou o suficiente para que o `git stash apply` falhe devido a conflitos. Como o stash é aplicado em cima do commit que era `HEAD` no momento em que o `git stash` foi executado, ele restaura o estado original do stash sem conflitos."
+    }
+  },
+  "locations": {
+    "stash": "área temporária (stash)",
+    "workspace": "máquina local (workspace)",
+    "index": "fila (index)",
+    "local_repo": "repositório local",
+    "remote_repo": "repositório remoto",
+    "docs": {
+      "stash": "Um lugar para armazenar modificações de forma temporária enquanto trabalha-se em outra coisa.",
+      "workspace": "Código ou projeto na sua máquina local.",
+      "index": "Uma fila de arquivos a serem commitados. Antes de commitar os arquivos, é necessário adicioná-los à fila.",
+      "local_repo": "Um diretório na máquina local contendo uma pasta `.git` e todos os arquivos de um projeto versionado. BNomes comuns para branches locais: `main`, `master`, `feature-x`, `bugfix-y`.",
+      "remote_repo": "Um repositório remoto do código ou projeto para compartilhar e colaborar com outros desenvolvedores. Normalmente são servidores remotos como o Github. O nome padrão é `origin`. Nomes comuns para branches remotas: `main`, `master`, `shared-feature-x`, `release-y`. Também chamado de `remote` em inglês."
+    }
+  }
+}
