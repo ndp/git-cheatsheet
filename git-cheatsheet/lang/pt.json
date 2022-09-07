@@ -175,7 +175,7 @@
     },
     "stash branch x": {
       "cmd": "stash branch <nome da branch> [<stash>]",
-      "docs": "CCria e muda para uma branch chamada <nome branch> a partir do commit no qual o <stash> foi originalmente criado, aplica as alterações registradas em <stash> ao diretório e à fila.\rSe isso for bem-sucedido, e <stash> for uma referência do formato stash@{<revision>}, ele descartará o <stash>. Quando nenhum <stash> é fornecido, aplica-se o mais recente. \rIsto é útil se a branch no qual você executou o `git stash push` mudou o suficiente para que o `git stash apply` falhe devido a conflitos. Como o stash é aplicado em cima do commit que era `HEAD` no momento em que o `git stash` foi executado, ele restaura o estado original do stash sem conflitos."
+      "docs": "Cria e muda para uma branch chamada <nome branch> a partir do commit no qual o <stash> foi originalmente criado, aplica as alterações registradas em <stash> ao diretório e à fila.\rSe isso for bem-sucedido, e <stash> for uma referência do formato stash@{<revision>}, ele descartará o <stash>. Quando nenhum <stash> é fornecido, aplica-se o mais recente. \rIsto é útil se a branch no qual você executou o `git stash push` mudou o suficiente para que o `git stash apply` falhe devido a conflitos. Como o stash é aplicado em cima do commit que era `HEAD` no momento em que o `git stash` foi executado, ele restaura o estado original do stash sem conflitos."
     }
   },
   "locations": {
