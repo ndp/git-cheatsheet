@@ -19,6 +19,7 @@ to others in the same endeavor.
 * Korean translation by https://github.com/ujuc
 * Italian translation by https://github.com/antoniopantaleo
 * Vietnamese translation by https://github.com/trgiangdo
+* Portuguese translation by https://github.com/HenriqueAJNB
 
 Comments and pull requests welcome.
 
