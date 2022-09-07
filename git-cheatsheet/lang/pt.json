@@ -163,11 +163,11 @@
     },
     "stash show": {
       "cmd": "stash show [<stash>]",
-      "docs": "Show the changes recorded in the stash as a diff between the stashed state and its original parent. When no <stash> is given, shows the latest one."
+      "docs": "Mostra a diferença entre o que está salvo na memória e o estado original. Se nenhum <stash> específico for fornecido, mostra o último stash salvo."
     },
     "stash drop": {
       "cmd": "stash drop [<stash>]",
-      "docs": "Remove a single stashed state from the stash list. When no <stash> is given, it removes the latest one."
+      "docs": "Remove um stash da área temporária.m the stash list. Se nenhum <stash> for fornecido, remove o último stash salvo."
     },
     "stash clear": {
       "cmd": "stash clear",
