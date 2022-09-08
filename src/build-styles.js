@@ -116,7 +116,8 @@ const css = {
   '#diagram':             {
     marginTop:    20,
     position:     'relative',
-    height:       '6.8in',
+    height:       'calc(100vh - 120px)',
+    minHeight:    '6.8in',
     marginBottom: '2cm',
     padding:      '1px 0',
   },
