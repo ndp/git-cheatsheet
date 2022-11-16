@@ -42,10 +42,13 @@ Keep the PR restricted to changes related to the translation.
 
 ## Development
 
-I'm in the process of moving the source code into modern JS, and
-using `babel` to transpile it. New files are in the `src` folder, and using `yarn build` to transpile.
+Files are in the `src` folder. To see it locally:
+- `yarn test` to run the tests
+- `yarn build` to transpile. 
+- `yarn start` to serve
+- Open `http://127.0.0.1:8080/git-cheatsheet.html` to view the page
 
-CI is on [CircleCI](https://app.circleci.com/pipelines/github/ndp/git-cheatsheet)
+CI is on [[Github Actions](https://app.circleci.com/pipelines/github/ndp/git-cheatsheet)](https://github.com/ndp/git-cheatsheet/actions)
 
 ## Deploy
 
