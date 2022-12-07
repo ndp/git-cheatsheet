@@ -77,9 +77,9 @@ export const commands = [
     "tags":      "Basic Snapshotting",
   },
   {
-    "left":      "index",
+    "left":      "local_repo",
     "right":     "local_repo",
-    "direction": "dn",
+    "direction": "status",
     "key":       "reset --soft head^",
     "tags":      "Basic Snapshotting",
   },
