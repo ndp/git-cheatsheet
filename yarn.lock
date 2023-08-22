@@ -2787,7 +2787,7 @@ __metadata:
     "@babel/preset-env": "*"
     browserlist: "*"
     jasmine: ^5.1.0
-    jquery: "*"
+    jquery: ^3.7.0
     webpack: ^5.88.2
     webpack-cli: ^5.1.4
   languageName: unknown
@@ -3136,10 +3136,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:*":
-  version: 3.6.1
-  resolution: "jquery@npm:3.6.1"
-  checksum: 6177d866a74f1137cad800f142c7cdbd5ab19cd4282546f8bdb4890c9f933b1d542ab96f2aa15d007e43c98de7315b0513e849ec5359d3ac5640f720892fe547
+"jquery@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "jquery@npm:3.7.0"
+  checksum: 907785e133afc427650a131af5fccef66a404885037513b3d4d7d63aee6409bcc32a39836868c60e59b05aa0fb8ace8961c18b2ee3ffdf6ffdb571d6d7cd88ff
   languageName: node
   linkType: hard
 
