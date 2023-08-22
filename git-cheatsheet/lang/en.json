@@ -44,7 +44,7 @@
         },
         "reset --soft head^": {
             "cmd": "reset --soft HEAD^",
-            "docs": "Undo the last commit, leaving its changes in the workspace, uncommitted. Does not touch the index file or the working tree at all.  `reset --soft HEAD^^` moves back two commits, etc."
+            "docs": "Undo the last commit, leaving its changes in the workspace, uncommitted. Does not touch the index file or the working tree at all. The only change it makes is to the head of the local repository."
         },
         "reset --hard": {
             "cmd": "reset --hard",

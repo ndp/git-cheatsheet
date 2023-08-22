@@ -98,7 +98,7 @@ function selectLoc (id) {
     } else {
       window.location.href = '#loc=' + id + ';'
     }
-    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select-loc', eventLabel: id })
+    gtag('event', 'select-loc', { category: 'git-cheatsheet', label: id })
   }
 }
 
@@ -109,7 +109,7 @@ function showDocsForCmdEl (cmdEl) {
 
   showDocs(doc, cmd)
 
-  return cmd
+  return `git {$cmdEl.text()}`
 }
 
 function selectCommand (newEl) {
@@ -121,7 +121,7 @@ function selectCommand (newEl) {
 
   const cmd = showDocsForCmdEl(newEl)
 
-  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'select', eventLabel: cmd })
+  gtag('event', 'select', { category: 'git-cheatsheet', label: cmd })
 }
 
 const popStateLoc$ = Observable.fromEvent(window, 'popstate')
@@ -273,7 +273,7 @@ nextCmd$
 
 mouseOverDataDoc$.subscribe(function (el) {
   showDocsForElement(el)
-  ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'mouseover', eventLabel: $(el).text() })
+  gtag('event', 'mouseover', { category: 'git-cheatsheet', label: $(el).text() })
 })
 
 function translateLocations (lang) {
@@ -409,7 +409,7 @@ $(function () {
   $('.lang').on('click', function () {
     const newLang = $(this).attr('data-lang')
     cookies.create('lang', newLang)
-    ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'lang', eventLabel: newLang })
+    gtag('event', 'lang', { category: 'git-cheatsheet', label: newLang })
 
     lang = onChooseLang(newLang)
   })

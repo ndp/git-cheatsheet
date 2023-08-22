@@ -33,14 +33,12 @@
   <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Merriweather:300,400' rel='stylesheet' type='text/css'>
   <link href="git-cheatsheet/fonts/Impact-Label-fontfacekit/stylesheet.css" type="text/css" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNH5WK48EE"></script>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-1458227-1', 'auto');
-    ga('send', 'pageview');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XNH5WK48EE');
   </script>
   <script type="application/ld+json">
     {
@@ -81,18 +79,17 @@
       <a class="lang" data-lang="zh-tw" data-docs="Traditional Chinese translation by Hsins">繁中</a>
     </h4>
   </div>
-
   <div class="grid_6 omega" style="float: right;padding-left: 15px;;padding-right: 15px;">
     <ul>
       <li><a href="http://justinhileman.info/article/git-pretty/git-pretty.png"
              target="_blank"
              rel="noopener"
-             onclick="ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'refer', eventLabel: 'git-pretty'})">escape a git mess,
+             onclick="gtag('event', 'refer', { category: 'git-cheatsheet', label: 'git-pretty'})">escape a git mess,
         step-by-step&raquo;</a></li>
       <li><a href="https://www.amp-what.com?utm_source=Git+Cheatsheet&amp;utm_campaign=Text+Link&amp;utm_medium=web"
              target="_blank"
              rel="noopener"
-             onclick="ga('send', { hitType: 'event', eventCategory: 'git-cheatsheet', eventAction: 'refer', eventLabel: 'amp-what'})">discover character
+             onclick="gtag('event', 'refer', { category: 'git-cheatsheet', label: 'amp-what'})">discover character
         entities at &amp;what&raquo;</a></li>
     </ul>
   </div>
