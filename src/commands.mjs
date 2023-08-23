@@ -1,8 +1,3 @@
-/*
- var canonize = function (k) {
- return k.replace(/\[.*\]/, '').replace(/<[^>]+>/g, 'x').toLowerCase().trim()
- }
- */
 export const locations = ["stash", "workspace", "index", "local_repo", "remote_repo"]
 
 export const commands = [
