@@ -13,6 +13,7 @@ to others in the same endeavor.
 * Andrew Peterson, [NDP Software](https://ndpsoftware.com)
 * French translation by [Bernard Opic](https://blogs.media-tips.com/bernard.opic/)
 * Simplified Chinese translation by https://github.com/acecode
+    * Improve Simplified Chinese translation by https://github.com/rebornsick
 * Traditional Chinese translation by https://github.com/Hsins
 * https://github.com/GerjanOnline -- bug fix
 * Spanish translation by https://github.com/sminutoli
