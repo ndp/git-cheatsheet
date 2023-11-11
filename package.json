@@ -24,8 +24,8 @@
   "homepage": "https://github.com/ndp/git-cheatsheet#readme",
   "devDependencies": {
     "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.0",
-    "@babel/preset-env": "^7.22.20",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
     "browserlist": "*",
     "jasmine": "^5.1.0",
     "jquery": "^3.7.1",
