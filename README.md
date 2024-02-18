@@ -1,7 +1,7 @@
 # Git Cheatsheet
 
-<div align="center">
-  <img src="https://i.imgur.com/vD2hXkf.png" />
+<div style="text-align: center">
+  <img alt="screenshot of app" src="https://i.imgur.com/vD2hXkf.png" style="max-width: 500px;"/>
 </div>
 
 Standalone HTML page that organizes Git's commands by what they affect.
@@ -10,17 +10,18 @@ to others in the same endeavor.
 
 ## Contributors
 
-* Andrew Peterson, [NDP Software](https://ndpsoftware.com)
+* Development by Andrew Peterson, <img src="https://github.com/ndp-software.png?size=32" style="vertical-align: middle;">  [NDP Software](https://ndpsoftware.com)
 * French translation by [Bernard Opic](https://blogs.media-tips.com/bernard.opic/)
-* Simplified Chinese translation by https://github.com/acecode
-    * Improve Simplified Chinese translation by https://github.com/rebornsick
-* Traditional Chinese translation by https://github.com/Hsins
-* https://github.com/GerjanOnline -- bug fix
-* Spanish translation by https://github.com/sminutoli
-* Korean translation by https://github.com/ujuc
-* Italian translation by https://github.com/antoniopantaleo
-* Vietnamese translation by https://github.com/trgiangdo
-* Portuguese translation by https://github.com/HenriqueAJNB
+* Simplified Chinese translation by [acecode](https://github.com/acecode)
+* Improve Simplified Chinese translation by <img src="https://github.com/rebornsick.png?size=32" style="vertical-align: middle;"> [rebornsick](https://github.com/rebornsick)
+* Traditional Chinese translation by <img src="https://github.com/Hsins.png?size=32" style="vertical-align: middle;"> [Hsins](https://github.com/Hsins)
+* Bug fix by <img src="https://github.com/GerjanOnline.png?size=32" style="vertical-align: middle;"> [GerjanOnline](https://github.com/GerjanOnline)
+* Spanish translation by <img src="https://github.com/sminutoli.png?size=32" style="vertical-align: middle;"> [sminutoli](https://github.com/sminutoli)
+* Korean translation by <img src="https://github.com/ujuc.png?size=32" style="vertical-align: middle;"> [ujuc](https://github.com/ujuc)
+* Italian translation by <img src="https://github.com/antoniopantaleo.png?size=32" style="vertical-align: middle;"> [antoniopantaleo](https://github.com/antoniopantaleo)
+* Vietnamese translation by <img src="https://github.com/trgiangdo.png?size=32" style="vertical-align: middle;"> [trgiangdo](https://github.com/trgiangdo)
+* Portuguese translation by <img src="https://github.com/HenriqueAJNB.png?size=32" style="vertical-align: middle;"> [HenriqueAJNB](https://github.com/HenriqueAJNB)
+* Russian translation by <img src="https://github.com/vistar.png?size=32" style="vertical-align: middle;"> [vistar](https://github.com/vistar)
 
 Comments and pull requests welcome.
 
@@ -45,7 +46,7 @@ Keep the PR restricted to changes related to the translation.
 
 Files are in the `src` folder. To see it locally:
 - `yarn test` to run the tests
-- `yarn build` to transpile. 
+- `yarn build` to transpile.
 - `yarn start` to serve
 - Open `http://127.0.0.1:8080/git-cheatsheet.html` to view the page
 
