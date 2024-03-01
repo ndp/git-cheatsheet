@@ -72,8 +72,8 @@ okay tactic, as it brought people to the page.
 
 ## Like it or have ideas?
 
-If you like this and would like me to do more intereactions like this, send me an email... or money https://venmo.com/ndpsoft or  https://www.gofundme.com/ndp-software
+If you like this and would like me to do more intereactions like this, send me an email... or [patreon.com/ndp](https://patreon.com/ndp)
 
 ## License
 
-Copyright (c) 2013-2022 Andrew J. Peterson, NDP Software
+Copyright (c) 2013-2024 Andrew J. Peterson, NDP Software
