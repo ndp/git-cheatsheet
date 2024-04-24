@@ -124,7 +124,7 @@
         },
         "push": {
             "cmd": "push",
-            "docs": "Update the server with your commits across all branches that are *COMMON* between your local copy and the server. Local branches that were never pushed to the server in the first place are not shared."
+            "docs": "Update the server with your commits to the current branch. `--all` transfers the commits of all branches."
         },
         "push x x": {
             "cmd": "push <remote> <branch>",
