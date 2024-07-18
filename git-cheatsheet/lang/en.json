@@ -106,6 +106,10 @@
             "cmd": "branch --track <new branch name> <remote>/<branch>",
             "docs": "Create a new local branch from a remote-tracking branch."
         },
+        "init x": {
+            "cmd": "init <dir>",
+            "docs": "Create a new local Git repository in <dir>. The repository starts with no commits."
+        },
         "clone x": {
             "cmd": "clone <repo>",
             "docs": "Download the repository specified by <repo> and checkout `HEAD` of the main branch."
