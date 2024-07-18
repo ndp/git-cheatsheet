@@ -45,9 +45,10 @@ Keep the PR restricted to changes related to the translation.
 ## Development
 
 Files are in the `src` folder. To see it locally:
+- `yarn install` to install dependencies
 - `yarn test` to run the tests
 - `yarn build` to transpile.
-- `yarn start` to serve
+- `yarn start` or `yarn start-docker` to serve. The latter uses a Docker container.
 - Open `http://127.0.0.1:8080/git-cheatsheet.html` to view the page
 
 CI is on [Github Actions](https://github.com/ndp/git-cheatsheet/actions).

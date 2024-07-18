@@ -8,9 +8,12 @@
     "build": "yarn build-js && yarn build-styles",
     "build-js": "webpack --entry ./src/git-cheatsheet.js -o ./git-cheatsheet/ --mode production --target browserslist --devtool source-map",
     "build-styles": "node ./src/build-styles.js",
+    "docker-build": "docker build -t git-cheatsheet .",
+    "docker-run": "docker run -p 8080:8080 git-cheatsheet",
     "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js ./git-cheatsheet/styles.css",
     "test": "jasmine spec/*_spec.mjs",
-    "start": "npx http-server"
+    "start": "npx http-server",
+    "start-docker": "npm run docker-build && npm run docker-run"
   },
   "repository": {
     "type": "git",
