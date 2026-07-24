@@ -92,4 +92,4 @@ If you like this and would like me to do more intereactions like this, send me a
 
 ## License
 
-Copyright (c) 2013-2024 Andrew J. Peterson, NDP Software
+Copyright (c) 2013-2025 Andrew J. Peterson, NDP Software

@@ -1,5 +1,8 @@
 {
   "commands": {
+    "init x": {
+      "docs": "Erstellen Sie ein neues lokales Git-Repository in <dir>. Das Repository beginnt ohne Commits."
+    },
     "status": {
       "cmd": "status",
       "docs": "Zeigt: \r• Pfade mit Unterschieden zwischen dem Index und dem aktuellen `HEAD` commit \r• Pfade mit Unterschieden zwischen der Arbeitskopie und dem Index \r• Pfade in der Arbeitskopie, die nicht durch Git verwaltet werden"

@@ -203,6 +203,13 @@ export const commands = [
   },
   {
     "left":      "workspace",
+    "right":     "local_repo",
+    "direction": "up",
+    "key":       "init x",
+    "tags":      "Creating Projects",
+  },
+  {
+    "left":      "workspace",
     "right":     "remote_repo",
     "direction": "dn",
     "key":       "pull x x",

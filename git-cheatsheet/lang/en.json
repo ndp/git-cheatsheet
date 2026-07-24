@@ -110,6 +110,10 @@
             "cmd": "clone <repo>",
             "docs": "Download the repository specified by <repo> and checkout `HEAD` of the main branch."
         },
+        "init x": {
+          "cmd": "init <dir>",
+          "docs": "Create a new local Git repository in <dir>. The repository starts with no commits."
+        },
         "pull x x": {
             "cmd": "pull <remote> <refspec>",
             "docs": "Incorporates changes from a remote repository into the current branch. In its default mode, `git pull` is shorthand for `git fetch` followed by `git merge FETCH_HEAD`."
