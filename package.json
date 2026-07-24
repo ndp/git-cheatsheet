@@ -12,6 +12,7 @@
     "docker-run": "docker run -p 8080:8080 git-cheatsheet",
     "clean": "rm -f git-cheatsheet/*.map git-cheatsheet/*.js ./git-cheatsheet/styles.css",
     "test": "jasmine spec/*_spec.mjs",
+    "verify": "yarn run clean && yarn run build && yarn run test",
     "start": "npx http-server",
     "start-docker": "npm run docker-build && npm run docker-run"
   },
