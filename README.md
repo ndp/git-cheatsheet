@@ -69,7 +69,7 @@ rsync --progress -e "ssh -i ~/.ssh/LightsailDefaultKey-us-west-2.pem" ./git-chea
 
 rsync -avcz --progress -e "ssh -i ~/.ssh/LightsailDefaultKey-us-west-2.pem" ./git-cheatsheet bitnami@52.36.92.53:/home/bitnami/htdocs/
 
-rsync -avcz --progress -e "ssh -i ~/.ssh/LightsailDefaultKey-us-west-2.pem" ../agile_methods bitnami@52.36.92.53:/home/bitnami/htdocs/
+# rsync -avcz --progress -e "ssh -i ~/.ssh/LightsailDefaultKey-us-west-2.pem" ../agile_methods bitnami@52.36.92.53:/home/bitnami/htdocs/
 
 
 ```
