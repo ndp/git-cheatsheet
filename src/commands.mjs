@@ -196,6 +196,13 @@ export const commands = [
   },
   {
     "left":      "workspace",
+    "right":     "local_repo",
+    "direction": "dn",
+    "key":       "init x",
+    "tags":      "Creating Projects",
+  },
+  {
+    "left":      "workspace",
     "right":     "remote_repo",
     "direction": "dn",
     "key":       "clone x",
